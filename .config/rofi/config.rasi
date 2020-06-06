@@ -1,0 +1,46 @@
+configuration {
+	font:		"FiraMono Nerd Font 16";
+	}
+
+* {
+	background-color:	transparent;
+	background:		#010101;
+	background-alt:		#D5D5D5;
+	text-color:		#D8DEE9;
+	selected-text-color:	#000000;
+	primary:		#A3BE8C;
+	ugent:			#BF616A;
+	}
+
+window {
+	transparency:		"real";
+	background-color:	@background;
+	}
+
+entry {
+	padding:		0.1%;
+	margin:			0.1% 0.1%;
+	background-color:	#FFFFFF20;
+	border-color:		@text-color;
+	font:			"mononoki Nerd Font 16";
+	}
+
+mainbox {
+	children: [ inputbar, listview ];
+	padding: 1%;
+	}
+
+listview {
+	spacing: 5;
+	}
+
+element {
+	orientation: vertical;
+	}
+
+
+element-text {
+	padding: 0 0 0 0;
+	text-color: inherit;
+	horizontal-align: 0.0;
+	}
