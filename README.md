@@ -12,3 +12,6 @@ I'm on Arch linux because it makes it really easy to install all the packages I 
 | `kitty`                  | Modern, hackable, featurefull, OpenGL-based terminal emulator |
 | `nerd-fonts-fira-code`   | Beautiful monospaced font                                     |
 | `nerd-fonts-fira-mono`   | Beautiful monospaced font                                     |
+| `dunst`                  | Notification-daemon replacement                               |
+| `xbacklight`             | To control the screen brightness                              |
+| `playerctl`              | change songs backwards and forwards using the media keys      |
