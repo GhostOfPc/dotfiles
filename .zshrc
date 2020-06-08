@@ -139,5 +139,4 @@ date +%A\ %d\ %B\ %Y\ %H:%M
 uname -nrm
 uptime -p | sed "s/up\s/Elapsed Time: /;s/hours,\s/hs:/g;s/minutes/min/"
 alias config='/usr/bin/git --git-dir=/home/hisham/dotfiles/ --work-tree=/home/hisham'
-alias pic='/usr/bin/git --git-dir=/home/hisham/Pictures/ --work-tree='
 alias pic='/usr/bin/git --git-dir=/home/hisham/Pictures/ --work-tree=/home/hisham/Pictures'
