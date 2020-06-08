@@ -49,7 +49,7 @@ theme.bg_systray    =   theme.bg_normal
 
 -- Border colors
 theme.border_width      =   dpi(1)
-theme.border_normal     =   '#D5D5D5'
+theme.border_normal     =   '#282a36f0'
 theme.border_focus      =   '#8AB4F8'
 
 -- Foreground color
@@ -63,7 +63,7 @@ theme.fullscreen_hide_border = true
 
 -- gap
 theme.gap_single_client =   true
-theme.useless_gap       =   dpi(1)
+theme.useless_gap       =   dpi(2)
 
 -- menubar
 theme.menubar_fg_normal     =   theme.fg_normal
