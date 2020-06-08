@@ -25,3 +25,5 @@ I'm on Arch linux because it makes it really easy to install all the packages I 
 | `dunst`                  | Notification-daemon replacement                               |
 | `xbacklight`             | To control the screen brightness                              |
 | `playerctl`              | change songs backwards and forwards using the media keys      |
+
+I manage this dotfiles using a method provided by a gentelman called StreakyCobra
