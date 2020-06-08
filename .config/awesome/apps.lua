@@ -44,7 +44,8 @@ local apps = {
 	screenshot	=	'maim -B -u $HOME/.screenshoots/"Screenshot-"$(date +%Y-%m-%d-%H-%M).png',
 	terminal = "kitty",
 	vplayer	= "vlc",
-	vector	= "inkscape"
+	vector	= "inkscape",
+	wallpaper = 'nitrogen'
 }
 local function run_once(cmd)
     local findme = cmd
