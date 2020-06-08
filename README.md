@@ -26,4 +26,4 @@ I'm on Arch linux because it makes it really easy to install all the packages I 
 | `xbacklight`             | To control the screen brightness                              |
 | `playerctl`              | change songs backwards and forwards using the media keys      |
 
-I manage this dotfiles using a method provided by a gentelman called StreakyCobra on [https://www.atlassian.com/git/tutorials/dotfiles!](https://www.atlassian.com/git/tutorials/dotfiles)
+I manage this dotfiles using a method provided by a gentelman called StreakyCobra on [https://www.atlassian.com/git/tutorials/dotfiles](https://www.atlassian.com/git/tutorials/dotfiles)
