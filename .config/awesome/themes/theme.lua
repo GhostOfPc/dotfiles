@@ -49,8 +49,8 @@ theme.bg_systray    =   theme.bg_normal
 
 -- Border colors
 theme.border_width      =   dpi(1)
-theme.border_normal     =   '#282a36f0'
-theme.border_focus      =   '#8AB4F8'
+theme.border_normal     =   '#282a36'
+theme.border_focus      =   '#ff92df'
 
 -- Foreground color
 theme.fg_normal     =   '#EEEEEE'
