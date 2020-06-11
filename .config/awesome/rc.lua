@@ -326,9 +326,9 @@ awful.keyboard.append_global_keybindings({
               {description = 'Jump to the previous song', group = 'hotKeys'}),
     awful.key({ }, 'XF86AudioPlay', function () awful.spawn('playerctl play-pause') end,
               {description = 'Play/Pause current song', group = 'hotKeys'}),
-    awful.key({ }, 'XF86MonBrightnessUp', function () awful.spawn.with_shell('xbacklight -inc 2') end,
+    awful.key({ }, 'XF86MonBrightnessUp', function () awful.spawn.with_shell('$HOME/.local/bin/brightness.sh up') end,
               {description = 'Brightness increase', group = 'hotKeys'}),
-    awful.key({ }, 'XF86MonBrightnessDown', function () awful.spawn.with_shell('xbacklight -dec 2') end,
+    awful.key({ }, 'XF86MonBrightnessDown', function () awful.spawn.with_shell('$HOME/.local/bin/brightness.sh down') end,
               {description = 'Brightness decrease', group = 'hotKeys'}),
 })
 
