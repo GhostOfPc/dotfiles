@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # You can call this script like this:
 # $ ./brightnessControl.sh up
@@ -13,7 +13,7 @@ function get_brightness {
 }
 
 function send_notification {
-  icon="/home/hisham/Pictures/brightness/brightness.svg"
+  icon="/usr/share/icons/Papirus/48x48/status/notification-display-brightness.svg"
   brightness=$(get_brightness)
   # Make the bar with the special character ─ (it's not dash -)
   # https://en.wikipedia.org/wiki/Box-drawing_character
