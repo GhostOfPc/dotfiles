@@ -11,4 +11,3 @@ fi
 if $HOME/.local/bin/report.txt; then
 	rm $HOME/bin/.local/report.txt
 fi
-	echo "$weather" | awk '{print $0}' >> $HOME/.local/bin/report.txt
