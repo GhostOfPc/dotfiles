@@ -8,6 +8,4 @@ if [ $(echo "$weather" | grep -E "(Unknown|curl|HTML)" | wc -l) -gt 0 ]; then
 else
     echo "$weather" | awk '{print $0}'
 fi
-if $HOME/.local/bin/report.txt; then
-	rm $HOME/bin/.local/report.txt
-fi
+
