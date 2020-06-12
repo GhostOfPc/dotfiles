@@ -33,18 +33,19 @@ local awful = require('awful')
 local filesystem = require('gears.filesystem')
 
 local apps = {
-	browser = "brave",
-	editor	= os.getenv("EDITOR") or "nvim",
-	fmanager = "pcmanfm",
-	geditor	= "geany",
-	launcher = "rofi -normal-window -modi drun -show drun",
-	lock	= "i3lock",
-	mc	= "kodi",
-	mplayer	= "spotify",
+	browser = 'brave',
+	editor	= os.getenv('EDITOR') or 'nvim',
+	fmanager = 'pcmanfm',
+	geditor	= 'geany',
+	launcher = 'rofi -normal-window -modi drun -show drun',
+	lock	= 'i3lock',
+	mc	= 'kodi',
+	mplayer	= 'spotify',
 	screenshot	=	'maim -B -u $HOME/.screenshoots/"Screenshot-"$(date +%Y-%m-%d-%H-%M).png',
-	terminal = "kitty",
-	vplayer	= "vlc",
-	vector	= "inkscape",
+	terminal = 'kitty',
+	vplayer	= 'vlc',
+	vector	= 'inkscape',
+	ssh	= 'filezilla',
 	wallpaper = 'nitrogen'
 }
 local function run_once(cmd)
@@ -59,11 +60,11 @@ end
 do
   local startup_apps=
   {
-    "nitrogen --restore",
-    "picom --experimental-backend",
-    "xfce4-power-manager",
-    "dunst",
-    "lxsession"
+    'nitrogen --restore',
+    'picom --experimental-backend',
+    '$HOME/.local/bin/pmanag.sh',
+    'dunst',
+    'lxsession'
   }
 
   for _,apps in pairs(startup_apps) do

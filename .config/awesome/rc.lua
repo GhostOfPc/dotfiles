@@ -167,7 +167,7 @@ vicious.register(datewidget, vicious.widgets.date, '📅 <span color = "#1EB715"
 
 -- CPU graph
    local cpuwidget = awful.widget.graph()
-   cpuwidget:set_width(150)
+   cpuwidget:set_width(120)
    cpuwidget:set_background_color('#181818')
    cpuwidget:set_color({ type = 'linear', from = { 0, 0 }, to = { 0,0 }, stops = { {1.0, '#A2FF5D'}, {1.0, '#A2FF5D'}, 
                    {1, '#AECF96' }}})
@@ -271,6 +271,8 @@ awful.keyboard.append_global_keybindings({
 -- Program launching keybinding
     awful.key({ modkey,           }, 'Return', function () awful.spawn(apps.terminal) end,
               {description = 'open a terminal', group = 'launcher'}),
+    awful.key({ modkey,           }, 'F1', function () awful.spawn(apps.ssh) end,
+              {description = 'open filezilla', group = 'launcher'}),
     awful.key({ modkey,           }, 'g', function () awful.spawn(apps.geditor) end,
               {description = 'open geany', group = 'launcher'}),
     awful.key({ modkey,           }, 'i', function () awful.spawn(apps.vector) end,
