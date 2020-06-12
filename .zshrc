@@ -84,9 +84,6 @@ alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
-#Cleanup orphaned packages
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
-
 alias u="sudo pacman -Syyu"
 alias uy="yay -Syu"
 alias c="checkupdates"
@@ -100,9 +97,6 @@ alias dels="sudo timeshift --delete --snapshot"
 alias cres="sudo timeshift --create --comments"
 alias purge="sudo pacman -Rcns $(pacman -Qtdq)"
 alias ex="exa --icons -lah --color=always --group-directories-first"
-alias tra="transmission-remote -a \""
-alias tr="transmission-remote "
-alias trl="transmission-remote -l"
 alias v="nvim"
 alias w="curl wttr.in"
 alias s="ssh 192.168.0.100 -p 22"
