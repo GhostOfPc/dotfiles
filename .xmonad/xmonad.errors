@@ -1,0 +1,23 @@
+
+xmonad.hs:79:20: warning: [-Wdeprecations]
+    In the use of ‘defaultConfig’
+    (imported from XMonad, but defined in XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+   |
+79 |     xmonad $ docks defaultConfig
+   |                    ^^^^^^^^^^^^^
+
+xmonad.hs:81:1: warning: [-Wtabs]
+    Tab character found here, and in 29 further locations.
+    Please use spaces instead.
+   |
+81 |                           , modMask            = myModKey
+   | ^^^^^^^^
+
+xmonad.hs:98:75: warning: [-Wdeprecations]
+    In the use of ‘defaultConfig’
+    (imported from XMonad, but defined in XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+   |
+98 |                           , layoutHook         = avoidStruts $ layoutHook defaultConfig
+   |                                                                           ^^^^^^^^^^^^^
