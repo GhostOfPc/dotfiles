@@ -9,6 +9,7 @@ import qualified Data.Map        as M
 -- Hooks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.EwmhDesktops
 
 -- Utils
 import XMonad.Util.Run(spawnPipe)
@@ -17,6 +18,8 @@ import XMonad.Util.SpawnOnce
 
 -- Layouts
 import XMonad.Layout.Spacing
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Spiral
 
 -- Defaults
 myTerminal      = "kitty"
@@ -50,7 +53,7 @@ mystartupHook   = do
           spawnOnce "nitrogen --restore &"
           spawnOnce "picom --experimental-backends &"
           spawnOnce "dunst &"
-          spawnOnce "xfce4-power-manager &"
+          spawnOnce "$HOME/.local/bin/pmanag.sh &"
           spawnOnce "lxsession &"
 
 -- Keybinding
@@ -92,6 +95,10 @@ myKeys =
 	, ("<XF86MonBrightnessUp>",   spawn "$HOME/.local/bin/brightness.sh up")
 	, ("<XF86MonBrightnessDown>", spawn "$HOME/.local/bin/brightness.sh down")
       ]
+
+-- Layouts
+myLayouts = spacingRaw True (Border 3 3 3 3 ) True (Border 3 3 3 3 ) True (Tall 1 (3/100) (1/2) ||| noBorders (Full) ||| spiral (6/7))
+
 -- Main
 main = do
     xmproc <- spawnPipe "xmobar $HOME/.config/xmobar/xmobarrc"
@@ -114,5 +121,7 @@ main = do
                                   , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"  -- Urgent workspace
                                   , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
 			          }
-			  , layoutHook         = avoidStruts $ layoutHook def
+			  , layoutHook         = avoidStruts $ myLayouts
+                          , handleEventHook    = fullscreenEventHook
+
 			  } `additionalKeysP` myKeys
