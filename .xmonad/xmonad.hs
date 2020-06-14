@@ -9,27 +9,17 @@ import qualified Data.Map        as M
 -- Hooks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ManageDocks
 
 -- Utils
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeysP)
 import XMonad.Util.SpawnOnce
 
+-- Layouts
+import XMonad.Layout.Spacing
 
 -- Defaults
 myTerminal      = "kitty"
-mybrowser       = "brave"
-myEditor        = "nvim"
-myVector        = "inkscape"
-myMplayer       = "spotify"
-myVplayer       = "vlc"
-myMC            = "kodi"
-myGEditor       = "geany"
-myWallpaper     = "nitrogen"
-myPasswd        = "keepassxc"
-mySsh           = "filezilla"
-myPhEdit        = "gimp"
 
 -- Variables
 myModKey :: KeyMask
@@ -67,11 +57,40 @@ mystartupHook   = do
 myKeys :: [([Char], X())]
 myKeys = 
       -- Xmonad restart and recompile
-      [   ("M-C-r", spawn "xmonad --recompile")      -- Recompiles xmonad
-        , ("M-S-r", spawn "xmonad --restart")        -- Restarts xmonad
-        , ("M-S-q", io exitSuccess)   
+      [   ("M-C-r",      spawn "xmonad --recompile")              -- Recompiles xmonad
+        , ("M-S-r",      spawn "xmonad --restart")                -- Restarts xmonad
+        , ("M-S-q",      io exitSuccess)                          -- Exit xmonad
+	, ("M-<Escape>", spawn "$HOME/.local/bin/power.sh")  -- Exit menu
 
-        , ("M-<Return>", spawn "myTerminal")
+	-- Programs
+        , ("M-<Return>", spawn "kitty")
+	, ("M-b",        spawn "brave")
+	, ("M-n",        spawn "nitrogen")
+	, ("M-o",        spawn "spotify")
+	, ("M-S-o",      spawn "kill -9 $(pgrep spotify)")
+	, ("M-m",        spawn "kodi")
+	, ("M-S-m",      spawn "kill -9 $(pgrep kodi)")
+	, ("M-v",        spawn "vlc")
+	, ("M-S-v",      spawn "kill -9 $(pgrep vlc)")
+	, ("M-i",        spawn "inkscape")
+	, ("M-g",        spawn "geany")
+	, ("M-f",        spawn "pcmanfm")
+	, ("M-S-k",      spawn "keepassxc")
+	, ("M-S-s",      spawn "filezilla")
+	, ("M-u",        spawn "uget-gtk")
+	, ("M-S-u",      spawn "kill -9 $(pgrep uget-gtk)")
+	, ("M-C-b",      spawn "qbittorrent")
+	, ("M-S-b",      spawn "kill -9 $(pgrep qbittorrent)")
+
+	-- Multimedia keys
+	, ("<XF86AudioRaiseVolume>",  spawn "$HOME/.local/bin/volume.sh up")
+	, ("<XF86AudioLowerVolume>",  spawn "$HOME/.local/bin/volume.sh down")
+	, ("<XF86AudioMute>",         spawn "$HOME/.local/bin/volume.sh mute")
+	, ("<XF86AudioNext>",         spawn "playerctl next")
+	, ("<XF86AudioPrev>",         spawn "playerctl previous")
+	, ("<XF86AudioPlay>",         spawn "playerctl play-pause")
+	, ("<XF86MonBrightnessUp>",   spawn "$HOME/.local/bin/brightness.sh up")
+	, ("<XF86MonBrightnessDown>", spawn "$HOME/.local/bin/brightness.sh down")
       ]
 -- Main
 main = do

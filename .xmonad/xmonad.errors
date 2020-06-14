@@ -1,23 +1,23 @@
 
-xmonad.hs:79:20: warning: [-Wdeprecations]
-    In the use of ‘defaultConfig’
-    (imported from XMonad, but defined in XMonad.Config):
-    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
-   |
-79 |     xmonad $ docks defaultConfig
-   |                    ^^^^^^^^^^^^^
-
-xmonad.hs:81:1: warning: [-Wtabs]
-    Tab character found here, and in 29 further locations.
+xmonad.hs:63:1: warning: [-Wtabs]
+    Tab character found here, and in 57 further locations.
     Please use spaces instead.
    |
-81 |                           , modMask            = myModKey
+63 |         , ("M-<Escape>", spawn "$HOME/.local/bin/power.sh")  -- Exit menu
    | ^^^^^^^^
 
-xmonad.hs:98:75: warning: [-Wdeprecations]
+xmonad.hs:98:20: warning: [-Wdeprecations]
     In the use of ‘defaultConfig’
     (imported from XMonad, but defined in XMonad.Config):
     Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
    |
-98 |                           , layoutHook         = avoidStruts $ layoutHook defaultConfig
-   |                                                                           ^^^^^^^^^^^^^
+98 |     xmonad $ docks defaultConfig
+   |                    ^^^^^^^^^^^^^
+
+xmonad.hs:117:75: warning: [-Wdeprecations]
+    In the use of ‘defaultConfig’
+    (imported from XMonad, but defined in XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+    |
+117 |                           , layoutHook         = avoidStruts $ layoutHook defaultConfig
+    |                                                                           ^^^^^^^^^^^^^
