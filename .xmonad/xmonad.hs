@@ -60,9 +60,9 @@ myKeys =
       [   ("M-C-r",      spawn "xmonad --recompile")              -- Recompiles xmonad
         , ("M-S-r",      spawn "xmonad --restart")                -- Restarts xmonad
         , ("M-S-q",      io exitSuccess)                          -- Exit xmonad
-	, ("M-<Escape>", spawn "$HOME/.local/bin/power.sh")  -- Exit menu
+        , ("M-<Escape>", spawn "$HOME/.local/bin/power.sh")  -- Exit menu
 
-	-- Programs
+        -- Programs
         , ("M-<Return>", spawn "kitty")
 	, ("M-b",        spawn "brave")
 	, ("M-n",        spawn "nitrogen")
@@ -95,7 +95,7 @@ myKeys =
 -- Main
 main = do
     xmproc <- spawnPipe "xmobar $HOME/.config/xmobar/xmobarrc"
-    xmonad $ docks defaultConfig
+    xmonad $ docks def
                           { terminal           = myTerminal
 			  , modMask            = myModKey
                           , borderWidth        = myBorderWidth
@@ -114,5 +114,5 @@ main = do
                                   , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"  -- Urgent workspace
                                   , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
 			          }
-			  , layoutHook         = avoidStruts $ layoutHook defaultConfig
+			  , layoutHook         = avoidStruts $ layoutHook def
 			  } `additionalKeysP` myKeys
