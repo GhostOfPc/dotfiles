@@ -363,19 +363,19 @@ awful.keyboard.append_global_keybindings({
 
 -- Program killing keybinding
     awful.key({ modkey, 'Shift' }, 'v', function () awful.spawn.with_shell('kill -9 $(pgrep vlc)') end,
-              {description = 'kill vlc', group = 'termination'}),
+              {description = 'kill vlc', group = 'client'}),
 
     awful.key({ modkey, 'Shift' }, 'm', function () awful.spawn.with_shell('kill -9 $(pgrep kodi)') end,
-              {description = 'kill kodi', group = 'termination'}),
+              {description = 'kill kodi', group = 'client'}),
 
     awful.key({ modkey, 'Shift' }, 'u', function () awful.spawn.with_shell('kill -9 $(pgrep uget-gtk)') end,
-              {description = 'kill uget', group = 'termination'}),
+              {description = 'kill uget', group = 'client'}),
 
     awful.key({ modkey, 'Shift' }, 'b', function () awful.spawn.with_shell('kill -9 $(pgrep qbittorrent)') end,
-              {description = 'kill qbittorrent', group = 'termination'}),
+              {description = 'kill qbittorrent', group = 'client'}),
 
     awful.key({ modkey, 'Shift' }, 'o', function () awful.spawn.with_shell('kill -9 $(pgrep spotify)') end,
-              {description = 'kill spotify', group = 'termination'}),
+              {description = 'kill spotify', group = 'client'}),
 
 
 -- Take a screenshot
@@ -503,6 +503,22 @@ awful.keyboard.append_global_keybindings({
 
     awful.key({ modkey, 'Shift'   }, 'space', function () awful.layout.inc(-1)                end,
               {description = 'select previous', group = 'layout'}),
+})
+
+-- Gap resizing
+awful.keyboard.append_global_keybindings({
+	awful.key({ altkey }, '.', 
+	function ()
+		awful.tag.incgap(2,null)
+	end,
+	{description = 'Increase gap size', group = 'gap control'}),
+
+	awful.key({ altkey }, ',', 
+	function ()
+		awful.tag.incgap(-2,null)
+	end,
+	{description = 'Decrease gap size', group = 'gap control'}),
+
 })
 
 -- Resize client keybindings
