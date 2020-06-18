@@ -1,27 +1,3 @@
---     ██             ██         ████████ 
---    ░██            ████       ██░░░░░░██
---    ░██           ██░░██     ██      ░░ 
---    ░██          ██  ░░██   ░██         
---    ░██         ██████████  ░██    █████
---    ░██        ░██░░░░░░██  ░░██  ░░░░██
---    ░████████  ░██     ░██   ░░████████ 
---    ░░░░░░░░   ░░      ░░     ░░░░░░░░  
---         ██                                                             ██       ██
---        ████                                                           ░██      ░██
---       ██░░██   ███     ██  █████   ██████  ██████  ██████████   █████ ░██   █  ░██
---      ██  ░░██ ░░██  █ ░██ ██░░░██ ██░░░░  ██░░░░██░░██░░██░░██ ██░░░██░██  ███ ░██
---     ██████████ ░██ ███░██░███████░░█████ ░██   ░██ ░██ ░██ ░██░███████░██ ██░██░██
---    ░██░░░░░░██ ░████░████░██░░░░  ░░░░░██░██   ░██ ░██ ░██ ░██░██░░░░ ░████ ░░████
---    ░██     ░██ ███░ ░░░██░░██████ ██████ ░░██████  ███ ░██ ░██░░██████░██░   ░░░██
---    ░░      ░░ ░░░    ░░░  ░░░░░░ ░░░░░░   ░░░░░░  ░░░  ░░  ░░  ░░░░░░ ░░       ░░ 
---     ████     ████   ███████     ██████ 
---    ░██░██   ██░██  ░██░░░░██   ██░░░░██
---    ░██░░██ ██ ░██  ░██   ░██  ██    ░░ 
---    ░██ ░░███  ░██  ░███████  ░██       
---    ░██  ░░█   ░██  ░██░░░██  ░██       
---    ░██   ░    ░██  ░██  ░░██ ░░██    ██
---    ░██        ░██  ░██   ░░██ ░░██████ 
---    ░░         ░░   ░░     ░░   ░░░░░░  
 --    ╔════════════════════════════════════════╗
 --   ╔╝                                        ╚╗
 --   ║ Riced and crafted by  Hisham Abdul Hai  ║
@@ -68,12 +44,13 @@ local vicious = require('vicious')
 -- Default modkey.
 modkey = 'Mod4'
 altkey = 'Mod1'
+raltkey= 'Mod5'
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 tag.connect_signal('request::default_layouts', function()
     awful.layout.append_default_layouts({
         awful.layout.suit.tile,
-        awful.layout.suit.tile.left,
+        awful.layout.suit.spiral.dwindle,
         awful.layout.suit.max,
         awful.layout.suit.floating,
     })
@@ -84,10 +61,49 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 screen.connect_signal('request::desktop_decoration', function(s)
     -- Each screen has its own tag table.
-    awful.tag({ '  ', '  ', '  ', '  ', '  ', '  ' }, s, awful.layout.layouts[1])
-
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
+    awful.tag.add('  ',{
+			layout			= awful.layout.suit.spiral.dwindle,
+			gap_single_client	= true,
+			gap			= 5,
+			screen			= s,
+			selected		= true
+			}
+		)
+    awful.tag.add('  ',{
+			layout			= awful.layout.suit.max,
+			gap_single_client	= true,
+			gap			= 3,
+			screen			= s
+			}
+		)
+    awful.tag.add('  ',{
+			layout			= awful.layout.suit.tile,
+			gap_single_client	= true,
+			gap			= 3,
+			screen			= s
+			}
+		)
+    awful.tag.add('  ',{
+			layout			= awful.layout.suit.tile,
+			gap_single_client	= true,
+			gap			= 3,
+			screen			= s
+			}
+		)
+    awful.tag.add('  ',{
+			layout			= awful.layout.suit.tile,
+			gap_single_client	= true,
+			gap			= 3,
+			screen			= s
+			}
+		)
+    awful.tag.add('  ',{
+			layout			= awful.layout.suit.max,
+			gap_single_client	= true,
+			gap			= 2,
+			screen			= s
+			}
+		)
 
     -- Create an imagebox widget which will contain an icon indicating which layout we are using.
     -- We need one layoutbox per screen.
@@ -101,7 +117,24 @@ screen.connect_signal('request::desktop_decoration', function(s)
         }
     }
 
-    -- Create a taglist widget
+--  Menu
+-- Create a launcher widget and a main menu
+myawesomemenu = {
+   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+   { "manual", apps.terminal .. " -e man awesome" },
+   { "edit config", apps.editor .. " " .. awesome.conffile },
+   { "restart", awesome.restart },
+   { "quit", function() awesome.quit() end },
+}
+mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+                                    { "open terminal", apps.terminal }
+                                  }
+                        })
+mylauncher = awful.widget.launcher({ image = '🐧',
+                                     menu = mymainmenu })
+menubar.utils.terminal = apps.terminal -- Set the terminal for applications that require it
+
+-- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
@@ -145,9 +178,9 @@ screen.connect_signal('request::desktop_decoration', function(s)
   vicious.register(weatherwidget, vicious.widgets.weather,
     function (widget, args)
       weather_t:set_text('City: ' .. args['{city}'] ..'\nWind: ' .. args['{windkmh}'] .. 'km/h ' .. args['{wind}'] .. '\nSky: ' .. args['{sky}'] .. '\nHumidity: ' .. args['{humid}'] .. '%')
-      return '🌤️ ' .. args['{tempc}'] .. ' °C '
-      end, 600, 'SAZS')
-      --'600': check every 10 minutes.
+      return args['{sky}'] .. ' ' .. args['{tempc}'] .. '°C '
+      end, 1800, 'SAZS')
+      --'1800': check every 10 minutes.
       --'SAZS': the Bariloche ICAO code.
 
 -- Volume
@@ -163,11 +196,11 @@ vicious.register(volumewidget, vicious.widgets.volume,
 local timewidget = wibox.widget.textbox()
 vicious.register(timewidget, vicious.widgets.date, '🕒<span color = "#19F6FF">%H:%M </span>', 60)
 local datewidget = wibox.widget.textbox()
-vicious.register(datewidget, vicious.widgets.date, '📅 <span color = "#1EB715">%d/%m/%Y </span>', 3600)
+vicious.register(datewidget, vicious.widgets.date, '📅 <span color = "#1EB715">%d-%b-%y (%a) </span>', 3600)
 
 -- CPU graph
    local cpuwidget = awful.widget.graph()
-   cpuwidget:set_width(120)
+   cpuwidget:set_width(100)
    cpuwidget:set_background_color('#181818')
    cpuwidget:set_color({ type = 'linear', from = { 0, 0 }, to = { 0,0 }, stops = { {1.0, '#A2FF5D'}, {1.0, '#A2FF5D'}, 
                    {1, '#AECF96' }}})
@@ -203,7 +236,7 @@ vicious.register(memwidget, vicious.widgets.mem, ' 📊 <span color = "#00F0FF">
 
 -- Cpu temperature
 local thermalwidget  = wibox.widget.textbox()
- vicious.register(thermalwidget, vicious.widgets.thermal, '🌡️ $1 °C ', 1, 'thermal_zone4' )
+ vicious.register(thermalwidget, vicious.widgets.thermal, ' 🤒 $1 °C ', 1, 'thermal_zone4' )
 
 -- Disk usage
 local fswidget = wibox.widget.textbox()
@@ -213,19 +246,30 @@ vicious.register(fswidget, vicious.widgets.fs, '💾 <span color = "#FF00FF">${/
 local uptimewidget = wibox.widget.textbox()
 vicious.register(uptimewidget,vicious.widgets.uptime,'⏳<span color ="#FFFF00">$1d:$2h:$3m </span>', 60)
 
+-- Separator
+separator1 = wibox.widget.textbox(' 🐧 ')
+separator2 = wibox.widget.textbox('')
+
 -- Add the previously created widgets to the status bar
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
     s.mywibox.widget = {
         layout = wibox.layout.align.horizontal,
-        { -- Left widgets
+	
+	-- Left widget
+	{
             layout = wibox.layout.fixed.horizontal,
+	    separator1,
             mylauncher,
             s.mytaglist,
             s.mypromptbox,
         },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
+	
+	-- Middle widgets
+	separator2,
+
+	-- Right widget
+	{
             layout = wibox.layout.fixed.horizontal,
 	    cpuwidget,
 	    weatherwidget,
@@ -239,8 +283,10 @@ vicious.register(uptimewidget,vicious.widgets.uptime,'⏳<span color ="#FFFF00">
 	    volumewidget,
             mykeyboardlayout,
             wibox.widget.systray(),
+	    s.mylayoutbox,
         },
     }
+
 end)
 
 -- Mouse bindings
@@ -256,90 +302,161 @@ awful.mouse.append_global_mousebindings({
 awful.keyboard.append_global_keybindings({
     awful.key({ modkey,           }, 's',      hotkeys_popup.show_help,
               {description='show help', group='awesome'}),
+
     awful.key({ modkey, 'Shift' }, 'r', awesome.restart,
               {description = 'reload awesome', group = 'awesome'}),
+	      
     awful.key({ modkey, 'Shift'   }, 'q', awesome.quit,
               {description = 'quit awesome', group = 'awesome'}),
--- Quit Awesome
-	awful.key ({ modkey }, 'Escape',
+-- LockScreen
+	awful.key ({ raltkey }, 'Escape',
 		function()
 			exit_screen_show()
 		end,
-		{description = 'quit awesome', group = 'awesome'}
+		{description = 'LockScreen', group = 'awesome'}
 	),
 
 -- Program launching keybinding
     awful.key({ modkey,           }, 'Return', function () awful.spawn(apps.terminal) end,
               {description = 'open a terminal', group = 'launcher'}),
+
     awful.key({ modkey,           }, 'F1', function () awful.spawn(apps.ssh) end,
               {description = 'open filezilla', group = 'launcher'}),
+
     awful.key({ modkey,           }, 'g', function () awful.spawn(apps.geditor) end,
               {description = 'open geany', group = 'launcher'}),
+
     awful.key({ modkey,           }, 'i', function () awful.spawn(apps.vector) end,
               {description = 'open inkscape', group = 'launcher'}),
+
     awful.key({ modkey,           }, 'v', function () awful.spawn(apps.vplayer) end,
               {description = 'open vlc', group = 'launcher'}),
+
     awful.key({ modkey,           }, 'm', function () awful.spawn(apps.mc) end,
               {description = 'open kodi', group = 'launcher'}),
+
     awful.key({ modkey,           }, 'o', function () awful.spawn(apps.mplayer) end,
               {description = 'open spotify', group = 'launcher'}),
+
     awful.key({ modkey,           }, 'b', function () awful.spawn(apps.browser) end,
               {description = 'Navigate the web', group = 'launcher'}),
+
     awful.key({ },            'XF86LaunchB',     function () awful.spawn(apps.launcher) end,
               {description = 'spawn the launcher', group = 'launcher'}),
+
     awful.key({ modkey },            'p',     function () awful.spawn(apps.launcher) end,
               {description = 'spawn the launcher', group = 'launcher'}),
+
     awful.key({ modkey },            'f',     function () awful.spawn(apps.fmanager) end,
               {description = 'open the file manager', group = 'launcher'}),
+
     awful.key({ modkey },            'n',     function () awful.spawn(apps.wallpaper) end,
               {description = 'Change the wallpaper', group = 'launcher'}),
+
     awful.key({modkey,	altkey},		'h', function() awful.spawn.with_shell('xterm -hold htop') end,
-    		{description = 'htop', group = 'launcher'}),
+    	      {description = 'htop', group = 'launcher'}),
+
     awful.key({modkey,	altkey},		"n", function() awful.spawn.with_shell('xterm -hold neofetch') end,
-    		{description = 'neofetch', group = 'launcher'}),
+    	      {description = 'neofetch', group = 'launcher'}),
     awful.key({modkey,	altkey},		'c', function() awful.spawn.with_shell('kitty -e cmatrix') end,
-    		{description = 'neofetch', group = 'launcher'}),
+    	      {description = 'cmatrix', group = 'launcher'}),
 
 -- Program killing keybinding
     awful.key({ modkey, 'Shift' }, 'v', function () awful.spawn.with_shell('kill -9 $(pgrep vlc)') end,
               {description = 'kill vlc', group = 'termination'}),
+
     awful.key({ modkey, 'Shift' }, 'm', function () awful.spawn.with_shell('kill -9 $(pgrep kodi)') end,
               {description = 'kill kodi', group = 'termination'}),
+
     awful.key({ modkey, 'Shift' }, 'u', function () awful.spawn.with_shell('kill -9 $(pgrep uget-gtk)') end,
               {description = 'kill uget', group = 'termination'}),
+
     awful.key({ modkey, 'Shift' }, 'b', function () awful.spawn.with_shell('kill -9 $(pgrep qbittorrent)') end,
               {description = 'kill qbittorrent', group = 'termination'}),
+
     awful.key({ modkey, 'Shift' }, 'o', function () awful.spawn.with_shell('kill -9 $(pgrep spotify)') end,
               {description = 'kill spotify', group = 'termination'}),
+
 
 -- Take a screenshot
 	awful.key({modkey, 'Shift'},'s',function() awful.spawn.with_shell(apps.screenshot) end,
 	{description = 'Take a screenshot', group = 'hotKeys'}),
--- Hotkeys
+
+-- Hotkeys (using multimedia keys)
     awful.key({ }, 'XF86AudioRaiseVolume', function () awful.spawn.with_shell('$HOME/.local/bin/volume.sh up') end,
               {description = 'Volume increase', group = 'hotKeys'}),
+
     awful.key({ }, 'XF86AudioLowerVolume', function () awful.spawn.with_shell('$HOME/.local/bin/volume.sh down') end,
               {description = 'Volume decrease', group = 'hotKeys'}),
+
     awful.key({ }, 'XF86AudioMute', function () awful.spawn.with_shell('$HOME/.local/bin/volume.sh mute') end,
               {description = 'Volume mute', group = 'hotKeys'}),
+
     awful.key({ }, 'XF86AudioNext', function () awful.spawn('playerctl next') end,
               {description = 'Jump to the next song', group = 'hotKeys'}),
+
     awful.key({ }, 'XF86AudioPrev', function () awful.spawn('playerctl previous') end,
               {description = 'Jump to the previous song', group = 'hotKeys'}),
+
     awful.key({ }, 'XF86AudioPlay', function () awful.spawn('playerctl play-pause') end,
               {description = 'Play/Pause current song', group = 'hotKeys'}),
+
     awful.key({ }, 'XF86MonBrightnessUp', function () awful.spawn.with_shell('$HOME/.local/bin/brightness.sh up') end,
               {description = 'Brightness increase', group = 'hotKeys'}),
+
     awful.key({ }, 'XF86MonBrightnessDown', function () awful.spawn.with_shell('$HOME/.local/bin/brightness.sh down') end,
               {description = 'Brightness decrease', group = 'hotKeys'}),
+
+-- Hotkeys (using modifier key)
+    awful.key({ altkey}, 'x', function () awful.spawn.with_shell('$HOME/.local/bin/volume.sh up') end,
+              {description = 'Volume increase', group = 'hotKeys'}),
+
+    awful.key({ altkey}, 'z', function () awful.spawn.with_shell('$HOME/.local/bin/volume.sh down') end,
+              {description = 'Volume decrease', group = 'hotKeys'}),
+
+    awful.key({ altkey}, 'c', function () awful.spawn.with_shell('$HOME/.local/bin/volume.sh mute') end,
+              {description = 'Volume mute', group = 'hotKeys'}),
+
+    awful.key({ altkey}, 'd', function () awful.spawn('playerctl next') end,
+              {description = 'Jump to the next song', group = 'hotKeys'}),
+
+    awful.key({ altkey}, 'a', function () awful.spawn('playerctl previous') end,
+              {description = 'Jump to the previous song', group = 'hotKeys'}),
+
+    awful.key({ altkey}, 's', function () awful.spawn('playerctl play-pause') end,
+              {description = 'Play/Pause current song', group = 'hotKeys'}),
+
+    awful.key({ altkey}, 'w', function () awful.spawn.with_shell('$HOME/.local/bin/brightness.sh up') end,
+              {description = 'Brightness increase', group = 'hotKeys'}),
+
+    awful.key({ altkey}, 'q', function () awful.spawn.with_shell('$HOME/.local/bin/brightness.sh down') end,
+              {description = 'Brightness decrease', group = 'hotKeys'}),
+
+-- dmenu script
+    awful.key({ raltkey }, '1', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_url.sh') end,
+              {description = 'dmenu script to surf the web', group = 'dmenu'}),
+
+    awful.key({ raltkey }, '2', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_webSearch.sh') end,
+              {description = 'dmenu script to search the web', group = 'dmenu'}),
+
+    awful.key({ raltkey }, '3', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_kill.sh') end,
+              {description = 'dmenu script to kill a process', group = 'dmenu'}),
+
+    awful.key({ raltkey }, '4', function () awful.spawn.with_shell('$HOME/.local/bin/nordvpn.sh') end,
+              {description = 'dmenu script to switch the vpn', group = 'dmenu'}),
+
+    awful.key({ raltkey }, '5', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_emoji.sh') end,
+              {description = 'dmenu script to select an emoji', group = 'dmenu'}),
 })
 
 -- Tags related keybindings
 awful.keyboard.append_global_keybindings({
     awful.key({ modkey,           }, 'Left',   awful.tag.viewprev,
               {description = 'view previous', group = 'tag'}),
+
     awful.key({ modkey,           }, 'Right',  awful.tag.viewnext,
               {description = 'view next', group = 'tag'}),
+
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = 'go back', group = 'tag'}),
 })
@@ -348,8 +465,10 @@ awful.keyboard.append_global_keybindings({
 awful.keyboard.append_global_keybindings({
     awful.key({ modkey,           }, 'j', function () awful.client.focus.byidx( 1) end,
         {description = 'focus next by index', group = 'client'}),
+
     awful.key({ modkey,           }, 'k', function () awful.client.focus.byidx(-1) end,
         {description = 'focus previous by index', group = 'client'}),
+
     awful.key({ modkey,           }, 'Tab', function ()
 	    awful.client.focus.history.previous()
             if client.focus then
@@ -363,18 +482,25 @@ awful.keyboard.append_global_keybindings({
 awful.keyboard.append_global_keybindings({
     awful.key({ modkey, 'Shift'   }, 'j', function () awful.client.swap.byidx(  1)    end,
               {description = 'swap with next client by index', group = 'client'}),
+
     awful.key({ modkey, 'Shift'   }, 'k', function () awful.client.swap.byidx( -1)    end,
               {description = 'swap with previous client by index', group = 'client'}),
+
    awful.key({ modkey, 'Shift'   }, 'h',     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = 'increase the number of master clients', group = 'layout'}),
+
     awful.key({ modkey, 'Shift'   }, 'l',     function () awful.tag.incnmaster(-1, nil, true) end,
               {description = 'decrease the number of master clients', group = 'layout'}),
+
     awful.key({ modkey, 'Control' }, 'h',     function () awful.tag.incncol( 1, nil, true)    end,
               {description = 'increase the number of columns', group = 'layout'}),
+
     awful.key({ modkey, 'Control' }, 'l',     function () awful.tag.incncol(-1, nil, true)    end,
               {description = 'decrease the number of columns', group = 'layout'}),
+
     awful.key({ modkey,           }, 'space', function () awful.layout.inc( 1)                end,
               {description = 'select next', group = 'layout'}),
+
     awful.key({ modkey, 'Shift'   }, 'space', function () awful.layout.inc(-1)                end,
               {description = 'select previous', group = 'layout'}),
 })
@@ -383,6 +509,7 @@ awful.keyboard.append_global_keybindings({
 awful.keyboard.append_global_keybindings({
     awful.key({ modkey,           }, 'minus',     function () awful.tag.incmwfact( 0.05)          end,
               {description = 'increase master width factor', group = 'layout'}),
+
     awful.key({ modkey,           }, 'period',     function () awful.tag.incmwfact(-0.05)          end,
               {description = 'decrease master width factor', group = 'layout'}),
 })
@@ -478,13 +605,13 @@ client.connect_signal('request::default_keybindings', function()
                 c:raise()
             end,
             {description = 'toggle fullscreen', group = 'client'}),
-        awful.key({ modkey, }, 'q',      function (c) c:kill()                         end,
-                {description = 'close', group = 'client'}),
+
 	awful.key({ modkey,'Shift' }, 'c',      function (c) c:kill()                         end,
                 {description = 'close', group = 'client'}),
 
         awful.key({ modkey, 'Control' }, 'space',  awful.client.floating.toggle                     ,
                 {description = 'toggle floating', group = 'client'}),
+
         awful.key({ modkey, 'Control' }, 'Return', function (c) c:swap(awful.client.getmaster()) end,
                 {description = 'move to master', group = 'client'}),
     })
@@ -625,4 +752,5 @@ end)
 client.connect_signal('mouse::enter', function(c)
     c:activate { context = 'mouse_enter', raise = false }
 end)
+
 
