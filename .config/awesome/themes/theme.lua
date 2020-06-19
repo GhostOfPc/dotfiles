@@ -10,6 +10,9 @@ local xresources = require('beautiful.xresources')
 local rnotification = require('ruled.notification')
 local dpi = xresources.apply_dpi
 
+local themes_path = '/home/hisham/.config/awesome/themes/'
+--local themes_path = gears.filesystem.get_configuration_dir() ..'/themes/'
+
 local theme = {}
 
 -- Default variables
@@ -114,22 +117,20 @@ theme.tasklist_spacing                          =       dpi(5)
 -- icon
 theme.icon_theme	=	'/usr/share/icons/Papirus/48x48'
 
--- layoutlist\
--- theme.layoutlist\_fg\_normal = nil
--- theme.layoutlist\_bg\_normal = nil
--- theme.layoutlist\_fg\_selected = nil
--- theme.layoutlist\_bg\_selected = nil
--- theme.layoutlist\_disable\_icon = nil
--- theme.layoutlist\_disable\_name = nil
--- theme.layoutlist\_font = nil
--- theme.layoutlist\_align = nil
--- theme.layoutlist\_font\_selected = nil
--- theme.layoutlist\_spacing = nil
--- theme.layoutlist\_shape = nil
--- theme.layoutlist\_shape\_border\_width = nil
--- theme.layoutlist\_shape\_border\_color = nil
--- theme.layoutlist\_shape\_selected = nil
--- theme.layoutlist\_shape\_border\_width\_selected = nil
--- theme.layoutlist\_shape\_border\_color\_selected = nil
-
+theme.layout_fairh = themes_path..'layouts/fairhw.png'
+theme.layout_fairv = themes_path..'layouts/fairvw.png'
+theme.layout_floating  = themes_path..'layouts/floatingw.png'
+theme.layout_magnifier = themes_path..'layouts/magnifierw.png'
+theme.layout_max = themes_path..'layouts/maxw.png'
+theme.layout_fullscreen = themes_path..'layouts/fullscreenw.png'
+theme.layout_tilebottom = themes_path..'layouts/tilebottomw.png'
+theme.layout_tileleft   = themes_path..'layouts/tileleftw.png'
+theme.layout_tile = themes_path..'layouts/tilew.png'
+theme.layout_tiletop = themes_path..'layouts/tiletopw.png'
+theme.layout_spiral  = themes_path..'layouts/spiralw.png'
+theme.layout_dwindle = themes_path..'layouts/dwindlew.png'
+theme.layout_cornernw = themes_path..'layouts/cornernww.png'
+theme.layout_cornerne = themes_path..'layouts/cornernew.png'
+theme.layout_cornersw = themes_path..'layouts/cornersww.png'
+theme.layout_cornerse = themes_path..'layouts/cornersew.png'
 return theme

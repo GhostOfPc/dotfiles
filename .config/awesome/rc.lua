@@ -51,7 +51,7 @@ tag.connect_signal('request::default_layouts', function()
     awful.layout.append_default_layouts({
         awful.layout.suit.tile,
         awful.layout.suit.spiral.dwindle,
-        awful.layout.suit.max,
+        awful.layout.suit.max.fullscreen,
         awful.layout.suit.floating,
     })
 end)
@@ -70,7 +70,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
 			}
 		)
     awful.tag.add('  ',{
-			layout			= awful.layout.suit.max,
+			layout			= awful.layout.suit.tile,
 			gap_single_client	= true,
 			gap			= 3,
 			screen			= s
@@ -247,8 +247,7 @@ local uptimewidget = wibox.widget.textbox()
 vicious.register(uptimewidget,vicious.widgets.uptime,'⏳<span color ="#FFFF00">$1d:$2h:$3m </span>', 60)
 
 -- Separator
-separator1 = wibox.widget.textbox(' 🐧 ')
-separator2 = wibox.widget.textbox('')
+separator = wibox.widget.textbox(' ')
 
 -- Add the previously created widgets to the status bar
     s.mywibox = awful.wibar({ position = "top", screen = s })
@@ -259,14 +258,13 @@ separator2 = wibox.widget.textbox('')
 	-- Left widget
 	{
             layout = wibox.layout.fixed.horizontal,
-	    separator1,
-            mylauncher,
+	    s.mylayoutbox,
+	    separator,
             s.mytaglist,
-            s.mypromptbox,
         },
 	
 	-- Middle widgets
-	separator2,
+	separator,
 
 	-- Right widget
 	{
@@ -283,7 +281,6 @@ separator2 = wibox.widget.textbox('')
 	    volumewidget,
             mykeyboardlayout,
             wibox.widget.systray(),
-	    s.mylayoutbox,
         },
     }
 
