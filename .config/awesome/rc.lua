@@ -93,7 +93,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
     awful.tag.add('  ',{
 			layout			= awful.layout.suit.tile,
 			gap_single_client	= true,
-			gap			= 3,
+			gap			= 43,
 			screen			= s
 			}
 		)
