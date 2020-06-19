@@ -2,7 +2,7 @@
 if
 	pgrep spotifyd
 then
-	kill -9 $(pgrep spotifyd)
+	kill -0 $(pgrep spotifyd)
 fi
-spotifyd
+spofityd
 spt

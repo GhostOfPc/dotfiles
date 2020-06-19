@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # You can call this script like this:
 # $ ./brightnessControl.sh up
@@ -13,24 +13,24 @@ function get_brightness {
 }
 
 function send_notification {
-  icon="/usr/share/icons/Papirus/48x48/status/notification-display-brightness.svg"
+  icon="/usr/share/icons/Papirus/48x48/status/notification-display-brightness-low.svg"
   brightness=$(get_brightness)
   # Make the bar with the special character ─ (it's not dash -)
   # https://en.wikipedia.org/wiki/Box-drawing_character
-  bar=$(seq -s "█" 0 $((brightness / 5)) | sed 's/[0-9]//g')
+  bar=$(seq -s "▊" 0 $((brightness / 5)) | sed 's/[0-9]//g')
   # Send the notification
-  dunstify "$brightness"" %   ""$bar" -i "$icon" -h int:value:"$brightness" -r 444 -t 2000
+  dunstify -i "$icon" -r 5555 -u normal "    $bar"
 }
 
 case $1 in
   up)
-    # increase the backlight by 2%
-    xbacklight -inc 2
+    # increase the backlight by 5%
+    xbacklight -inc 1
     send_notification
     ;;
   down)
-    # decrease the backlight by 2%
-    xbacklight -dec 2
+    # decrease the backlight by 5%
+    xbacklight -dec 1
     send_notification
     ;;
 esac

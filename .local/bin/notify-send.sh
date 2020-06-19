@@ -314,3 +314,4 @@ if [[ "$SUMMARY_SET" = n ]] ; then
 else
     notify
 fi
+

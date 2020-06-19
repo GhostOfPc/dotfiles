@@ -12,26 +12,27 @@ function get_volume {
 function is_mute {
     amixer -D pulse get Master | grep '%' | grep -oE '[^ ]+$' | grep off > /dev/null
 }
+
 function send_notification {
     DIR=`dirname "$0"`
     volume=`get_volume`
     # Make the bar with the special character ─ (it's not dash -)
     # https://en.wikipedia.org/wiki/Box-drawing_character
 if [ "$volume" = "0" ]; then
-        icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-off.svg"
+        icon_name="/home/hisham/Pictures/volume/notification-audio-volume-off.svg"
 dunstify "$volume"" %   " -i "$icon_name" -h int:value:"$volume" -r 555
     else
 	if [  "$volume" -lt "10" ]; then
-	     icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-low.svg"
-dunstify "$volume""     " -i "$icon_name" -r 555 -t 2000
+	     icon_name="/home/hisham/Pictures/volume/notification-audio-volume-low.svg"
+dunstify "$volume"" %   " -i "$icon_name" -r 555
     else
         if [ "$volume" -lt "20" ]; then
-            icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-low.svg"
+            icon_name="/home/hisham/Pictures/volume/notification-audio-volume-low.svg"
         else
             if [ "$volume" -lt "70" ]; then
-                icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-medium.svg"
+                icon_name="/home/hisham/Pictures/volume/notification-audio-volume-medium.svg"
             else
-                icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-high.svg"
+                icon_name="/home/hisham/Pictures/volume/notification-audio-volume-high.svg"
             fi
         fi
     fi
@@ -45,13 +46,13 @@ case $1 in
     up)
 	# Set the volume on (if it was muted)
 	amixer -D pulse set Master on > /dev/null
-	# Up the volume (+ 2%)
-	amixer -D pulse sset Master 2%+ > /dev/null
+	# Up the volume (+ 5%)
+	amixer -D pulse sset Master 1%+ > /dev/null
 	send_notification
 	;;
     down)
 	amixer -D pulse set Master on > /dev/null
-	amixer -D pulse sset Master 2%- > /dev/null
+	amixer -D pulse sset Master 1%- > /dev/null
 	send_notification
 	;;
     mute)
@@ -59,7 +60,7 @@ case $1 in
 	amixer -D pulse set Master 1+ toggle > /dev/null
 	if is_mute ; then
     DIR=`dirname "$0"`
-    dunstify -i "/usr/share/icons/Papirus/48x48/status/notification-audio-volume-muted.svg" -r 555 -u normal "Mute" -t 2000
+    $DIR/notify-send.sh -i "/home/hisham/Pictures/volume/notification-audio-volume-muted.svg" --replace=555 -u normal "Mute" -t 2000
 	else
 	    send_notification
 	fi
