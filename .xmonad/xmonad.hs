@@ -23,6 +23,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers ( isFullscreen, isDialog, doCenterFloat, doFullFloat )
+import XMonad.Hooks.DynamicProperty
 
 -- Utils
 import XMonad.Util.Run(spawnPipe)
@@ -49,7 +50,9 @@ myTerminal      = "kitty"
 myModKey :: KeyMask
 myModKey        = mod4Mask
 altMask :: KeyMask
-altMask        = mod1Mask
+altMask         = mod1Mask
+raltMask :: KeyMask
+raltMask        = mod5Mask
 
 myFont :: [Char]
 myFont          = "xft:FiraMono Nerd Font:regular:pixelsize=10"
@@ -117,11 +120,12 @@ myKeys =
         , ("M1-f", sendMessage $ Toggle FULL)
         
         -- dmenu commands
-        , ("M1-1",        spawn "$HOME/.local/bin/dmenu_url.sh")
-        , ("M1-2",        spawn "$HOME/.local/bin/dmenu_webSearch.sh")
-        , ("M1-3",        spawn "$HOME/.local/bin/dmenu_kill.sh")
-        , ("M1-4",        spawn "$HOME/.local/bin/nordvpn.sh")
-        , ("M1-5",        spawn "$HOME/.local/bin/dmenu_emoji.sh")
+        , ("M5-1",        spawn "$HOME/.local/bin/dmenu_url.sh")
+        , ("M5-2",        spawn "$HOME/.local/bin/dmenu_webSearch.sh")
+        , ("M5-3",        spawn "$HOME/.local/bin/dmenu_kill.sh")
+        , ("M5-4",        spawn "$HOME/.local/bin/nordvpn.sh")
+        , ("M5-5",        spawn "$HOME/.local/bin/dmenu_emoji.sh")
+        , ("M5-6",        spawn "$HOME/.local/bin/configs.sh")
         , ("M1-<Escape>", spawn "$HOME/.local/bin/power.sh")
 
         -- Multimedia keys
@@ -162,10 +166,14 @@ myManageHook = composeAll
     , isFullscreen --> doFullFloat
     ]
 
+-- Dynamic hook (Spotify)
+myDynHook = composeAll
+    [ className =? "Spotify" --> doShift "music"
+    ]
 -- Main
 main = do
     xmproc <- spawnPipe "xmobar $HOME/.config/xmobar/xmobarrc"
-    xmonad $ docks def
+    xmonad $ ewmh $ docks def
                           { terminal           = myTerminal
                           , modMask            = myModKey
                           , borderWidth        = myBorderWidth
@@ -186,6 +194,6 @@ main = do
                                    }
                           , layoutHook         = myLayouts
                           , manageHook         = myManageHook
-                          , handleEventHook    = fullscreenEventHook
+                          , handleEventHook    = dynamicPropertyChange "WM_NAME" myDynHook <+> fullscreenEventHook
 
                           } `additionalKeysP` myKeys
