@@ -1,18 +1,3 @@
-" An example for a gvimrc file.
-" The commands in this are executed when the GUI is started, after the vimrc
-" has been executed.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2016 Apr 05
-"
-" To use it, copy it to
-"         for Unix:  ~/.gvimrc
-"        for Amiga:  s:.gvimrc
-"   for MS-Windows:  $VIM\_gvimrc
-"        for Haiku:  ~/config/settings/vim/gvimrc
-"      for OpenVMS:  sys$login:.gvimrc
-
-" Make external commands work through a pipe instead of a pseudo-tty
 "set noguipty
 
 " set the X11 font to use
@@ -65,6 +50,14 @@ set number relativenumber
 let g:rehash256 = 1
 let g:rainbow_active = 1
 
+" Use system clipboard
+set clipboard=unnamed
+
+" For latex
+filetype plugin indent on
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor = "latex"
+
 call plug#begin()
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -93,4 +86,7 @@ Plug 'honza/vim-snippets'
     Plug 'junegunn/goyo.vim'                           " Distraction-free viewing
     Plug 'junegunn/limelight.vim'                      " Hyperfocus on a range
     Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
+    Plug 'dracula/vim', { 'name': 'dracula' }
+
 call plug#end()
+colorscheme dracula
