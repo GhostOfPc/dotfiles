@@ -46,21 +46,20 @@ modkey = 'Mod4'
 altkey = 'Mod1'
 raltkey= 'Mod5'
 
--- Table of layouts to cover with awful.layout.inc, order matters.
+-- ================================================================================================
+-- Layouts
 tag.connect_signal('request::default_layouts', function()
     awful.layout.append_default_layouts({
         awful.layout.suit.tile,
         awful.layout.suit.spiral.dwindle,
+	awful.layout.suit.fair.horizontal,
         awful.layout.suit.max.fullscreen,
         awful.layout.suit.floating,
     })
 end)
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
-
 screen.connect_signal('request::desktop_decoration', function(s)
-    -- Each screen has its own tag table.
+    -- ==== Each tag has its layout and gaps and eventually in rules its clients ==============
     awful.tag.add('  ',{
 			layout			= awful.layout.suit.spiral.dwindle,
 			gap_single_client	= true,
@@ -105,8 +104,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
 			}
 		)
 
-    -- Create an imagebox widget which will contain an icon indicating which layout we are using.
-    -- We need one layoutbox per screen.
+    -- ==== Layout indication icon (On the left of the status bar) ==============
     s.mylayoutbox = awful.widget.layoutbox {
         screen  = s,
         buttons = {
@@ -117,24 +115,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
         }
     }
 
---  Menu
--- Create a launcher widget and a main menu
-myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", apps.terminal .. " -e man awesome" },
-   { "edit config", apps.editor .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
-}
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", apps.terminal }
-                                  }
-                        })
-mylauncher = awful.widget.launcher({ image = '🐧',
-                                     menu = mymainmenu })
-menubar.utils.terminal = apps.terminal -- Set the terminal for applications that require it
-
--- Create a taglist widget
+    -- =============== Create a taglist widget ==================================
     s.mytaglist = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
@@ -156,33 +137,22 @@ menubar.utils.terminal = apps.terminal -- Set the terminal for applications that
         }
     }
 
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = {
-            awful.button({ }, 1, function (c)
-                c:activate { context = 'tasklist', action = 'toggle_minimization' }
-            end),
-            awful.button({ }, 3, function() awful.menu.client_list { theme = { width = 250 } } end),
-            awful.button({ }, 4, function() awful.client.focus.byidx( 1) end),
-            awful.button({ }, 5, function() awful.client.focus.byidx(-1) end),
-        }
-    }
-
--- Wibar widget
-
+-- ===========================================================================================
+-- Status widgets
+-- ===========================================================================================
 -- Weather
   local weatherwidget = wibox.widget.textbox()
   weather_t = awful.tooltip({ objects = { weatherwidget },})
   vicious.register(weatherwidget, vicious.widgets.weather,
     function (widget, args)
       weather_t:set_text('City: ' .. args['{city}'] ..'\nWind: ' .. args['{windkmh}'] .. 'km/h ' .. args['{wind}'] .. '\nSky: ' .. args['{sky}'] .. '\nHumidity: ' .. args['{humid}'] .. '%')
-      return args['{sky}'] .. ' ' .. args['{tempc}'] .. '°C '
+      return ' ' .. args['{sky}'] .. ' ' .. args['{tempc}'] .. '°C '
       end, 1800, 'SAZS')
       --'1800': check every 10 minutes.
       --'SAZS': the Bariloche ICAO code.
+-- ===========================================================================================
 
+-- ===========================================================================================
 -- Volume
 volumewidget = wibox.widget.textbox()
 vicious.register(volumewidget, vicious.widgets.volume,
@@ -191,21 +161,27 @@ vicious.register(volumewidget, vicious.widgets.volume,
                      return ("🔊 %d%%"):format(
                          args[1], label[args[2]])
                  end, 2, "Master")
+-- ===========================================================================================
 
+-- ===========================================================================================
 -- Date and time
 local timewidget = wibox.widget.textbox()
-vicious.register(timewidget, vicious.widgets.date, '🕒<span color = "#19F6FF">%H:%M </span>', 60)
+vicious.register(timewidget, vicious.widgets.date, '🕒%H:%M ', 60)
 local datewidget = wibox.widget.textbox()
-vicious.register(datewidget, vicious.widgets.date, '📅 <span color = "#1EB715">%d-%b-%y (%a) </span>', 3600)
+vicious.register(datewidget, vicious.widgets.date, '📅 %d-%b-%y (%a) ', 3600)
+-- ===========================================================================================
 
+-- ===========================================================================================
 -- CPU graph
    local cpuwidget = awful.widget.graph()
-   cpuwidget:set_width(100)
-   cpuwidget:set_background_color('#181818')
+   cpuwidget:set_width(160)
+   cpuwidget:set_background_color('#343434')
    cpuwidget:set_color({ type = 'linear', from = { 0, 0 }, to = { 0,0 }, stops = { {1.0, '#A2FF5D'}, {1.0, '#A2FF5D'}, 
                    {1, '#AECF96' }}})
-   vicious.register(cpuwidget, vicious.widgets.cpu, ' $2 ', 1)
+   vicious.register(cpuwidget, vicious.widgets.cpu, ' $1 ', 1)
+-- ===========================================================================================
 
+-- ===========================================================================================
 -- Netwrok
 eths = { 'eno2', 'wlo1' }
 netwidget = wibox.widget.textbox()
@@ -216,9 +192,9 @@ for i = 1, #eths do
 e = eths[i]       
 if args["{"..e.." carrier}"] == 1 then
     if e == 'wlo1' then
-	t=t..'|'..'🔽 <span color="#00FF00">'..args['{'..e..' down_kb}']..'kbps</span> 🔼<span color="#FF0000"> ' ..args['{'..e..' up_kb}']..'kbps</span>'
+	t=t..'|'..'🔽 '..args['{'..e..' down_kb}']..'kbps 🔼 ' ..args['{'..e..' up_kb}']..'kbps'
     else          
-	t=t..'|'..'🔽 <span color="#00FF00">'..args['{'..e..' down_kb}']..'kbps</span> 🔼<span color="#FF0000"> ' ..args['{'..e..' up_kb}']..'kbps</span>'
+	t=t..'|'..'🔽 '..args['{'..e..' down_kb}']..'kbps 🔼 ' ..args['{'..e..' up_kb}']..'kbps'
 
     end
 end
@@ -229,44 +205,62 @@ end
 return 'No network'
 end                                                                                                                                                           
 , 1 )
+-- ===========================================================================================
 
+-- ===========================================================================================
 -- Memory
 local memwidget = wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, ' 📊 <span color = "#00F0FF">$2 MiB </span>', 10)
+vicious.register(memwidget, vicious.widgets.mem, ' 📊 $2 MiB ', 10)
+-- ===========================================================================================
 
+-- ===========================================================================================
 -- Cpu temperature
 local thermalwidget  = wibox.widget.textbox()
  vicious.register(thermalwidget, vicious.widgets.thermal, ' 🤒 $1 °C ', 1, 'thermal_zone4' )
+-- ===========================================================================================
 
+-- ===========================================================================================
 -- Disk usage
 local fswidget = wibox.widget.textbox()
-vicious.register(fswidget, vicious.widgets.fs, '💾 <span color = "#FF00FF">${/ avail_gb}G</span>', 60)
+vicious.register(fswidget, vicious.widgets.fs, '💾 ${/ avail_gb}G', 60)
+-- ===========================================================================================
 
+-- ===========================================================================================
 -- Uptime
 local uptimewidget = wibox.widget.textbox()
-vicious.register(uptimewidget,vicious.widgets.uptime,'⏳<span color ="#FFFF00">$1d:$2h:$3m </span>', 60)
+vicious.register(uptimewidget,vicious.widgets.uptime,'⏳$1d:$2h:$3m ', 60)
+-- ===========================================================================================
 
--- Separator
+-- ===========================================================================================
+-- Keyboard map indicator and switcher
+
+mykeyboardlayout = awful.widget.keyboardlayout()
+-- ===========================================================================================
+
+-- ===========================================================================================
+-- Simple separator between the wibar segments
+
 separator = wibox.widget.textbox(' ')
+-- ===========================================================================================
 
--- Add the previously created widgets to the status bar
+-- ===========================================================================================
+-- Create the status bar
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
     s.mywibox.widget = {
         layout = wibox.layout.align.horizontal,
 	
-	-- Left widget
+	-- ================= Left widget ===========================
 	{
             layout = wibox.layout.fixed.horizontal,
 	    s.mylayoutbox,
 	    separator,
             s.mytaglist,
         },
-	
-	-- Middle widgets
+	-- ================= Middle widget ===========================
 	separator,
 
-	-- Right widget
+	-- ================= Right widget ===========================
 	{
             layout = wibox.layout.fixed.horizontal,
 	    cpuwidget,
@@ -283,20 +277,25 @@ separator = wibox.widget.textbox(' ')
             wibox.widget.systray(),
         },
     }
+-- ===========================================================================================
 
 end)
 
+-- ===========================================================================================
 -- Mouse bindings
+
 awful.mouse.append_global_mousebindings({
     awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev),
 })
+-- ===========================================================================================
 
+-- ===========================================================================================
 -- Key bindings
-
--- General Awesome keys
 awful.keyboard.append_global_keybindings({
+
+    -- ================= General awesome keybindings ===========================
     awful.key({ modkey,           }, 's',      hotkeys_popup.show_help,
               {description='show help', group='awesome'}),
 
@@ -305,15 +304,8 @@ awful.keyboard.append_global_keybindings({
 	      
     awful.key({ modkey, 'Shift'   }, 'q', awesome.quit,
               {description = 'quit awesome', group = 'awesome'}),
--- LockScreen
-	awful.key ({ raltkey }, 'Escape',
-		function()
-			exit_screen_show()
-		end,
-		{description = 'LockScreen', group = 'awesome'}
-	),
-
--- Program launching keybinding
+	
+    -- ================= Programs launching keybindings ===========================
     awful.key({ modkey,           }, 'Return', function () awful.spawn(apps.terminal) end,
               {description = 'open a terminal', group = 'launcher'}),
 
@@ -358,7 +350,7 @@ awful.keyboard.append_global_keybindings({
     awful.key({modkey,	altkey},		'c', function() awful.spawn.with_shell('kitty -e cmatrix') end,
     	      {description = 'cmatrix', group = 'launcher'}),
 
--- Program killing keybinding
+    -- ================= Programs killing keybindings ===========================
     awful.key({ modkey, 'Shift' }, 'v', function () awful.spawn.with_shell('kill -9 $(pgrep vlc)') end,
               {description = 'kill vlc', group = 'client'}),
 
@@ -374,12 +366,11 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey, 'Shift' }, 'o', function () awful.spawn.with_shell('kill -9 $(pgrep spotify)') end,
               {description = 'kill spotify', group = 'client'}),
 
-
--- Take a screenshot
+    -- ================= Screenshoot keybinging ===========================
 	awful.key({modkey, 'Shift'},'s',function() awful.spawn.with_shell(apps.screenshot) end,
 	{description = 'Take a screenshot', group = 'hotKeys'}),
 
--- Hotkeys (using multimedia keys)
+    -- ================= Hotkeys (using multimedia keys) ===========================
     awful.key({ }, 'XF86AudioRaiseVolume', function () awful.spawn.with_shell('$HOME/.local/bin/volume.sh up') end,
               {description = 'Volume increase', group = 'hotKeys'}),
 
@@ -404,7 +395,7 @@ awful.keyboard.append_global_keybindings({
     awful.key({ }, 'XF86MonBrightnessDown', function () awful.spawn.with_shell('$HOME/.local/bin/brightness.sh down') end,
               {description = 'Brightness decrease', group = 'hotKeys'}),
 
--- Hotkeys (using modifier key)
+    -- ================= Hotkeys (using modifier key) ===========================
     awful.key({ altkey}, 'x', function () awful.spawn.with_shell('$HOME/.local/bin/volume.sh up') end,
               {description = 'Volume increase', group = 'hotKeys'}),
 
@@ -429,7 +420,7 @@ awful.keyboard.append_global_keybindings({
     awful.key({ altkey}, 'q', function () awful.spawn.with_shell('$HOME/.local/bin/brightness.sh down') end,
               {description = 'Brightness decrease', group = 'hotKeys'}),
 
--- dmenu script
+    -- ================= dmenu scripts ===========================
     awful.key({ raltkey }, '1', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_url.sh') end,
               {description = 'dmenu script to surf the web', group = 'dmenu'}),
 
@@ -444,10 +435,14 @@ awful.keyboard.append_global_keybindings({
 
     awful.key({ raltkey }, '5', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_emoji.sh') end,
               {description = 'dmenu script to select an emoji', group = 'dmenu'}),
+
+    awful.key({ raltkey }, '6', function () awful.spawn.with_shell('$HOME/.local/bin/configs.sh') end,
+              {description = 'dmenu script to edit confgiration files', group = 'dmenu'}),
+
 })
 
--- Tags related keybindings
 awful.keyboard.append_global_keybindings({
+    -- ================= Switching between tags ===========================
     awful.key({ modkey,           }, 'Left',   awful.tag.viewprev,
               {description = 'view previous', group = 'tag'}),
 
@@ -458,8 +453,8 @@ awful.keyboard.append_global_keybindings({
               {description = 'go back', group = 'tag'}),
 })
 
--- Focus related keybindings
 awful.keyboard.append_global_keybindings({
+    -- ================= Switching between clients ===========================
     awful.key({ modkey,           }, 'j', function () awful.client.focus.byidx( 1) end,
         {description = 'focus next by index', group = 'client'}),
 
@@ -475,8 +470,8 @@ awful.keyboard.append_global_keybindings({
         {description = 'go back', group = 'client'}),
 })
 
--- Layout related keybindings
 awful.keyboard.append_global_keybindings({
+    -- ================= Layout control keybindings ===========================
     awful.key({ modkey, 'Shift'   }, 'j', function () awful.client.swap.byidx(  1)    end,
               {description = 'swap with next client by index', group = 'client'}),
 
@@ -502,8 +497,8 @@ awful.keyboard.append_global_keybindings({
               {description = 'select previous', group = 'layout'}),
 })
 
--- Gap resizing
 awful.keyboard.append_global_keybindings({
+    -- ================= Gap resizing keybindings ===========================
 	awful.key({ altkey }, '.', 
 	function ()
 		awful.tag.incgap(2,null)
@@ -518,8 +513,8 @@ awful.keyboard.append_global_keybindings({
 
 })
 
--- Resize client keybindings
 awful.keyboard.append_global_keybindings({
+    -- ================= Resize client keybindings ===========================
     awful.key({ modkey,           }, 'minus',     function () awful.tag.incmwfact( 0.05)          end,
               {description = 'increase master width factor', group = 'layout'}),
 
@@ -528,6 +523,7 @@ awful.keyboard.append_global_keybindings({
 })
 
 awful.keyboard.append_global_keybindings({
+    -- ================= Switch between tags and move clients to tags ===========================
     awful.key {
         modifiers   = { modkey },
         keygroup    = 'numrow',
@@ -596,6 +592,7 @@ awful.keyboard.append_global_keybindings({
     }
 })
 
+-- ================= Tags are clickable ===========================
 client.connect_signal('request::default_mousebindings', function()
     awful.mouse.append_client_mousebindings({
         awful.button({ }, 1, function (c)
@@ -610,6 +607,7 @@ client.connect_signal('request::default_mousebindings', function()
     })
 end)
 
+-- ================= Miscellaneous keybindings (toggle full screen, floating, move to master) =========
 client.connect_signal('request::default_keybindings', function()
     awful.keyboard.append_client_keybindings({
         awful.key({ modkey, 'Shift' }, 'f',
@@ -619,19 +617,26 @@ client.connect_signal('request::default_keybindings', function()
             end,
             {description = 'toggle fullscreen', group = 'client'}),
 
-	awful.key({ modkey,'Shift' }, 'c',      function (c) c:kill()                         end,
+	awful.key({ modkey,'Shift' }, 'c',
+		function (c) c:kill()
+		end,
                 {description = 'close', group = 'client'}),
 
-        awful.key({ modkey, 'Control' }, 'space',  awful.client.floating.toggle                     ,
+        awful.key({ modkey, 'Control' }, 'space',  awful.client.floating.toggle,
                 {description = 'toggle floating', group = 'client'}),
 
-        awful.key({ modkey, 'Control' }, 'Return', function (c) c:swap(awful.client.getmaster()) end,
+        awful.key({ modkey, 'Control' }, 'Return',
+		function (c) c:swap(awful.client.getmaster())
+		end,
                 {description = 'move to master', group = 'client'}),
     })
 end)
+-- ================================================================================================
 
--- {{{ Rules
--- Rules to apply to new clients.
+-- ================================================================================================
+-- Rules
+
+  -- ================= Rules to apply to new clients ================
 ruled.client.connect_signal('request::rules', function()
     -- All clients will match this rule.
     ruled.client.append_rule {
@@ -646,7 +651,7 @@ ruled.client.connect_signal('request::rules', function()
         }
     }
 
-    -- Floating clients.
+  -- ================= Floating clients ================
     ruled.client.append_rule {
         id       = 'floating',
         rule_any = {
@@ -668,7 +673,7 @@ ruled.client.connect_signal('request::rules', function()
         properties = { floating = true }
     }
 
-    -- Each specific program will open in its correspoindig tag
+  -- ================= Each program opens in its corresponding tag ================
     ruled.client.append_rule {
         rule       = { class = 'kitty'     },
         properties = { screen = 1, tag = '  ' }
@@ -697,9 +702,8 @@ ruled.client.connect_signal('request::rules', function()
         rule       = { class = 'vlc'},
         properties = { screen = 1, tag = '  ' }
     }
--- Normally we would do this with a rule, but other apps like spotify and Kodi do not set its class or name
--- until after it starts up, so we need to catch that signal.
 
+   -- ==== Spotify and Kodi have to be treated differently since they do not set the class before running ====
 client.connect_signal(
 	'property::class',
 	function(c)
@@ -760,10 +764,12 @@ client.connect_signal(
 	end
 )
 end)
+-- ================================================================================================
 
+-- ================================================================================================
 -- Enable sloppy focus, so that focus follows mouse.
+
 client.connect_signal('mouse::enter', function(c)
     c:activate { context = 'mouse_enter', raise = false }
 end)
-
-
+-- ================================================================================================
