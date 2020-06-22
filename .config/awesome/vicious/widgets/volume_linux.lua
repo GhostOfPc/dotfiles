@@ -34,7 +34,7 @@ local spawn = require("vicious.spawn")
 local volume_linux = {}
 
 -- {{{ Volume widget type
-local STATE = { on = '🔉', off = '🔈' }
+local STATE = { on = '🔊', off = '🔇' }
 
 local function parse(stdout, stderr, exitreason, exitcode)
     -- Capture mixer control state, e.g.        [  42    % ]   [  on    ]

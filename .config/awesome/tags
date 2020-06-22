@@ -1,0 +1,525 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
+Awesome Window Mangaer	README.md	/^# Awesome Window Mangaer$/;"	c
+BB.create	vicious/contrib/buildbot_all.lua	/^function BB.create(url, builder)$/;"	f
+BB:_getBuildStatus	vicious/contrib/buildbot_all.lua	/^function BB:_getBuildStatus(result)$/;"	f
+BB:_queryBuildbot	vicious/contrib/buildbot_all.lua	/^function BB:_queryBuildbot(build_number)$/;"	f
+BB:getBuilder	vicious/contrib/buildbot_all.lua	/^function BB:getBuilder()$/;"	f
+BB:getCurrent	vicious/contrib/buildbot_all.lua	/^function BB:getCurrent()$/;"	f
+BB:getCurrentStatus	vicious/contrib/buildbot_all.lua	/^function BB:getCurrentStatus()$/;"	f
+BB:getError	vicious/contrib/buildbot_all.lua	/^function BB:getError()$/;"	f
+BB:getLastSuccessful	vicious/contrib/buildbot_all.lua	/^function BB:getLastSuccessful()$/;"	f
+BB:refresh	vicious/contrib/buildbot_all.lua	/^function BB:refresh()$/;"	f
+Battery widget	widget/battery-widget/README.md	/^# Battery widget$/;"	c
+Batteryarc widget	widget/batteryarc-widget/README.md	/^# Batteryarc widget$/;"	c
+Buildbot widget	vicious/contrib/README.md	/^### Buildbot widget$/;"	S
+CPU widget	widget/cpu-widget/README.md	/^# CPU widget$/;"	c
+Calendar Widget	widget/calendar-widget/README.md	/^# Calendar Widget$/;"	c
+Contrib	vicious/contrib/README.md	/^# Contrib$/;"	c
+Control volume	widget/volume-widget/README.md	/^### Control volume$/;"	S
+Controls	widget/spotify-widget/README.md	/^## Controls$/;"	s
+Customization	widget/battery-widget/README.md	/^## Customization$/;"	s
+Customization	widget/batteryarc-widget/README.md	/^## Customization$/;"	s
+Customization	widget/cpu-widget/README.md	/^## Customization$/;"	s
+Customization	widget/spotify-widget/README.md	/^## Customization$/;"	s
+Customization	widget/volume-widget/README.md	/^## Customization$/;"	s
+Customization	widget/weather-widget/README.md	/^## Customization$/;"	s
+Dependencies	widget/spotify-widget/README.md	/^## Dependencies$/;"	s
+Example	widget/cpu-widget/README.md	/^### Example$/;"	S
+Example:	widget/spotify-widget/README.md	/^### Example:$/;"	S
+Example:	widget/weather-widget/README.md	/^### Example:$/;"	S
+Features	widget/calendar-widget/README.md	/^## Features$/;"	s
+How it works	widget/cpu-widget/README.md	/^## How it works$/;"	s
+How to use	widget/calendar-widget/README.md	/^## How to use$/;"	s
+Icons	widget/volume-widget/README.md	/^### Icons$/;"	S
+Installation	widget/battery-widget/README.md	/^## Installation$/;"	s
+Installation	widget/batteryarc-widget/README.md	/^## Installation$/;"	s
+Installation	widget/cpu-widget/README.md	/^## Installation$/;"	s
+Installation	widget/fs-widget/README.md	/^## Installation$/;"	s
+Installation	widget/ram-widget/README.md	/^## Installation$/;"	s
+Installation	widget/spotify-widget/README.md	/^## Installation$/;"	s
+Installation	widget/volume-widget/README.md	/^## Installation$/;"	s
+Installation	widget/weather-widget/README.md	/^## Installation$/;"	s
+Pulse Audio widget:	vicious/contrib/README.md	/^### Pulse Audio widget:$/;"	S
+Pulse or ALSA only	widget/volume-widget/README.md	/^### Pulse or ALSA only$/;"	S
+Ram widget	widget/ram-widget/README.md	/^# Ram widget$/;"	c
+Requirements	widget/batteryarc-widget/README.md	/^## Requirements$/;"	s
+Spotify widget	widget/spotify-widget/README.md	/^# Spotify widget$/;"	c
+Storage Widget	widget/fs-widget/README.md	/^# Storage Widget$/;"	c
+Troubleshooting	widget/batteryarc-widget/README.md	/^## Troubleshooting$/;"	s
+Usage examples	vicious/contrib/README.md	/^## Usage examples$/;"	s
+Usage within Awesome	vicious/contrib/README.md	/^## Usage within Awesome$/;"	s
+Volume widget	widget/volume-widget/README.md	/^# Volume widget$/;"	c
+Weather widget	widget/weather-widget/README.md	/^# Weather widget$/;"	c
+Widget type templates	vicious/templates/README.md	/^# Widget type templates$/;"	c
+Widget types	vicious/contrib/README.md	/^## Widget types$/;"	s
+__call	vicious/contrib/ac_linux.lua	/^return setmetatable(ac_linux, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/ati_linux.lua	/^return setmetatable(ati_linux, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/batpmu_linux.lua	/^return setmetatable(batpmu_linux, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/batproc_linux.lua	/^return setmetatable(batproc_linux, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/buildbot_all.lua	/^setmetatable(buildbot_all, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/countfiles_all.lua	/^setmetatable(countfiles_all, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/dio_linux.lua	/^return setmetatable(dio_linux, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/mpc_all.lua	/^return setmetatable(mpc_all, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/net_linux.lua	/^return setmetatable(net_linux, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/netcfg.lua	/^return setmetatable(netcfg, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/nvinf_all.lua	/^return setmetatable(nvinf_all, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/nvsmi_all.lua	/^return setmetatable(nvsmi_all, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/openweather_all.lua	/^return setmetatable(openweather_all, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/ossvol_linux.lua	/^return setmetatable(ossvol_linux, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/pop_all.lua	/^return setmetatable(pop_all, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/pulse_all.lua	/^return setmetatable(pulse_all, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/rss_all.lua	/^return setmetatable(rss_all, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/sensors_linux.lua	/^return setmetatable(sensors_linux, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/contrib/wpa_all.lua	/^return setmetatable(wpa_all, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	vicious/helpers.lua	/^        {}, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	widget/battery-widget/battery.lua	/^return setmetatable(battery_widget, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	widget/batteryarc-widget/batteryarc.lua	/^return setmetatable(widget, { __call = function(_, ...)$/;"	f
+__call	widget/calendar-widget/calendar.lua	/^return setmetatable(calendar_widget, { __call = function(_, ...)$/;"	f
+__call	widget/cpu-widget/cpu-widget.lua	/^return setmetatable(widget, { __call = function(_, ...)$/;"	f
+__call	widget/fs-widget/fs-widget.lua	/^return setmetatable(storage_bar_widget, { __call = function(_, ...)$/;"	f
+__call	widget/ram-widget/ram-widget.lua	/^return setmetatable(ramgraph_widget, { __call = function(_, ...)$/;"	f
+__call	widget/spotify-widget/spotify.lua	/^return setmetatable(spotify_widget, { __call = function(_, ...)$/;"	f
+__call	widget/volume-widget/volume.lua	/^return setmetatable(volume, { __call = function(_, ...) return worker(...) end })$/;"	f
+__call	widget/weather-widget/weather.lua	/^return setmetatable(weather_widget, { __call = function(_, ...)$/;"	f
+__index	vicious/helpers.lua	/^        { __index = function(self, index)$/;"	f
+async	vicious/contrib/cmus_all.lua	/^    async = function (format, warg, callback)$/;"	f
+async	vicious/templates/async.lua	/^    async = function (format, warg, callback)$/;"	f
+async	vicious/widgets/cmus_all.lua	/^    async = function (format, warg, callback)$/;"	f
+async	vicious/widgets/fs_all.lua	/^    async = function(format, warg, callback)$/;"	f
+async	vicious/widgets/hddtemp_linux.lua	/^    async = function(format, warg, callback)$/;"	f
+async	vicious/widgets/hwmontemp_linux.lua	/^    async = function (format, warg, callback)$/;"	f
+base	icons/pause-button.svg	/^     id="base" \/>$/;"	i
+base	icons/play-button.svg	/^     id="base" \/>$/;"	i
+bat_freebsd.async	vicious/widgets/bat_freebsd.lua	/^function bat_freebsd.async(format, warg, callback)$/;"	f
+bat_openbsd.async	vicious/widgets/bat_openbsd.lua	/^function bat_openbsd.async(format, warg, callback)$/;"	f
+btc_all.async	vicious/contrib/btc_all.lua	/^function btc_all.async(format, warg, callback)$/;"	f
+build	widget/clickable-container/init.lua	/^function build(widget)$/;"	f
+buildButton	components/lock-screen.lua	/^local buildButton = function(icon)$/;"	f
+c	widget/cpu-widget/cpu-widget.lua	/^                            row:connect_signal("mouse::enter", function(c) c:set_bg(beautiful.bg/;"	f
+c	widget/cpu-widget/cpu-widget.lua	/^                            row:connect_signal("mouse::leave", function(c) c:set_bg(beautiful.bg/;"	f
+calendar_widget.toggle	widget/calendar-widget/calendar.lua	/^    function calendar_widget.toggle()$/;"	f
+cbool	vicious/widgets/mpd_all.lua	/^local function cbool(number)$/;"	f
+cc	icons/lock.svg	/^   width="512">$/;"	n	uri:http://creativecommons.org/ns#
+cc	icons/logout.svg	/^   width="512">$/;"	n	uri:http://creativecommons.org/ns#
+cc	icons/pause-button.svg	/^   width="48">$/;"	n	uri:http://creativecommons.org/ns#
+cc	icons/play-button.svg	/^   width="48">$/;"	n	uri:http://creativecommons.org/ns#
+cc	icons/power.svg	/^   width="512">$/;"	n	uri:http://creativecommons.org/ns#
+cc	icons/restart.svg	/^   width="512">$/;"	n	uri:http://creativecommons.org/ns#
+cc	icons/sleep.svg	/^   width="512">$/;"	n	uri:http://creativecommons.org/ns#
+cc	widget/volume-widget/audio-volume-muted-symbolic.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://creativecommons.org/ns#
+cc	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^   sodipodi:docname="audio-volume-muted-symbolic-shan.svg">$/;"	n	uri:http://creativecommons.org/ns#
+cc	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://creativecommons.org/ns#
+celsius_to_fahrenheit	widget/weather-widget/weather.lua	/^    local function celsius_to_fahrenheit(c)$/;"	f
+circle2	icons/lock.svg	/^       id="circle2" \/>$/;"	i
+circle2	icons/logout.svg	/^       id="circle2" \/>$/;"	i
+circle2	icons/power.svg	/^       style="stroke-width:12.4878" \/>$/;"	i
+circle2	icons/restart.svg	/^       id="circle2" \/>$/;"	i
+circle2	icons/sleep.svg	/^       id="circle2" \/>$/;"	i
+codepoint_to_utf8	json.lua	/^local function codepoint_to_utf8(n)$/;"	f
+codepoint_to_utf8	widget/weather-widget/json.lua	/^local function codepoint_to_utf8(n)$/;"	f
+cpu_freebsd.async	vicious/widgets/cpu_freebsd.lua	/^function cpu_freebsd.async(format, warg, callback)$/;"	f
+cpu_openbsd.async	vicious/widgets/cpu_openbsd.lua	/^function cpu_openbsd.async(format, warg, callback)$/;"	f
+cpufreq_freebsd.async	vicious/widgets/cpufreq_freebsd.lua	/^function cpufreq_freebsd.async(format, warg, callback)$/;"	f
+create	widget/weather-widget/weather.lua	/^            create=function()$/;"	f
+create_set	json.lua	/^local function create_set(...)$/;"	f
+create_set	widget/weather-widget/json.lua	/^local function create_set(...)$/;"	f
+data	vicious/contrib/btc_all.lua	/^        local status, data = pcall(function() return json.decode(response) end)$/;"	f
+datasplit	vicious/contrib/sensors_linux.lua	/^local function datasplit(str)$/;"	f
+dc	icons/lock.svg	/^   width="512">$/;"	n	uri:http://purl.org/dc/elements/1.1/
+dc	icons/logout.svg	/^   width="512">$/;"	n	uri:http://purl.org/dc/elements/1.1/
+dc	icons/pause-button.svg	/^   width="48">$/;"	n	uri:http://purl.org/dc/elements/1.1/
+dc	icons/play-button.svg	/^   width="48">$/;"	n	uri:http://purl.org/dc/elements/1.1/
+dc	icons/power.svg	/^   width="512">$/;"	n	uri:http://purl.org/dc/elements/1.1/
+dc	icons/restart.svg	/^   width="512">$/;"	n	uri:http://purl.org/dc/elements/1.1/
+dc	icons/sleep.svg	/^   width="512">$/;"	n	uri:http://purl.org/dc/elements/1.1/
+dc	widget/volume-widget/audio-volume-muted-symbolic.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://purl.org/dc/elements/1.1/
+dc	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^   sodipodi:docname="audio-volume-muted-symbolic-shan.svg">$/;"	n	uri:http://purl.org/dc/elements/1.1/
+dc	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://purl.org/dc/elements/1.1/
+decode_error	json.lua	/^local function decode_error(str, idx, msg)$/;"	f
+decode_error	widget/weather-widget/json.lua	/^local function decode_error(str, idx, msg)$/;"	f
+decorate_cell	widget/calendar-widget/calendar.lua	/^    local function decorate_cell(widget, flag, date)$/;"	f
+defs16	icons/lock.svg	/^     id="defs16" \/>$/;"	i
+defs16	icons/logout.svg	/^     id="defs16" \/>$/;"	i
+defs16	icons/power.svg	/^     id="defs16" \/>$/;"	i
+defs16	icons/restart.svg	/^     id="defs16" \/>$/;"	i
+defs16	icons/sleep.svg	/^     id="defs16" \/>$/;"	i
+defs2	icons/pause-button.svg	/^     id="defs2" \/>$/;"	i
+defs2	icons/play-button.svg	/^     id="defs2" \/>$/;"	i
+defs4	widget/volume-widget/audio-volume-muted-symbolic.svg	/^     id="defs4" \/>$/;"	i
+defs4	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^     id="defs4" \/>$/;"	i
+defs4	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^     id="defs4" \/>$/;"	i
+encode	json.lua	/^encode = function(val, stack)$/;"	f
+encode	widget/weather-widget/json.lua	/^encode = function(val, stack)$/;"	f
+encode_nil	json.lua	/^local function encode_nil(val)$/;"	f
+encode_nil	widget/weather-widget/json.lua	/^local function encode_nil(val)$/;"	f
+encode_number	json.lua	/^local function encode_number(val)$/;"	f
+encode_number	widget/weather-widget/json.lua	/^local function encode_number(val)$/;"	f
+encode_string	json.lua	/^local function encode_string(val)$/;"	f
+encode_string	widget/weather-widget/json.lua	/^local function encode_string(val)$/;"	f
+encode_table	json.lua	/^local function encode_table(val, stack)$/;"	f
+encode_table	widget/weather-widget/json.lua	/^local function encode_table(val, stack)$/;"	f
+error_display	widget/weather-widget/weather.lua	/^    local function error_display(resp_json)$/;"	f
+escape	vicious/contrib/pulse_all.lua	/^local function escape(text)$/;"	f
+escape_char	json.lua	/^local function escape_char(c)$/;"	f
+escape_char	widget/weather-widget/json.lua	/^local function escape_char(c)$/;"	f
+exit_command	components/lock-screen.lua	/^local function exit_command()$/;"	f
+exit_screen_hide	components/lock-screen.lua	/^local function exit_screen_hide()$/;"	f
+exit_screen_show	components/lock-screen.lua	/^function exit_screen_show()$/;"	f
+fahrenheit_to_celsius	widget/weather-widget/weather.lua	/^    local function fahrenheit_to_celsius(f)$/;"	f
+fanspeed_freebsd.async	vicious/widgets/fanspeed_freebsd.lua	/^function fanspeed_freebsd.async(format, warg, callback)$/;"	f
+format_data	vicious/init.lua	/^    local function format_data(data)$/;"	f
+format_progress	vicious/widgets/mpd_all.lua	/^local function format_progress(elapsed, duration)$/;"	f
+format_progress_percentage	vicious/widgets/mpd_all.lua	/^local function format_progress_percentage(elapsed, duration)$/;"	f
+g848	icons/lock.svg	/^     id="g848">$/;"	i
+g848	icons/logout.svg	/^     id="g848">$/;"	i
+g848	icons/power.svg	/^     id="g848">$/;"	i
+g848	icons/restart.svg	/^     id="g848">$/;"	i
+g848	icons/sleep.svg	/^     id="g848">$/;"	i
+gen_temperature_str	widget/weather-widget/weather.lua	/^    local function gen_temperature_str(temp, fmt_str, show_other_units)$/;"	f
+getBuilderStatus	vicious/contrib/buildbot_all.lua	/^local function getBuilderStatus(b)$/;"	f
+getPercentage	widget/ram-widget/ram-widget.lua	/^    local function getPercentage(value)$/;"	f
+get_interfaces	net_widgets/indicator.lua	/^  end  -- function get_interfaces()$/;"	f
+get_interfaces	net_widgets/indicator.lua	/^  local function get_interfaces()$/;"	f
+get_sink_name	vicious/contrib/pulse_all.lua	/^local function get_sink_name(sink)$/;"	f
+get_timezone_offset	vicious/widgets/weather_all.lua	/^local function get_timezone_offset()$/;"	f
+gmail_all.async	vicious/widgets/gmail_all.lua	/^function gmail_all.async(format, warg, callback)$/;"	f
+grid4158	widget/volume-widget/audio-volume-muted-symbolic.svg	/^       id="grid4158" \/>$/;"	i
+grid4158	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^       id="grid4158" \/>$/;"	i
+grid4158	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^       id="grid4158" \/>$/;"	i
+helpers.capitalize	vicious/helpers.lua	/^function helpers.capitalize(text)$/;"	f
+helpers.escape	vicious/helpers.lua	/^function helpers.escape(text)$/;"	f
+helpers.format	vicious/helpers.lua	/^function helpers.format(format, args)$/;"	f
+helpers.getos	vicious/helpers.lua	/^function helpers.getos()$/;"	f
+helpers.pathtotable	vicious/helpers.lua	/^function helpers.pathtotable(dir)$/;"	f
+helpers.scroll	vicious/helpers.lua	/^function helpers.scroll(text, maxlen, widget)$/;"	f
+helpers.setasyncall	vicious/helpers.lua	/^function helpers.setasyncall(wtype)$/;"	f
+helpers.setcall	vicious/helpers.lua	/^function helpers.setcall(worker)$/;"	f
+helpers.shellquote	vicious/helpers.lua	/^function helpers.shellquote(arg)$/;"	f
+helpers.sysctl_async	vicious/helpers.lua	/^function helpers.sysctl_async(path_table, parse)$/;"	f
+helpers.truncate	vicious/helpers.lua	/^function helpers.truncate(text, maxlen)$/;"	f
+helpers.uformat	vicious/helpers.lua	/^function helpers.uformat(array, key, value, unit)$/;"	f
+helpers.wrequire	vicious/helpers.lua	/^function helpers.wrequire(collection, key)$/;"	f
+inkscape	icons/lock.svg	/^   width="512">$/;"	n	uri:http://www.inkscape.org/namespaces/inkscape
+inkscape	icons/logout.svg	/^   width="512">$/;"	n	uri:http://www.inkscape.org/namespaces/inkscape
+inkscape	icons/pause-button.svg	/^   width="48">$/;"	n	uri:http://www.inkscape.org/namespaces/inkscape
+inkscape	icons/play-button.svg	/^   width="48">$/;"	n	uri:http://www.inkscape.org/namespaces/inkscape
+inkscape	icons/power.svg	/^   width="512">$/;"	n	uri:http://www.inkscape.org/namespaces/inkscape
+inkscape	icons/restart.svg	/^   width="512">$/;"	n	uri:http://www.inkscape.org/namespaces/inkscape
+inkscape	icons/sleep.svg	/^   width="512">$/;"	n	uri:http://www.inkscape.org/namespaces/inkscape
+inkscape	widget/volume-widget/audio-volume-muted-symbolic.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://www.inkscape.org/namespaces/inkscape
+inkscape	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^   sodipodi:docname="audio-volume-muted-symbolic-shan.svg">$/;"	n	uri:http://www.inkscape.org/namespaces/inkscape
+inkscape	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://www.inkscape.org/namespaces/inkscape
+json.decode	json.lua	/^function json.decode(str)$/;"	f
+json.decode	widget/weather-widget/json.lua	/^function json.decode(str)$/;"	f
+json.encode	json.lua	/^function json.encode(val)$/;"	f
+json.encode	widget/weather-widget/json.lua	/^function json.encode(val)$/;"	f
+layer1	icons/pause-button.svg	/^     inkscape:label="Layer 1">$/;"	i
+layer1	icons/play-button.svg	/^     inkscape:label="Layer 1">$/;"	i
+lock_command	components/lock-screen.lua	/^local function lock_command()$/;"	f
+markup	widget/calendar-widget/calendar.lua	/^        markup = function(t) return '<b>' .. t .. '<\/b>' end$/;"	f
+markup	widget/calendar-widget/calendar.lua	/^        markup = function(t) return '<b>' .. t .. '<\/b>' end,$/;"	f
+markup	widget/calendar-widget/calendar.lua	/^        markup = function(t) return t end,$/;"	f
+mdir_all.async	vicious/widgets/mdir_all.lua	/^function mdir_all.async(format, warg, callback)$/;"	f
+mem_freebsd.async	vicious/widgets/mem_freebsd.lua	/^function mem_freebsd.async(format, warg, callback)$/;"	f
+metadata18	icons/lock.svg	/^     id="metadata18">$/;"	i
+metadata18	icons/logout.svg	/^     id="metadata18">$/;"	i
+metadata18	icons/power.svg	/^     id="metadata18">$/;"	i
+metadata18	icons/restart.svg	/^     id="metadata18">$/;"	i
+metadata18	icons/sleep.svg	/^     id="metadata18">$/;"	i
+metadata30	widget/volume-widget/audio-volume-muted-symbolic.svg	/^     id="metadata30">$/;"	i
+metadata30	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^     id="metadata30">$/;"	i
+metadata30	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^     id="metadata30">$/;"	i
+metadata5	icons/pause-button.svg	/^     id="metadata5">$/;"	i
+metadata5	icons/play-button.svg	/^     id="metadata5">$/;"	i
+metatable	vicious/helpers.lua	/^    local metatable = { __call = function (_, ...) return worker(...) end }$/;"	f
+move_client	keys.lua	/^local function move_client(c, direction)$/;"	f
+mpd_all.async	vicious/widgets/mpd_all.lua	/^function mpd_all.async(format, warg, callback)$/;"	f
+namedview14	icons/lock.svg	/^     pagecolor="#ffffff" \/>$/;"	i
+namedview14	icons/logout.svg	/^     pagecolor="#ffffff" \/>$/;"	i
+namedview14	icons/power.svg	/^     pagecolor="#ffffff" \/>$/;"	i
+namedview14	icons/restart.svg	/^     pagecolor="#ffffff" \/>$/;"	i
+namedview14	icons/sleep.svg	/^     pagecolor="#ffffff" \/>$/;"	i
+namedview28	widget/volume-widget/audio-volume-muted-symbolic.svg	/^     inkscape:object-paths="false">$/;"	i
+namedview28	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^     inkscape:object-paths="false">$/;"	i
+namedview28	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^     inkscape:object-paths="false">$/;"	i
+net_freebsd.async	vicious/widgets/net_freebsd.lua	/^function net_freebsd.async(format, warg, callback)$/;"	f
+net_update	net_widgets/indicator.lua	/^  local function net_update()$/;"	f
+net_update	net_widgets/internet.lua	/^  local function net_update()$/;"	f
+net_update	net_widgets/wireless.lua	/^    local function net_update()$/;"	f
+next_char	json.lua	/^local function next_char(str, idx, set, negate)$/;"	f
+next_char	widget/weather-widget/json.lua	/^local function next_char(str, idx, set, negate)$/;"	f
+notif	widget/volume-widget/volume.lua	/^local function notif(msg, keep)$/;"	f
+notmuch.async	vicious/widgets/notmuch_all.lua	/^function notmuch.async(format, warg, callback)$/;"	f
+ns2bb3f9890101	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^   sodipodi:docname="audio-volume-muted-symbolic-shan.svg">$/;"	n	uri:http://www.w3.org/2000/svg
+ns5e451afa0101	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://www.w3.org/2000/svg
+ns92264a750101	icons/pause-button.svg	/^   width="48">$/;"	n	uri:http://www.w3.org/2000/svg
+ns996012a00101	widget/volume-widget/audio-volume-muted-symbolic.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://www.w3.org/2000/svg
+ns9b6d4a2d0101	icons/play-button.svg	/^   width="48">$/;"	n	uri:http://www.w3.org/2000/svg
+nsb7b6ee9b0101	icons/power.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/2000/svg
+nsc151e6b70101	icons/lock.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/2000/svg
+nse6aa4c670101	icons/sleep.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/2000/svg
+nse7dfdb880101	icons/logout.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/2000/svg
+nseb5217930101	icons/restart.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/2000/svg
+on_press	rc.lua	/^        on_press    = function (index)$/;"	f
+os_bsd.async	vicious/widgets/os_bsd.lua	/^function os_bsd.async(format, warg, callback)$/;"	f
+output_done	vicious/contrib/cmus_all.lua	/^            output_done = function () callback(cmus_state) end })$/;"	f
+output_done	vicious/helpers.lua	/^        output_done = function () parse(ret) end$/;"	f
+output_done	vicious/widgets/cmus_all.lua	/^            output_done = function () callback(cmus_state) end })$/;"	f
+output_done	vicious/widgets/fs_all.lua	/^              output_done = function () callback(fs_info) end })$/;"	f
+output_done	vicious/widgets/hddtemp_linux.lua	/^              output_done = function () callback(hdd_temp) end })$/;"	f
+output_done	vicious/widgets/mdir_all.lua	/^                    output_done = function () callback{ new, cur } end })$/;"	f
+output_done	vicious/widgets/mdir_all.lua	/^          output_done = function ()$/;"	f
+output_done	vicious/widgets/mem_freebsd.lua	/^                output_done = function()$/;"	f
+output_done	vicious/widgets/mpd_all.lua	/^        output_done = function ()$/;"	f
+output_done	vicious/widgets/pkg_all.lua	/^        output_done = function ()$/;"	f
+pacmd	vicious/contrib/pulse_all.lua	/^local function pacmd(args)$/;"	f
+parse	json.lua	/^parse = function(str, idx)$/;"	f
+parse	vicious/contrib/btc_all.lua	/^    local function parse(response)$/;"	f
+parse	vicious/widgets/bat_freebsd.lua	/^local function parse(stdout, stderr, exitreason, exitcode)$/;"	f
+parse	vicious/widgets/gmail_all.lua	/^local function parse(warg, stdout, stderr, exitreason, exitcode)$/;"	f
+parse	vicious/widgets/net_freebsd.lua	/^local function parse(stdout, stderr, exitreason, exitcode)$/;"	f
+parse	vicious/widgets/notmuch_all.lua	/^local function parse(stdout, stderr, exitreason, exitcode)$/;"	f
+parse	vicious/widgets/os_bsd.lua	/^local function parse(stdout, stderr, exitreason, exitcode)$/;"	f
+parse	vicious/widgets/volume_freebsd.lua	/^local function parse(stdout, stderr, exitreason, exitcode)$/;"	f
+parse	vicious/widgets/volume_linux.lua	/^local function parse(stdout, stderr, exitreason, exitcode)$/;"	f
+parse	vicious/widgets/weather_all.lua	/^local function parse(stdout, stderr, exitreason, exitcode)$/;"	f
+parse	widget/weather-widget/json.lua	/^parse = function(str, idx)$/;"	f
+parse_array	json.lua	/^local function parse_array(str, i)$/;"	f
+parse_array	widget/weather-widget/json.lua	/^local function parse_array(str, i)$/;"	f
+parse_info	vicious/widgets/wifiiw_linux.lua	/^    local function parse_info(stdout)$/;"	f
+parse_link	vicious/widgets/wifiiw_linux.lua	/^    local function parse_link(stdout)$/;"	f
+parse_literal	json.lua	/^local function parse_literal(str, i)$/;"	f
+parse_literal	widget/weather-widget/json.lua	/^local function parse_literal(str, i)$/;"	f
+parse_number	json.lua	/^local function parse_number(str, i)$/;"	f
+parse_number	widget/weather-widget/json.lua	/^local function parse_number(str, i)$/;"	f
+parse_object	json.lua	/^local function parse_object(str, i)$/;"	f
+parse_object	widget/weather-widget/json.lua	/^local function parse_object(str, i)$/;"	f
+parse_output	widget/volume-widget/volume.lua	/^local function parse_output(stdout)$/;"	f
+parse_string	json.lua	/^local function parse_string(str, i)$/;"	f
+parse_string	widget/weather-widget/json.lua	/^local function parse_string(str, i)$/;"	f
+parse_unicode_escape	json.lua	/^local function parse_unicode_escape(s)$/;"	f
+parse_unicode_escape	widget/weather-widget/json.lua	/^local function parse_unicode_escape(s)$/;"	f
+parser	vicious/widgets/wifi_linux.lua	/^local function parser(stdout, stderr, exitreason, exitcode)$/;"	f
+path10	icons/lock.svg	/^       id="path10" \/>$/;"	i
+path10	icons/logout.svg	/^       id="path10" \/>$/;"	i
+path10	icons/power.svg	/^       style="stroke-width:12.4878" \/>$/;"	i
+path10	icons/restart.svg	/^       id="path10" \/>$/;"	i
+path10	icons/sleep.svg	/^       id="path10" \/>$/;"	i
+path18	widget/volume-widget/audio-volume-muted-symbolic.svg	/^     sodipodi:nodetypes="cccccccc" \/>$/;"	i
+path18	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^     sodipodi:nodetypes="cccccccc" \/>$/;"	i
+path20	widget/volume-widget/audio-volume-muted-symbolic.svg	/^     sodipodi:nodetypes="ssssccs" \/>$/;"	i
+path20	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^     sodipodi:nodetypes="ssssccs" \/>$/;"	i
+path4	icons/lock.svg	/^       id="path4" \/>$/;"	i
+path4	icons/logout.svg	/^       id="path4" \/>$/;"	i
+path4	icons/power.svg	/^       style="stroke-width:12.4878" \/>$/;"	i
+path4	icons/restart.svg	/^       id="path4" \/>$/;"	i
+path4	icons/sleep.svg	/^       id="path4" \/>$/;"	i
+path4508	widget/volume-widget/audio-volume-muted-symbolic.svg	/^     sodipodi:nodetypes="ccccccc" \/>$/;"	i
+path4508	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^     sodipodi:nodetypes="ccccccc" \/>$/;"	i
+path4508	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^     sodipodi:nodetypes="ccccccc" \/>$/;"	i
+path4529	widget/volume-widget/audio-volume-muted-symbolic.svg	/^     sodipodi:nodetypes="ccccccc" \/>$/;"	i
+path4529	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^     sodipodi:nodetypes="ccccccc" \/>$/;"	i
+path4529	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^     sodipodi:nodetypes="ccccccc" \/>$/;"	i
+path4569	widget/volume-widget/audio-volume-muted-symbolic.svg	/^     sodipodi:nodetypes="ccscccc" \/>$/;"	i
+path4569	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^     sodipodi:nodetypes="ccscccc" \/>$/;"	i
+path4569	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^     sodipodi:nodetypes="ccscccc" \/>$/;"	i
+path6	icons/lock.svg	/^       id="path6" \/>$/;"	i
+path6	icons/logout.svg	/^       id="path6" \/>$/;"	i
+path6	icons/power.svg	/^       style="stroke-width:12.4878" \/>$/;"	i
+path6	icons/restart.svg	/^       id="path6" \/>$/;"	i
+path6	icons/sleep.svg	/^       id="path6" \/>$/;"	i
+path8	icons/lock.svg	/^       id="path8" \/>$/;"	i
+path8	icons/logout.svg	/^       id="path8" \/>$/;"	i
+path8	icons/power.svg	/^       style="stroke-width:12.4878" \/>$/;"	i
+path8	icons/restart.svg	/^       id="path8" \/>$/;"	i
+path8	icons/sleep.svg	/^       id="path8" \/>$/;"	i
+path819	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^     inkscape:connector-curvature="0" \/>$/;"	i
+path833	icons/pause-button.svg	/^       style="opacity:1;fill:none;stroke:#ffffff;stroke-width:0.260543;stroke-miterlimit:4;strok/;"	i
+path833	icons/play-button.svg	/^       style="opacity:1;fill:none;stroke:#ffffff;stroke-width:0.260543;stroke-miterlimit:4;strok/;"	i
+path927	icons/play-button.svg	/^       sodipodi:type="star" \/>$/;"	i
+pkg_all.async	vicious/widgets/pkg_all.lua	/^function pkg_all.async(format, warg, callback)$/;"	f
+poweroff_command	components/lock-screen.lua	/^local function poweroff_command()$/;"	f
+pulse_all.add	vicious/contrib/pulse_all.lua	/^function pulse_all.add(percent, sink)$/;"	f
+pulse_all.toggle	vicious/contrib/pulse_all.lua	/^function pulse_all.toggle(sink)$/;"	f
+rdf	icons/lock.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdf	icons/logout.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdf	icons/pause-button.svg	/^   width="48">$/;"	n	uri:http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdf	icons/play-button.svg	/^   width="48">$/;"	n	uri:http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdf	icons/power.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdf	icons/restart.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdf	icons/sleep.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdf	widget/volume-widget/audio-volume-muted-symbolic.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdf	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^   sodipodi:docname="audio-volume-muted-symbolic-shan.svg">$/;"	n	uri:http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdf	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://www.w3.org/1999/02/22-rdf-syntax-ns#
+reboot_command	components/lock-screen.lua	/^local function reboot_command()$/;"	f
+rect837	icons/pause-button.svg	/^       y="3.8138773" \/>$/;"	i
+rect839	icons/pause-button.svg	/^       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.210019;stroke-mit/;"	i
+reg.update	vicious/init.lua	/^    function reg.update()$/;"	f
+regregister	vicious/init.lua	/^local function regregister(reg)$/;"	f
+resize_client	keys.lua	/^local function resize_client(c, direction)$/;"	f
+rounded_shape	widget/calendar-widget/calendar.lua	/^    local function rounded_shape(size)$/;"	f
+run_once	apps.lua	/^local function run_once(cmd)$/;"	f
+set_image	widget/volume-widget/volume.lua	/^        set_image = function(self, path)$/;"	f
+set_image	widget/weather-widget/weather.lua	/^        set_image = function(self, path)$/;"	f
+set_status	widget/spotify-widget/spotify.lua	/^        set_status = function(self, is_playing)$/;"	f
+set_text	widget/spotify-widget/spotify.lua	/^        set_text = function(self, path)$/;"	f
+show	widget/volume-widget/volume.lua	/^    local function show()$/;"	f
+show_battery_status	widget/battery-widget/battery.lua	/^    local function show_battery_status(batteryType)$/;"	f
+show_battery_status	widget/batteryarc-widget/batteryarc.lua	/^    function show_battery_status()$/;"	f
+show_battery_warning	widget/battery-widget/battery.lua	/^    local function show_battery_warning()$/;"	f
+show_battery_warning	widget/batteryarc-widget/batteryarc.lua	/^    function show_battery_warning()$/;"	f
+socket	vicious/contrib/pop_all.lua	/^local sock_avail, socket = pcall(function()$/;"	f
+sodipodi	icons/lock.svg	/^   width="512">$/;"	n	uri:http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd
+sodipodi	icons/logout.svg	/^   width="512">$/;"	n	uri:http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd
+sodipodi	icons/pause-button.svg	/^   width="48">$/;"	n	uri:http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd
+sodipodi	icons/play-button.svg	/^   width="48">$/;"	n	uri:http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd
+sodipodi	icons/power.svg	/^   width="512">$/;"	n	uri:http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd
+sodipodi	icons/restart.svg	/^   width="512">$/;"	n	uri:http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd
+sodipodi	icons/sleep.svg	/^   width="512">$/;"	n	uri:http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd
+sodipodi	widget/volume-widget/audio-volume-muted-symbolic.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd
+sodipodi	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^   sodipodi:docname="audio-volume-muted-symbolic-shan.svg">$/;"	n	uri:http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd
+sodipodi	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd
+spawn.easy_async_with_shell	vicious/spawn.lua	/^function spawn.easy_async_with_shell(cmd, callback)$/;"	f
+spawn.with_line_callback_with_shell	vicious/spawn.lua	/^    function spawn.with_line_callback_with_shell(cmd, callbacks)$/;"	f
+spawn.with_line_callback_with_shell	vicious/spawn.lua	/^function spawn.with_line_callback_with_shell(cmd, callbacks)$/;"	f
+split	widget/cpu-widget/cpu-widget.lua	/^local function split(string_to_split, separator)$/;"	f
+spotify	rc.lua	/^			local spotify = function (c)$/;"	f
+starts_with	widget/cpu-widget/cpu-widget.lua	/^local function starts_with(str, start)$/;"	f
+stderr	vicious/helpers.lua	/^        stderr = function (line)$/;"	f
+stdout	vicious/contrib/btc_all.lua	/^    spawn.easy_async(cmd, function(stdout) callback(parse(stdout)) end)$/;"	f
+stdout	vicious/contrib/cmus_all.lua	/^            stdout = function (line)$/;"	f
+stdout	vicious/helpers.lua	/^        stdout = function (line)$/;"	f
+stdout	vicious/widgets/cmus_all.lua	/^            stdout = function (line)$/;"	f
+stdout	vicious/widgets/fs_all.lua	/^            { stdout = function (line)$/;"	f
+stdout	vicious/widgets/hddtemp_linux.lua	/^            { stdout = function (line)$/;"	f
+stdout	vicious/widgets/mdir_all.lua	/^                  { stdout = function (filename) new = new + 1 end,$/;"	f
+stdout	vicious/widgets/mdir_all.lua	/^        { stdout = function (filename) cur = cur + 1 end,$/;"	f
+stdout	vicious/widgets/mem_freebsd.lua	/^                stdout = function(line)$/;"	f
+stdout	vicious/widgets/mpd_all.lua	/^        stdout = function (line)$/;"	f
+stdout	vicious/widgets/pkg_all.lua	/^        stdout = function (str)$/;"	f
+stk	rc.lua	/^			local stk = function (c)$/;"	f
+suspend_command	components/lock-screen.lua	/^local function suspend_command()$/;"	f
+svg	icons/lock.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/2000/svg
+svg	icons/logout.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/2000/svg
+svg	icons/pause-button.svg	/^   width="48">$/;"	n	uri:http://www.w3.org/2000/svg
+svg	icons/play-button.svg	/^   width="48">$/;"	n	uri:http://www.w3.org/2000/svg
+svg	icons/power.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/2000/svg
+svg	icons/restart.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/2000/svg
+svg	icons/sleep.svg	/^   width="512">$/;"	n	uri:http://www.w3.org/2000/svg
+svg	widget/volume-widget/audio-volume-muted-symbolic.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://www.w3.org/2000/svg
+svg	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^   sodipodi:docname="audio-volume-muted-symbolic-shan.svg">$/;"	n	uri:http://www.w3.org/2000/svg
+svg	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	n	uri:http://www.w3.org/2000/svg
+svg12	icons/lock.svg	/^   width="512">$/;"	i
+svg12	icons/logout.svg	/^   width="512">$/;"	i
+svg12	icons/power.svg	/^   width="512">$/;"	i
+svg12	icons/restart.svg	/^   width="512">$/;"	i
+svg12	icons/sleep.svg	/^   width="512">$/;"	i
+svg2	widget/volume-widget/audio-volume-muted-symbolic.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	i
+svg2	widget/volume-widget/audio-volume-muted-symbolic_new.svg	/^   sodipodi:docname="audio-volume-muted-symbolic-shan.svg">$/;"	i
+svg2	widget/volume-widget/audio-volume-muted-symbolic_red.svg	/^   sodipodi:docname="audio-volume-muted-symbolic.svg">$/;"	i
+svg8	icons/pause-button.svg	/^   width="48">$/;"	i
+svg8	icons/play-button.svg	/^   width="48">$/;"	i
+t	rc.lua	/^            awful.button({ }, 1, function(t) t:view_only() end),$/;"	f
+t	rc.lua	/^            awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),$/;"	f
+t	rc.lua	/^            awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end),$/;"	f
+text_grabber	net_widgets/indicator.lua	/^  end  -- function text_grabber()$/;"	f
+text_grabber	net_widgets/indicator.lua	/^  local function text_grabber()$/;"	f
+text_grabber	net_widgets/wireless.lua	/^    local function text_grabber()$/;"	f
+thermal_freebsd.async	vicious/widgets/thermal_freebsd.lua	/^function thermal_freebsd.async(format, warg, callback)$/;"	f
+timer	net_widgets/wireless.lua	/^    local timer = gears.timer.start_new( timeout, function () net_update()$/;"	f
+to_direction	widget/weather-widget/weather.lua	/^    local function to_direction(degrees)$/;"	f
+topercent	vicious/init.lua	/^    local function topercent(e) return tonumber(e) and tonumber(e) \/ 100 end$/;"	f
+update	vicious/init.lua	/^local function update(widget, reg, disablecache)$/;"	f
+update_cache	vicious/init.lua	/^    local function update_cache(data, t, cache)$/;"	f
+update_graphic	widget/volume-widget/volume.lua	/^local function update_graphic(widget, stdout, _, _, _)$/;"	f
+update_value	vicious/init.lua	/^    local function update_value(data)$/;"	f
+update_widget	widget/batteryarc-widget/batteryarc.lua	/^    local function update_widget(widget, stdout)$/;"	f
+update_widget_icon	widget/spotify-widget/spotify.lua	/^    local update_widget_icon = function(widget, stdout, _, _, _)$/;"	f
+update_widget_text	widget/spotify-widget/spotify.lua	/^    local update_widget_text = function(widget, stdout, _, _, _)$/;"	f
+uptime_freebsd.async	vicious/widgets/uptime_freebsd.lua	/^function uptime_freebsd.async(format, warg, callback)$/;"	f
+vicious.activate	vicious/init.lua	/^function vicious.activate(widget)$/;"	f
+vicious.cache	vicious/init.lua	/^function vicious.cache(wtype)$/;"	f
+vicious.call	vicious/init.lua	/^function vicious.call(myw, format, warg)$/;"	f
+vicious.contrib.ac	vicious/contrib/README.md	/^### vicious.contrib.ac$/;"	S
+vicious.contrib.ati	vicious/contrib/README.md	/^### vicious.contrib.ati$/;"	S
+vicious.contrib.batpmu	vicious/contrib/README.md	/^### vicious.contrib.batpmu$/;"	S
+vicious.contrib.batproc	vicious/contrib/README.md	/^### vicious.contrib.batproc$/;"	S
+vicious.contrib.btc	vicious/contrib/README.md	/^### vicious.contrib.btc$/;"	S
+vicious.contrib.buildbot	vicious/contrib/README.md	/^### vicious.contrib.buildbot$/;"	S
+vicious.contrib.cmus	vicious/contrib/README.md	/^### vicious.contrib.cmus$/;"	S
+vicious.contrib.countfiles	vicious/contrib/README.md	/^### vicious.contrib.countfiles$/;"	S
+vicious.contrib.dio	vicious/contrib/README.md	/^### vicious.contrib.dio$/;"	S
+vicious.contrib.mpc	vicious/contrib/README.md	/^### vicious.contrib.mpc$/;"	S
+vicious.contrib.net	vicious/contrib/README.md	/^### vicious.contrib.net$/;"	S
+vicious.contrib.netcfg	vicious/contrib/README.md	/^### vicious.contrib.netcfg$/;"	S
+vicious.contrib.nvinf	vicious/contrib/README.md	/^### vicious.contrib.nvinf$/;"	S
+vicious.contrib.nvsmi	vicious/contrib/README.md	/^### vicious.contrib.nvsmi$/;"	S
+vicious.contrib.openweather	vicious/contrib/README.md	/^### vicious.contrib.openweather$/;"	S
+vicious.contrib.ossvol	vicious/contrib/README.md	/^### vicious.contrib.ossvol$/;"	S
+vicious.contrib.pop	vicious/contrib/README.md	/^### vicious.contrib.pop$/;"	S
+vicious.contrib.pulse	vicious/contrib/README.md	/^### vicious.contrib.pulse$/;"	S
+vicious.contrib.pulse.add(percent[, sink])	vicious/contrib/README.md	/^#### vicious.contrib.pulse.add(percent[, sink])$/;"	t
+vicious.contrib.pulse.toggle([sink])	vicious/contrib/README.md	/^#### vicious.contrib.pulse.toggle([sink])$/;"	t
+vicious.contrib.rss	vicious/contrib/README.md	/^### vicious.contrib.rss$/;"	S
+vicious.contrib.sensors	vicious/contrib/README.md	/^### vicious.contrib.sensors$/;"	S
+vicious.contrib.wpa	vicious/contrib/README.md	/^### vicious.contrib.wpa$/;"	S
+vicious.force	vicious/init.lua	/^function vicious.force(wtable)$/;"	f
+vicious.register	vicious/init.lua	/^function vicious.register(widget, wtype, format, timeout, warg)$/;"	f
+vicious.suspend	vicious/init.lua	/^function vicious.suspend()$/;"	f
+vicious.unregister	vicious/init.lua	/^function vicious.unregister(widget, keep, reg)$/;"	f
+volume:_cmd	widget/volume-widget/volume.lua	/^    function volume:_cmd(cmd)$/;"	f
+volume:lower	widget/volume-widget/volume.lua	/^function volume:lower()$/;"	f
+volume:raise	widget/volume-widget/volume.lua	/^function volume:raise()$/;"	f
+volume:toggle	widget/volume-widget/volume.lua	/^function volume:toggle()$/;"	f
+volume_freebsd.async	vicious/widgets/volume_freebsd.lua	/^function volume_freebsd.async(format, warg, callback)$/;"	f
+volume_linux.async	vicious/widgets/volume_linux.lua	/^function volume_linux.async(format, warg, callback)$/;"	f
+weather_all.async	vicious/widgets/weather_all.lua	/^function weather_all.async(format, warg, callback)$/;"	f
+widget:hide	net_widgets/indicator.lua	/^  function widget:hide()$/;"	f
+widget:show	net_widgets/indicator.lua	/^  function widget:show(t_out)$/;"	f
+wifi_linux.async	vicious/widgets/wifi_linux.lua	/^function wifi_linux.async(format, warg, callback)$/;"	f
+wifiiw_linux.async	vicious/widgets/wifiiw_linux.lua	/^function wifiiw_linux.async(format, warg, callback)$/;"	f
+wireless:attach	net_widgets/wireless.lua	/^function wireless:attach(widget, args)$/;"	f
+wireless:hide	net_widgets/wireless.lua	/^    function wireless:hide()$/;"	f
+wireless:show	net_widgets/wireless.lua	/^    function wireless:show(t_out)$/;"	f
+worker	net_widgets/indicator.lua	/^local function worker(args)$/;"	f
+worker	net_widgets/internet.lua	/^local function worker(args)$/;"	f
+worker	net_widgets/wireless.lua	/^local function worker(args)$/;"	f
+worker	vicious/contrib/ac_linux.lua	/^local function worker(format, warg)$/;"	f
+worker	vicious/contrib/ati_linux.lua	/^local function worker(format, warg)$/;"	f
+worker	vicious/contrib/batpmu_linux.lua	/^local function worker(format, batid)$/;"	f
+worker	vicious/contrib/batproc_linux.lua	/^local function worker(format, batid)$/;"	f
+worker	vicious/contrib/buildbot_all.lua	/^local function worker(format, warg)$/;"	f
+worker	vicious/contrib/countfiles_all.lua	/^local function worker(format, warg)$/;"	f
+worker	vicious/contrib/dio_linux.lua	/^local function worker(format, disk)$/;"	f
+worker	vicious/contrib/mpc_all.lua	/^local function worker(format, warg)$/;"	f
+worker	vicious/contrib/net_linux.lua	/^local function worker(format, tignorelist)$/;"	f
+worker	vicious/contrib/netcfg.lua	/^local function worker(format)$/;"	f
+worker	vicious/contrib/nvinf_all.lua	/^local function worker(format, warg)$/;"	f
+worker	vicious/contrib/nvsmi_all.lua	/^local function worker(format, warg)$/;"	f
+worker	vicious/contrib/openweather_all.lua	/^local function worker(format, warg)$/;"	f
+worker	vicious/contrib/ossvol_linux.lua	/^local function worker(format, warg)$/;"	f
+worker	vicious/contrib/pop_all.lua	/^local function worker(format, warg)$/;"	f
+worker	vicious/contrib/pulse_all.lua	/^local function worker(format, sink)$/;"	f
+worker	vicious/contrib/rss_all.lua	/^local function worker(format, input)$/;"	f
+worker	vicious/contrib/sensors_linux.lua	/^local function worker(format, warg)$/;"	f
+worker	vicious/contrib/wpa_all.lua	/^local function worker(format, warg)$/;"	f
+worker	vicious/helpers.lua	/^    local function worker(format, warg)$/;"	f
+worker	widget/battery-widget/battery.lua	/^local function worker(args)$/;"	f
+worker	widget/batteryarc-widget/batteryarc.lua	/^local function worker(args)$/;"	f
+worker	widget/calendar-widget/calendar.lua	/^local function worker(args)$/;"	f
+worker	widget/cpu-widget/cpu-widget.lua	/^local function worker(args)$/;"	f
+worker	widget/fs-widget/fs-widget.lua	/^local function worker(args)$/;"	f
+worker	widget/ram-widget/ram-widget.lua	/^local function worker(args)$/;"	f
+worker	widget/spotify-widget/spotify.lua	/^local function worker(args)$/;"	f
+worker	widget/volume-widget/volume.lua	/^local function worker(args)$/;"	f
+worker	widget/weather-widget/weather.lua	/^local function worker(args)$/;"	f
+{__call	net_widgets/indicator.lua	/^return setmetatable(indicator, {__call = function(_,...) return worker(...) end})$/;"	f
+{__call	net_widgets/internet.lua	/^return setmetatable(internet, {__call = function(_,...) return worker(...) end})$/;"	f
+{__call	net_widgets/wireless.lua	/^return setmetatable(wireless, {__call = function(_,...) return worker(...) end})$/;"	f

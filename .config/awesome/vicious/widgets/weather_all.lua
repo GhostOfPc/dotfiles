@@ -104,17 +104,24 @@ local function parse(stdout, stderr, exitreason, exitcode)
     if _weather["{windmph}"] ~= "N/A" then
         _weather["{windmph}"] = tonumber(_weather["{windmph}"])
         _weather["{windkmh}"] = math.ceil(_weather["{windmph}"] * 1.6)
-    end -- Temperature in °C if °F was available
+    end 
+    -- Temperature in °C if °F was available
     if _weather["{tempf}"] ~= "N/A" then
         _weather["{tempf}"] = tonumber(_weather["{tempf}"])
         _weather["{tempc}"] = math.ceil((_weather["{tempf}"] - 32) * 5/9)
-    end -- Dew Point in °C if °F was available
+    end 
+    -- Dew Point in °C if °F was available
     if _weather["{dewf}"] ~= "N/A" then
         _weather["{dewf}"] = tonumber(_weather["{dewf}"])
         _weather["{dewc}"] = math.ceil((_weather["{dewf}"] - 32) * 5/9)
-    end -- Capitalize some stats so they don't look so out of place
+    end 
+    -- Capitalize some stats so they dont look so out of place
     if _weather["{sky}"] ~= "N/A" then
         _weather["{sky}"] = helpers.capitalize(_weather["{sky}"])
+    end
+    -- Add icons to the weather condition
+    if _weather["{weather}"] ~= "Snow" then
+	_weather["{weather}"] = tostring ("Snow ❄️")
     end
     if _weather["{weather}"] ~= "N/A" then
         _weather["{weather}"] = helpers.capitalize(_weather["{weather}"])

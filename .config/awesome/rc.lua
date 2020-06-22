@@ -1,9 +1,11 @@
---    ╔════════════════════════════════════════╗
---   ╔╝                                        ╚╗
---   ║ Riced and crafted by  Hisham Abdul Hai  ║
---   ║ ...Founder of Linux Arab Gate (L A G)... ║
---   ╚╗                                        ╔╝ 
---    ╚════════════════════════════════════════╝
+--[[
+  ╔════════════════════════════════════════╗
+ ╔╝                                        ╚╗
+ ║ Riced and crafted by  Hisham Abdul Hai  ║
+ ║ ...Founder of Linux Arab Gate (L A G)... ║
+ ╚╗                                        ╔╝ 
+  ╚════════════════════════════════════════╝
+--]]
 
 -- Standard awesome library
 local gears = require('gears')
@@ -142,25 +144,17 @@ screen.connect_signal('request::desktop_decoration', function(s)
 -- ===========================================================================================
 -- Weather
   local weatherwidget = wibox.widget.textbox()
-  weather_t = awful.tooltip({ objects = { weatherwidget },})
   vicious.register(weatherwidget, vicious.widgets.weather,
     function (widget, args)
-      weather_t:set_text('City: ' .. args['{city}'] ..'\nWind: ' .. args['{windkmh}'] .. 'km/h ' .. args['{wind}'] .. '\nSky: ' .. args['{sky}'] .. '\nHumidity: ' .. args['{humid}'] .. '%')
-      return ' ' .. args['{sky}'] .. ' ' .. args['{tempc}'] .. '°C '
+      return ' ' .. args['{weather}'] .. ' ' .. args['{tempc}'] .. '°C '
       end, 1800, 'SAZS')
-      --'1800': check every 10 minutes.
+      --'1800': check every 30 minutes.
       --'SAZS': the Bariloche ICAO code.
 -- ===========================================================================================
 
 -- ===========================================================================================
--- Volume
 volumewidget = wibox.widget.textbox()
-vicious.register(volumewidget, vicious.widgets.volume,
-                 function (widget, args)
-                     local label = {["🔊"] = "O", ["♩"] = "🔇"}
-                     return ("🔊 %d%%"):format(
-                         args[1], label[args[2]])
-                 end, 2, "Master")
+vicious.register(volumewidget, vicious.widgets.volume, '$2 $1%', 1, 'Master')
 -- ===========================================================================================
 
 -- ===========================================================================================
@@ -664,6 +658,7 @@ ruled.client.connect_signal('request::rules', function()
             -- and the name shown there might not match defined rules here.
             name    = {
                 'Event Tester',  -- xev.
+		'pulsemixer',
             },
             role    = {
                 'pop-up',         -- e.g. Google Chrome (detached) Developer Tools.
