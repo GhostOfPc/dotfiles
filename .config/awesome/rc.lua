@@ -62,7 +62,8 @@ end)
 
 screen.connect_signal('request::desktop_decoration', function(s)
     -- ==== Each tag has its layout and gaps and eventually in rules its clients ==============
-    awful.tag.add('  ',{
+    awful.tag.add('',{
+	    		icon			= '/home/hisham/.config/awesome/icons/code.png',
 			layout			= awful.layout.suit.spiral.dwindle,
 			gap_single_client	= true,
 			gap			= 5,
@@ -70,35 +71,40 @@ screen.connect_signal('request::desktop_decoration', function(s)
 			selected		= true
 			}
 		)
-    awful.tag.add('  ',{
+    awful.tag.add('',{
+	    		icon			= '/home/hisham/.config/awesome/icons/browser.png',
+			layout			= awful.layout.suit.max,
+			gap_single_client	= true,
+			gap			= 3,
+			screen			= s
+			}
+		)
+    awful.tag.add('',{
+	    		icon			= '/home/hisham/.config/awesome/icons/edit.png',
 			layout			= awful.layout.suit.tile,
 			gap_single_client	= true,
 			gap			= 3,
 			screen			= s
 			}
 		)
-    awful.tag.add('  ',{
+    awful.tag.add('',{
+	    		icon			= '/home/hisham/.config/awesome/icons/folder.png',
 			layout			= awful.layout.suit.tile,
 			gap_single_client	= true,
-			gap			= 3,
+			gap			= 23,
 			screen			= s
 			}
 		)
-    awful.tag.add('  ',{
-			layout			= awful.layout.suit.tile,
-			gap_single_client	= true,
-			gap			= 3,
-			screen			= s
-			}
-		)
-    awful.tag.add('  ',{
+    awful.tag.add('',{
+	    		icon			= '/home/hisham/.config/awesome/icons/music.png',
 			layout			= awful.layout.suit.tile,
 			gap_single_client	= true,
 			gap			= 43,
 			screen			= s
 			}
 		)
-    awful.tag.add('  ',{
+    awful.tag.add('',{
+	    		icon			= '/home/hisham/.config/awesome/icons/vids.png',
 			layout			= awful.layout.suit.max,
 			gap_single_client	= true,
 			gap			= 2,
@@ -111,32 +117,27 @@ screen.connect_signal('request::desktop_decoration', function(s)
         screen  = s,
         buttons = {
             awful.button({ }, 1, function () awful.layout.inc( 1) end),
-            awful.button({ }, 3, function () awful.layout.inc(-1) end),
-            awful.button({ }, 4, function () awful.layout.inc( 1) end),
-            awful.button({ }, 5, function () awful.layout.inc(-1) end),
+--            awful.button({ }, 3, function () awful.layout.inc(-1) end),
+--            awful.button({ }, 4, function () awful.layout.inc( 1) end),
+--            awful.button({ }, 5, function () awful.layout.inc(-1) end),
         }
     }
 
     -- =============== Create a taglist widget ==================================
     s.mytaglist = awful.widget.taglist {
         screen  = s,
+	style = {
+	        shape		= gears.shape.rounded_rect,
+		bg_focus	= '#7575ff',
+		bg_ugent	= '#66ffff',
+		--bg_empty	= '#ff92df40',
+	},
+	layout = {
+		----spacing	= 8,
+		layout	= wibox.layout.fixed.horizontal,
+	},
         filter  = awful.widget.taglist.filter.all,
-        buttons = {
-            awful.button({ }, 1, function(t) t:view_only() end),
-            awful.button({ modkey }, 1, function(t)
-                                            if client.focus then
-                                                client.focus:move_to_tag(t)
-                                            end
-                                        end),
-            awful.button({ }, 3, awful.tag.viewtoggle),
-            awful.button({ modkey }, 3, function(t)
-                                            if client.focus then
-                                                client.focus:toggle_tag(t)
-                                            end
-                                        end),
-            awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-            awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end),
-        }
+        buttons = awful.button({ }, 1, function(t) t:view_only() end)
     }
 
 -- ===========================================================================================
@@ -651,7 +652,7 @@ ruled.client.connect_signal('request::rules', function()
         rule_any = {
             instance = { 'copyq', 'pinentry' },
             class    = {
-                'Arandr', 'Blueman-manager', 'Nitrogen', 'Lxappearnace', 'qt5ct',
+                'Arandr', 'Blueman-manager', 'Nitrogen', 'lxappearnace', 'qt5ct',
                 'Kvantum Manager', 'Xarchiver', 'Nm-connection-editor', 'Pavucontrol', 'Rofi'
             },
             -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -659,43 +660,47 @@ ruled.client.connect_signal('request::rules', function()
             name    = {
                 'Event Tester',  -- xev.
 		'pulsemixer',
+		'Customize Look and Feel'
             },
             role    = {
                 'pop-up',         -- e.g. Google Chrome (detached) Developer Tools.
 		'GtkFileChooserDialog'
             }
         },
-        properties = { floating = true }
+        properties = { floating = true, 
+			width = awful.screen.focused().workarea.width * 0.6,
+        		height = awful.screen.focused().workarea.height * 0.6
+		     }
     }
 
   -- ================= Each program opens in its corresponding tag ================
     ruled.client.append_rule {
         rule       = { class = 'kitty'     },
-        properties = { screen = 1, tag = '  ' }
+        properties = { tag = screen[1].tags[1] , switchtotag = true}
     }
     ruled.client.append_rule {
         rule       = { class = 'Brave-browser'     },
-        properties = { screen = 1, tag = '  ' }
+        properties = { tag = screen[1].tags[2], switchtotag = true}
     }
     ruled.client.append_rule {
         rule       = { class = 'Uget-gtk'},
-        properties = { screen = 1, tag = '  ' }
+        properties = { tag = screen[1].tags[4] , switchtotag = true}
     }
     ruled.client.append_rule {
         rule       = { class = 'qBittorrent'},
-        properties = { screen = 1, tag = '  ' }
+        properties = { tag = screen[1].tags[4] , switchtotag = true}
     }
     ruled.client.append_rule {
         rule       = { class = 'Pcmanfm'},
-        properties = { screen = 1, tag = '  ' }
+        properties = { tag = screen[1].tags[4] , switchtotag = true}
     }
     ruled.client.append_rule {
         rule       = { class = 'Geany'},
-        properties = { screen = 1, tag = '  ' }
+        properties = { tag = screen[1].tags[3] , switchtotag = true}
     }
     ruled.client.append_rule {
         rule       = { class = 'vlc'},
-        properties = { screen = 1, tag = '  ' }
+        properties = { tag = screen[1].tags[6] , switchtotag = true}
     }
 
    -- ==== Spotify and Kodi have to be treated differently since they do not set the class before running ====
@@ -722,8 +727,10 @@ client.connect_signal(
 				end
 			else
 				-- Move the Spotify instance to '5' tag on this screen
-				local t = awful.tag.find_by_name(awful.screen.focused(), '  ')
+				local t = awful.screen.focused().tags[5]
 				c:move_to_tag(t)
+				t:view_only()
+
 			end
 		elseif c.class == 'Kodi' then
 			-- Disable fullscreen first
@@ -748,7 +755,7 @@ client.connect_signal(
 				end
 			else
 				-- Move the instance to specified tag tag on this screen
-				local t = awful.tag.find_by_name(awful.screen.focused(), '  ')
+				local t = awful.screen.focused().tags[6]
 				c:move_to_tag(t)
 				t:view_only()
 				-- Enable fullscreeen again

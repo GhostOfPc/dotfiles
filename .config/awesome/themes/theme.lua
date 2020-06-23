@@ -21,7 +21,7 @@ theme.font          =   'FiraMono Nerd Font 10'
 
 -- Background colors
 theme.bg_normal     =   '#181818'
-theme.bg_urgent     =   '#66ffff'
+theme.bg_urgent     =   '#ff000040'
 theme.bg_focus      =   theme.bg_normal
 theme.bg_minimize   =   theme.bg_normal
 theme.bg_systray    =   theme.bg_normal
@@ -29,12 +29,12 @@ theme.bg_systray    =   theme.bg_normal
 -- Border colors
 theme.border_width      =   dpi(1)
 theme.border_normal     =   '#282a36'
-theme.border_focus      =   '#ff4cff'
+theme.border_focus      =   '#7575ff'
 
 -- Foreground color
 theme.fg_normal     =   '#eeeeee'
 theme.fg_focus      =   theme.fg_normal
-theme.fg_urgent     =   '#66ffff'
+theme.fg_urgent     =   theme.fg_normal
 theme.fg_minimize   =   theme.fg_normal
 
 -- fullscreen
@@ -69,13 +69,6 @@ theme.wibar_height          =   dpi(22)
 theme.wibar_border_width    =   dpi(0)
 theme.wibar_border_color    =   theme.bg_normal
 theme.wibar_opacity         =   0.85
-
--- taglist
-theme.taglist_fg_focus                  =       theme.border_focus
-theme.taglist_fg_urgent                 =       '#FF0000'
-theme.taglist_bg_focus                  =       '#545454'
-theme.taglist_font                      =       'AwesomeFont 12'
-theme.taglist_fg_empty                  =       '#EEEEEE40'
 
 -- menu
 theme.menu_font         =   theme.font
@@ -113,9 +106,6 @@ theme.tasklist_spacing                          =       dpi(5)
 -- theme.calendar\_week\_numbers = nil
 -- theme.calendar\_start\_sunday = nil
 -- theme.calendar\_long\_weekdays = nil
-
--- icon
-theme.icon_theme	=	'/usr/share/icons/Papirus/48x48'
 
 theme.layout_fairh = themes_path..'layouts/fairhw.png'
 theme.layout_fairv = themes_path..'layouts/fairvw.png'
