@@ -19,25 +19,25 @@ function send_notification {
     # Make the bar with the special character ─ (it's not dash -)
     # https://en.wikipedia.org/wiki/Box-drawing_character
 if [ "$volume" = "0" ]; then
-        icon_name="/home/hisham/Pictures/volume/notification-audio-volume-off.svg"
+        icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-muted.svg"
 dunstify "$volume"" %   " -i "$icon_name" -h int:value:"$volume" -r 555
     else
 	if [  "$volume" -lt "10" ]; then
-	     icon_name="/home/hisham/Pictures/volume/notification-audio-volume-low.svg"
+	     icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-low.svg"
 dunstify "$volume"" %   " -i "$icon_name" -r 555
     else
         if [ "$volume" -lt "20" ]; then
-            icon_name="/home/hisham/Pictures/volume/notification-audio-volume-low.svg"
+            icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-low.svg"
         else
             if [ "$volume" -lt "70" ]; then
-                icon_name="/home/hisham/Pictures/volume/notification-audio-volume-medium.svg"
+                icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-medium.svg"
             else
-                icon_name="/home/hisham/Pictures/volume/notification-audio-volume-high.svg"
+                icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-high.svg"
             fi
         fi
     fi
 fi
-bar=$(seq -s "█" $(($volume/5)) | sed 's/[0-9]//g')
+bar=$(seq -s "━" $(($volume/4)) | sed 's/[0-9]//g')
 # Send the notification
 dunstify "$volume"" %   ""$bar" -i "$icon_name" -h int:value:"$volume" -r 555
 }
@@ -60,7 +60,7 @@ case $1 in
 	amixer -D pulse set Master 1+ toggle > /dev/null
 	if is_mute ; then
     DIR=`dirname "$0"`
-    $DIR/notify-send.sh -i "/home/hisham/Pictures/volume/notification-audio-volume-muted.svg" --replace=555 -u normal "Mute" -t 2000
+    $DIR/notify-send.sh -i "/usr/share/icons/Papirus/48x48/status/notification-audio-volume-muted.svg" --replace=555 -u normal "Mute" -t 2000
 	else
 	    send_notification
 	fi
