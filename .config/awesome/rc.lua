@@ -64,6 +64,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
     -- ==== Each tag has its layout and gaps and eventually in rules its clients ==============
     awful.tag.add('',{
 	    		icon			= '/home/hisham/.config/awesome/icons/code.png',
+			wibox.container.margin(icon, 50, 50, 0, 0),
 			layout			= awful.layout.suit.spiral.dwindle,
 			gap_single_client	= true,
 			gap			= 5,
@@ -133,7 +134,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
 		--bg_empty	= '#ff92df40',
 	},
 	layout = {
-		----spacing	= 8,
+		-- spacing	= 8,
 		layout	= wibox.layout.fixed.horizontal,
 	},
         filter  = awful.widget.taglist.filter.all,
@@ -155,6 +156,17 @@ screen.connect_signal('request::desktop_decoration', function(s)
 
 -- ===========================================================================================
 volumewidget = wibox.widget.textbox()
+
+	--[[ allows control volume level by:
+	- scrolling when the cursor is over the widdget
+	- toggling the sound on and off by clicking the widget
+	 ]]
+	volumewidget:connect_signal('button::press', function (_,_,_,button)
+	if (button == 4) then  awful.spawn.with_shell ('$HOME/.local/bin/volume.sh up') 
+	elseif (button == 5) then awful.spawn.with_shell ('$HOME/.local/bin/volume.sh down') 
+	elseif (button == 1 ) then awful.spawn.with_shell ('$HOME/.local/bin/volume.sh mute') 
+	end
+			end)
 vicious.register(volumewidget, vicious.widgets.volume, '$2 $1%', 1, 'Master')
 -- ===========================================================================================
 
@@ -258,12 +270,19 @@ separator = wibox.widget.textbox(' ')
 	-- ================= Right widget ===========================
 	{
             layout = wibox.layout.fixed.horizontal,
-	    cpuwidget,
+	    spotify({
+	    		font = 'FiraMono Nerd Font 10',
+			play_icon = '/home/hisham/.local/share/play.png',
+			pause_icon = '/home/hisham/.local/share/pause.png',
+			show_tooltip = true
+			}),
+            separator,
 	    weatherwidget,
 	    netwidget,
 	    thermalwidget,
 	    fswidget,
 	    memwidget,
+	    cpuwidget,
 	    datewidget,
 	    uptimewidget,
 	    timewidget,
