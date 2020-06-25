@@ -1,51 +1,30 @@
-"set noguipty
+" Plugins
+call plug#begin('~/.vim/plugged')
+	Plug 'scrooloose/nerdtree'
+	Plug 'lifepillar/vim-solarized8'
+	Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
+	Plug 'itchyny/lightline.vim'
+	Plug 'chrisbra/Colorizer'
+	Plug 'ap/vim-css-color'
+	Plug 'dracula/vim', { 'as': 'dracula' }
+	Plug 'junegunn/vim-emoji'
+	Plug 'honza/vim-snippets'
+	Plug 'SirVer/ultisnips'
+call plug#end()
 
-" set the X11 font to use
-" set guifont=-misc-fixed-medium-r-normal--14-130-75-75-c-70-iso8859-1
+" Set the color scheme to dracula
+colorscheme dracula
 
-set ch=2		" Make command line two lines high
+" Set true colors if the temrinal support it
+set termguicolors
 
-set mousehide		" Hide the mouse when typing text
-
-" Make shift-insert work like in Xterm
-map <S-Insert> <MiddleMouse>
-map! <S-Insert> <MiddleMouse>
-
-" Only do this for Vim version 5.0 and later.
-if version >= 500
-
-  " Switch on syntax highlighting if it wasn't on yet.
-  if !exists("syntax_on")
-    syntax on
-  endif
-
-  " For Win32 version, have "K" lookup the keyword in a help file
-  "if has("win32")
-  "  let winhelpfile='windows.hlp'
-  "  map K :execute "!start winhlp32 -k <cword> " . winhelpfile <CR>
-  "endif
-
-  " Set nice colors
-  " background for normal text is light grey
-  " Text below the last line is darker grey
-  " Cursor is green, Cyan when ":lmap" mappings are active
-  " Constants are not underlined but have a slightly lighter background
-  highlight Normal guibg=grey90
-  highlight Cursor guibg=Green guifg=NONE
-  highlight lCursor guibg=Cyan guifg=NONE
-  highlight NonText guibg=grey80
-  highlight Constant gui=NONE guibg=grey95
-  highlight Special gui=NONE guibg=grey95
-
-endif
-
-" Remap the escape key to ii 
+" Remap hte escape key to ii
 :imap ii <Esc>
 
-" Use 256 colors
-set t_Co=256
+" Enable syntax highlighting
+syntax enable
 
-syntax enable   
+" Set line numbers to relative to the current line
 set number relativenumber
 let g:rehash256 = 1
 let g:rainbow_active = 1
@@ -53,40 +32,22 @@ let g:rainbow_active = 1
 " Use system clipboard
 set clipboard=unnamed
 
-" For latex
-filetype plugin indent on
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor = "latex"
+" Remove the pipe symbol in split view
+set fillchars+=vert:\ 
 
-call plug#begin()
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Enter the current millenium
+set nocompatible
 
-"{{ The Basics }}
-    Plug 'gmarik/Vundle.vim'                           " Vundle
-    Plug 'itchyny/lightline.vim'                       " Lightline statusbar
-    Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " Markdown Preview
-    Plug 'frazrepo/vim-rainbow'
-"{{ File management }}
-    Plug 'vifm/vifm.vim'                               " Vifm
-    Plug 'scrooloose/nerdtree'                         " Nerdtree
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " Highlighting Nerdtree
-    Plug 'ryanoasis/vim-devicons'                      " Icons for Nerdtree
-"{{ Productivity }}
-    Plug 'vimwiki/vimwiki'                             " VimWiki
-    Plug 'jreybert/vimagit'                            " Magit-like plugin for vim
-"{{ Tim Pope Plugins }}
-    Plug 'tpope/vim-surround'                          " Change surrounding marks
-"{{ Syntax Highlighting and Colors }}
-    Plug 'PotatoesMaster/i3-vim-syntax'                " i3 config highlighting
-    Plug 'kovetskiy/sxhkd-vim'                         " sxhkd highlighting
-    Plug 'vim-python/python-syntax'                    " Python highlighting
-    Plug 'ap/vim-css-color'                            " Color previews for CSS
-"{{ Junegunn Choi Plugins }}
-    Plug 'junegunn/goyo.vim'                           " Distraction-free viewing
-    Plug 'junegunn/limelight.vim'                      " Hyperfocus on a range
-    Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
-    Plug 'dracula/vim', { 'name': 'dracula' }
+" lightline color scheme
+let g:lightline = {
+      \ 'colorscheme': 'dracula',
+      \ }
 
-call plug#end()
-colorscheme dracula
+" Remap the split view navigation keys
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Remap the NerdTreeToggle
+nmap <C-P> :NERDTreeToggle<CR>
