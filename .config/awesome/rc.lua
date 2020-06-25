@@ -116,22 +116,17 @@ screen.connect_signal('request::desktop_decoration', function(s)
     -- ==== Layout indication icon (On the left of the status bar) ==============
     s.mylayoutbox = awful.widget.layoutbox {
         screen  = s,
-        buttons = {
-            awful.button({ }, 1, function () awful.layout.inc( 1) end),
---            awful.button({ }, 3, function () awful.layout.inc(-1) end),
---            awful.button({ }, 4, function () awful.layout.inc( 1) end),
---            awful.button({ }, 5, function () awful.layout.inc(-1) end),
-        }
+        buttons = awful.button({ }, 1, function () awful.layout.inc( 1) end),
     }
 
     -- =============== Create a taglist widget ==================================
     s.mytaglist = awful.widget.taglist {
         screen  = s,
 	style = {
-	        shape		= gears.shape.rounded_rect,
+	        shape		= gears.shape.rectangle,
 		bg_focus	= '#7575ff',
 		bg_ugent	= '#66ffff',
-		--bg_empty	= '#ff92df40',
+		bg_empty	= '#515151',
 	},
 	layout = {
 		-- spacing	= 8,
@@ -173,9 +168,12 @@ vicious.register(volumewidget, vicious.widgets.volume, '$2 $1%', 1, 'Master')
 -- ===========================================================================================
 -- Date and time
 local timewidget = wibox.widget.textbox()
-vicious.register(timewidget, vicious.widgets.date, '🕒%H:%M ', 60)
+vicious.register(timewidget, vicious.widgets.date, '🕒 %H:%M ', 60)
 local datewidget = wibox.widget.textbox()
 vicious.register(datewidget, vicious.widgets.date, '📅 %d-%b-%y (%a) ', 3600)
+
+local month_calendar = awful.widget.calendar_popup.month()
+month_calendar:attach( datewidget, 'tr' )
 -- ===========================================================================================
 
 -- ===========================================================================================
@@ -283,6 +281,7 @@ separator = wibox.widget.textbox(' ')
 	    fswidget,
 	    memwidget,
 	    cpuwidget,
+	    separator,
 	    datewidget,
 	    uptimewidget,
 	    timewidget,
