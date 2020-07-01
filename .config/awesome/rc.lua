@@ -12,7 +12,7 @@ local gears = require('gears')
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
---local naughty = require('naughty')
+local naughty = require('naughty')
 local ruled = require('ruled')
 local menubar = require('menubar')
 local hotkeys_popup = require('awful.hotkeys_popup')
@@ -63,17 +63,18 @@ end)
 screen.connect_signal('request::desktop_decoration', function(s)
     -- ==== Each tag has its layout and gaps and eventually in rules its clients ==============
     awful.tag.add('',{
-	    		icon			= '/home/hisham/.config/awesome/icons/code.png',
-			wibox.container.margin(icon, 50, 50, 0, 0),
+            name            = 'TERM',
+	    	--icon			= '/home/hisham/.config/awesome/icons/code.png',
 			layout			= awful.layout.suit.spiral.dwindle,
 			gap_single_client	= true,
-			gap			= 5,
+			gap			= 10,
 			screen			= s,
 			selected		= true
 			}
 		)
     awful.tag.add('',{
-	    		icon			= '/home/hisham/.config/awesome/icons/browser.png',
+            name            = 'WEB',
+    		--icon			= '/home/hisham/.config/awesome/icons/browser.png',
 			layout			= awful.layout.suit.max,
 			gap_single_client	= true,
 			gap			= 3,
@@ -81,7 +82,8 @@ screen.connect_signal('request::desktop_decoration', function(s)
 			}
 		)
     awful.tag.add('',{
-	    		icon			= '/home/hisham/.config/awesome/icons/edit.png',
+            name            = 'EDIT',
+    		--icon			= '/home/hisham/.config/awesome/icons/edit.png',
 			layout			= awful.layout.suit.tile,
 			gap_single_client	= true,
 			gap			= 3,
@@ -89,7 +91,8 @@ screen.connect_signal('request::desktop_decoration', function(s)
 			}
 		)
     awful.tag.add('',{
-	    		icon			= '/home/hisham/.config/awesome/icons/folder.png',
+            name            = 'FILES',
+    		--icon			= '/home/hisham/.config/awesome/icons/folder.png',
 			layout			= awful.layout.suit.tile,
 			gap_single_client	= true,
 			gap			= 23,
@@ -97,7 +100,8 @@ screen.connect_signal('request::desktop_decoration', function(s)
 			}
 		)
     awful.tag.add('',{
-	    		icon			= '/home/hisham/.config/awesome/icons/music.png',
+            name            = 'MUSIC',
+    		--icon			= '/home/hisham/.config/awesome/icons/music.png',
 			layout			= awful.layout.suit.tile,
 			gap_single_client	= true,
 			gap			= 43,
@@ -105,7 +109,8 @@ screen.connect_signal('request::desktop_decoration', function(s)
 			}
 		)
     awful.tag.add('',{
-	    		icon			= '/home/hisham/.config/awesome/icons/vids.png',
+            name            = 'VIDS',
+    		--icon			= '/home/hisham/.config/awesome/icons/vids.png',
 			layout			= awful.layout.suit.max,
 			gap_single_client	= true,
 			gap			= 2,
@@ -129,7 +134,6 @@ screen.connect_signal('request::desktop_decoration', function(s)
 		bg_empty	= '#515151',
 	},
 	layout = {
-		-- spacing	= 8,
 		layout	= wibox.layout.fixed.horizontal,
 	},
         filter  = awful.widget.taglist.filter.all,
@@ -139,95 +143,46 @@ screen.connect_signal('request::desktop_decoration', function(s)
 -- ===========================================================================================
 -- Status widgets
 -- ===========================================================================================
--- Weather
-  local weatherwidget = wibox.widget.textbox()
-  vicious.register(weatherwidget, vicious.widgets.weather,
-    function (widget, args)
-      return ' ' .. args['{weather}'] .. ' ' .. args['{tempc}'] .. '°C '
-      end, 1800, 'SAZS')
-      --'1800': check every 30 minutes.
-      --'SAZS': the Bariloche ICAO code.
--- ===========================================================================================
-
--- ===========================================================================================
-volumewidget = wibox.widget.textbox()
-
+volumewidget = awful.widget.watch('bash -c "$HOME/.local/bin/volume_mon.sh"', 1)
 	--[[ allows control volume level by:
-	- scrolling when the cursor is over the widdget
-	- toggling the sound on and off by clicking the widget
-	 ]]
+	scrolling when the cursor is over the widdget
+	toggling the sound on and off by clicking the widget
+	 --]]
 	volumewidget:connect_signal('button::press', function (_,_,_,button)
 	if (button == 4) then  awful.spawn.with_shell ('$HOME/.local/bin/volume.sh up') 
 	elseif (button == 5) then awful.spawn.with_shell ('$HOME/.local/bin/volume.sh down') 
 	elseif (button == 1 ) then awful.spawn.with_shell ('$HOME/.local/bin/volume.sh mute') 
 	end
 			end)
-vicious.register(volumewidget, vicious.widgets.volume, '$2 $1%', 1, 'Master')
 -- ===========================================================================================
 
 -- ===========================================================================================
 -- Date and time
-local timewidget = wibox.widget.textbox()
-vicious.register(timewidget, vicious.widgets.date, '🕒 %H:%M ', 60)
-local datewidget = wibox.widget.textbox()
-vicious.register(datewidget, vicious.widgets.date, '📅 %d-%b-%y (%a) ', 3600)
-
-local month_calendar = awful.widget.calendar_popup.month()
+local timewidget = wibox.widget.textclock('🕒 %H:%M ', 60)
+local datewidget = wibox.widget.textclock('📅 %d-%m-%y(%a) ', 3600)
+local month_calendar = awful.widget.calendar_popup.month{
+							spacing = 16,
+							margin = 10,
+							opacity = 0.8,
+							long_weekdays = true,
+							style_month = {
+									border_color	= '#181818',
+									bg_color	= '#181818'
+								},
+							style_weekday = {
+									fg_color	= '#ff6e67',	
+									border_color	= '#ff6e67'
+									},
+							style_header = {
+									fg_color	= '#7fbf7f',
+									border_color	= '#7fbf7f',
+									},
+							style_focus = {
+									fg_color	= '#7575ff',
+									border_color	= '#7575ff',
+									}
+							}
 month_calendar:attach( datewidget, 'tr' )
--- ===========================================================================================
-
--- ===========================================================================================
--- CPU graph
-   local cpuwidget = awful.widget.graph()
-   cpuwidget:set_width(160)
-   cpuwidget:set_background_color('#343434')
-   cpuwidget:set_color({ type = 'linear', from = { 0, 0 }, to = { 0,0 }, stops = { {1.0, '#A2FF5D'}, {1.0, '#A2FF5D'}, 
-                   {1, '#AECF96' }}})
-   vicious.register(cpuwidget, vicious.widgets.cpu, ' $1 ', 1)
--- ===========================================================================================
-
--- ===========================================================================================
--- Netwrok
-eths = { 'eno2', 'wlo1' }
-netwidget = wibox.widget.textbox()
-vicious.register( netwidget, vicious.widgets.net,
-function(widget,args)
-t=''  
-for i = 1, #eths do
-e = eths[i]       
-if args["{"..e.." carrier}"] == 1 then
-    if e == 'wlo1' then
-	t=t..'|'..'🔽 '..args['{'..e..' down_kb}']..'kbps 🔼 ' ..args['{'..e..' up_kb}']..'kbps'
-    else          
-	t=t..'|'..'🔽 '..args['{'..e..' down_kb}']..'kbps 🔼 ' ..args['{'..e..' up_kb}']..'kbps'
-
-    end
-end
-end               
-if string.len(t)>0 then -- remove leading '|'
-return string.sub(t,2,-1)
-end               
-return 'No network'
-end                                                                                                                                                           
-, 1 )
--- ===========================================================================================
-
--- ===========================================================================================
--- Memory
-local memwidget = wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, ' 📊 $2 MiB ', 10)
--- ===========================================================================================
-
--- ===========================================================================================
--- Cpu temperature
-local thermalwidget  = wibox.widget.textbox()
- vicious.register(thermalwidget, vicious.widgets.thermal, ' 🤒 $1 °C ', 1, 'thermal_zone4' )
--- ===========================================================================================
-
--- ===========================================================================================
--- Disk usage
-local fswidget = wibox.widget.textbox()
-vicious.register(fswidget, vicious.widgets.fs, '💾 ${/ avail_gb}G', 60)
 -- ===========================================================================================
 
 -- ===========================================================================================
@@ -243,9 +198,13 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- ===========================================================================================
 
 -- ===========================================================================================
--- Simple separator between the wibar segments
+-- Separator and widgets icosn
 
 separator = wibox.widget.textbox(' ')
+cpu_icon = wibox.widget.textbox('🖥️ ')
+temp_icon = wibox.widget.textbox('🤒 ')
+mem_icon = wibox.widget.textbox('🧠 ')
+disk_icon = wibox.widget.textbox('💾 ')
 -- ===========================================================================================
 
 -- ===========================================================================================
@@ -273,36 +232,25 @@ separator = wibox.widget.textbox(' ')
 			play_icon = '/home/hisham/.local/share/play.png',
 			pause_icon = '/home/hisham/.local/share/pause.png',
 			show_tooltip = true
-			}),
-            separator,
-	    weatherwidget,
-	    netwidget,
-	    thermalwidget,
-	    fswidget,
-	    memwidget,
-	    cpuwidget,
-	    separator,
+			}), separator,
+	    awful.widget.watch('bash -c "$HOME/.local/bin/weather.sh"', 1800), separator,
+	    --netwidget,
+	    awful.widget.watch('bash -c "$HOME/.local/bin/net.sh"', 1), separator,
+	    temp_icon, awful.widget.watch('bash -c "$HOME/.local/bin/temp.sh"', 10), separator,
+	    disk_icon, awful.widget.watch('bash -c "$HOME/.local/bin/disk.sh"', 10), separator,
+	    mem_icon, awful.widget.watch('bash -c "$HOME/.local/bin/memory.sh"', 5), separator,
+	    cpu_icon, awful.widget.watch('bash -c "$HOME/.local/bin/cpu.sh"', 1), separator,
 	    datewidget,
 	    uptimewidget,
 	    timewidget,
 	    volumewidget,
-            mykeyboardlayout,
+	    separator, awful.widget.watch('bash -c "$HOME/.local/bin/kb-layout.sh"'), separator,
             wibox.widget.systray(),
         },
     }
 -- ===========================================================================================
 
 end)
-
--- ===========================================================================================
--- Mouse bindings
-
-awful.mouse.append_global_mousebindings({
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev),
-})
--- ===========================================================================================
 
 -- ===========================================================================================
 -- Key bindings
@@ -317,7 +265,13 @@ awful.keyboard.append_global_keybindings({
 	      
     awful.key({ modkey, 'Shift'   }, 'q', awesome.quit,
               {description = 'quit awesome', group = 'awesome'}),
-	
+
+    awful.key({ raltkey }, 'Escape', 
+    	    function()
+		exit_screen_show()
+    	    end,
+    {description = 'quite awesome', group = 'awesome'}),
+
     -- ================= Programs launching keybindings ===========================
     awful.key({ modkey,           }, 'Return', function () awful.spawn(apps.terminal) end,
               {description = 'open a terminal', group = 'launcher'}),
@@ -373,7 +327,7 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey, 'Shift' }, 'u', function () awful.spawn.with_shell('kill -9 $(pgrep uget-gtk)') end,
               {description = 'kill uget', group = 'client'}),
 
-    awful.key({ modkey, 'Shift' }, 'b', function () awful.spawn.with_shell('kill -9 $(pgrep qbittorrent)') end,
+    awful.key({ modkey, 'Shift' }, 't', function () awful.spawn.with_shell('kill -9 $(pgrep qbittorrent)') end,
               {description = 'kill qbittorrent', group = 'client'}),
 
     awful.key({ modkey, 'Shift' }, 'o', function () awful.spawn.with_shell('kill -9 $(pgrep spotify)') end,
@@ -648,7 +602,9 @@ end)
 
 -- ================================================================================================
 -- Rules
-
+local round_cli = function (cr, width, height)
+	gears.shape.rounded_rect(cr, width, height, 12)
+end
   -- ================= Rules to apply to new clients ================
 ruled.client.connect_signal('request::rules', function()
     -- All clients will match this rule.
@@ -659,7 +615,8 @@ ruled.client.connect_signal('request::rules', function()
             focus     = awful.client.focus.filter,
             raise     = true,
             screen    = awful.screen.preferred,
-	    placement = awful.placement.centered
+	    placement = awful.placement.centered,
+	    shape     = round_cli,
 
         }
     }
@@ -730,12 +687,10 @@ client.connect_signal(
 			local spotify = function (c)
 				return ruled.client.match(c, { class = 'Spotify' })
 			end
-
 			local spotify_count = 0
 			for c in awful.client.iterate(spotify) do
 				spotify_count = spotify_count + 1
 			end
-
 			-- If Spotify is already open, do not open a new instance
 			if spotify_count > 1 then
 				c:kill()
@@ -748,27 +703,24 @@ client.connect_signal(
 				local t = awful.screen.focused().tags[5]
 				c:move_to_tag(t)
 				t:view_only()
-
 			end
+
 		elseif c.class == 'Kodi' then
 			-- Disable fullscreen first
 			c.fullscreen = false
-
 			-- Check if Kodi is already open
-			local stk = function (c)
+			local kdi = function (c)
 				return ruled.client.match(c, { class = 'Kodi' })
 			end
-
-			local stk_count = 0
-			for c in awful.client.iterate(stk) do
-				stk_count = stk_count + 1
+			local kdi_count = 0
+			for c in awful.client.iterate(kdi) do
+				kdi_count = kdi_count + 1
 			end
-
 			-- If Kodi is already open, do not open a new instance
-			if stk_count > 1 then
+			if kdi_count > 1 then
 				c:kill()
 				-- Switch to previous instance
-				for c in awful.client.iterate(stk) do
+				for c in awful.client.iterate(kdi) do
 					c:jump_to(false)
 				end
 			else
@@ -780,11 +732,22 @@ client.connect_signal(
 				c.fullscreen = true
 			end
 		end
-
 	end
 )
 end)
 -- ================================================================================================
+
+-- ================================ Error handling ================================================
+-- Check if awesome encountered an error during startup and fell back to
+-- another config (This code will only ever execute for the fallback config)
+naughty.connect_signal("request::display_error", function(message, startup)
+    naughty.notification {
+        urgency = "critical",
+        title   = "Oops, an error happened"..(startup and " during startup!" or "!"),
+        message = message
+    }
+end)
+-- ================================ Error handling ================================================
 
 -- ================================================================================================
 -- Enable sloppy focus, so that focus follows mouse.
