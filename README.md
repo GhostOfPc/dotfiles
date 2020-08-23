@@ -16,7 +16,7 @@ I'm on Arch linux because it makes it really easy to install all the packages I 
 | Dependency               | Why I need it                                                 |
 | ---                      | ---                                                           |
 | `Awesome-git`            | This is the window manager of choice                          |
-| `Picom-tryone-git`       | To get the blur and transparancy effects                      |
+| `Picom-ibhagwan-git`       | To get the blur,rounded corners and transparancy effects                      |
 | `Neovim`                 | Powerful text editor                                          |
 | `awesome-terminal-fonts` | Font with emojis and unicode support                          |
 | `kitty`                  | Modern, hackable, featurefull, OpenGL-based terminal emulator |
@@ -25,7 +25,6 @@ I'm on Arch linux because it makes it really easy to install all the packages I 
 | `dunst`                  | Notification-daemon replacement                               |
 | `xbacklight`             | To control the screen brightness                              |
 | `playerctl`              | change songs backwards and forwards using the media keys      |
-| `vicious`                | most of the status bar widgets                                |
 
 I manage this dotfiles using a method provided by a gentelman called StreakyCobra on [https://www.atlassian.com/git/tutorials/dotfiles](https://www.atlassian.com/git/tutorials/dotfiles)
 
