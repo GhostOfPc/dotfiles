@@ -1,0 +1,57 @@
+# This is an example PKGBUILD file. Use this as a start to creating your own,
+# and remove these comments. For more information, see 'man PKGBUILD'.
+# NOTE: Please fill out the license field for your package! If it is unknown,
+# then please put 'unknown'.
+
+Maintainer"Hisham Abdul Hai hisham.ahai@gmail.com"
+pkgname="dmenu"
+pkgver="4.9"
+pkgrel=1
+epoch=
+pkgdesc="A dynamic menu for X, originally designed for dwm. It manages large number of user-defined menu items efficiently. My patched version of it with fuzzy highlight, fuzzy match, high priority, line height and numbers patches"
+arch=("x86_64","i686")
+url=""
+license=('MIT')
+groups=()
+depends=()
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=(dmenu)
+replaces=()
+backup=()
+options=()
+install=
+changelog=
+source=("$pkgname-$pkgver.tar.gz"
+        "$pkgname-$pkgver.patch")
+noextract=()
+md5sums=()
+validpgpkeys=()
+
+pkgver() {
+	cd "$srcdir/${pkgname%}"
+	printf "%s" "$(git describe --long | sed 's/\([^-]*-\)g/r\1/;s/-/./g')"
+}
+
+prepare() {
+	cd "$pkgname-$pkgver"
+	patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
+}
+
+build() {
+	cd "$pkgname-$pkgver"
+	./configure --prefix=/usr
+	make
+}
+
+check() {
+	cd "$pkgname-$pkgver"
+	make -k check
+}
+
+package() {
+	cd "$pkgname-$pkgver"
+	make DESTDIR="$pkgdir/" install
+}
