@@ -1,0 +1,7 @@
+---
+transition.fix_rotate_x: 0
+transition.scale_x: 1
+transition.ox: 0
+transition.oy: 0
+background: "color:#00000000"
+...

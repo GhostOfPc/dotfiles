@@ -1,0 +1,29 @@
+01.05.2020 20:25:54.551 WARNING: Run application!
+01.05.2020 20:25:54.697 WARNING: Creating database
+01.05.2020 20:25:54.814 WARNING: sqliteDBMemFile(): from file to memory...
+01.05.2020 20:25:54.814 WARNING: sqliteDBMemFile(): finished!
+01.05.2020 20:25:54.847 WARNING: Run application 2
+01.05.2020 20:25:54.948 WARNING: AdBlockSubscription:: loadSubscription invalid format of adblock file "/home/hisham/.local/share/QuiteRss/QuiteRss/adblock/customlist.txt"
+01.05.2020 20:25:54.981 WARNING: Run application 3
+01.05.2020 20:25:54.998 WARNING: Run application 4
+01.05.2020 20:25:55.001 WARNING: Run application 5
+01.05.2020 20:25:55.061 WARNING: Run application 6
+01.05.2020 20:28:25.761 WARNING: sqliteDBMemFile(): from memory to file...
+01.05.2020 20:28:25.773 WARNING: sqliteDBMemFile(): finished!
+01.05.2020 20:28:25.801 WARNING: quitApplication 1
+01.05.2020 20:28:25.812 WARNING: quitApplication 2
+01.05.2020 20:28:26.026 WARNING: Quit application
+01.05.2020 20:28:32.360 WARNING: Run application!
+01.05.2020 20:28:32.496 WARNING: Preparation database
+01.05.2020 20:28:32.496 WARNING: sqliteDBMemFile(): from file to memory...
+01.05.2020 20:28:32.496 WARNING: sqliteDBMemFile(): finished!
+01.05.2020 20:28:32.512 WARNING: Run application 2
+01.05.2020 20:28:32.749 WARNING: Run application 3
+01.05.2020 20:28:32.756 WARNING: Run application 4
+01.05.2020 20:28:32.757 WARNING: Run application 5
+01.05.2020 20:28:32.843 WARNING: Run application 6
+01.05.2020 20:29:23.208 WARNING: sqliteDBMemFile(): from memory to file...
+01.05.2020 20:29:23.221 WARNING: sqliteDBMemFile(): finished!
+01.05.2020 20:29:23.222 WARNING: quitApplication 1
+01.05.2020 20:29:23.245 WARNING: quitApplication 2
+01.05.2020 20:29:23.431 WARNING: Quit application
