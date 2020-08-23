@@ -1,2 +1,0 @@
-[cache]
-last_checked=1588981393

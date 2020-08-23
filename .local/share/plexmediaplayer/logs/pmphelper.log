@@ -1,6 +1,0 @@
-2020-08-23 13:01:13 [ DEBUG ] HelperMain.cpp @ 50 - Helper ( "2.58.0.dev-38e019da" ) up and running 
-2020-08-23 13:01:13 [ INFO  ] LocalJsonServer.cpp @ 33 - Listening to socket: "/tmp/pmp_pmpHelper_hisham.sock" 
-2020-08-23 13:01:14 [ DEBUG ] HelperSocket.cpp @ 35 - Server connected. 
-2020-08-23 13:01:14 [ DEBUG ] HelperSocket.cpp @ 64 - Updating clientID. 
-2020-08-23 13:12:42 [ DEBUG ] HelperSocket.cpp @ 46 - PMP application quit, let's wait 3 minutes and then exit 
-2020-08-23 13:15:42 [ DEBUG ] HelperSocket.cpp @ 21 - Quit timer ran out, quitting... 
