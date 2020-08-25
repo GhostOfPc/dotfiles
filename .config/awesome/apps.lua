@@ -15,7 +15,6 @@ local apps = {
 	geditor	= 'geany',
 	launcher = 'dmenu_run -i',
 	lock	= 'i3lock',
-	mc	= 'plexmediaplayer',
 	mplayer	= 'spotify',
 	screenshot	=	'maim -B -u $HOME/.screenshots/"Screenshot-"$(date +%Y-%m-%d-%H-%M).png',
 	terminal = 'kitty',
