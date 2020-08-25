@@ -42,11 +42,11 @@
 
     ### Icons ###
     icon_position = left 
-    max_icon_size = 128
+    max_icon_size = 96
     icon_path = /usr/share/icons/Papirus/48x48/status/:/usr/share/icons/Papirus/48x48/devices/:/usr/share/icons/Papirus/48x48/apps
 
     ### History ###
-    sticky_history = yes
+    sticky_history = no
     history_length = 20
 
     ### Misc/Advanced ###
