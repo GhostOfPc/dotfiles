@@ -10,7 +10,7 @@
     padding = 12
     horizontal_padding = 12
     corner_radius = 0
-    frame_width = 0
+    frame_width = 1
     frame_color = "#68686875"
     separator_color = "auto" 
     sort = yes
@@ -88,8 +88,8 @@
 
 [urgency_critical]
     background = "#f5669c75"
-    foreground = "#d7eaf3"
     frame_color = "#f5669c75"
+    foreground = "#d7eaf3"
     timeout = 60
     icon = /usr/share/icons/Papirus/48x48/status/dialog-error.svg
 
