@@ -17,7 +17,10 @@ local config_dir = gears.filesystem.get_configuration_dir()
 
 local widgets = {}
 wdt_bg      =   beautiful.bg_empty
-wdt_shape   =   gears.shape.rounded_rect
+
+wdt_shape   =   function(cr, width, height)
+    gears.shape.rounded_rect(cr, width, height, 8) end
+
 wdt_rmgn    =   '6'
 wdt_lmgn    =   '6'
 
@@ -111,6 +114,16 @@ disk_widget:connect_signal('button::press', function (_,_,_,button)
     if (button == 1) then awful.spawn.with_shell ('$TERMINAL --hold dust -r /home')
     end
         end)
+diskIO_wdt = wibox.widget {
+    {
+        awful.widget.watch('bash -c "$HOME/.local/bin/disk-io.sh -t 1 -R nvme0n1"',_),
+        widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
+    },
+    bg = wdt_bg,
+    shape = wdt_shape,
+    widget = wibox.container.background
+}
+
 -- Memory usage
 mem_widget = wibox.widget {
     {
@@ -187,13 +200,14 @@ datewidget = wibox.widget {
 music_wdt = wibox.widget {
     layout = wibox.container.scroll.horizontal,
     max_size = awful.screen.focused().workarea.width * 0.15,
-    fps = 30,
     step_function = wibox.container.scroll.step_functions.linear_increase,
+    fps = 30,
     speed = 30,
+    extra_space = 5,
     {
         {
             awful.widget.watch('bash -c "$HOME/.local/bin/music.sh"',_),
-            widget = wibox.container.margin(_,10,10,_,_,_,_)
+            widget = wibox.container.margin(_,10,10,_,_,_,_),
         },
         bg = wdt_bg,
         shape = wdt_shape,

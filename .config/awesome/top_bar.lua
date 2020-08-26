@@ -86,6 +86,7 @@ screen.connect_signal('request::desktop_decoration', function(s)
         music_wdt, separator,
         pkg_widget, separator,
         kernel_wdt, separator, 
+        --diskIO_wdt, separator,
 	    disk_widget, separator,
 	    mem_widget, separator,
 	    cpu_widget, separator,
