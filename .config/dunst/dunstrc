@@ -11,7 +11,7 @@
     horizontal_padding = 12
     corner_radius = 0
     frame_width = 1
-    frame_color = "#68686875"
+    frame_color = "#272822"
     separator_color = "auto" 
     sort = yes
     idle_threshold = 120
@@ -73,15 +73,15 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#68686875"
-    frame_color = "#68686875"
+    background = "#272822"
+    frame_color = "#272822"
     foreground = "#d7eaf3"
     timeout = 10
     icon = /usr/share/icons/Papirus/48x48/status/notification-disabled.svg
 
 [urgency_normal]
-    background = "#68686875"
-    frame_color = "#68686875"
+    background = "#272822"
+    frame_color = "#272822"
     foreground = "#d7eaf3"
     timeout = 10
     icon = /usr/share/icons/Papirus/48x48/status/dialog-information.svg
