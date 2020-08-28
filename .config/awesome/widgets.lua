@@ -83,7 +83,7 @@ wthr_widget = wibox.widget {
     widget = wibox.container.background
 }
 wthr_widget:connect_signal('button::press', function (_,_,_,button)
-    if (button == 1) then awful.spawn.with_shell ('$TERMINAL --hold curl wttr.in/bariloche')
+    if (button == 1) then awful.spawn.with_shell ('alacritty --hold -e curl wttr.in/bariloche')
     end
 end)
 -- Network traffic
@@ -97,7 +97,7 @@ net_widget = wibox.widget {
     widget = wibox.container.background
 }
 net_widget:connect_signal('button::press', function (_,_,_,button)
-    if (button == 1) then awful.spawn.with_shell('$TERMINAL --hold vnstat -d')
+    if (button == 1) then awful.spawn.with_shell('alacritty --hold -e vnstat -d')
     end
 end)
 -- Free disk available
@@ -111,7 +111,7 @@ disk_widget = wibox.widget {
     widget = wibox.container.background
 }
 disk_widget:connect_signal('button::press', function (_,_,_,button)
-    if (button == 1) then awful.spawn.with_shell ('$TERMINAL --hold dust -r /home')
+    if (button == 1) then awful.spawn.with_shell ('alacritty --hold -e dust -r /home')
     end
         end)
 
@@ -126,7 +126,7 @@ mem_widget = wibox.widget {
     widget = wibox.container.background
 }
 mem_widget:connect_signal('button::press', function (_,_,_,button)
-    if (button == 1) then awful.spawn.with_shell('$TERMINAL --hold htop')
+    if (button == 1) then awful.spawn.with_shell('alacritty --hold -e htop')
     end
         end)
 
@@ -141,7 +141,7 @@ cpu_widget = wibox.widget {
     widget = wibox.container.background
 }
 cpu_widget:connect_signal('button::press', function (_,_,_,button)
-    if (button == 1) then awful.spawn.with_shell('$TERMINAL --hold htop')
+    if (button == 1) then awful.spawn.with_shell('alacritty --hold -e htop')
     end
         end)
 
@@ -172,7 +172,7 @@ volumewidget = wibox.widget {
 	volumewidget:connect_signal('button::press', function (_,_,_,button)
 	if (button == 4) then  awful.spawn.with_shell ('$HOME/.local/bin/volume.sh up') 
 	elseif (button == 5) then awful.spawn.with_shell ('$HOME/.local/bin/volume.sh down') 
-	elseif (button == 1 ) then awful.spawn.with_shell ('$TERMINAL -e pulsemixer') 
+	elseif (button == 1 ) then awful.spawn.with_shell ('alacritty --hold -e pulsemixer') 
 	end
 			end)
 
@@ -215,6 +215,10 @@ pkg_widget = wibox.widget {
     shape = wdt_shape,
     widget = wibox.container.background
 }
+pkg_widget:connect_signal('button::press', function (_,_,_,button)
+    if (button == 1) then awful.spawn.with_shell('alacritty --hold -e checkupdates')
+    end
+        end)
 
 kernel_wdt = wibox.widget {
     {
