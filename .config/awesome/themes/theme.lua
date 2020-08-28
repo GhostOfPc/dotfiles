@@ -18,7 +18,7 @@ local theme = {}
 
 -- Default variables
 -- Font
-theme.font          =   'JetBrainsMono Nerd Font 9'
+theme.font          =   'FiraMono Nerd Font 9'
 
 -- Background colors
 theme.bg_normal     =   '#272822e6'

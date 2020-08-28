@@ -5,6 +5,7 @@ fi
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 export BROWSER="firefox"
+export WM="awesome"
 export EDITOR="nvim"
 export TERMINAL="kitty"
 export IMAGE="sxiv"

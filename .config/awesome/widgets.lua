@@ -114,15 +114,6 @@ disk_widget:connect_signal('button::press', function (_,_,_,button)
     if (button == 1) then awful.spawn.with_shell ('$TERMINAL --hold dust -r /home')
     end
         end)
-diskIO_wdt = wibox.widget {
-    {
-        awful.widget.watch('bash -c "$HOME/.local/bin/disk-io.sh -t 1 -R nvme0n1"',_),
-        widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
-    },
-    bg = wdt_bg,
-    shape = wdt_shape,
-    widget = wibox.container.background
-}
 
 -- Memory usage
 mem_widget = wibox.widget {
