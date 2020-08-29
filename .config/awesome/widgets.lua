@@ -12,6 +12,7 @@ local gears = require('gears')
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
+local dpi = beautiful.xresources.apply_dpi
 local config_dir = gears.filesystem.get_configuration_dir()
 
 
@@ -90,7 +91,9 @@ end)
 net_widget = wibox.widget {
     {
         awful.widget.watch('bash -c "$HOME/.local/bin/net.sh"', 1,_,_,_,signal,16),
+        forced_width = awful.screen.focused().workarea.width * 0.056,
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
+        align = 'center'
     },
     bg = wdt_bg,
     shape = wdt_shape,
@@ -190,21 +193,26 @@ datewidget = wibox.widget {
 
 music_wdt = wibox.widget {
     layout = wibox.container.scroll.horizontal,
-    max_size = awful.screen.focused().workarea.width * 0.15,
+    max_size = awful.screen.focused().workarea.width * 0.25,
     step_function = wibox.container.scroll.step_functions.linear_increase,
     fps = 30,
     speed = 30,
     extra_space = 5,
     {
         {
-            awful.widget.watch('bash -c "$HOME/.local/bin/music.sh"',_),
+            awful.widget.watch('bash -c "$HOME/.local/bin/music.sh"'),
             widget = wibox.container.margin(_,10,10,_,_,_,_),
         },
-        bg = wdt_bg,
+        bg = nil,
         shape = wdt_shape,
         widget = wibox.container.background
     }
 }
+music_wdt:connect_signal('button::press', function (_,_,_,button)
+    if (button == 1) then awful.spawn.with_shell('alacritty --hold -e vis')
+    end
+        end)
+
 
 pkg_widget = wibox.widget {
     {

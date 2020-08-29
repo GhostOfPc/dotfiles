@@ -28,7 +28,7 @@ require('layouts')
 require('tags')
 require('top_bar')
 require('notifications')
---require('bottom_bar')
+require('bottom_bar')
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal('mouse::enter', function(c)

@@ -38,7 +38,7 @@ do
       'nitrogen --restore',
       'picom',
       --'$HOME/.local/bin/pmanag.sh',
-      'dunst',
+      --'dunst',
       'lxsession'
   }
 

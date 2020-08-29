@@ -11,13 +11,26 @@
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
-require('widgets')
 
 local bottom_bar = {}
 
+left = wibox.widget {
+    {
+        markup = '<span foreground = "#0f7fcf"> Now playing  >>></span>',
+        widget = wibox.widget.textbox,
+    },
+    widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
+}right = wibox.widget {
+    {
+        markup = '<span foreground = "#0f7fcf">&lt;&lt;&lt;</span>',
+        widget = wibox.widget.textbox
+    },
+    widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
+}
+
 screen.connect_signal('request::desktop_decoration', function(s)
--- Create the status bar
-    s.bottom_bar = awful.wibar(
+
+    bottom_bar = awful.wibar(
     {
         bg = beautiful.bg_normal,
         position = 'bottom', 
@@ -26,13 +39,13 @@ screen.connect_signal('request::desktop_decoration', function(s)
         height  = awful.screen.focused().workarea.height * 0.02
     })
 
-    s.bottom_bar.widget = {
+    bottom_bar.widget = {
         layout = wibox.layout.align.horizontal,
 	
 	-- ================= Left widget ===========================
 	{
         layout = wibox.layout.fixed.horizontal,
-        separator, lag_wdt,
+        separator, left, music_wdt,  right, separator, 
         },
 	-- ================= Middle widget ===========================
     {
@@ -42,8 +55,11 @@ screen.connect_signal('request::desktop_decoration', function(s)
 	-- ================= Right widget ===========================
 	{
         layout = wibox.layout.fixed.horizontal,
-        separator, music_wdt,
-	    s.mylayoutbox,
+        layoutbox, separator,
+        pkg_widget, separator,
+        uptime_wdt, separator, 
+        kernel_wdt, separator, 
+	    wibox.widget.systray,
         },
     }
 -- ===========================================================================================

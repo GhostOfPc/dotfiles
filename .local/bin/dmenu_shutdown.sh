@@ -16,7 +16,7 @@ if [[ ! -z $Selected ]]; then
         if [[ $Selected == "Suspend" ]]; then
             systemctl suspend
         elif [[ $Selected == "Lock" ]]; then
-            i3lock --clock -i $HOME/.icons/lockscreen.jpg --pass-media-keys \
+            i3lock --clock -B 10 --pass-media-keys \
                 --timecolor=$TDcolor --datecolor=$TDcolor --timesize=100 \
                 --datesize=20 --timepos="1700:850" --insidecolor=$insidecolor \
                 --insidevercolor=$insidecolor --ringcolor=$Rcolor --line-uses-inside \

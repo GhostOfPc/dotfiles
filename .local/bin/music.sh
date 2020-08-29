@@ -4,7 +4,20 @@ play_icon=""
 pause_icon=""
 cur_icon=""
 
-if pgrep -x "mpd" >/dev/null
+if pgrep -x "spotifyd" >/dev/null
+then
+    song_info=$(playerctl metadata --format '{{duration(position)}}[{{duration(mpris:length)}}] {{xesam:artist}} - {{xesam:title}}')
+    if [[ "${player_sts}" = "Paused" ]]; then
+        cur_icon="${pause_icon}"
+
+    elif [[ "${player_sts}" = "Playing" ]]; then
+        cur_icon="${play_icon}"
+
+    fi
+
+    echo "$song_info"
+
+elif pgrep -x "mpd" >/dev/null
 then
     play_info=$(mpc current)
     play_sts=$(mpc | awk '/\[/ {print $1}')
@@ -17,24 +30,7 @@ then
 
     fi
 
-    printf "$cur_icon $play_info"
-
-elif pgrep -x "spotifyd" >/dev/null
-then
-    player_sts=$(playerctl status)
-    info_title=$(playerctl metadata title)
-    info_album=$(playerctl metadata album)
-    info_artist=$(playerctl metadata artist)
-
-    if [[ "${player_sts}" = "Paused" ]]; then
-        cur_icon="${pause_icon}"
-
-    elif [[ "${player_sts}" = "Playing" ]]; then
-        cur_icon="${play_icon}"
-
-    fi
-
-    printf "$cur_icon $info_artist - $info_title"
+    echo "$cur_icon $play_info"
 
 else
     exit 0
