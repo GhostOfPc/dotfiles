@@ -14,6 +14,9 @@ function reset_background
     album_dir="${file%/*}"
     [[ -z "$album_dir" ]] && exit 1
     album_dir="$MUSIC_DIR/$album_dir"
+    info=$(mpc --format "[[%artist%::]%title%]::[%album%]" current | awk -F "::" '{printf "<big><b><span fgcolor=\"#dfd460\"> Now Playing  </span></b></big>\n<b><span fgcolor=\"#fa2573\">[Artist] </span></b>"$1 \
+        "\n<b><span fgcolor=\"#97e123\">[Title] </span></b>"$2\
+        "\n<b><span fgcolor=\"#0f7fcf\">[Album] </span></b>"$3}')
 
     covers="$(find "$album_dir" -type d -exec find {} -maxdepth 1 -type f -iregex ".*/.*\(${album}\|cover\|folder\|artwork\|front\).*[.]\(jpe?g\|png\|gif\|bmp\)" \; )"
     src="$(echo -n "$covers" | head -n1)"
@@ -26,7 +29,7 @@ function reset_background
            #place it 1% away from left and 50% away from top.
            #printf "\e]20;${COVER};30x30+1+50:op=keep-aspect\a"
            convert -resize 128x128 "$COVER" /tmp/cover.png
-           notify-send "Now Playing ♫" "$(mpc current)" -i "/tmp/cover.png"
+           notify-send "$info" -i "/tmp/cover.png"
         else
             reset_background
         fi
