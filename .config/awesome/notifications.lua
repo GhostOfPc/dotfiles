@@ -26,7 +26,7 @@ naughty.config.defaults.position = 'top_right'
 naughty.config.defaults.font = beautiful.font
 naughty.config.defaults.border_width = dpi(0)
 
-naughty.config.icon_dirs = {'/usr/share/icons/Papirus'}
+naughty.config.icon_dirs = {'/usr/share/icons/Papirus/48x48'}
 naughty.config.icon_format = {'svg', 'png', 'jpg', 'gif'}
 
 ruled.notification.connect_signal('request::rules', function()

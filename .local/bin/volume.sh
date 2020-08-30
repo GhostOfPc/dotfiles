@@ -19,20 +19,20 @@ function send_notification {
     # Make the bar with the special character ─ (it's not dash -)
     # https://en.wikipedia.org/wiki/Box-drawing_character
 if [ "$volume" = "0" ]; then
-        icon_name="/usr/share/icons/Papirus-Dark/symbolic/status/audio-volume-muted-symbolic.svg"
+        icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-muted.svg"
 dunstify "$volume"" %   " -i "$icon_name" -h int:value:"$volume" -r 555
     else
 	if [  "$volume" -lt "10" ]; then
-	     icon_name="/usr/share/icons/Papirus-Dark/symbolic/status/audio-volume-low-symbolic.svg"
+	     icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-low.svg"
 dunstify "$volume"" %   " -i "$icon_name" -r 555
     else
         if [ "$volume" -lt "20" ]; then
-            icon_name="/usr/share/icons/Papirus-Dark/symbolic/status/audio-volume-low-symbolic.svg"
+            icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-low.svg"
         else
             if [ "$volume" -lt "70" ]; then
-                icon_name="/usr/share/icons/Papirus-Dark/symbolic/status/audio-volume-medium-symbolic.svg"
+                icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-medium.svg"
             else
-                icon_name="/usr/share/icons/Papirus-Dark/symbolic/status/audio-volume-high-symbolic.svg"
+                icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-high.svg"
             fi
         fi
     fi
@@ -60,7 +60,7 @@ case $1 in
 	amixer -D pulse set Master 1+ toggle > /dev/null
 	if is_mute ; then
     DIR=`dirname "$0"`
-      icon_name="/usr/share/icons/Papirus-Dark/symbolic/status/audio-volume-muted-blocking-symbolic.svg"
+      icon_name="/usr/share/icons/Papirus/48x48/status/notification-audio-volume-muted.svg"
       dunstify -i "$icon_name" -r 555 -u normal "Mute"
 	else
 	    send_notification

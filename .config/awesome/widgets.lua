@@ -91,9 +91,7 @@ end)
 net_widget = wibox.widget {
     {
         awful.widget.watch('bash -c "$HOME/.local/bin/net.sh"', 1,_,_,_,signal,16),
-        forced_width = awful.screen.focused().workarea.width * 0.056,
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
-        align = 'center'
     },
     bg = wdt_bg,
     shape = wdt_shape,

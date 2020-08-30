@@ -59,7 +59,6 @@ screen.connect_signal('request::desktop_decoration', function(s)
         pkg_widget, separator,
         uptime_wdt, separator, 
         kernel_wdt, separator, 
-	    wibox.widget.systray,
         },
     }
 -- ===========================================================================================

@@ -6,16 +6,9 @@ cur_icon=""
 
 if pgrep -x "spotifyd" >/dev/null
 then
-    song_info=$(playerctl metadata --format '{{duration(position)}}[{{duration(mpris:length)}}] {{xesam:artist}} - {{xesam:title}}')
-    if [[ "${player_sts}" = "Paused" ]]; then
-        cur_icon="${pause_icon}"
+    song_info=$(playerctl metadata --format '{{emoji(status)}} {{duration(position)}}[{{duration(mpris:length)}}] {{xesam:artist}} - {{xesam:title}}')
 
-    elif [[ "${player_sts}" = "Playing" ]]; then
-        cur_icon="${play_icon}"
-
-    fi
-
-    echo "$song_info"
+    printf "$song_info"
 
 elif pgrep -x "mpd" >/dev/null
 then
