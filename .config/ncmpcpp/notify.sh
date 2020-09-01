@@ -14,7 +14,7 @@ function reset_background
     album_dir="${file%/*}"
     [[ -z "$album_dir" ]] && exit 1
     album_dir="$MUSIC_DIR/$album_dir"
-    info=$(mpc --format "[[%artist%::]%title%]::[%album%]" current | awk -F "::" '{printf "<big><b><span fgcolor=\"#dfd460\"> Now Playing  </span></b></big>\n<b><span fgcolor=\"#fa2573\">[Artist] </span></b>"$1 \
+    info=$(mpc --format "[[%artist%::]%title%]::[%album%]" current | awk -F "::" '{printf "<b><span size=\"large\" fgcolor=\"#dfd460\"> Now Playing  </span></b>\n<b><span fgcolor=\"#fa2573\">[Artist] </span></b>"$1 \
         "\n<b><span fgcolor=\"#97e123\">[Title] </span></b>"$2\
         "\n<b><span fgcolor=\"#0f7fcf\">[Album] </span></b>"$3}')
 

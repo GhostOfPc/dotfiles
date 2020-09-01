@@ -10,6 +10,11 @@ then
 
     printf "$song_info"
 
+elif pgrep -x "mpv" >/dev/null
+then
+    title=$(playerctl metadata --format '[{{status}}] {{xesam:title}}')
+    printf "$title"
+
 elif pgrep -x "mpd" >/dev/null
 then
     play_info=$(mpc current)

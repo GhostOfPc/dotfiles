@@ -1,35 +1,37 @@
---[[
-  ╔════════════════════════════════════════╗
- ╔╝                                        ╚╗
- ║ Riced and crafted by  Hisham Abdul Hai  ║
- ║ ...Founder of Linux Arab Gate (L A G)... ║
- ╚╗                                        ╔╝ 
-  ╚════════════════════════════════════════╝
---]]
-
--- Standard awesome library
-local beautiful = require('beautiful')
-local naughty = require('naughty')
-local awful = require('awful')
-local dpi = beautiful.xresources.apply_dpi
-local ruled = require('ruled')
 local gears = require('gears')
 local wibox = require('wibox')
+local awful = require('awful')
+local ruled = require('ruled')
+local naughty = require('naughty')
 local menubar = require('menubar')
+local beautiful = require('beautiful')
+local dpi = beautiful.xresources.apply_dpi
+--local clickable_container = require('widget.clickable-container')
 
-local notifications = {}
-
-naughty.config.defaults.shape = function(cr, width, height)
-    gears.shape.rounded_rect(cr, width, height, 8) end
-naughty.config.defaults.width = awful.screen.focused().workarea.width * 0.2
+-- Defaults
+naughty.config.defaults.ontop = true
+naughty.config.defaults.icon_size = dpi(48)
+naughty.config.defaults.timeout = 10
+naughty.config.defaults.margin = dpi(16)
+naughty.config.defaults.border_width = 0
 naughty.config.defaults.position = 'top_right'
-naughty.config.defaults.font = beautiful.font
-naughty.config.defaults.border_width = dpi(0)
+naughty.config.defaults.shape = function(cr, width, height)
+	gears.shape.rounded_rect(cr, width, height, 8)
+end
 
-naughty.config.icon_dirs = {'/usr/share/icons/Papirus/48x48'}
-naughty.config.icon_format = {'svg', 'png', 'jpg', 'gif'}
+-- Apply theme variables
+naughty.config.padding = dpi(8)
+naughty.config.spacing = dpi(8)
+naughty.config.icon_dirs = {
+	'/usr/share/icons/Papirus/48x48',
+}
+naughty.config.icon_formats = { 'svg', 'png', 'jpg', 'gif' }
 
-ruled.notification.connect_signal('request::rules', function()
+
+-- Presets / rules
+
+ruled.notification.connect_signal(
+'request::rules', function()
     ruled.notification.append_rule {
         rule       = {urgency = 'normal'},
         properties = {
@@ -60,8 +62,22 @@ ruled.notification.connect_signal('request::rules', function()
             }
         }
     }
-end)
+end
+	)
 
+-- Error handling
+naughty.connect_signal(
+	'request::display_error',
+	function(message, startup)
+		naughty.notification {
+			urgency = 'critical',
+			title   = 'Oops, an error happened'..(startup and ' during startup!' or '!'),
+			message = message,
+			app_name = 'System Notification',
+			icon = beautiful.awesome_icon
+		}
+	end
+)
 
 -- XDG icon lookup
 naughty.connect_signal(
@@ -77,16 +93,118 @@ naughty.connect_signal(
 		end
 	end
 )
--- ================================ Error handling ================================================
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
-naughty.connect_signal("request::display_error", function(message, startup)
-    naughty.notification {
-        urgency = "critical",
-        title   = "Oops, an error happened"..(startup and " during startup!" or "!"),
-        message = message
-    }
-end)
--- ================================ Error handling ================================================
 
-return notifications
+-- Connect to naughty on display signal
+naughty.connect_signal(
+	'request::display',
+	function(n)
+
+		-- Actions Blueprint
+		local actions_template = wibox.widget {
+			notification = n,
+			base_layout = wibox.widget {
+				spacing        = dpi(0),
+				layout         = wibox.layout.flex.horizontal
+			},
+			widget_template = {
+				{
+					{
+							{
+								id     = 'text_role',
+								widget = wibox.widget.textbox
+							},
+							widget  =   wibox.container.place
+                        },
+                        widget  =   wibox.container.background
+                    },
+                    margins = dpi(10),
+                    widget  = wibox.container.margin
+                }
+            }
+
+		-- Notifbox Blueprint
+		naughty.layout.box {
+			notification = n,
+			type = 'notification',
+			screen = awful.screen.preferred(),
+			shape = gears.shape.rounded_rect,
+			widget_template = {
+				{
+					{
+						{
+							{
+								{
+									{
+										{
+											{
+													{
+														valign = 'center',
+														widget = wibox.widget.textbox
+
+													},
+												bg = beautiful.bg_normal,
+												widget  = wibox.container.background,
+											},
+											{
+												{
+													{
+														resize_strategy = 'center',
+														widget = naughty.widget.icon,
+													},
+													margins = dpi(10),
+													widget  = wibox.container.margin,
+												},
+												{
+													{
+														layout = wibox.layout.align.vertical,
+														expand = 'none',
+														nil,
+														{
+															{
+																align = 'left',
+																widget = naughty.widget.title
+															},
+															{
+																align = 'left',
+																widget = naughty.widget.message,
+															},
+															layout = wibox.layout.fixed.vertical
+														},
+														nil
+													},
+													margins = dpi(5),
+													widget  = wibox.container.margin,
+												},
+												layout = wibox.layout.fixed.horizontal,
+											},
+											layout  = wibox.layout.fixed.vertical,
+										},
+										margins = dpi(1),
+										widget  = wibox.container.margin,
+									},
+									bg = beautiful.bg_normal,
+									widget  = wibox.container.background,
+								},
+								layout  = wibox.layout.fixed.vertical,
+							},
+							bg     = beautiful.bg_normal,
+							id     = 'background_role',
+							widget = naughty.container.background,
+						},
+						strategy = 'min',
+						width    = dpi(400),
+						widget   = wibox.container.constraint,
+					},
+					strategy = 'max',
+					width    = dpi(500),
+					widget   = wibox.container.constraint
+				},
+				bg = beautiful.bg_normal,
+				shape = gears.shape.rounded_rect,
+				widget = wibox.container.background	
+			}
+		}
+
+	end
+)
+
