@@ -98,7 +98,7 @@ net_widget = wibox.widget {
     widget = wibox.container.background
 }
 net_widget:connect_signal('button::press', function (_,_,_,button)
-    if (button == 1) then awful.spawn.with_shell('alacritty --hold -e vnstat -d')
+    if (button == 1) then awful.spawn.with_shell('alacritty --hold -e bmon -p eno2')
     end
 end)
 -- Free disk available
@@ -208,6 +208,7 @@ music_wdt = wibox.widget {
 }
 music_wdt:connect_signal('button::press', function (_,_,_,button)
     if (button == 1) then awful.spawn.with_shell('alacritty --hold -e vis')
+        elseif (button == 3) then awful.spawn.with_shell('alacritty --hold -e spt')
     end
         end)
 
