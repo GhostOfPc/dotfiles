@@ -10,18 +10,18 @@
 
 # The theme colours can be an rgb string of the form "255, 255, 255" or a string that references the colours from your terminal theme: Reset, Black, Red, Green, Yellow, Blue, Magenta, Cyan, Gray, DarkGray, LightRed, LightGreen, LightYellow, LightBlue, LightMagenta, LightCyan, White.
 theme:
-  active: "175, 135, 255"
-  banner: LightBlue 
+  active: LightMagenta
+  banner: LightGreen 
   error_border: Red
   error_text: LightRed
   hint: Yellow
-  hovered: LightGreen
-  inactive: "117, 117, 255"
-  playbar_background: "36, 36, 36"
+  hovered: LightBlue
+  inactive: Blue
+  playbar_background: Black
   playbar_progress: LightGreen
   playbar_text: DarkGray
-  selected: Green
-  text: "215, 234, 243"
+  selected: LightRed
+  text: White
 
 behavior:
   seek_milliseconds: 5000

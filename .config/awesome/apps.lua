@@ -32,13 +32,11 @@ local function run_once(cmd)
     awful.spawn.with_shell(string.format('pgrep -u $USER -x %s > /dev/null || (%s)', findme, cmd), false)
 end
 
-do
+--[[do
   local startup_apps=
   {
       'nitrogen --restore',
       'picom',
-      --'$HOME/.local/bin/pmanag.sh',
-      --'dunst',
       'lxsession'
   }
 
@@ -46,5 +44,6 @@ do
       run_once(apps)
   end
 end
+--]]
 
 return apps

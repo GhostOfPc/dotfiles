@@ -142,7 +142,6 @@ naughty.connect_signal(
 														widget = wibox.widget.textbox
 
 													},
-												bg = beautiful.bg_normal,
 												widget  = wibox.container.background,
 											},
 											{
@@ -182,12 +181,10 @@ naughty.connect_signal(
 										margins = dpi(1),
 										widget  = wibox.container.margin,
 									},
-									bg = beautiful.bg_normal,
 									widget  = wibox.container.background,
 								},
 								layout  = wibox.layout.fixed.vertical,
 							},
-							bg     = beautiful.bg_normal,
 							id     = 'background_role',
 							widget = naughty.container.background,
 						},
@@ -199,7 +196,6 @@ naughty.connect_signal(
 					width    = dpi(500),
 					widget   = wibox.container.constraint
 				},
-				bg = beautiful.bg_normal,
 				shape = gears.shape.rounded_rect,
 				widget = wibox.container.background	
 			}
