@@ -178,6 +178,7 @@ ex=:\
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="awesomepanda"
 
+
 plugins=(
 	 git
 	 zsh-autosuggestions
@@ -290,3 +291,4 @@ width=78 truecolor.sh
 date +%A\ %d\ %B\ %Y\ %H:%M 
 uname -nrm
 uptime -p | sed "s/up\s/Elapsed Time: /;s/hours,\s/hs:/g;s/minutes/min/"
+
