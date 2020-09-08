@@ -51,4 +51,5 @@ fi
 nitrogen --restore &
 picom &
 lxsession &
+xrdb -merge $HOME/.config/Xresources/.Xresources
 exec awesome
