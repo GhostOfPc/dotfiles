@@ -271,6 +271,7 @@ alias lf="lfrun"
 alias ca="cd ~/.config/awesome"
 alias cb="cd ~/.local/bin"
 alias cc="cd ~/.config"
+alias wget="wget --hsts-file='$XDG_CACHE_HOME/wget-hsts'"
 alias config='/usr/bin/git --git-dir=/home/hisham/.cfg/ --work-tree=/home/hisham'
 
 #Transmission
