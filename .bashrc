@@ -75,6 +75,11 @@ alias n="ncmpcpp"
 alias ls='exa --icons -lah --color=always --group-directories-first'
 alias config='/usr/bin/git --git-dir=/home/hisham/.cfg/ --work-tree=/home/hisham'
 
+#Free memory
+alias fm1="sync; echo 1 > /proc/sys/vm/drop_caches"
+alias fm2="sync; echo 2 > /proc/sys/vm/drop_caches"
+alias fm3="sync; echo 3 > /proc/sys/vm/drop_caches"
+
 
 
 

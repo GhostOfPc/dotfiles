@@ -1,19 +1,19 @@
 #!/bin/sh
 
-play_icon=""
-pause_icon=""
+play_icon="▶️"
+pause_icon="⏸️"
 cur_icon=""
 
-if pgrep -x "spotifyd" >/dev/null
+if pgrep -x "mpv" >/dev/null
+then
+    title=$(playerctl metadata --format '{{emoji(status)}} {{duration(position)}}[{{duration(mpris:length)}}] {{xesam:title}}')
+    printf "$title"
+
+elif pgrep -x "spotifyd" >/dev/null
 then
     song_info=$(playerctl metadata --format '{{emoji(status)}} {{duration(position)}}[{{duration(mpris:length)}}] {{xesam:artist}} - {{xesam:title}}')
 
     printf "$song_info"
-
-elif pgrep -x "mpv" >/dev/null
-then
-    title=$(playerctl metadata --format '[{{status}}] {{xesam:title}}')
-    printf "$title"
 
 elif pgrep -x "mpd" >/dev/null
 then
