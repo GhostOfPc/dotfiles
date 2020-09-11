@@ -16,13 +16,13 @@ local bottom_bar = {}
 
 left = wibox.widget {
     {
-        markup = '<span foreground = "#0f7fcf"> Now playing  >>></span>',
+        markup = '<span foreground = "#6c99ba"> Now playing  >>></span>',
         widget = wibox.widget.textbox,
     },
     widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
 }right = wibox.widget {
     {
-        markup = '<span foreground = "#0f7fcf">&lt;&lt;&lt;</span>',
+        markup = '<span foreground = "#6c99ba">&lt;&lt;&lt;</span>',
         widget = wibox.widget.textbox
     },
     widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),

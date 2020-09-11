@@ -280,7 +280,6 @@ alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 
 color_test.sh
-width=78 truecolor.sh
 date +%A\ %d\ %B\ %Y\ %H:%M 
 uname -nrm
 uptime -p | sed "s/up\s/Elapsed Time: /;s/hours,\s/hs:/g;s/minutes/min/"

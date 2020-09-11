@@ -18,23 +18,23 @@ local theme = {}
 
 -- Default variables
 -- Font
-theme.font          =   'FiraMono Nerd Font 9'
+theme.font          =   'Mononoki Nerd Font 9'
 
 -- Background colors
-theme.bg_normal     =   '#272822e6'
-theme.fg_urgent     =   '#fa2573'
-theme.fg_focus      =   '#af87ff'
-theme.fg_occupied   =   '#0f7fcf'
+theme.bg_normal     =   '#202020e6'
+theme.fg_urgent     =   '#ac4142'
+theme.fg_focus      =   '#e5b566'
+theme.fg_occupied   =   '#6c99ba'
 theme.bg_systray    =   theme.bg_normal
-theme.bg_empty      =   '#545454e6'
+theme.bg_empty      =   '#505050e6'
 
 -- Border colors
 theme.border_width      =   dpi(1)
-theme.border_normal     =   '#272822'
-theme.border_focus      =   '#0f7fcf'
+theme.border_normal     =   '#202020'
+theme.border_focus      =   '#6c99ba'
 
 -- Foreground color
-theme.fg_normal     =   '#d7eaf3'
+theme.fg_normal     =   '#f5f5f5'
 
 -- tooltip
 theme.tooltip_border_color  =   theme.border_focus
@@ -61,7 +61,7 @@ theme.hotkeys_description_font	=	theme.font
 theme.hotkeys_shape             = gears.shape.rectangle
 
 -- tasklist
-theme.tasklist_fg_focus                         =       '#b0e05e'
+theme.tasklist_fg_focus                         =       '#7e8d50'
 theme.tasklist_bg_normal                        =       theme.bg_empty
 theme.tasklist_disable_icon                     =       true
 theme.tasklist_plain_task_name                  =       true
