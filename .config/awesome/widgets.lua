@@ -50,7 +50,7 @@ separator = {
                 widget          = wibox.widget.separator
             }
 
---[[ Cpu temperature
+-- Cpu temperature
 temp_widget = wibox.widget {
     {
         awful.widget.watch('bash -c "$HOME/.local/bin/temp.sh"'),
@@ -61,7 +61,7 @@ temp_widget = wibox.widget {
     widget = wibox.container.background
 }
 
-Gpu temperature
+-- Gpu temperature
 gpu_temp_widget = wibox.widget {
     {
         awful.widget.watch('bash -c "$HOME/.local/bin/temp_gpu.sh"'),
@@ -71,7 +71,6 @@ gpu_temp_widget = wibox.widget {
     shape = wdt_shape,
     widget = wibox.container.background
 }
---]]
 
 -- Weather
 wthr_widget = wibox.widget {

@@ -14,9 +14,9 @@ function reset_background
     album_dir="${file%/*}"
     [[ -z "$album_dir" ]] && exit 1
     album_dir="$MUSIC_DIR/$album_dir"
-    info=$(mpc --format "[[%artist%::]%title%]::[%album%]" current | awk -F "::" '{printf "<b><span size=\"large\" fgcolor=\"#dfd460\"> Now Playing  </span></b>\n<b><span fgcolor=\"#fa2573\">[Artist] </span></b>"$1 \
-        "\n<b><span fgcolor=\"#97e123\">[Title] </span></b>"$2\
-        "\n<b><span fgcolor=\"#0f7fcf\">[Album] </span></b>"$3}')
+    info=$(mpc --format "[[%artist%::]%title%]::[%album%]" current | awk -F "::" '{printf "<b><span size=\"large\" fgcolor=\"#e5b566\"> Now Playing  </span></b>\n<b><span fgcolor=\"#ac4142\">[Artist] </span></b>"$1 \
+        "\n<b><span fgcolor=\"#7e8d50\">[Title] </span></b>"$2\
+        "\n<b><span fgcolor=\"#6c99ba\">[Album] </span></b>"$3}')
 
     covers="$(find "$album_dir" -type d -exec find {} -maxdepth 1 -type f -iregex ".*/.*\(${album}\|cover\|folder\|artwork\|front\).*[.]\(jpe?g\|png\|gif\|bmp\)" \; )"
     src="$(echo -n "$covers" | head -n1)"
