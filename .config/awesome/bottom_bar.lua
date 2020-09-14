@@ -56,6 +56,8 @@ screen.connect_signal('request::desktop_decoration', function(s)
 	{
         layout = wibox.layout.fixed.horizontal,
         layoutbox, separator,
+        gpu_temp_widget, separator,
+        temp_widget, separator,
         pkg_widget, separator,
         uptime_wdt, separator, 
         kernel_wdt, separator, 
