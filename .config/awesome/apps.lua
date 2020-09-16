@@ -1,9 +1,11 @@
---    ╔════════════════════════════════════════╗
---   ╔╝                                        ╚╗
---   ║ Riced and crafted by  Hisham Abdul Hai  ║
---   ║ ...Founder of Linux Arab Gate (L A G)... ║
---   ╚╗                                        ╔╝ 
---    ╚════════════════════════════════════════╝
+--[[
+  ╔════════════════════════════════════════╗
+ ╔╝                                        ╚╗
+ ║ Riced and crafted by  Hisham Abdul Hai  ║
+ ║ ...Founder of Linux Arab Gate (L A G)... ║
+ ╚╗                                        ╔╝ 
+  ╚════════════════════════════════════════╝
+--]]
 
 local awful = require('awful')
 local filesystem = require('gears.filesystem')
@@ -32,7 +34,7 @@ local function run_once(cmd)
     awful.spawn.with_shell(string.format('pgrep -u $USER -x %s > /dev/null || (%s)', findme, cmd), false)
 end
 
---[[do
+do
   local startup_apps=
   {
       'nitrogen --restore',
@@ -44,6 +46,6 @@ end
       run_once(apps)
   end
 end
---]]
+
 
 return apps
