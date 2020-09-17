@@ -29,7 +29,7 @@ function reset_background
            #place it 1% away from left and 50% away from top.
            #printf "\e]20;${COVER};30x30+1+50:op=keep-aspect\a"
            convert -resize 128x128 "$COVER" /tmp/cover.png
-           notify-send "$info" -i "/tmp/cover.png"
+           dunstify "$info" -i "/tmp/cover.png"
         else
             reset_background
         fi

@@ -42,6 +42,8 @@ left = wibox.widget {
             layout = wibox.layout.fixed.horizontal,
 	layoutbox, separator,
 	pkg_widget, separator,
+    gpu_temp_widget, separator,
+    temp_widget, separator,
 	uptime_wdt, separator,
 	kernel_wdt, separator,
         },

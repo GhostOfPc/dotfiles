@@ -15,7 +15,7 @@ theme:
   error_border: Red
   error_text: LightRed
   hint: Yellow
-  hovered: LightBlue
+  hovered: Yellow
   inactive: Blue
   playbar_background: Black
   playbar_progress: LightGreen
