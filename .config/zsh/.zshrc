@@ -253,7 +253,7 @@ alias cres="sudo timeshift --create --comments"
 
 alias ls="exa --icons -lah --color=always --group-directories-first"
 alias m="mpv --cache=yes"
-alias m4="mpv --video-aspect-override=4:3"
+alias m4="mpv --cache=yes --video-aspect-override=4:3"
 alias v="nvim"
 alias w="curl -H 'Accept-Language: es' wttr.in/bariloche"
 alias grep="grep --color=always"
