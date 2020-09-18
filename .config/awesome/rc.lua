@@ -41,10 +41,8 @@ awful.layout.layouts = {
         awful.layout.suit.floating,
 }
 
--- ========================= Rules ============================================
--- Rules to apply to new clients (through the 'manage' signal).
+
 awful.rules.rules = {
-    -- All clients will match this rule.
     {
         rule = { },
         properties = {
@@ -53,6 +51,7 @@ awful.rules.rules = {
             focus = awful.client.focus.filter,
             raise = true,
             keys = clientkeys,
+            buttons = buttonkeys,
             screen = awful.screen.preferred,
             placement = awful.placement.centered
         }
@@ -94,25 +93,31 @@ awful.rules.rules = {
      { rule = { class = 'kitty' },
        properties = {tag = screen[1].tags[1], switchtotag = true} },
 
-     { rule_any = {
-         class = {'firefox','Brave-browser'},
-     },
+     { rule = { class = 'firefox' },
+       properties = {tag = screen[1].tags[2], switchtotag = true} },
+
+     { rule = { class = 'Brave-browser' },
        properties = {tag = screen[1].tags[2], switchtotag = true} },
 
      { rule = { class = 'Geany' },
        properties = {tag = screen[1].tags[3], switchtotag = true} },
 
-     { rule_any = {
-         class = {'Pcmanfm','qBittorrent','Uget-gtk'},
-     },
+     { rule = { class = 'Pcmanfm' },
+       properties = {tag = screen[1].tags[4], switchtotag = true} },
+       
+     { rule = { class = 'qBittorrent' },
        properties = {tag = screen[1].tags[4], switchtotag = true} },
 
-     { rule_any = {
-         class = {'vlc', 'mpv'},
-     },
-     properties = {tag = screen[1].tags[6], switchtotag = true, border_width = 0} },
-}
+     { rule = { class = 'Uget-gtk' },
+       properties = {tag = screen[1].tags[4], switchtotag = true} },
 
+     { rule = { class = 'vlc' },
+       properties = {tag = screen[1].tags[6], switchtotag = true, border_width = 0} },
+
+     { rule = { class = 'mpv' },
+       properties = {tag = screen[1].tags[6], switchtotag = true, border_width = 0} },
+
+}
 
 -- ========================= Signals ===========================================
 -- Enable mouse bindings to move and resize clients
