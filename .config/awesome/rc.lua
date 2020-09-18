@@ -84,38 +84,66 @@ awful.rules.rules = {
     }, 
     properties = {
         floating = true,
-        placement = awful.placement.centered,
         width = awful.screen.focused().workarea.width * 0.5,
-        height = awful.screen.focused().workarea.height * 0.5
+        height = awful.screen.focused().workarea.height * 0.5,
+        x = awful.screen.focused().workarea.width * 0.25,
+        y = awful.screen.focused().workarea.height * 0.25,
     }
 },
 
-     { rule = { class = 'kitty' },
-       properties = {tag = screen[1].tags[1], switchtotag = true} },
+    -- Specific applications run on specific tags
+{
+    rule = {
+        class = 'kitty'
+    },
+    properties = {
+        tag = screen[1].tags[1], switchtotag = true
+    }
+},
 
-     { rule = { class = 'firefox' },
-       properties = {tag = screen[1].tags[2], switchtotag = true} },
+{
+    rule_any = {
+        class = {
+            'firefox','Brave-browser'
+        }
+    },
+    properties = {
+        tag = screen[1].tags[2], switchtotag = true
+    }
+},
 
-     { rule = { class = 'Brave-browser' },
-       properties = {tag = screen[1].tags[2], switchtotag = true} },
+{
+    rule_any = {
+        class = {
+            'Geany','Inkscape','Gimp'
+        }
+    },
+    properties = {
+        tag = screen[1].tags[3], switchtotag = true
+    }
+},
 
-     { rule = { class = 'Geany' },
-       properties = {tag = screen[1].tags[3], switchtotag = true} },
+{
+    rule_any = {
+        class = {
+            'Pcmanfm','qBittorrent','Uget-gtk'
+        }
+    },
+    properties = {
+        tag = screen[1].tags[4], switchtotag = true
+    }
+},
 
-     { rule = { class = 'Pcmanfm' },
-       properties = {tag = screen[1].tags[4], switchtotag = true} },
-       
-     { rule = { class = 'qBittorrent' },
-       properties = {tag = screen[1].tags[4], switchtotag = true} },
-
-     { rule = { class = 'Uget-gtk' },
-       properties = {tag = screen[1].tags[4], switchtotag = true} },
-
-     { rule = { class = 'vlc' },
-       properties = {tag = screen[1].tags[6], switchtotag = true, border_width = 0} },
-
-     { rule = { class = 'mpv' },
-       properties = {tag = screen[1].tags[6], switchtotag = true, border_width = 0} },
+{
+    rule_any = {
+        class = {
+            'mpv','vlc'
+        }
+    },
+    properties = {
+        tag = screen[1].tags[6], switchtotag = true, border_width = 0
+    }
+},
 
 }
 
