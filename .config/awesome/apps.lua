@@ -39,7 +39,7 @@ do
   {
       'nitrogen --restore',
       'picom',
-      'lxsession'
+      'lxsession',
   }
 
   for _,apps in pairs(startup_apps) do

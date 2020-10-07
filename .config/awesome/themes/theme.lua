@@ -18,7 +18,7 @@ local theme = {}
 
 -- Default variables
 -- Font
-theme.font          =   'Mononoki Nerd Font 9'
+theme.font          =   'FiraMono Nerd Font 9'
 
 -- Background colors
 theme.bg_normal     =   '#202020e6'
