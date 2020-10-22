@@ -65,9 +65,9 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag.add('',{
             name            = 'Vids',
             id              = '6',
-			layout			= awful.layout.suit.fullscreen,
+			layout			= awful.layout.suit.tile,
 			gap_single_client	= true,
-			gap			= 10,
+			gap			= 43,
 			screen			= s
 			}
 		)

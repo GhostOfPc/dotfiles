@@ -138,7 +138,18 @@ awful.rules.rules = {
 {
     rule_any = {
         class = {
-            'mpv','vlc'
+            'mpv'
+        }
+    },
+    properties = {
+        tag = screen[1].tags[6], switchtotag = true, border_width = 0, floating = true
+    }
+},
+
+{
+    rule_any = {
+        class = {
+            'vlc'
         }
     },
     properties = {

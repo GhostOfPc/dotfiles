@@ -9,11 +9,13 @@
 
 local awful = require("awful")
 local wibox = require("wibox")
+local xresources = require('beautiful.xresources')
+local dpi = xresources.apply_dpi
 
 local bottom_bar = {}
 awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
-    s.bottom_bar = awful.wibar({ position = "bottom", screen = s })
+    s.bottom_bar = awful.wibar({ position = "bottom", screen = s ,height = dpi(21)})
 left = wibox.widget {
     {
         markup = '<span foreground = "#6c99ba"> Now playing  >>></span>',
@@ -42,8 +44,8 @@ left = wibox.widget {
             layout = wibox.layout.fixed.horizontal,
 	layoutbox, separator,
 	pkg_widget, separator,
-    --gpu_temp_widget, separator,
-    --temp_widget, separator,
+    gpu_temp_widget, separator,
+    temp_widget, separator,
 	uptime_wdt, separator,
 	kernel_wdt, separator,
     wibox.widget.systray(), separator,

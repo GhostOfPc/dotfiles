@@ -29,7 +29,7 @@ theme.bg_systray    =   theme.bg_normal
 theme.bg_empty      =   '#505050e6'
 
 -- Border colors
-theme.border_width      =   dpi(1)
+theme.border_width      =   dpi(0)
 theme.border_normal     =   '#202020'
 theme.border_focus      =   '#6c99ba'
 
@@ -61,7 +61,8 @@ theme.hotkeys_description_font	=	theme.font
 theme.hotkeys_shape             = gears.shape.rectangle
 
 -- tasklist
-theme.tasklist_fg_focus                         =       '#7e8d50'
+--theme.tasklist_fg_focus                         =       '#7e8d50'
+theme.tasklist_fg_focus                         =       theme.fg_normal
 theme.tasklist_bg_normal                        =       theme.bg_empty
 theme.tasklist_disable_icon                     =       true
 theme.tasklist_plain_task_name                  =       true

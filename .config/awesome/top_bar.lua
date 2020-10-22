@@ -9,12 +9,14 @@
 
 local awful = require('awful')
 local wibox = require('wibox')
+local xresources = require('beautiful.xresources')
+local dpi = xresources.apply_dpi
 
 
 local top_bar = {}
 awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
-    top_bar = awful.wibar({ position = 'top', screen = s })
+    top_bar = awful.wibar({ position = 'top', screen = s , height = dpi(21)})
 
     -- Add widgets to the wibox
     top_bar:setup {
