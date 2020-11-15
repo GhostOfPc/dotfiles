@@ -105,7 +105,7 @@ awful.rules.rules = {
 {
     rule_any = {
         class = {
-            'firefox','Brave-browser'
+            'firefox','Brave-browser', 'Chromium'
         }
     },
     properties = {

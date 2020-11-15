@@ -30,6 +30,10 @@ export TERMINAL="kitty"
 export IMAGE="sxiv"
 export VIDEO="mpv"
 
+# Configure hardware video acceleration
+export LIBVA_DRIVER_NAME=radeonsi
+export VDPAU_DRIVER=radeonsi
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/hisham/.config/zsh/.oh-my-zsh"
 
