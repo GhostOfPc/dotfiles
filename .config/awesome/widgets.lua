@@ -192,8 +192,8 @@ music_wdt = wibox.widget {
     layout = wibox.container.scroll.horizontal,
     max_size = awful.screen.focused().workarea.width * 0.25,
     step_function = wibox.container.scroll.step_functions.linear_increase,
-    fps = 30,
-    speed = 30,
+    fps = 60,
+    speed = 60,
     extra_space = 5,
     {
         {

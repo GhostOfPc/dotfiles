@@ -20,7 +20,7 @@ awful.screen.connect_for_each_screen(function(s)
     {
         position = "bottom",
         screen = s ,
-        height = dpi(21),
+        height = dpi(20),
         width = awful.screen.focused().workarea.width * 0.96,
         shape = wdt_shape
     }

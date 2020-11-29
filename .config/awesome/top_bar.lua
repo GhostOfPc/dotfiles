@@ -16,7 +16,7 @@ local dpi = xresources.apply_dpi
 local top_bar = {}
 awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
-    top_bar = awful.wibar({ position = 'top', screen = s , height = dpi(21)})
+    top_bar = awful.wibar({ position = 'top', screen = s , height = dpi(20)})
 
     -- Add widgets to the wibox
     top_bar:setup {

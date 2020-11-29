@@ -96,7 +96,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: FiraCode Nerd Font
+    family: Source Code Pro
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -107,7 +107,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: FiraCode Nerd Font
+    family: Source Code Pro
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -118,7 +118,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: FiraCode Nerd Font
+    family: Source Code Pro
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -129,7 +129,7 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: FiraCode Nerd Font
+    family: Source Code Pro
 
     # The `style` can be specified to pick a specific face.
     #style: Bold Italic
@@ -233,12 +233,12 @@ colors:
   # Bright colors
   bright:
     black:   '#505050'
-    red:     '#ac4142'
-    green:   '#7e8d50'
-    yellow:  '#e5b566'
-    blue:    '#6c99ba'
-    magenta: '#9e4e85'
-    cyan:    '#7dd5cf'
+    red:     '#dc828f'
+    green:   '#8da47e'
+    yellow:  '#f7f6cf'
+    blue:    '#9ac8eb'
+    magenta: '#a15d98'
+    cyan:    '#a1cecd'
     white:   '#f5f5f5'
 
   # Dim colors
@@ -310,7 +310,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
+background_opacity: 0.85
 
 selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

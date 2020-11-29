@@ -37,7 +37,7 @@ end
 do
   local startup_apps=
   {
-      'nitrogen --restore',
+      --'nitrogen --restore',
       'picom',
       'lxsession',
   }

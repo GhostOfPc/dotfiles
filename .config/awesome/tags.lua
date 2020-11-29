@@ -120,7 +120,7 @@ awful.screen.connect_for_each_screen(function(s)
             bg_focus	= beautiful.bg_empty,
             fg_focus    = beautiful.fg_focus,
             fg_occupied = beautiful.fg_occupied,
-            fg_empty    = '#d7eaf340'
+            fg_empty    = beautiful.taglist_fg_empty
         },
             layout	= {
                 layout = wibox.layout.fixed.horizontal,
