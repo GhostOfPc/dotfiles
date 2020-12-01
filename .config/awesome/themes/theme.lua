@@ -22,7 +22,6 @@ theme.font          =   'Source Code Pro 9'
 
 -- Background colors
 theme.bg_normal     =   '#202020ce'
---theme.bg_normal     =   '#f5f5f54f'
 theme.fg_urgent     =   '#ac4142'
 theme.fg_focus      =   '#e5b566'
 theme.fg_occupied   =   '#6c99ba'

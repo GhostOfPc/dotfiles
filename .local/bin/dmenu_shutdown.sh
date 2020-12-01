@@ -7,7 +7,7 @@ hlcolor=fa257360
 verring=97e12360
 actions=(Lock Logout Suspend Reboot Shutdown)
 
-Selected=$(printf '%s\n' "${actions[@]}" | dmenu -i -p "What do you wanna do?")
+Selected=$(printf '%s\n' "${actions[@]}" | dmenu -i -c -bw 2 -fn 'Source Code Pro:size=12' -h 120 -p "Option:")
 
 if [[ ! -z $Selected ]]; then
     answer="$(echo -e "Yes\nNo" | \
