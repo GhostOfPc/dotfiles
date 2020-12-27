@@ -22,7 +22,7 @@ require('awful.hotkeys_popup.keys')
 
 -- ========================= Import theme =====================================
 local config_dir = gears.filesystem.get_configuration_dir()
-beautiful.init(config_dir .. 'themes/theme.lua')
+beautiful.init(config_dir .. "themes/Darktheme.lua")
 
 -- ========================= Import components ================================
 require ('keys')
@@ -68,7 +68,7 @@ awful.rules.rules = {
             class = {
                 'Arandr', 'Blueman-manager', 'Nitrogen', 'lxrandr', 'Lxappearance', 'qt5ct', 'Hardinfo',
                 'Kvantum Manager', 'Xarchiver', 'Nm-connection-editor', 'Pavucontrol', 'GParted', 'Timeshift-gtk',
-                'Virtualbox Machine', 'Virtualbox Manager'
+                'Virtualbox Machine', 'Virtualbox Manager', 'Xfce4-about', 'Xfce4-power-manager-settings'
             },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -76,7 +76,8 @@ awful.rules.rules = {
         name = {
             'Event Tester',  -- xev.
             'Customize Look and Feel',
-            'ArcoLinux Spices Application'
+            'ArcoLinux Spices Application',
+            'About Mozilla Firefox'
         },
         role = {
             'pop-up',       -- e.g. Google Chrome's (detached) Developer Tools.
@@ -142,7 +143,8 @@ awful.rules.rules = {
         }
     },
     properties = {
-        tag = screen[1].tags[6], switchtotag = true, border_width = 0, floating = true
+        tag = screen[1].tags[6], switchtotag = true, 
+        border_width = 0, floating = true
     }
 },
 
@@ -153,7 +155,8 @@ awful.rules.rules = {
         }
     },
     properties = {
-        tag = screen[1].tags[6], switchtotag = true, border_width = 0
+        tag = screen[1].tags[6], switchtotag = true, 
+        border_width = 0
     }
 },
 

@@ -173,7 +173,7 @@ calcoffsets(void)
 	int i, n;
 
 	if (lines > 0)
-		n = lines * bh;
+        n = lines * columns * bh;
 	else
 		n = mw - (promptw + inputw + TEXTW("<") + TEXTW(">"));
 	/* calculate which items will begin the next page and previous page */
@@ -309,9 +309,15 @@ drawmenu(void)
 
 	recalculatenumbers();
 	if (lines > 0) {
-		/* draw vertical list */
-		for (item = curr; item != next; item = item->right)
-			drawitem(item, 0, y += bh, mw - x);
+		/* draw grid */
+		int i = 0;
+		for (item = curr; item != next; item = item->right, i++)
+			drawitem(
+				item,
+				x + ((i / lines) *  ((mw - x) / columns)),
+				y + (((i % lines) + 1) * bh),
+				(mw - x) / columns
+			);
 	} else if (matches) {
 		/* draw horizontal list */
 		x += inputw;
@@ -609,7 +615,7 @@ keypress(XKeyEvent *ev)
 				insert(NULL, nextrune(-1) - cursor);
 			break;
 		case XK_y:  /*paste selection */
-		case XK_v:
+		case XK_V:
 			XConvertSelection(dpy, (ev->state & ShiftMask) ? clip : XA_PRIMARY,
 			                  utf8, utf8, win, CurrentTime);
 			return;
@@ -993,13 +999,17 @@ main(int argc, char *argv[])
 		} else if (i + 1 == argc)
 			usage();
 		/* these options take one argument */
-		else if (!strcmp(argv[i], "-l"))   /* number of lines in vertical list */
+		else if (!strcmp(argv[i], "-g")) {   /* number of columns in grid */
+			columns = atoi(argv[++i]);
+			if (lines == 0) lines = 1;
+		} else if (!strcmp(argv[i], "-l")) { /* number of lines in grid */
 			lines = atoi(argv[++i]);
-		else if (!strcmp(argv[i], "-h")) { /* minimum height of one menu line */
+			if (columns == 0) columns = 1;
+        } else if (!strcmp(argv[i], "-h")) { /* minimum height of one menu line */
 			lineheight = atoi(argv[++i]);
 			lineheight = MAX(lineheight, min_lineheight);
 		}
-		else if (!strcmp(argv[i], "-m"))
+		 else if (!strcmp(argv[i], "-m"))
 			mon = atoi(argv[++i]);
 		else if (!strcmp(argv[i], "-p"))   /* adds prompt to left of input field */
 			prompt = argv[++i];

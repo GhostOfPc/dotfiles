@@ -12,7 +12,6 @@ local gears = require('gears')
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
-local dpi = beautiful.xresources.apply_dpi
 local config_dir = gears.filesystem.get_configuration_dir()
 
 
@@ -20,7 +19,7 @@ local widgets = {}
 wdt_bg      =   beautiful.bg_empty
 
 wdt_shape   =   function(cr, width, height)
-    gears.shape.rounded_rect(cr, width, height, 8) end
+    gears.shape.rounded_rect(cr, width, height, 6) end
 
 wdt_rmgn    =   '6'
 wdt_lmgn    =   '6'
@@ -45,7 +44,7 @@ layoutbox = wibox.widget {
 -- separator
 separator = {
             
-                forced_width    = 6,
+                forced_width    = 3,
                 opacity         = 0,
                 widget          = wibox.widget.separator
             }
@@ -246,5 +245,27 @@ uptime_wdt = wibox.widget {
     widget = wibox.container.background
 }
 
+-- the systray has its own internal background because of X11 limitations
+my_round_systray = wibox.widget {
+    {
+        wibox.widget.systray(),
+        widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
+    },
+    bg         = wdt_bg,
+    shape      = wdt_shape,
+    shape_clip = true,
+    widget     = wibox.container.background,
+}
+
+-- Prayer times
+prayer_widget = wibox.widget {
+    {
+        awful.widget.watch('bash -c "$HOME/.local/bin/prayer.sh"'),
+        widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
+    },
+    bg = wdt_bg,
+    shape = wdt_shape,
+    widget = wibox.container.background
+}
 
 return widgets

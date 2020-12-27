@@ -17,7 +17,7 @@ theme:
   hint: Yellow
   hovered: Yellow
   inactive: Blue
-  playbar_background: Black
+  playbar_background: DarkGray
   playbar_progress: LightGreen
   playbar_text: DarkGray
   selected: LightRed

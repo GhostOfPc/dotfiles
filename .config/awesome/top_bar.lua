@@ -16,14 +16,21 @@ local dpi = xresources.apply_dpi
 local top_bar = {}
 awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
-    top_bar = awful.wibar({ position = 'top', screen = s , height = dpi(20)})
+    s.top_bar = awful.wibar(
+    {
+        position = 'top',
+        screen = s ,
+        height = dpi(20),
+        width = awful.screen.focused().workarea.width * 1.007,
+    }
+    )
 
     -- Add widgets to the wibox
-    top_bar:setup {
+    s.top_bar:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            separator, lag_wdt, separator,
+            separator, separator, lag_wdt, separator,
             s.mytaglist, separator,
         },
 	{ -- Middle widgets
@@ -31,15 +38,16 @@ awful.screen.connect_for_each_screen(function(s)
 		mytasklist, separator,
 	},
         { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-	    wthr_widget, separator,
+        layout = wibox.layout.fixed.horizontal,
 	    net_widget, separator,
+        pkg_widget, separator,
 	    disk_widget, separator,
 	    mem_widget, separator,
 	    cpu_widget, separator,
+        kernel_wdt, separator,
 	    datewidget, separator,
 	    volumewidget, separator,
-	    kbd_widget, separator,
+	    kbd_widget, separator,separator,
         },
     }
 

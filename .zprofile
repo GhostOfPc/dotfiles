@@ -14,7 +14,6 @@ export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 export XCOMPOSEFILE="$XDG_CONFIG_HOME"/X11/xcompose
 export XCOMPOSECACHE="$XDG_CACHE_HOME"/X11/xcompose
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 #Add .local/bin to the environment variables path
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
@@ -33,6 +32,7 @@ export VIDEO="mpv"
 # Configure hardware video acceleration
 export LIBVA_DRIVER_NAME=radeonsi
 export VDPAU_DRIVER=radeonsi
+export MOZ_Z11_EGL=1
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/hisham/.config/zsh/.oh-my-zsh"

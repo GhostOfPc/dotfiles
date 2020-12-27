@@ -15,7 +15,8 @@ local apps = {
 	editor	= os.getenv('EDITOR') or 'nvim',
 	fmanager = 'pcmanfm',
 	geditor	= 'geany',
-	launcher = 'dmenu_run -i',
+	launcher = 'dmenu_run -i -p "Run:"',
+	rofi = 'rofi -show drun',
 	lock	= 'i3lock',
 	mplayer	= 'spotify',
 	screenshot	=	'maim -B -u $HOME/.screenshots/"Screenshot-"$(date +%Y-%m-%d-%H-%M).png',
@@ -38,8 +39,8 @@ do
   local startup_apps=
   {
       --'nitrogen --restore',
-      'picom',
-      'lxsession',
+      --'picom --experimental-backends',
+      --'lxsession',
   }
 
   for _,apps in pairs(startup_apps) do

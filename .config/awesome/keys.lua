@@ -32,8 +32,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, 'Shift'   }, 'q', awesome.quit,
               {description = 'quit awesome', group = 'awesome'}),
 
-    awful.key({ raltkey }, 'Escape', 
-    	    function()
+    awful.key({ raltkey }, 'Escape', function()
         awful.spawn.with_shell('$HOME/.local/bin/dmenu_shutdown.sh') end,
         {description = 'Power options', group = 'awesome'}),
 
@@ -45,15 +44,11 @@ globalkeys = gears.table.join(
               {description = 'view next', group = 'tag'}),
 
     -- ================= Switching between clients ===========================
-    awful.key({ modkey,           }, 'j',
-        function ()
-            awful.client.focus.byidx( 1)
-        end,
+    awful.key({ modkey,           }, 'j', function ()
+            awful.client.focus.byidx( 1) end,
         {description = 'focus next by index', group = 'client'}),
-    awful.key({ modkey,           }, 'k',
-        function ()
-            awful.client.focus.byidx(-1)
-        end,
+    awful.key({ modkey,           }, 'k', function ()
+            awful.client.focus.byidx(-1) end,
         {description = 'focus previous by index', group = 'client'}),
 
     -- ================= Layout control keybindings ===========================
@@ -135,7 +130,13 @@ globalkeys = gears.table.join(
     awful.key({                   }, 'XF86LaunchB',     function () awful.spawn(apps.launcher) end,
               {description = 'spawn the launcher', group = 'launcher'}),
 
+    awful.key({                   }, 'XF86LaunchA',     function () awful.spawn.with_shell('$TERMINAL --hold $HOME/.local/bin/fhd_2_4k.sh') end,
+              {description = 'Change Screen resolution', group = 'launcher'}),
+
     awful.key({ modkey            }, 'p',     function () awful.spawn(apps.launcher) end,
+              {description = 'spawn the launcher', group = 'launcher'}),
+
+    awful.key({ modkey            }, 'r',     function () awful.spawn(apps.rofi) end,
               {description = 'spawn the launcher', group = 'launcher'}),
 
     awful.key({ modkey            }, 'f',     function () awful.spawn(apps.fmanager) end,
@@ -239,16 +240,19 @@ globalkeys = gears.table.join(
               {description = 'Play a random file (audio/video) with mpv', group = 'hotKeys'}),
 
     awful.key({ altkey, 'Control'}, 'p', function () awful.spawn.with_shell('$HOME/.local/bin/shuffleList.sh') end,
-              {description = 'Create a random playlist of random files (audio/video) with mpv', group = 'hotKeys'}),
+              {description = 'Create a random playlist of random videos ', group = 'hotKeys'}),
 
     awful.key({ modkey, }, 'w', function () awful.spawn.with_shell('nitrogen --random --set-zoom-fill') end,
               {description = 'Set a random wallpaper', group = 'hotKeys'}),
 
     awful.key({ altkey, 'Control'}, 'm', function () awful.spawn.with_shell('mpv $(xclip -o -selection clipboard)') end,
-              {description = 'Play the copied link with mpv without caching', group = 'hotKeys'}),
+              {description = 'Play the copied link with mpv w/o caching', group = 'hotKeys'}),
 
     awful.key({ altkey, }, 'm', function () awful.spawn.with_shell('mpv --cache=yes $(xclip -o -selection clipboard)') end,
-              {description = 'Play the copied link with mpv with caching', group = 'hotKeys'}),
+              {description = 'Play the copied link with mpv w caching', group = 'hotKeys'}),
+
+    awful.key({ raltkey, }, '7', function () awful.spawn.with_shell('$HOME/.local/bin/movies.sh') end,
+              {description = 'Play a random movie', group = 'hotKeys'}),
     -- ================= dmenu scripts ===========================
     awful.key({ raltkey }, '1', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_url.sh') end,
               {description = 'dmenu script to surf the web', group = 'dmenu'}),
@@ -268,8 +272,14 @@ globalkeys = gears.table.join(
     awful.key({ raltkey }, '6', function () awful.spawn.with_shell('$HOME/.local/bin/configs.sh') end,
               {description = 'dmenu script to edit confgiration files', group = 'dmenu'}),
 
+    awful.key({ raltkey }, 'w', function () awful.spawn.with_shell('$HOME/.local/bin/mpvWatch.sh') end,
+              {description = 'dmenu script to edit confgiration files', group = 'dmenu'}),
+
     awful.key({ raltkey }, 's', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_services.sh') end,
               {description = 'dmenu script to Start/Stop systemd services', group = 'dmenu'}),
+
+    awful.key({ modkey }, 't', function () awful.spawn.with_shell('$HOME/.local/bin/theme.sh') end,
+              {description = 'Toggle dark or light theme', group = 'dmenu'}),
 
 
     awful.key({ modkey,           }, 'l',     function () awful.tag.incmwfact( 0.05)          end,

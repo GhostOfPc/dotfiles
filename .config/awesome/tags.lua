@@ -29,9 +29,9 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag.add('',{
             name            = 'web',
             id              = '2',
-			layout			= awful.layout.suit.max,
+			layout			= awful.layout.suit.tile,
 			gap_single_client	= true,
-			gap			= 4,
+			gap			= 3,
 			screen			= s
 			}
 		)
@@ -49,7 +49,7 @@ awful.screen.connect_for_each_screen(function(s)
             id              = '4',
 			layout			= awful.layout.suit.tile,
 			gap_single_client	= true,
-			gap			= 23,
+			gap			= 10,
 			screen			= s
 			}
 		)
@@ -58,7 +58,7 @@ awful.screen.connect_for_each_screen(function(s)
             id              = '5',
 			layout			= awful.layout.suit.tile,
 			gap_single_client	= true,
-			gap			= 43,
+			gap			= 20,
 			screen			= s
 			}
 		)
@@ -67,7 +67,7 @@ awful.screen.connect_for_each_screen(function(s)
             id              = '6',
 			layout			= awful.layout.suit.tile,
 			gap_single_client	= true,
-			gap			= 43,
+			gap			= 20,
 			screen			= s
 			}
 		)

@@ -254,15 +254,21 @@ alias cres="sudo timeshift --create --comments"
 alias ls="exa --icons -lah --color=always --group-directories-first"
 alias m="mpv --cache=yes"
 alias m4="mpv --cache=yes --video-aspect-override=4:3"
+alias mm="$HOME/.local/bin/mpvMovie.sh"
 alias v="nvim"
 alias w="curl -H 'Accept-Language: es' wttr.in/bariloche"
 alias grep="grep --color=always"
 alias du="dust -r"
 alias df="df -h"
-alias lf="lfrun"
+#alias lf="lfrun"
 alias ca="cd ~/.config/awesome"
 alias cb="cd ~/.local/bin"
 alias cc="cd ~/.config"
+alias cad="cd /media/ADULT"
+alias cm="cd /media/MOVIES"
+alias cda="cd /media/DATA"
+alias cdo="cd ~/Downloads"
+alias cpi="cd ~/Pictures"
 alias wget="wget --hsts-file='$XDG_CACHE_HOME/wget-hsts'"
 alias config='/usr/bin/git --git-dir=/home/hisham/.cfg/ --work-tree=/home/hisham'
 
@@ -278,6 +284,9 @@ alias n="ncmpcpp"
 #switch between bash and zsh
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
+
+#Download subtitle
+alias osd="$HOME/.local/bin/OpenSubtitlesDownload.py --cli -l ara"
 
 color_test.sh
 date +%A\ %d\ %B\ %Y\ %H:%M 
