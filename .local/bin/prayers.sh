@@ -1,6 +1,5 @@
 #!/bin/sh
 
-nextprayer=""
 prayers="$HOME/.local/share/prayers.json"
 
 # The api can be found for free
