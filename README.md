@@ -30,3 +30,8 @@ I'm on Arch linux because it makes it really easy to install all the packages I 
 
 I manage this dotfiles using a method provided by a gentelman called StreakyCobra on [https://www.atlassian.com/git/tutorials/dotfiles](https://www.atlassian.com/git/tutorials/dotfiles)
 
+# Screenshots
+## Window Manager
+![AwesomeWM](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-01-21-07-55.png)
+## Web Browser
+![qutebrowser](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-01-21-07-57.png)
