@@ -34,4 +34,4 @@ I manage this dotfiles using a method provided by a gentelman called StreakyCobr
 ## Window Manager
 ![AwesomeWM](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-01-21-07-55.png)
 ## Web Browser
-![qutebrowser](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-01-21-07-57.png)
+![qutebrowser](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-01-21-08-11.png)
