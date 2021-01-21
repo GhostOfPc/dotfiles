@@ -16,10 +16,10 @@ static const unsigned int fgalpha = OPAQUE;
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
-	[SchemeNorm] = { "#f5f5f5", "#202020"},
+	[SchemeNorm] = { "#f5f5f5", "#212121"},
 	[SchemeSel] = { "#e5b566", "#505050" },
 	[SchemeSelHighlight] = { "#9e4e85", "#6c99ba" },
-	[SchemeNormHighlight] = { "#9e4e85", "#202020" },
+	[SchemeNormHighlight] = { "#9e4e85", "#212121" },
 	[SchemeOut] = { "#151515", "#7e8d50" },
 	[SchemeHp] = { "#ac4142", "#505050" }
 };
@@ -37,8 +37,8 @@ static const unsigned int alphas[SchemeLast][2] = {
 static unsigned int lines      = 0;
 static unsigned int columns    = 0;
 /* -h option; minimum height of a menu line */
-static unsigned int lineheight = 25;
-static unsigned int min_lineheight = 25;
+static unsigned int lineheight = 27;
+static unsigned int min_lineheight = 27;
 
 /*
  * Characters not considered part of a word while deleting words

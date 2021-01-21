@@ -13,6 +13,7 @@ asr=$(jq ".data.timings.Asr" $prayers | bc | awk '{$1=$1};1')
 maghrib=$(jq ".data.timings.Maghrib" $prayers | bc | awk '{$1=$1};1')
 isha=$(jq ".data.timings.Isha" $prayers | bc | awk '{$1=$1};1')
 
+# Get the current time
 currenttime=$(date +%H:%M)
 
 # For each prayer, two variables are used, one to be printed as the name of the prayer (nextprayer), 
@@ -38,8 +39,10 @@ elif [[ $currenttime > $isha || $currenttime < $fajr ]]; then
     nextTime=$fajr
 fi
 
-# Calculate the remaining time to the next prayer
+# Calculate the remaining time to the next prayer (or iftar in ramadan and the fast duration is ramadan)
 remain=$(date -u -d @$(($(date -d "$nextTime" '+%s') - $(date -d "$currenttime" '+%s'))) '+%H:%M')
+fast=$(date -u -d @$(($(date -d "$maghrib" '+%s') - $(date -d "$fajr" '+%s'))) '+%H:%M')
+Tofast=$(date -u -d @$(($(date -d "$maghrib" '+%s') - $(date -d "$currenttime" '+%s'))) '+%H:%M')
 
 # Sending the salawat to the stdout
-printf "🕌 الصلاة القادمة ۩ $nextprayer ۩ $nextTime (الوقت المتبقى $remain)"
+printf "🕌 الصلاة القادمة ۩ $nextprayer ۩ $nextTime (الوقت المتبقي $remain)\nمدة الصوم $fast\nالوقت المتبقي حتى الإفطار $Tofast"

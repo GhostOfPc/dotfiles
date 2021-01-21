@@ -21,7 +21,7 @@ awful.screen.connect_for_each_screen(function(s)
         position = 'top',
         screen = s ,
         height = dpi(20),
-        width = awful.screen.focused().workarea.width * 1.007,
+        width = awful.screen.focused().workarea.width * 0.995,
     }
     )
 
@@ -30,7 +30,8 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            separator, separator, lag_wdt, separator,
+            --separator, separator, logo, separator,
+            separator, logo, separator,
             s.mytaglist, separator,
         },
 	{ -- Middle widgets
@@ -47,7 +48,8 @@ awful.screen.connect_for_each_screen(function(s)
         kernel_wdt, separator,
 	    datewidget, separator,
 	    volumewidget, separator,
-	    kbd_widget, separator,separator,
+	    --kbd_widget, separator,separator,
+	    kbd_widget, separator,
         },
     }
 

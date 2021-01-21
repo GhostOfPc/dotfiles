@@ -12,9 +12,9 @@ local wibox = require("wibox")
 local beautiful = require('beautiful')
 local xresources = require('beautiful.xresources')
 local dpi = xresources.apply_dpi
-require 'widgets'
-require 'top_bar'
-require 'prayer'
+--require('top_left')
+--require('top_right')
+require('prayer')
 
 local bottom_bar = {}
 awful.screen.connect_for_each_screen(function(s)
@@ -23,15 +23,20 @@ awful.screen.connect_for_each_screen(function(s)
     {
         position = "bottom",
         screen = s ,
-        height = dpi(24),
+        height = dpi(20),
         width = awful.screen.focused().workarea.width * 0.96,
         shape = wdt_shape,
         bg      =   beautiful.bottom_bar_bg
     }
     )
-    s.prayer.x = awful.screen.focused().workarea.width * 0.927
-    s.prayer.y = awful.screen.focused().workarea.height * 0.852
-    s.bottom_bar.y = 1046
+-- ========================= Widgets and bars placement =======================
+    s.prayer.x = awful.screen.focused().workarea.width * 0.888
+    s.prayer.y = awful.screen.focused().workarea.height * 0.75
+    --s.top_left.x = 10
+    --s.top_left.y = 0
+    --s.top_right.x = 930
+    --s.top_right.y = 0
+    s.bottom_bar.y = 1050
 
 left = wibox.widget {
     {
@@ -67,7 +72,7 @@ right = wibox.widget {
         temp_widget, separator,
         uptime_wdt, separator,
         layoutbox, separator,
-        --my_round_systray, separator,
+        --round_systry, separator,
         },
     }
 

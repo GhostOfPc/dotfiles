@@ -9,10 +9,10 @@ transmission-remote -l | grep % |
         s/.*Uploading.*/L/g;
         s/.*%.*/M/g" |
                 sort -h | uniq -c | sed " # Now we replace the standin letters with ic>
-                                s/A/⊖/g;
-                                s/B/🕰/g;
-                                s/L/▲/g;
-                                s/M/▼/g;
+                                s/A/🛑/g;
+                                s/B/💤/g;
+                                s/L/🔼/g;
+                                s/M/🔽/g;
                                 s/N/✅/g;
                                 s/Z/🌱/g" | awk '{print $2, $1}' | paste -sd ' '
 
@@ -23,10 +23,10 @@ case $BLOCK_BUTTON in
 - Middle click to toggle transmission.
 - Shift click to edit script.
 Module shows number of torrents:
-⊖: paused
-🕰: idle (seeds needed)
-▲: uploading (unfinished)
-▼: downloading
+🛑: paused
+💤: idle (seeds needed)
+🔼: uploading (unfinished)
+🔽: downloading
 ✅: done
 🌱: done and seeding" ;;
         6) "$TERMINAL" -e "$EDITOR" "$0" ;;

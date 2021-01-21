@@ -184,6 +184,7 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 autoload -Uz compinit promptinit
+autoload zmv
 compinit
 promptinit
 

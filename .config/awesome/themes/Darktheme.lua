@@ -21,7 +21,7 @@ local theme = {}
 theme.font          =   'FantasqueSansMono Nerd Font 9'
 
 -- Background colors
-theme.bg_normal     =   '#202020c0'
+theme.bg_normal     =   '#212121c0'
 theme.fg_urgent     =   '#ac4142'
 theme.fg_focus      =   '#e5b566'
 theme.fg_occupied   =   '#6c99ba'
@@ -31,7 +31,7 @@ theme.taglist_fg_empty =   '#d7eaf3b4'
 
 -- Border colors
 theme.border_width      =   dpi(1)
-theme.border_normal     =   '#202020'
+theme.border_normal     =   '#212121cc'
 theme.border_focus      =   '#6c99ba'
 
 -- Foreground color
@@ -49,7 +49,7 @@ theme.tooltip_opacity       =   0.85
 theme.wibar_fg              =   theme.fg_normal
 theme.wibar_border_width    =   dpi(0)
 theme.wibar_border_color    =   theme.border_focus
-theme.bottom_bar_bg         =   '#202020a9'
+theme.bottom_bar_bg         =   '#212121a9'
 
 -- hotkeys
 theme.hotkeys_bg		=	theme.bg_normal

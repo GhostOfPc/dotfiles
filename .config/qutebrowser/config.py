@@ -72,6 +72,11 @@ config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
 #   - never: Don't accept cookies at all.
 config.set('content.cookies.accept', 'all', 'devtools://*')
 
+# Set fullscreen notification overlay timeout in milliseconds. If set to
+# 0, no overlay will be displayed.
+# Type: Int
+c.content.fullscreen.overlay_timeout = 0
+
 # Value to send in the `Accept-Language` header. Note that the value
 # read from JavaScript is always the global value.
 # Type: String
@@ -165,6 +170,14 @@ config.set('content.notifications', True, 'https://web.whatsapp.com')
 #   - ask
 config.set('content.notifications', True, 'https://mail.google.com')
 
+# Allow websites to show notifications.
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
+config.set('content.notifications', True, 'https://www.instagram.com')
+
 # Allow websites to register protocol handlers via
 # `navigator.registerProtocolHandler`.
 # Type: BoolAsk
@@ -178,9 +191,16 @@ config.set('content.register_protocol_handler', False, 'https://mail.google.com?
 # Type: List of File, or File
 c.content.user_stylesheets = []
 
+# Where to show the downloaded files.
+# Type: VerticalPosition
+# Valid values:
+#   - top
+#   - bottom
+c.downloads.position = 'bottom'
+
 # Characters used for hint strings.
 # Type: UniqueCharString
-c.hints.chars = 'asdfghjklie'
+c.hints.chars = 'asdfghjkl'
 
 # When/how to show the scrollbar.
 # Type: String
@@ -204,6 +224,10 @@ c.scrolling.smooth = True
 #   - in-mode: Show the statusbar when in modes other than normal mode.
 c.statusbar.show = 'in-mode'
 
+# Padding (in pixels) for the statusbar.
+# Type: Padding
+c.statusbar.padding = {'bottom': 8, 'left': 8, 'right': 8, 'top': 8}
+
 # List of widgets displayed in the statusbar.
 # Type: List of String
 # Valid values:
@@ -216,6 +240,10 @@ c.statusbar.show = 'in-mode'
 #   - progress: Progress bar for the current page loading.
 c.statusbar.widgets = ['keypress', 'url', 'history', 'progress']
 
+# Open new tabs (middleclick/ctrl+click) in the background.
+# Type: Bool
+c.tabs.background = False
+
 # Mouse button with which to close tabs.
 # Type: String
 # Valid values:
@@ -224,6 +252,11 @@ c.statusbar.widgets = ['keypress', 'url', 'history', 'progress']
 #   - none: Don't close tabs using the mouse.
 c.tabs.close_mouse_button = 'right'
 
+# Scaling factor for favicons in the tab bar. The tab size is unchanged,
+# so big favicons also require extra `tabs.padding`.
+# Type: Float
+c.tabs.favicons.scale = 1.0
+
 # When to show favicons in the tab bar.
 # Type: String
 # Valid values:
@@ -231,6 +264,10 @@ c.tabs.close_mouse_button = 'right'
 #   - never: Always hide favicons.
 #   - pinned: Show favicons only on pinned tabs.
 c.tabs.favicons.show = 'always'
+
+# Padding (in pixels) around text for tabs.
+# Type: Padding
+c.tabs.padding = {'bottom': 8, 'left': 8, 'right': 8, 'top': 8}
 
 # When to show the tab bar.
 # Type: String
@@ -254,11 +291,11 @@ c.tabs.show = 'switching'
 # web page. * `{protocol}`: Protocol (http/https/...) of the current web
 # page. * `{audio}`: Indicator for audio/mute status.
 # Type: FormatString
-c.tabs.title.format = '{current_title}'
+c.tabs.title.format = '{title_sep}{current_title}'
 
 # Width (in pixels) of the progress indicator (0 to disable).
 # Type: Int
-c.tabs.indicator.width = 3
+c.tabs.indicator.width = 6
 
 # What search to start when something else than a URL is entered.
 # Type: String
@@ -313,19 +350,19 @@ c.colors.completion.odd.bg = '#383838'
 
 # Background color of the completion widget for even rows.
 # Type: QssColor
-c.colors.completion.even.bg = '#181818'
+c.colors.completion.even.bg = '#212121'
 
 # Background color of the completion widget category headers.
 # Type: QssColor
-c.colors.completion.category.bg = '#181818'
+c.colors.completion.category.bg = '#212121'
 
 # Top border color of the completion widget category headers.
 # Type: QssColor
-c.colors.completion.category.border.top = '#181818'
+c.colors.completion.category.border.top = '#212121'
 
 # Bottom border color of the completion widget category headers.
 # Type: QssColor
-c.colors.completion.category.border.bottom = '#181818'
+c.colors.completion.category.border.bottom = '#212121'
 
 # Background color of the selected completion item.
 # Type: QssColor
@@ -333,11 +370,11 @@ c.colors.completion.item.selected.bg = '#6c99ba'
 
 # Top border color of the selected completion item.
 # Type: QssColor
-c.colors.completion.item.selected.border.top = '#181818'
+c.colors.completion.item.selected.border.top = '#212121'
 
 # Bottom border color of the selected completion item.
 # Type: QssColor
-c.colors.completion.item.selected.border.bottom = '#181818'
+c.colors.completion.item.selected.border.bottom = '#212121'
 
 # Foreground color of the matched text in the completion.
 # Type: QtColor
@@ -349,7 +386,7 @@ c.colors.completion.scrollbar.fg = '#f5f5f5'
 
 # Color of the scrollbar in the completion view.
 # Type: QssColor
-c.colors.completion.scrollbar.bg = '#181818'
+c.colors.completion.scrollbar.bg = '#212121'
 
 # Background color of the context menu. If set to null, the Qt default
 # is used.

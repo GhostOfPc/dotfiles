@@ -20,7 +20,7 @@ export $(xargs -0 -a "/proc/$(pgrep awesome -n -U $UID)/environ")
 
 # Send a notification when it is prayer time
 function send_notification {
-    notify=$(printf "🕌 حان الآن موعد صلاة ۩ $currentprayer ۩ حسب التوقيت المحلي لمدينة $City\n\n<b>أوقات الصلاة لهذا اليوم</b>\n۞ الفجر $fajr ۞ الظهر $dhuhr ۞ العصر $asr ۞ المغرب $maghrib ۞ العشاء $isha ۞")
+    notify=$(printf "🕌 حان الآن موعد صلاة ۩ $currentprayer ۩ حسب التوقيت المحلي لمدينة $City")
     notify-send "$notify" -t 30000
 }
 case $currenttime in

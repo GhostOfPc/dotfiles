@@ -11,7 +11,7 @@ local awful = require('awful')
 local filesystem = require('gears.filesystem')
 
 local apps = {
-    browser = 'firefox',
+    browser = 'qutebrowser',
 	editor	= os.getenv('EDITOR') or 'nvim',
 	fmanager = 'pcmanfm',
 	geditor	= 'geany',

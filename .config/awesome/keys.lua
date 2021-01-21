@@ -13,14 +13,48 @@ local awful = require('awful')
 require('awful.autofocus')
 local hotkeys_popup = require('awful.hotkeys_popup')
 require('awful.hotkeys_popup.keys')
+local xresources = require('beautiful.xresources')
+local dpi = xresources.apply_dpi
 
 local apps = require('apps')
+local xrandr=require('xrandr')
 
 modkey = 'Mod4'
 altkey = 'Mod1'
 raltkey = 'Mod5'
 
 local keys = {}
+
+
+
+-- Resize client in given direction
+local floating_resize_amount = dpi(20)
+local tiling_resize_factor = 0.05
+
+local function resize_client(c, direction)
+   if awful.layout.get(mouse.screen) == awful.layout.suit.floating or (c and c.floating) then
+      if direction == "up" then
+         c:relative_move(0, 0, 0, -floating_resize_amount)
+      elseif direction == "down" then
+         c:relative_move(0, 0, 0, floating_resize_amount)
+      elseif direction == "left" then
+         c:relative_move(0, 0, -floating_resize_amount, 0)
+      elseif direction == "right" then
+         c:relative_move(0, 0, floating_resize_amount, 0)
+      end
+   else
+      if direction == "up" then
+         awful.client.incwfact(-tiling_resize_factor)
+      elseif direction == "down" then
+         awful.client.incwfact(tiling_resize_factor)
+      elseif direction == "left" then
+         awful.tag.incmwfact(-tiling_resize_factor)
+      elseif direction == "right" then
+         awful.tag.incmwfact(tiling_resize_factor)
+      end
+   end
+end
+
 globalkeys = gears.table.join(
     -- ================= General awesome keybindings ===========================
     awful.key({ modkey,           }, 's',      hotkeys_popup.show_help,
@@ -278,8 +312,18 @@ globalkeys = gears.table.join(
     awful.key({ raltkey }, 's', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_services.sh') end,
               {description = 'dmenu script to Start/Stop systemd services', group = 'dmenu'}),
 
+    awful.key({ raltkey }, 'r', function () xrandr.xrandr() end,
+              {description = 'dmenu script to Start/Stop systemd services', group = 'dmenu'}),
+
     awful.key({ modkey }, 't', function () awful.spawn.with_shell('$HOME/.local/bin/theme.sh') end,
               {description = 'Toggle dark or light theme', group = 'dmenu'}),
+
+    -- ================= Increase brightness with xrandr ===========================
+    awful.key({ raltkey }, 'XF86MonBrightnessUp', function () awful.spawn.with_shell('xrandr --output HDMI-A-0 --brightness 1.25') end,
+              {description = 'dmenu script to surf the web', group = 'dmenu'}),
+
+    awful.key({ raltkey }, 'XF86MonBrightnessDown', function () awful.spawn.with_shell('xrandr --output HDMI-A-0 --brightness 1') end,
+              {description = 'dmenu script to surf the web', group = 'dmenu'}),
 
 
     awful.key({ modkey,           }, 'l',     function () awful.tag.incmwfact( 0.05)          end,
@@ -297,8 +341,29 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, 'space', function () awful.layout.inc( 1)                end,
               {description = 'select next', group = 'layout'}),
     awful.key({ modkey, 'Shift'   }, 'space', function () awful.layout.inc(-1)                end,
-              {description = 'select previous', group = 'layout'})
-              )
+              {description = 'select previous', group = 'layout'}),
+
+
+   -- =========================================
+   -- CLIENT RESIZING
+   -- =========================================
+
+    awful.key({modkey, 'Control'}, 'Down',    function(c) resize_client(client.focus, 'down') end),
+
+    awful.key({modkey, 'Control'}, 'Up',      function(c) resize_client(client.focus, 'up') end),
+
+    awful.key({modkey, 'Control'}, 'Left',    function(c) resize_client(client.focus, 'left') end),
+
+    awful.key({modkey, 'Control'}, 'Right',   function(c) resize_client(client.focus, 'right') end),
+
+    awful.key({modkey, 'Control'}, 'j',       function(c) resize_client(client.focus, 'down') end),
+
+    awful.key({ modkey, 'Control' }, 'k',     function(c) resize_client(client.focus, 'up') end),
+
+    awful.key({modkey, 'Control'}, 'h',       function(c) resize_client(client.focus, 'left') end),
+
+    awful.key({modkey, 'Control'}, 'l',       function(c) resize_client(client.focus, 'right') end)
+    )
 
 clientkeys = gears.table.join(
     awful.key({ modkey, 'Shift'   }, 'c',      function (c) c:kill()                         end,

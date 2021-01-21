@@ -22,7 +22,7 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # Default applications
-export BROWSER="firefox"
+export BROWSER="qutebrowser"
 export WM="awesome"
 export EDITOR="nvim"
 export TERMINAL="kitty"

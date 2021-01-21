@@ -12,6 +12,7 @@ local gears = require('gears')
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
+local watch = require('awful.widget.watch')
 local config_dir = gears.filesystem.get_configuration_dir()
 
 
@@ -24,11 +25,14 @@ wdt_shape   =   function(cr, width, height)
 wdt_rmgn    =   '6'
 wdt_lmgn    =   '6'
 
-lag_wdt = wibox.widget {
-    image = config_dir ..'/icons/lag.svg',
-    resize = true,
-    opacity = 0.6,
-    widget = wibox.widget.imagebox
+logo = wibox.widget {
+        {
+            image = config_dir ..'/icons/dove.svg',
+            resize = true,
+            opacity = 1.0,
+            widget = wibox.widget.imagebox
+        },
+        widget = wibox.container.margin(_,2,2,2,2,_,_),
 }
 
 -- layout widget
@@ -52,7 +56,7 @@ separator = {
 -- Cpu temperature
 temp_widget = wibox.widget {
     {
-        awful.widget.watch('bash -c "$HOME/.local/bin/temp.sh"'),
+        watch('bash -c "$HOME/.local/bin/temp.sh"'),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -63,7 +67,7 @@ temp_widget = wibox.widget {
 -- Gpu temperature
 gpu_temp_widget = wibox.widget {
     {
-        awful.widget.watch('bash -c "$HOME/.local/bin/temp_gpu.sh"'),
+        watch('bash -c "$HOME/.local/bin/temp_gpu.sh"'),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -74,7 +78,7 @@ gpu_temp_widget = wibox.widget {
 -- Weather
 wthr_widget = wibox.widget {
     {
-        awful.widget.watch('bash -c "$HOME/.local/bin/weather.sh"', 1800),
+        watch('bash -c "$HOME/.local/bin/weather.sh"', 1800),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -88,7 +92,7 @@ end)
 -- Network traffic
 net_widget = wibox.widget {
     {
-        awful.widget.watch('bash -c "$HOME/.local/bin/net.sh"', 1,_,_,_,signal,16),
+        watch('bash -c "$HOME/.local/bin/net.sh"', 1,_,_,_,signal,16),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -102,7 +106,7 @@ end)
 -- Free disk available
 disk_widget = wibox.widget {
     {
-        awful.widget.watch('bash -c "$HOME/.local/bin/disk.sh"', 60),
+        watch('bash -c "$HOME/.local/bin/disk.sh"', 60),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -117,7 +121,7 @@ disk_widget:connect_signal('button::press', function (_,_,_,button)
 -- Memory usage
 mem_widget = wibox.widget {
     {
-        awful.widget.watch('bash -c "$HOME/.local/bin/memory.sh"'),
+        watch('bash -c "$HOME/.local/bin/memory.sh"'),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -132,7 +136,7 @@ mem_widget:connect_signal('button::press', function (_,_,_,button)
 -- Cpu usage
 cpu_widget = wibox.widget {
     {
-        awful.widget.watch('bash -c "$HOME/.local/bin/cpu.sh"'),
+        watch('bash -c "$HOME/.local/bin/cpu.sh"'),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -146,7 +150,7 @@ cpu_widget:connect_signal('button::press', function (_,_,_,button)
 
 -- Keyboard layout indicator
 kbd_widget = wibox.widget {
-    awful.widget.watch('bash -c "$HOME/.local/bin/kb-layout.sh"'),
+    watch('bash -c "$HOME/.local/bin/kb-layout.sh"'),
     --bg = wdt_bg,
     shape_clip = true,
     shape = wdt_shape,
@@ -156,7 +160,7 @@ kbd_widget = wibox.widget {
 --Volume
 volumewidget = wibox.widget {
     {
-        awful.widget.watch('bash -c "$HOME/.local/bin/volume_mon.sh"',_,_,_,_,signal,10),
+        watch('bash -c "$HOME/.local/bin/volume_mon.sh"',_,_,_,_,signal,10),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -178,7 +182,7 @@ volumewidget = wibox.widget {
 -- Date and time
 datewidget = wibox.widget {
     {
-        awful.widget.watch('bash -c "$HOME/.local/bin/date.sh"', 60),
+        watch('bash -c "$HOME/.local/bin/date.sh"', 60),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -196,7 +200,7 @@ music_wdt = wibox.widget {
     extra_space = 5,
     {
         {
-            awful.widget.watch('bash -c "$HOME/.local/bin/music.sh"'),
+            watch('bash -c "$HOME/.local/bin/music.sh"'),
             widget = wibox.container.margin(_,10,10,_,_,_,_),
         },
         bg = nil,
@@ -213,7 +217,7 @@ music_wdt:connect_signal('button::press', function (_,_,_,button)
 
 pkg_widget = wibox.widget {
     {
-        awful.widget.watch('bash -c "$HOME/.local/bin/pacman.sh"', 3600),
+        watch('bash -c "$HOME/.local/bin/pacman.sh"', 3600),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -227,7 +231,7 @@ pkg_widget:connect_signal('button::press', function (_,_,_,button)
 
 kernel_wdt = wibox.widget {
     {
-        awful.widget.watch('bash -c "$HOME/.local/bin/knl_v.sh"'),
+        watch('bash -c "$HOME/.local/bin/knl_v.sh"'),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -237,7 +241,7 @@ kernel_wdt = wibox.widget {
 
 uptime_wdt = wibox.widget {
     {
-        awful.widget.watch('bash -c "$HOME/.local/bin/uptime.sh"'),
+        watch('bash -c "$HOME/.local/bin/uptime.sh"'),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -246,7 +250,7 @@ uptime_wdt = wibox.widget {
 }
 
 -- the systray has its own internal background because of X11 limitations
-my_round_systray = wibox.widget {
+round_systry = wibox.widget {
     {
         wibox.widget.systray(),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
@@ -260,7 +264,7 @@ my_round_systray = wibox.widget {
 -- Prayer times
 prayer_widget = wibox.widget {
     {
-        awful.widget.watch('bash -c "$HOME/.local/bin/prayer.sh"'),
+        watch('bash -c "$HOME/.local/bin/prayer.sh"'),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,

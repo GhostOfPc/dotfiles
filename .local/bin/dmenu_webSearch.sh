@@ -59,7 +59,7 @@ if [[ ! -z "$search" ]]; then
     eval "sen_dsc=\"\${$sel[dsc]}\""
     eval "sen_url=\"\${$sel[url]}\""
 
-    xdg-open "$sen_url$txt" &>/dev/null &
+    $BROWSER "$sen_url$txt" &>/dev/null &
 
 fi
 
