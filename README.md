@@ -34,5 +34,6 @@ I manage this dotfiles using a method provided by a gentelman called StreakyCobr
 ## Window Manager
 ![AwesomeWM](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-01-21-07-55.png)
 ## Web Browser
-After being a firefox user for more than a decade, I switched to qutebrowser and I can't be happier. \The custom startpage I'm using can be found under .config/qutebrowser/html which is not mine since I don't know hot to create one from scratch. I just modified it to suite my needs and taste.
+After being a firefox user for more than a decade, I switched to qutebrowser and I can't be happier.\
+The custom startpage I'm using can be found under .config/qutebrowser/html which is not mine since I don't know hot to create one from scratch. I just modified it to suite my needs and taste.
 ![qutebrowser](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-01-21-08-11.png)
