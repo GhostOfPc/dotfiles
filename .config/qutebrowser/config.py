@@ -10,8 +10,8 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 
-# Uncomment this to still load settings configured via autoconfig.yml
-# config.load_autoconfig()
+# Change the argument to True to still load settings configured via autoconfig.yml
+config.load_autoconfig(False)
 
 # Turn on Qt HighDPI scaling. This is equivalent to setting
 # QT_AUTO_SCREEN_SCALE_FACTOR=1 or QT_ENABLE_HIGHDPI_SCALING=1 (Qt >=
@@ -208,7 +208,7 @@ c.hints.chars = 'asdfghjkl'
 #   - always: Always show the scrollbar.
 #   - never: Never show the scrollbar.
 #   - when-searching: Show the scrollbar when searching for text in the webpage. With the QtWebKit backend, this is equal to `never`.
-#   - overlay: Show an overlay scrollbar. With Qt < 5.11 or on macOS, this is unavailable and equal to `when-searching`; with the QtWebKit backend, this is equal to `never`. Enabling/disabling overlay scrollbars requires a restart.
+#   - overlay: Show an overlay scrollbar. On macOS, this is unavailable and equal to `when-searching`; with the QtWebKit backend, this is equal to `never`. Enabling/disabling overlay scrollbars requires a restart.
 c.scrolling.bar = 'never'
 
 # Enable smooth scrolling for web pages. Note smooth scrolling does not
@@ -257,7 +257,9 @@ c.tabs.close_mouse_button = 'right'
 # Type: Float
 c.tabs.favicons.scale = 1.0
 
-# When to show favicons in the tab bar.
+# When to show favicons in the tab bar. When switching this from never
+# to always/pinned, note that favicons might not be loaded yet, thus
+# tabs might require a reload to display them.
 # Type: String
 # Valid values:
 #   - always: Always show favicons.
@@ -328,7 +330,8 @@ c.url.open_base_url = True
 # * `{quoted}` quotes all characters (for `slash/and&amp` this
 # placeholder   expands to `slash%2Fand%26amp`). * `{unquoted}` quotes
 # nothing (for `slash/and&amp` this placeholder   expands to
-# `slash/and&amp`).  The search engine named `DEFAULT` is used when
+# `slash/and&amp`). * `{0}` means the same as `{}`, but can be used
+# multiple times.  The search engine named `DEFAULT` is used when
 # `url.auto_search` is turned on and something else than a URL was
 # entered to be opened. Other search engines can be used by prepending
 # the search engine name to the search term, e.g. `:open google
@@ -463,10 +466,11 @@ c.colors.tabs.selected.even.bg = '#262626'
 c.colors.webpage.darkmode.enabled = False
 
 # Which algorithm to use for modifying how colors are rendered with
-# darkmode.
+# darkmode. The `lightness-cielab` value was added with QtWebEngine 5.14
+# and is treated like `lightness-hsl` with older QtWebEngine versions.
 # Type: String
 # Valid values:
-#   - lightness-cielab: Modify colors by converting them to CIELAB color space and inverting the L value.
+#   - lightness-cielab: Modify colors by converting them to CIELAB color space and inverting the L value. Not available with Qt < 5.14.
 #   - lightness-hsl: Modify colors by converting them to the HSL color space and inverting the lightness (i.e. the "L" in HSL).
 #   - brightness-rgb: Modify colors by subtracting each of r, g, and b from their maximum value.
 c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
@@ -498,6 +502,7 @@ c.fonts.web.family.standard = 'Noto Sans'
 c.fonts.web.family.sans_serif = 'Noto Naskh Arabic UI'
 
 # Bindings for normal mode
+config.bind(',cd', 'download-clear')
 config.bind(',m', 'hint links spawn mpv {hint-url}')
 config.bind(',td', 'config-cycle content.user_stylesheets $HOME/.config/solarized-everything-css/css/darculized/darculized-all-sites.css ""')
 config.bind(',ts', 'config-cycle content.user_stylesheets $HOME/.config/solarized-everything-css/css/solarized-dark/solarized-dark-all-sites.css ""')

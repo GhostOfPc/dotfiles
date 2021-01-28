@@ -182,7 +182,7 @@ volumewidget = wibox.widget {
 -- Date and time
 datewidget = wibox.widget {
     {
-        watch('bash -c "$HOME/.local/bin/date.sh"', 60),
+        watch('bash -c "$HOME/.local/bin/date.sh"'),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -191,29 +191,55 @@ datewidget = wibox.widget {
     widget = wibox.container.background
 }
 
-music_wdt = wibox.widget {
-    layout = wibox.container.scroll.horizontal,
-    max_size = awful.screen.focused().workarea.width * 0.25,
-    step_function = wibox.container.scroll.step_functions.linear_increase,
-    fps = 60,
-    speed = 60,
-    extra_space = 5,
+Media_wdt = wibox.widget {
     {
         {
-            watch('bash -c "$HOME/.local/bin/music.sh"'),
-            widget = wibox.container.margin(_,10,10,_,_,_,_),
+            id = 'current_song',
+            widget = wibox.widget.textbox
         },
-        bg = nil,
-        shape = wdt_shape,
-        widget = wibox.container.background
-    }
+        layout = wibox.container.scroll.horizontal,
+        max_size = awful.screen.focused().workarea.width * 0.25,
+        step_function = wibox.container.scroll.step_functions.linear_increase,
+        fps = 75,
+        speed = 60,
+        extra_space = 5
+    },
+    shape = wdt_shape,
+    widget = wibox.container.background
 }
-music_wdt:connect_signal('button::press', function (_,_,_,button)
+
+Media_wdt:connect_signal('button::press', function (_,_,_,button)
     if (button == 1) then awful.spawn.with_shell('alacritty --hold -e vis')
         elseif (button == 3) then awful.spawn.with_shell('alacritty --hold -e spt')
     end
         end)
 
+local function update_music_widget(widget,stdout)
+    widget:get_children_by_id('current_song')[1]:set_text(stdout)
+end
+
+MUSIC_CMD = [[bash -c '
+if pidof -s "mpv" >/dev/null;then
+    title=$(playerctl metadata --format "{{emoji(status)}} {{duration(position)}}[{{duration(mpris:length)}}] {{xesam:title}}")
+    printf "$title"
+
+elif pidof -s "spotifyd" >/dev/null; then
+    song_info=$(playerctl metadata --format "{{emoji(status)}} {{duration(position)}}[{{duration(mpris:length)}}] {{xesam:artist}} - {{xesam:title}}")
+    printf "$song_info"
+
+elif pidof -s "mpd" >/dev/null; then 
+	play_info=$(mpc current)
+    play_sts=$(mpc | awk "/\[/ {print $1}"); play_pos=$(mpc | awk "/\[/ {print $3}" | awk -F "/" "{print $1 '[' $2 ']'}")
+	case "$play_sts" in
+		"[paused]") cur_icon="⏸️" ;;
+		"[playing]") cur_icon="▶️" ;;
+	esac
+	printf "$cur_icon $play_pos $play_info"
+else exit 
+fi
+']]
+
+watch(MUSIC_CMD,_,update_music_widget,Media_wdt)
 
 pkg_widget = wibox.widget {
     {

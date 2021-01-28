@@ -39,6 +39,9 @@ static unsigned int columns    = 0;
 /* -h option; minimum height of a menu line */
 static unsigned int lineheight = 27;
 static unsigned int min_lineheight = 27;
+static unsigned int xoffset = 5;
+static unsigned int yoffset = 3;
+static unsigned int max_width = 1910;
 
 /*
  * Characters not considered part of a word while deleting words

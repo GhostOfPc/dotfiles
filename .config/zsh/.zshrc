@@ -180,6 +180,7 @@ plugins=(
 	 zsh-autosuggestions
 	 zsh-syntax-highlighting
 	 colored-man-pages
+     colorize
 	 )
 
 source $ZSH/oh-my-zsh.sh
@@ -242,15 +243,16 @@ ex ()
 
 # Aliases
 #Pacman
-alias p="sudo pacman --color always"
-alias y="yay --color always"
-alias purge="sudo pacman -Rcns $(pacman -Qtdq)"
+alias sudo="doas"
+alias p="doas pacman --color always"
+alias y="paru"
+alias purge="doas pacman -Rcns $(pacman -Qtdq)"
 alias c="checkupdates"
 
 # Timeshift backup
-alias ltime="sudo timeshift --list"
-alias dels="sudo timeshift --delete --snapshot"
-alias cres="sudo timeshift --create --comments"
+alias ltime="doas timeshift --list"
+alias dels="doas timeshift --delete --snapshot"
+alias cres="doas timeshift --create --comments"
 
 alias ls="exa --icons -lah --color=always --group-directories-first"
 alias m="mpv --cache=yes"
@@ -283,8 +285,8 @@ alias ytls="youtube-dl --list-format"
 alias n="ncmpcpp"
 
 #switch between bash and zsh
-alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
-alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
+alias tobash="doas chsh $USER -s /bin/bash && echo 'Now log out.'"
+alias tozsh="doas chsh $USER -s /bin/zsh && echo 'Now log out.'"
 
 #Download subtitle
 alias osd="$HOME/.local/bin/OpenSubtitlesDownload.py --cli -l ara"
@@ -293,4 +295,3 @@ color_test.sh
 date +%A\ %d\ %B\ %Y\ %H:%M 
 uname -nrm
 uptime -p | sed "s/up\s/Elapsed Time: /;s/hours,\s/hs:/g;s/minutes/min/"
-

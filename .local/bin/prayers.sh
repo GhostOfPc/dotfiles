@@ -19,4 +19,4 @@ year=$(jq ".data.date.hijri.year" $prayers | bc | awk '{$1=$1};1')
 
 
 # Sending the salawat to the stdout
-printf "🕌 مواقيت الصلاة ليوم $day \n$daynumber-$month-$year\n۞ الفجر\t$fajr\n۞ الشروق\t$sunrise\n۞ الظهر\t$dhuhr\n۞ العصر\t$asr\n۞ المغرب\t$maghrib\n۞ العشاء\t$isha"
+printf "🕌 مواقيت الصلاة ليوم $day \n$daynumber-$month-$year\n۞ الفجر\t\t$fajr\n۞ الشروق\t$sunrise\n۞ الظهر\t$dhuhr\n۞ العصر\t$asr\n۞ المغرب\t$maghrib\n۞ العشاء\t$isha"

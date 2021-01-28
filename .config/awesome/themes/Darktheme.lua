@@ -26,7 +26,7 @@ theme.fg_urgent     =   '#ac4142'
 theme.fg_focus      =   '#e5b566'
 theme.fg_occupied   =   '#6c99ba'
 theme.bg_systray    =   theme.bg_normal
-theme.bg_empty      =   '#50505069'
+theme.bg_empty      =   '#5d5d5d80'
 theme.taglist_fg_empty =   '#d7eaf3b4'
 
 -- Border colors
