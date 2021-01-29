@@ -29,7 +29,7 @@ Prayers_widget = wibox.widget {
 
 --Arguments
 local GeoLoc = 'By_Cor' -- Choose either By_Cor for cooridnation based or By_City for city name based
-local today = os.time(os.date('!*t')) -- Date should by in this exact format
+local today = os.time() -- Date should by in the UNIX format
 -- The more accurate coordinates the more accurate prayer times
 local lat = '-41.124877'
 local long = '-71.365303'
@@ -55,6 +55,32 @@ local function update_widget(widget,stdout)
     Maghrib = Result.data.timings.Maghrib
     Isha = Result.data.timings.Isha
 
+    function HourPart(hourMinute)
+        H_s = hourMinute:gsub(':%d%d','')
+        H_p = tonumber(H_s)
+        return H_p
+    end
+
+    function MinPart(hourMinute)
+        M_s = hourMinute:gsub('%d%d:','')
+        M_p = tonumber(M_s)
+        return M_p
+    end
+
+    function Diff(next)
+        C_T_h = HourPart(Current_time)
+        C_T_m = MinPart(Current_time)
+        N_T_h = HourPart(next)
+        N_T_m = MinPart(next)
+        H2min = ( N_T_h - C_T_h ) * 60
+        MinDiff = N_T_m - C_T_m
+        TotMin = H2min + MinDiff
+        Rm_h = TotMin / 60
+        Rm_m = TotMin % 60
+        Total = string.format('%.2i',math.floor(Rm_h)) .. ':' .. string.format('%.2i',Rm_m)
+        return Total
+    end
+
     Fajr_text = '۞ الفجر\t\t\t' .. Fajr .. ' ۞ '
     Shuruq_text = '\n۞ الشروق\t\t\t' .. Shuruq .. ' ۞ '
     Duhur_text = '\n۞ الظهر\t\t\t' .. Duhur .. ' ۞ '
@@ -63,16 +89,22 @@ local function update_widget(widget,stdout)
     Isha_text = '\n۞ العشاء\t\t\t' .. Isha .. ' ۞ '
 
     if Current_time >= Fajr and Current_time < Shuruq then
+        Remain = Diff(Duhur)
         Fajr_text = '<span bgcolor="#7e8d50" bgalpha="68%">۞ الفجر\t\t\t' .. Fajr .. ' ۞ </span>'
     elseif Current_time >= Shuruq and Current_time < Duhur then
+        Remain = Diff(Duhur)
         Shuruq_text = '<span bgcolor="#7e8d50" bgalpha="68%">\n۞ الشروق\t\t\t' .. Shuruq .. ' ۞ </span>'
     elseif Current_time >= Duhur and Current_time < Asr then
+        Remain = Diff(Asr)
         Duhur_text = '<span bgcolor="#7e8d50" bgalpha="68%">\n۞ الظهر\t\t\t' .. Duhur .. ' ۞ </span>'
     elseif Current_time >= Asr and Current_time < Maghrib then
+        Remain = Diff(Maghrib)
         Asr_text = '<span bgcolor="#7e8d50" bgalpha="68%">\n۞ العصر\t\t\t' .. Asr .. ' ۞ </span>'
     elseif Current_time >= Maghrib and Current_time < Isha then
+        Remain = Diff(Isha)
         Maghrib_text = '<span bgcolor="#7e8d50" bgalpha="68%">\n۞ المغرب\t\t\t' .. Maghrib .. ' ۞ </span>'
     else
+        Remain = Diff(Fajr)
         Isha_text = '<span bgcolor="#7e8d50" bgalpha="68%">\n۞ العشاء\t\t\t' .. Isha .. ' ۞ </span>'
     end
 
@@ -85,6 +117,7 @@ local function update_widget(widget,stdout)
 
     widget:set_markup(
     Heading ..
+    'الوقت المتبقي:\t\t<span bgcolor="#7e8d50" bgalpha="68%">' .. Remain .. '</span>' .. '\n' ..
     Fajr_text ..
     Shuruq_text ..
     Duhur_text ..
@@ -117,8 +150,8 @@ watch(string.format(GET_TIMES_CMD,Api), timeout, update_image, Prayer_icon)
 awful.screen.connect_for_each_screen(function(s)
     s.Prayers_widget = awful.wibar(
     {
-        screen  =   s ,
-        height  =   awful.screen.focused().workarea.height * 0.335,
+        screen  =   'primary' ,
+        height  =   awful.screen.focused().workarea.height * 0.36,
         width   =   awful.screen.focused().workarea.width * 0.13,
         shape   =   wdt_shape,
         bg      =   beautiful.bottom_bar_bg,
