@@ -105,7 +105,7 @@ local function update_widget(widget,stdout)
         Remain = Diff(Isha)
         Maghrib_text = '<span bgcolor="#7e8d50" bgalpha="68%">\n۞ المغرب\t\t\t' .. Maghrib .. ' ۞ </span>'
     else
-                Remain = Diff(Fajr)
+        Remain = Diff(Fajr)
         Isha_text = '<span bgcolor="#7e8d50" bgalpha="68%">\n۞ العشاء\t\t\t' .. Isha .. ' ۞ </span>'
     end
 
