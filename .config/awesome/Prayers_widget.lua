@@ -38,6 +38,7 @@ local country = 'Argentina'
 local method = '2' -- method 2 for Americas
 local adjustment = '1' -- To adjust the hijri date
 local timeout = 60 -- 1 min is good enough to change the backgrouond of the current prayer
+local TZ_adj = -10800 -- For Argentina the timezone is GMT-3 (3*3600=10800)
 
 if GeoLoc == 'By_City' then
     Api = ('http://api.aladhan.com/v1/timingsByCity?city=' .. city .. '&country=' .. country .. '&method=' .. method .. '&adjustment=' .. adjustment)
@@ -46,6 +47,8 @@ else
 end
 
 local function update_widget(widget,stdout)
+
+
     Current_time = os.date('%H:%M')
     Result = json.decode(stdout)
     Fajr = Result.data.timings.Fajr
@@ -68,16 +71,14 @@ local function update_widget(widget,stdout)
     end
 
     function Diff(next)
-        C_T_h = HourPart(Current_time)
-        C_T_m = MinPart(Current_time)
-        N_T_h = HourPart(next)
-        N_T_m = MinPart(next)
-        H2min = ( N_T_h - C_T_h ) * 60
-        MinDiff = N_T_m - C_T_m
-        TotMin = H2min + MinDiff
-        Rm_h = TotMin / 60
-        Rm_m = TotMin % 60
-        Total = string.format('%.2i',math.floor(Rm_h)) .. ':' .. string.format('%.2i',Rm_m)
+        str = os.date('%a, %d %b %Y ') .. HourPart(next) .. ':' .. MinPart(next)
+        p="%a+, (%d+) (%a+) (%d+) (%d+):(%d+)"
+        day,month,year,hour,min,sec=str:match(p)
+        MON={Jan=1,Feb=2,Mar=3,Apr=4,May=5,Jun=6,Jul=7,Aug=8,Sep=9,Oct=10,Nov=11,Dec=12}
+        month=MON[month]
+        offset=os.time()+TZ_adj
+        Seconds = os.time({day=day,month=month,year=year,hour=hour,min=min,sec=sec})-offset
+        Total = os.date('%H:%M',Seconds)
         return Total
     end
 
@@ -104,7 +105,7 @@ local function update_widget(widget,stdout)
         Remain = Diff(Isha)
         Maghrib_text = '<span bgcolor="#7e8d50" bgalpha="68%">\n۞ المغرب\t\t\t' .. Maghrib .. ' ۞ </span>'
     else
-        Remain = Diff(Fajr)
+                Remain = Diff(Fajr)
         Isha_text = '<span bgcolor="#7e8d50" bgalpha="68%">\n۞ العشاء\t\t\t' .. Isha .. ' ۞ </span>'
     end
 
