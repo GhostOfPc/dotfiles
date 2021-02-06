@@ -20,7 +20,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     s.bottom_bar = awful.wibar(
     {
-        position = "bottom",
+        position = 'bottom',
         screen = s ,
         height = dpi(20),
         width = awful.screen.focused().workarea.width * 0.96,
@@ -33,18 +33,8 @@ awful.screen.connect_for_each_screen(function(s)
     --s.prayer.x = awful.screen.focused().workarea.width * 0.888
     --s.prayer.y = awful.screen.focused().workarea.height * 0.75
     s.Prayers_widget.x = awful.screen.focused().workarea.width * 0.867
-    s.Prayers_widget.y = awful.screen.focused().workarea.height * 0.675
+    s.Prayers_widget.y = awful.screen.focused().workarea.height * 0.647
     s.bottom_bar.y = 1050
-
-local left = wibox.widget {
-        text = 'Now playing >>> ',
-        widget = wibox.widget.textbox,
-}
-
-local right = wibox.widget {
-        text = ' <<<',
-        widget = wibox.widget.textbox
-}
 
     s.bottom_bar:setup {
         layout = wibox.layout.align.horizontal,
@@ -52,7 +42,17 @@ local right = wibox.widget {
             {
                 {
                     layout = wibox.layout.fixed.horizontal,
-                    left, Media_wdt, right
+                    {
+                        id = 'left',
+                        text = 'Now Playing >>> ',
+                        widget = wibox.widget.textbox
+                    },
+                    Media_wdt,
+                    {
+                        id = 'right',
+                        text = ' <<<',
+                        widget = wibox.widget.textbox
+                    }
                 },
                 widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_)
             },
@@ -65,10 +65,20 @@ local right = wibox.widget {
         },
         {
         layout = wibox.layout.fixed.horizontal,
-        prayer_widget, separator,
+        --prayer_widget, separator,
+        {
+            {
+                Pryr_wdt,
+                widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_)
+            },
+            bg = wdt_bg,
+            shape = wdt_shape,
+            widget = wibox.container.background
+        },
+        separator,
         wthr_widget, separator,
-        gpu_temp_widget, separator,
-        temp_widget, separator,
+        --gpu_temp_widget, separator,
+        --temp_widget, separator,
         uptime_wdt, separator,
         layoutbox, separator,
         --round_systry, separator,
@@ -76,4 +86,5 @@ local right = wibox.widget {
     }
 
 end)
+
 return bottom_bar

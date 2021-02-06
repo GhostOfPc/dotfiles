@@ -17,7 +17,7 @@ local xresources = require('beautiful.xresources')
 local dpi = xresources.apply_dpi
 
 local apps = require('apps')
-local xrandr=require('xrandr')
+--local xrandr=require('xrandr')
 
 modkey = 'Mod4'
 altkey = 'Mod1'
@@ -67,7 +67,7 @@ globalkeys = gears.table.join(
               {description = 'quit awesome', group = 'awesome'}),
 
     awful.key({ raltkey }, 'Escape', function()
-        awful.spawn.with_shell('$HOME/.local/bin/dmenu_shutdown.sh') end,
+        awful.spawn.with_shell('dmenu_shutdown.sh') end,
         {description = 'Power options', group = 'awesome'}),
 
     -- ================= Switching between tags ===========================
@@ -164,7 +164,7 @@ globalkeys = gears.table.join(
     awful.key({                   }, 'XF86LaunchB',     function () awful.spawn(apps.launcher) end,
               {description = 'spawn the launcher', group = 'launcher'}),
 
-    awful.key({                   }, 'XF86LaunchA',     function () awful.spawn.with_shell('$TERMINAL --hold $HOME/.local/bin/fhd_2_4k.sh') end,
+    awful.key({                   }, 'XF86LaunchA',     function () awful.spawn.with_shell('$TERMINAL --hold fhd_2_4k.sh') end,
               {description = 'Change Screen resolution', group = 'launcher'}),
 
     awful.key({ modkey            }, 'p',     function () awful.spawn(apps.launcher) end,
@@ -204,7 +204,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, 'Shift' }, 't', function () awful.spawn.with_shell('kill -9 $(pgrep qbittorrent)') end,
               {description = 'kill qbittorrent', group = 'client'}),
 
-    awful.key({ modkey, 'Shift' }, 'o', function () awful.spawn.with_shell('$HOME/.local/bin/spt_k.sh') end,
+    awful.key({ modkey, 'Shift' }, 'o', function () awful.spawn.with_shell('spt_k.sh') end,
               {description = 'kill spotify', group = 'client'}),
 
     -- ================= Screenshoot keybinging ===========================
@@ -270,10 +270,10 @@ globalkeys = gears.table.join(
     awful.key({ altkey}, 'q', function () awful.spawn.with_shell('xbacklight -dec 2') end,
               {description = 'Brightness decrease', group = 'hotKeys'}),
 
-    awful.key({ altkey}, 'p', function () awful.spawn.with_shell('$HOME/.local/bin/shuffle.sh') end,
+    awful.key({ altkey}, 'p', function () awful.spawn.with_shell('shuffle.sh') end,
               {description = 'Play a random file (audio/video) with mpv', group = 'hotKeys'}),
 
-    awful.key({ altkey, 'Control'}, 'p', function () awful.spawn.with_shell('$HOME/.local/bin/shuffleList.sh') end,
+    awful.key({ altkey, 'Control'}, 'p', function () awful.spawn.with_shell('shuffleList.sh') end,
               {description = 'Create a random playlist of random videos ', group = 'hotKeys'}),
 
     awful.key({ modkey, }, 'w', function () awful.spawn.with_shell('nitrogen --random --set-zoom-fill') end,
@@ -285,37 +285,37 @@ globalkeys = gears.table.join(
     awful.key({ altkey, }, 'm', function () awful.spawn.with_shell('mpv --cache=yes $(xclip -o -selection clipboard)') end,
               {description = 'Play the copied link with mpv w caching', group = 'hotKeys'}),
 
-    awful.key({ raltkey, }, '7', function () awful.spawn.with_shell('$HOME/.local/bin/movies.sh') end,
+    awful.key({ raltkey, }, '7', function () awful.spawn.with_shell('movies.sh') end,
               {description = 'Play a random movie', group = 'hotKeys'}),
     -- ================= dmenu scripts ===========================
-    awful.key({ raltkey }, '1', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_url.sh') end,
+    awful.key({ raltkey }, '1', function () awful.spawn.with_shell('dmenu_url.sh') end,
               {description = 'dmenu script to surf the web', group = 'dmenu'}),
 
-    awful.key({ raltkey }, '2', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_webSearch.sh') end,
+    awful.key({ raltkey }, '2', function () awful.spawn.with_shell('dmenu_webSearch.sh') end,
               {description = 'dmenu script to search the web', group = 'dmenu'}),
 
-    awful.key({ raltkey }, '3', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_kill.sh') end,
+    awful.key({ raltkey }, '3', function () awful.spawn.with_shell('dmenu_kill.sh') end,
               {description = 'dmenu script to kill a process', group = 'dmenu'}),
 
-    awful.key({ raltkey }, '4', function () awful.spawn.with_shell('$HOME/.local/bin/nordvpn.sh') end,
+    awful.key({ raltkey }, '4', function () awful.spawn.with_shell('nordvpn.sh') end,
               {description = 'dmenu script to switch the vpn', group = 'dmenu'}),
 
-    awful.key({ raltkey }, '5', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_emoji.sh') end,
+    awful.key({ raltkey }, '5', function () awful.spawn.with_shell('dmenu_emoji.sh') end,
               {description = 'dmenu script to select an emoji', group = 'dmenu'}),
 
-    awful.key({ raltkey }, '6', function () awful.spawn.with_shell('$HOME/.local/bin/configs.sh') end,
+    awful.key({ raltkey }, '6', function () awful.spawn.with_shell('configs.sh') end,
               {description = 'dmenu script to edit confgiration files', group = 'dmenu'}),
 
-    awful.key({ raltkey }, 'w', function () awful.spawn.with_shell('$HOME/.local/bin/mpvWatch.sh') end,
+    awful.key({ raltkey }, 'w', function () awful.spawn.with_shell('mpvWatch.sh') end,
               {description = 'dmenu script to edit confgiration files', group = 'dmenu'}),
 
-    awful.key({ raltkey }, 's', function () awful.spawn.with_shell('$HOME/.local/bin/dmenu_services.sh') end,
+    awful.key({ raltkey }, 's', function () awful.spawn.with_shell('dmenu_services.sh') end,
               {description = 'dmenu script to Start/Stop systemd services', group = 'dmenu'}),
 
     awful.key({ raltkey }, 'r', function () xrandr.xrandr() end,
               {description = 'dmenu script to Start/Stop systemd services', group = 'dmenu'}),
 
-    awful.key({ modkey }, 't', function () awful.spawn.with_shell('$HOME/.local/bin/theme.sh') end,
+    awful.key({ modkey }, 't', function () awful.spawn.with_shell('theme.sh') end,
               {description = 'Toggle dark or light theme', group = 'dmenu'}),
 
     -- ================= Increase brightness with xrandr ===========================

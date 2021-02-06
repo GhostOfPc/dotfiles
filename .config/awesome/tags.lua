@@ -88,10 +88,10 @@ awful.screen.connect_for_each_screen(function(s)
                 {
                     {
                         id     = 'icon_role',
+                        resize = true,
                         widget = wibox.widget.imagebox,
                     },
-                    margins = 2,
-                    widget  = wibox.container.margin,
+                    widget  = wibox.container.margin(_,_,_,_,_,_)
                 },
                 {
                     id     = 'text_role',
@@ -107,7 +107,7 @@ awful.screen.connect_for_each_screen(function(s)
         widget = wibox.container.background,
     },
 }
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
+    -- Create an imagebox widget which contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(gears.table.join(

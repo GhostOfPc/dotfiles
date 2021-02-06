@@ -15,8 +15,8 @@ local Prayers_widget = {}
 
 Prayer_icon = wibox.widget { -- For decoration only
         {
-            forced_height   =   200,
-            forced_width    =   200,
+            forced_height   =   100,
+            forced_width    =   100,
             resize          =   true,
             opacity         =   0.9,
             widget          =   wibox.widget.imagebox
@@ -30,9 +30,14 @@ Prayers_widget = wibox.widget {
         widget  =   wibox.widget.textbox
 }
 
+Pryr_wdt = wibox.widget {
+    font = 'Noto Kufi Arabic 8',
+    widget = wibox.widget.textbox
+}
+
 --Arguments
 local GeoLoc    =   'By_Cor' -- Choose either By_Cor for cooridnation based or By_City for city name based
-local today     =   os.time() -- Date should by in the UNIX format
+local today     =   os.time() -- Date should be in the UNIX timestamp format
 -- The more accurate coordinates the more accurate prayer times
 local lat       =   '-41.124877'
 local long      =   '-71.365303'
@@ -41,7 +46,7 @@ local country   =   'Argentina'
 local method    =   '2' -- method 2 for Americas
 local adjustment=   '1' -- To adjust the hijri date
 local timeout   =   60 -- 1 min is good enough to change the backgrouond of the current prayer
-local TZ_adj    =   -10800 -- For Argentina the timezone is GMT-3 (3*3600=10800)
+local TZ_adj    =   os.time()-os.time(os.date('!*t')) -- For Argentina the timezone is GMT-3 (3*3600=10800)
 local bgcolor   =   '#7e8d50'
 
 if GeoLoc == 'By_City' then
@@ -74,15 +79,20 @@ local function update_widget(widget,stdout)
         return M_p
     end
 
-    function Diff(next)
-        str = os.date('%a, %d %b %Y ') .. HourPart(next) .. ':' .. MinPart(next)
-        p="%a+, (%d+) (%a+) (%d+) (%d+):(%d+)"
-        day,month,year,hour,min,sec=str:match(p)
-        MON={Jan=1,Feb=2,Mar=3,Apr=4,May=5,Jun=6,Jul=7,Aug=8,Sep=9,Oct=10,Nov=11,Dec=12}
-        month=MON[month]
-        offset=os.time()+TZ_adj
-        Seconds = os.time({day=day,month=month,year=year,hour=hour,min=min})-offset
-        Total = os.date('%H:%M',Seconds)
+    function Prayer_utc(P_h_m)
+        str                         =   os.date('%a %d %b %Y ') .. HourPart(P_h_m) .. ':' .. MinPart(P_h_m) .. ':00'
+        p                           =   "%a+ (%d+) (%a+) (%d+) (%d+):(%d+):(%d+)"
+        day,month,year,hour,min,sec =   str:match(p)
+        MON                         =   {Jan=1,Feb=2,Mar=3,Apr=4,May=5,Jun=6,Jul=7,Aug=8,Sep=9,Oct=10,Nov=11,Dec=12}
+        month                       =   MON[month]
+        offset                      =   os.time()+TZ_adj
+        Seconds                     =   os.time({day=day,month=month,year=year,hour=hour,min=min})-offset
+        return Seconds
+    end
+
+    function Diff(next_p)
+        In_sec                     =   Prayer_utc(next_p)
+        Total                       =   os.date('%H:%M',In_sec)
         return Total
     end
 
@@ -98,7 +108,11 @@ local function update_widget(widget,stdout)
             text        =   'حان الآن موعد صلاة <span fgcolor="' .. bgcolor .. '"><b>' .. name .. '</b></span> حسب التوقيت المحلي لمدينة باريلوتشي'
         }
         )
-        awful.spawn.with_shell('mpv $HOME/.local/share/Azan.webm')
+        if name == Prayer_names[1] then
+            awful.spawn.with_shell('mpv $HOME/.local/share/Azan_fajr.webm')
+        else
+            awful.spawn.with_shell('mpv $HOME/.local/share/Azan.webm')
+        end
     end
 
     Fajr_text       = '۞ '   .. Prayer_names[1] .. '\t\t\t' .. Fajr    .. ' ۞ '
@@ -113,42 +127,42 @@ local function update_widget(widget,stdout)
             Notification(Prayer_names[1])
         end
         Remain = Diff(Duhur)
-        Fajr_text = '<span bgcolor="' .. bgcolor .. '" bgalpha="68%">۞ ' .. Prayer_names[1] .. '\t\t\t' .. Fajr .. ' ۞ </span>'
+            Fajr_text = '<span bgcolor="' .. bgcolor .. '" bgalpha="68%">۞ ' .. Prayer_names[1] .. '\t\t\t' .. Fajr .. ' ۞ </span>'
     elseif Current_time >= Shuruq and Current_time < Duhur then
         Remain = Diff(Duhur)
-        Shuruq_text = '<span bgcolor="' .. bgcolor .. '" bgalpha="68%">\n۞ ' .. Prayer_names[2] .. '\t\t\t' .. Shuruq .. ' ۞ </span>'
+            Shuruq_text = '<span bgcolor="' .. bgcolor .. '" bgalpha="68%">\n۞ ' .. Prayer_names[2] .. '\t\t\t' .. Shuruq .. ' ۞ </span>'
     elseif Current_time >= Duhur and Current_time < Asr then
         if Current_time == Duhur then
             Notification(Prayer_names[3])
         end
         Remain = Diff(Asr)
-        Duhur_text = '<span bgcolor="' .. bgcolor .. '" bgalpha="68%">\n۞ ' .. Prayer_names[3] .. '\t\t\t' .. Duhur .. ' ۞ </span>'
+            Duhur_text = '<span bgcolor="' .. bgcolor .. '" bgalpha="68%">\n۞ ' .. Prayer_names[3] .. '\t\t\t' .. Duhur .. ' ۞ </span>'
     elseif Current_time >= Asr and Current_time < Maghrib then
         if Current_time == Asr then
             Notification(Prayer_names[4])
         end
         Remain = Diff(Maghrib)
-        Asr_text = '<span bgcolor="' .. bgcolor .. '" bgalpha="68%">\n۞ ' .. Prayer_names[4] .. '\t\t\t' .. Asr .. ' ۞ </span>'
+            Asr_text = '<span bgcolor="' .. bgcolor .. '" bgalpha="68%">\n۞ ' .. Prayer_names[4] .. '\t\t\t' .. Asr .. ' ۞ </span>'
     elseif Current_time >= Maghrib and Current_time < Isha then
         if Current_time == Maghrib then
             Notification(Prayer_names[5])
         end
         Remain = Diff(Isha)
-        Maghrib_text = '<span bgcolor="' .. bgcolor .. '" bgalpha="68%">\n۞ ' .. Prayer_names[5] .. '\t\t\t' .. Maghrib .. ' ۞ </span>'
+            Maghrib_text = '<span bgcolor="' .. bgcolor .. '" bgalpha="68%">\n۞ ' .. Prayer_names[5] .. '\t\t\t' .. Maghrib .. ' ۞ </span>'
     else
         if Current_time == Isha then
             Notification(Prayer_names[6])
         end
         Remain = Diff(Fajr)
-        Isha_text = '<span bgcolor="' .. bgcolor .. '" bgalpha="68%">\n۞ ' .. Prayer_names[6] .. '\t\t\t' .. Isha .. ' ۞ </span>'
+            Isha_text = '<span bgcolor="' .. bgcolor .. '" bgalpha="68%">\n۞ ' .. Prayer_names[6] .. '\t\t\t' .. Isha .. ' ۞ </span>'
     end
 
-    ArabicDay = Result.data.date.hijri.weekday.ar
-    ArabicDayNum = Result.data.date.hijri.day
-    HijriMonth = Result.data.date.hijri.month.ar
-    HijriYear = Result.data.date.hijri.year
-    HijriDate = ArabicDayNum .. ' ' .. HijriMonth .. ' ' .. HijriYear .. ' هجرية\n'
-    Heading = 'مواقيت الصلاة ليوم ' .. ArabicDay .. '\n' .. HijriDate
+    ArabicDay       =   Result.data.date.hijri.weekday.ar
+    ArabicDayNum    =   Result.data.date.hijri.day
+    HijriMonth      =   Result.data.date.hijri.month.ar
+    HijriYear       =   Result.data.date.hijri.year
+    HijriDate       =   ArabicDayNum .. ' ' .. HijriMonth .. ' ' .. HijriYear .. ' هجرية\n'
+    Heading         =   'مواقيت الصلاة ليوم ' .. ArabicDay .. '\n' .. HijriDate
 
     widget:set_markup(
     Heading ..
@@ -180,13 +194,7 @@ local function update_image(self)
     self.widget:set_image(Image)
 end
 
-Pryr_wdt = wibox.widget {
-    font = 'Noto Kufi Arabic 8',
-    widget = wibox.widget.textbox
-}
-
 local function update_remain_time(widget)
-
     if Current_time >= Fajr and Current_time < Shuruq then
         Remain = Diff(Duhur)
         Next_prayer = Duhur
@@ -212,8 +220,7 @@ local function update_remain_time(widget)
         Next_prayer = Fajr
         Next_prayer_str = Prayer_names[1]
     end
-
-    widget:set_text('🕌 الصلاة القادمة: ۩ ' .. Next_prayer_str .. ' ۩  ' .. Next_prayer .. ' (الوقت المتبقي ' .. Remain .. ')')
+    widget:set_text('🕌 الصلاة القادمة ۩ ' .. Next_prayer_str .. ' ۩  ' .. Next_prayer .. ' ( الوقت المتبقي ' .. Remain .. ' )')
 end
 
 CAT_CMD = [[bash -c 'cat $HOME/.local/share/prayers.json']]
@@ -228,8 +235,8 @@ awful.screen.connect_for_each_screen(function(s)
     s.Prayers_widget = awful.wibar(
     {
         screen  =   'primary' ,
-        height  =   awful.screen.focused().workarea.height * 0.333,
-        width   =   awful.screen.focused().workarea.width * 0.12,
+        height  =   awful.screen.focused().workarea.height * 0.36,
+        width   =   awful.screen.focused().workarea.width * 0.13,
         shape   =   wdt_shape,
         bg      =   beautiful.bottom_bar_bg,
     }

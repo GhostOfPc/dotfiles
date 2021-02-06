@@ -46,17 +46,18 @@ layoutbox = wibox.widget {
     widget = wibox.container.background
 }
 -- separator
+
 separator = {
-            
+
                 forced_width    = 3,
                 opacity         = 0,
                 widget          = wibox.widget.separator
             }
 
--- Cpu temperature
+--[[ Cpu temperature
 temp_widget = wibox.widget {
     {
-        watch('bash -c "$HOME/.local/bin/temp.sh"'),
+        watch('bash -c "temp.sh"',10),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -67,18 +68,19 @@ temp_widget = wibox.widget {
 -- Gpu temperature
 gpu_temp_widget = wibox.widget {
     {
-        watch('bash -c "$HOME/.local/bin/temp_gpu.sh"'),
+        watch('bash -c "temp_gpu.sh"'),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
     shape = wdt_shape,
     widget = wibox.container.background
 }
+--]]
 
 -- Weather
 wthr_widget = wibox.widget {
     {
-        watch('bash -c "$HOME/.local/bin/weather.sh"', 1800),
+        watch('bash -c "weather.sh"', 1800),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -92,7 +94,7 @@ end)
 -- Network traffic
 net_widget = wibox.widget {
     {
-        watch('bash -c "$HOME/.local/bin/net.sh"', 1,_,_,_,signal,16),
+        watch('bash -c "net.sh"',1),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -103,10 +105,11 @@ net_widget:connect_signal('button::press', function (_,_,_,button)
     if (button == 1) then awful.spawn.with_shell('alacritty --hold -e bmon -p eno2')
     end
 end)
+
 -- Free disk available
 disk_widget = wibox.widget {
     {
-        watch('bash -c "$HOME/.local/bin/disk.sh"', 60),
+        watch('bash -c "disk.sh"', 300),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -121,7 +124,10 @@ disk_widget:connect_signal('button::press', function (_,_,_,button)
 -- Memory usage
 mem_widget = wibox.widget {
     {
-        watch('bash -c "$HOME/.local/bin/memory.sh"'),
+        {
+            id = 'mem_wdt',
+            widget = wibox.widget.textbox
+        },
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -133,10 +139,18 @@ mem_widget:connect_signal('button::press', function (_,_,_,button)
     end
         end)
 
--- Cpu usage
+function update_mem_widget(widget,stdout)
+    widget:get_children_by_id('mem_wdt')[1]:set_text(stdout)
+end
+MEM_CMD = [[ bash -c 'memory.sh' ]]
+watch(MEM_CMD,10,update_mem_widget,mem_widget)
+---- Cpu usage
 cpu_widget = wibox.widget {
     {
-        watch('bash -c "$HOME/.local/bin/cpu.sh"'),
+        {
+            id = 'cpu_wdt',
+            widget = wibox.widget.textbox
+        },
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -147,20 +161,31 @@ cpu_widget:connect_signal('button::press', function (_,_,_,button)
     if (button == 1) then awful.spawn.with_shell('alacritty --hold -e htop')
     end
         end)
+function update_cpu_widget(widget,stdout)
+    widget:get_children_by_id('cpu_wdt')[1]:set_text(stdout)
+end
+CPU_CMD = [[ bash -c 'cpu.sh']]
+watch(CPU_CMD,10,update_cpu_widget,cpu_widget)
 
 -- Keyboard layout indicator
 kbd_widget = wibox.widget {
-    watch('bash -c "$HOME/.local/bin/kb-layout.sh"'),
-    --bg = wdt_bg,
+    {
+        watch('bash -c "kb-layout.sh"'),
+        widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_)
+    },
+    bg = wdt_bg,
     shape_clip = true,
     shape = wdt_shape,
     widget = wibox.container.background
 }
 
---Volume
+----Volume
 volumewidget = wibox.widget {
     {
-        watch('bash -c "$HOME/.local/bin/volume_mon.sh"',_,_,_,_,signal,10),
+        {
+            id = 'vol_wdt',
+            widget = wibox.widget.textbox
+        },
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -168,21 +193,33 @@ volumewidget = wibox.widget {
     shape = wdt_shape,
     widget = wibox.container.background
 }
+
+function Update_vol_widget(widget,stdout)
+    --widget:set_text(stdout)
+    widget:get_children_by_id('vol_wdt')[1]:set_text(stdout)
+end
+
+VOL_CMD = [[ bash -c 'volume_mon.sh' ]]
+Vol_wdt_timer = watch(VOL_CMD,_,Update_vol_widget,volumewidget)
+
     --[[
 	scrolling when the cursor is over the widdget
 	toggling the sound on and off by clicking the widget
     --]]
 	volumewidget:connect_signal('button::press', function (_,_,_,button)
-	if (button == 4) then  awful.spawn.with_shell ('$HOME/.local/bin/volume.sh up') 
-	elseif (button == 5) then awful.spawn.with_shell ('$HOME/.local/bin/volume.sh down') 
+	if (button == 4) then  awful.spawn.with_shell ('volume.sh up') 
+	elseif (button == 5) then awful.spawn.with_shell ('volume.sh down') 
 	elseif (button == 1 ) then awful.spawn.with_shell ('alacritty --hold -e pulsemixer') 
 	end
 			end)
 
--- Date and time
+---- Date and time
 datewidget = wibox.widget {
     {
-        watch('bash -c "$HOME/.local/bin/date.sh"'),
+        {
+            format = "📅 %d-%m-%y(%a)|%H:%M",
+            widget = wibox.widget.textclock
+        },
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -243,7 +280,7 @@ watch(MUSIC_CMD,_,update_music_widget,Media_wdt)
 
 pkg_widget = wibox.widget {
     {
-        watch('bash -c "$HOME/.local/bin/pacman.sh"', 3600),
+        watch('bash -c "pacman.sh"', 3600),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -257,7 +294,7 @@ pkg_widget:connect_signal('button::press', function (_,_,_,button)
 
 kernel_wdt = wibox.widget {
     {
-        watch('bash -c "$HOME/.local/bin/knl_v.sh"'),
+        watch('bash -c "knl_v.sh"',3600),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -267,7 +304,7 @@ kernel_wdt = wibox.widget {
 
 uptime_wdt = wibox.widget {
     {
-        watch('bash -c "$HOME/.local/bin/uptime.sh"'),
+        watch('bash -c "uptime.sh"',60),
         widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
     },
     bg = wdt_bg,
@@ -275,7 +312,7 @@ uptime_wdt = wibox.widget {
     widget = wibox.container.background
 }
 
--- the systray has its own internal background because of X11 limitations
+---- the systray has its own internal background because of X11 limitations
 round_systry = wibox.widget {
     {
         wibox.widget.systray(),
@@ -287,15 +324,15 @@ round_systry = wibox.widget {
     widget     = wibox.container.background,
 }
 
--- Prayer times
-prayer_widget = wibox.widget {
-    {
-        watch('bash -c "$HOME/.local/bin/prayer.sh"'),
-        widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
-    },
-    bg = wdt_bg,
-    shape = wdt_shape,
-    widget = wibox.container.background
-}
-
-return widgets
+---- Prayer times
+--prayer_widget = wibox.widget {
+--    {
+--        --watch('bash -c "prayer.sh"',60),
+--        watch('bash -c "tail -n 1 $HOME/.local/share/prayer_widget"',60),
+--        widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
+--    },
+--    bg = wdt_bg,
+--    shape = wdt_shape,
+--    widget = wibox.container.background
+--}
+--return widgets

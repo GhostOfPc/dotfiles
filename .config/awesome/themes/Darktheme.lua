@@ -69,7 +69,8 @@ theme.tasklist_bg_normal                        =       theme.bg_empty
 theme.tasklist_disable_icon                     =       true
 theme.tasklist_plain_task_name                  =       true
 theme.tasklist_font                             =       theme.font
-theme.tasklist_align                            =       left
+theme.tasklist_align                            =       'left'
+theme.icon_theme                                =       '/usr/share/icons/Papirus-Dark/48x48'
 
 theme.layout_fairh = themes_path..'layouts/fairhw.png'
 theme.layout_fairv = themes_path..'layouts/fairvw.png'

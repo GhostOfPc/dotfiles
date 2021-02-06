@@ -48,7 +48,6 @@ awful.screen.connect_for_each_screen(function(s)
         kernel_wdt, separator,
 	    datewidget, separator,
 	    volumewidget, separator,
-	    --kbd_widget, separator,separator,
 	    kbd_widget, separator,
         },
     }
