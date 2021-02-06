@@ -1,7 +1,7 @@
 [global]
     monitor = 0
     follow = mouse
-    geometry = "750x0-25+55"
+    geometry = "550x0-5+35"
     indicate_hidden = yes
     shrink = no
     transparency = 0
@@ -16,7 +16,7 @@
     sort = yes
     idle_threshold = 120
 
-    font = FiraMono Nerd Font 9
+    font = FantasqueSansMono Nerd Font 10
     line_height = 0
     markup = full
 
@@ -80,8 +80,8 @@
     icon = /usr/share/icons/Papirus/48x48/status/notification-disabled.svg
 
 [urgency_normal]
-    background = "#272822"
-    frame_color = "#272822"
+    background = "#272822c0"
+    frame_color = "#272822c0"
     foreground = "#d7eaf3"
     timeout = 10
     icon = /usr/share/icons/Papirus/48x48/status/dialog-information.svg
