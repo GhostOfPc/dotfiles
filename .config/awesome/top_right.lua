@@ -26,30 +26,27 @@ local volume_widget_widget = volume_widget({display_notification = true})
 --require('widgets.Net_widget')
 
 
-local top_bar = {}
+local top_right = {}
 
 awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
-    s.top_bar = awful.wibar(
+    s.top_right = awful.wibar(
     {
         position = 'top',
         screen = s ,
         height = dpi(20),
-        width = awful.screen.focused().workarea.width * 0.995,
+        width = awful.screen.focused().workarea.width * 0.443,
     }
     )
 
     -- Add widgets to the wibox
-    s.top_bar:setup {
+    s.top_right:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            separator, logo, separator,
-            s.mytaglist, separator,
         },
 	{ -- Middle widgets
 		layout = wibox.layout.fixed.horizontal,
-		mytasklist, separator,
 	},
         { -- Right widgets
         layout = wibox.layout.fixed.horizontal,
@@ -74,4 +71,4 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
 end)
-return top_bar
+return top_right

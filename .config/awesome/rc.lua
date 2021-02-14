@@ -26,10 +26,10 @@ beautiful.init(config_dir .. "themes/Darktheme.lua")
 
 -- ========================= Import components ================================
 require ('keys')
-require('widgets')
 require('tags')
-require('top_bar')
+--require('top_bar')
 require('bottom_bar')
+require('Menu')
 require('notifications')
 require('rules')
 

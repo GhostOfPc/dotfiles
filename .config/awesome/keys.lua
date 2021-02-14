@@ -17,7 +17,8 @@ local xresources = require('beautiful.xresources')
 local dpi = xresources.apply_dpi
 
 local apps = require('apps')
---local xrandr=require('xrandr')
+local xrandr=require('xrandr')
+local volume_widget = require("widgets.volume-widget.volume")
 
 modkey = 'Mod4'
 altkey = 'Mod1'
@@ -86,11 +87,11 @@ globalkeys = gears.table.join(
         {description = 'focus previous by index', group = 'client'}),
 
     -- ================= Layout control keybindings ===========================
-    awful.key({ modkey, 'Shift'   }, 'j', function () awful.client.swap.byidx(  1)    end,
-              {description = 'swap with next client by index', group = 'client'}),
+    awful.key({ modkey, 'Shift'   }, 'j', function () awful.client.swap.bydirection(  'left')    end,
+              {description = 'swap with next client by index', group = 'layout'}),
 
-    awful.key({ modkey, 'Shift'   }, 'k', function () awful.client.swap.byidx( -1)    end,
-              {description = 'swap with previous client by index', group = 'client'}),
+    awful.key({ modkey, 'Shift'   }, 'k', function () awful.client.swap.bydirection( 'right')    end,
+              {description = 'swap with previous client by index', group = 'layout'}),
 
    awful.key({ modkey, 'Shift'   }, 'h',     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = 'increase the number of master clients', group = 'layout'}),
@@ -111,13 +112,13 @@ globalkeys = gears.table.join(
               {description = 'select previous', group = 'layout'}),
 
     -- ================= Gap resizing keybindings ===========================
-	awful.key({ altkey }, '.', 
+	awful.key({ altkey }, '.',
 	function ()
 		awful.tag.incgap(2,null)
 	end,
 	{description = 'Increase gap size', group = 'gap control'}),
 
-	awful.key({ altkey }, ',', 
+	awful.key({ altkey }, ',',
 	function ()
 		awful.tag.incgap(-2,null)
 	end,
@@ -155,7 +156,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, 'm', function () awful.spawn(apps.mc) end,
               {description = 'open mediaCenter', group = 'launcher'}),
 
-    awful.key({ modkey,           }, 'o', function () awful.spawn.with_shell('$TERMINAL --hold .local/bin/spt_o.sh') end,
+    awful.key({ modkey,           }, 'o', function () awful.spawn.with_shell('$TERMINAL --hold spt_o.sh') end,
               {description = 'open spotify', group = 'launcher'}),
 
     awful.key({ modkey,           }, 'b', function () awful.spawn(apps.browser) end,
@@ -193,33 +194,42 @@ globalkeys = gears.table.join(
 
     -- ================= Programs killing keybindings ===========================
     awful.key({ modkey, 'Shift' }, 'v', function () awful.spawn.with_shell('kill -9 $(pgrep vlc)') end,
-              {description = 'kill vlc', group = 'client'}),
+              {description = 'kill vlc', group = 'launcher'}),
 
     awful.key({ modkey, 'Shift' }, 'm', function () awful.spawn.with_shell('kill -9 $(pgrep kodi)') end,
-              {description = 'kill kodi', group = 'client'}),
+              {description = 'kill kodi', group = 'launcher'}),
 
     awful.key({ modkey, 'Shift' }, 'u', function () awful.spawn.with_shell('kill -9 $(pgrep uget-gtk)') end,
-              {description = 'kill uget', group = 'client'}),
+              {description = 'kill uget', group = 'launcher'}),
 
     awful.key({ modkey, 'Shift' }, 't', function () awful.spawn.with_shell('kill -9 $(pgrep qbittorrent)') end,
-              {description = 'kill qbittorrent', group = 'client'}),
+              {description = 'kill qbittorrent', group = 'launcher'}),
 
     awful.key({ modkey, 'Shift' }, 'o', function () awful.spawn.with_shell('spt_k.sh') end,
-              {description = 'kill spotify', group = 'client'}),
+              {description = 'kill spotify', group = 'launcher'}),
 
     -- ================= Screenshoot keybinging ===========================
 	awful.key({modkey, 'Shift'},'f',function() awful.spawn.with_shell(apps.screenshot) end,
 	{description = 'Take a screenshot', group = 'hotKeys'}),
 
     -- ================= Hotkeys (using multimedia keys) ===========================
-    awful.key({ }, 'XF86AudioRaiseVolume', function () awful.spawn.with_shell('amixer -D pulse sset Master 5%+') end,
-              {description = 'Volume increase', group = 'hotKeys'}),
+awful.key(
+ {},
+ 'XF86AudioRaiseVolume',
+volume_widget.raise,
+ {description = "Volume increase", group = "hotkeys"}),
 
-    awful.key({ }, 'XF86AudioLowerVolume', function () awful.spawn.with_shell('amixer -D pulse sset Master 5%-') end,
-              {description = 'Volume decrease', group = 'hotKeys'}),
+awful.key(
+ {},
+ 'XF86AudioLowerVolume',
+volume_widget.lower,
+ {description = "Volume decrease", group = "hotkeys"}),
 
-    awful.key({ }, 'XF86AudioMute', function () awful.spawn.with_shell('amixer -D pulse sset Master 1+ toggle') end,
-              {description = 'Volume mute', group = 'hotKeys'}),
+awful.key(
+ {},
+ 'XF86AudioMute',
+volume_widget.toggle,
+ {description = "Volume mute", group = "hotkeys"}),
 
     awful.key({ }, 'XF86AudioNext', function () awful.spawn('playerctl next') end,
               {description = 'Jump to the next song', group = 'hotKeys'}),
@@ -307,7 +317,7 @@ globalkeys = gears.table.join(
               {description = 'dmenu script to edit confgiration files', group = 'dmenu'}),
 
     awful.key({ raltkey }, 'w', function () awful.spawn.with_shell('mpvWatch.sh') end,
-              {description = 'dmenu script to edit confgiration files', group = 'dmenu'}),
+              {description = 'Select and Play video', group = 'dmenu'}),
 
     awful.key({ raltkey }, 's', function () awful.spawn.with_shell('dmenu_services.sh') end,
               {description = 'dmenu script to Start/Stop systemd services', group = 'dmenu'}),
@@ -438,6 +448,12 @@ clientbuttons = gears.table.join(
         awful.mouse.client.resize(c)
     end)
 )
+-- {{{ Mouse bindings
+root.buttons(gears.table.join(
+    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    awful.button({ }, 1, function () mymainmenu:hide() end)
+))
+-- }}}
 
 -- ==================== Set keys ====================================
 root.keys(globalkeys)

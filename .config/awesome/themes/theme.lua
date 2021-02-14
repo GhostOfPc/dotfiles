@@ -18,21 +18,22 @@ local theme = {}
 
 -- Default variables
 -- Font
-theme.font          =   'FantasqueSansMono Nerd Font 9'
+theme.font          =   'Source Code Pro 9'
 
 -- Background colors
-theme.bg_normal     =   '#212121c0'
+theme.bg_normal     =   '#202020ce'
 theme.fg_urgent     =   '#ac4142'
 theme.fg_focus      =   '#e5b566'
 theme.fg_occupied   =   '#6c99ba'
 theme.bg_systray    =   theme.bg_normal
-theme.bg_empty      =   '#5d5d5d80'
-theme.taglist_fg_empty =   '#d7eaf3b4'
+theme.bg_empty      =   '#505050e6'
 
 -- Border colors
 theme.border_width      =   dpi(1)
-theme.border_normal     =   '#212121cc'
-theme.border_focus      =   '#6c99ba'
+theme.border_normal     =   '#202020'
+--theme.border_focus      =   '#6c99ba'
+--theme.border_focus      = '#ac4142'
+theme.border_focus      = '#a5a5a5'
 
 -- Foreground color
 theme.fg_normal     =   '#f5f5f5'
@@ -49,28 +50,26 @@ theme.tooltip_opacity       =   0.85
 theme.wibar_fg              =   theme.fg_normal
 theme.wibar_border_width    =   dpi(0)
 theme.wibar_border_color    =   theme.border_focus
-theme.bottom_bar_bg         =   '#212121a9'
 
 -- hotkeys
-theme.hotkeys_bg		        =	theme.bg_normal
-theme.hotkeys_font		        =	theme.font
-theme.hotkeys_fg		        =	theme.fg_normal
-theme.hotkeys_border_width	    =	dpi(1)
-theme.hotkeys_border_color	    =	theme.border_focus
-theme.hotkeys_opacity		    =	0.85
-theme.hotkeys_modifiers_fg	    =	theme.border_focus
+theme.hotkeys_bg		=	theme.bg_normal
+theme.hotkeys_font		=	theme.font
+theme.hotkeys_fg		=	theme.fg_normal
+theme.hotkeys_border_width	=	dpi(1)
+theme.hotkeys_border_color	=	theme.border_focus
+theme.hotkeys_opacity		=	0.85
+theme.hotkeys_modifiers_fg	=	theme.border_focus 
 theme.hotkeys_description_font	=	theme.font
-theme.hotkeys_shape             =   gears.shape.rectangle
+theme.hotkeys_shape             = gears.shape.rectangle
 
 -- tasklist
---theme.tasklist_fg_focus                         =       '#7e8d50'
+theme.tasklist_fg_focus                         =       '#7e8d50'
 theme.tasklist_fg_focus                         =       theme.fg_normal
 theme.tasklist_bg_normal                        =       theme.bg_empty
 theme.tasklist_disable_icon                     =       true
 theme.tasklist_plain_task_name                  =       true
 theme.tasklist_font                             =       theme.font
-theme.tasklist_align                            =       'center'
-theme.icon_theme                                =       '/usr/share/icons/Papirus-Dark/48x48'
+theme.tasklist_align                            =       left
 
 theme.layout_fairh = themes_path..'layouts/fairhw.png'
 theme.layout_fairv = themes_path..'layouts/fairvw.png'
@@ -94,7 +93,7 @@ theme.layout_dwindle = themes_path..'layouts/dwindlew.png'
 
 -- menu
 theme.menu_font = theme.font
-theme.menu_width = dpi(120)
+theme.menu_width = dpi(175)
 theme.menu_border_color = theme.border_focus
 theme.menu_border_width = dpi(1)
 theme.menu_fg_focus = '#d7eaf3'

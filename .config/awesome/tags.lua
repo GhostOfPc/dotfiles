@@ -11,6 +11,7 @@ local gears = require('gears')
 local awful = require('awful')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
+require('widgets.decoration')
 
 
 local tags = {}
@@ -75,11 +76,13 @@ awful.screen.connect_for_each_screen(function(s)
     screen   = s,
     filter   = awful.widget.tasklist.filter.focused,
     style    = {
-        shape        = wdt_shape,
+        bg_focus    =   wdt_bg,
+        shape       =   wdt_shape,
+        align       =  'center'
     },
     layout   = {
         spacing = 5,
-        max_widget_size = awful.screen.focused().workarea.width * 0.12,
+        max_widget_size = awful.screen.focused().workarea.width * 0.13,
         layout  = wibox.layout.flex.horizontal
     },
     widget_template = {
