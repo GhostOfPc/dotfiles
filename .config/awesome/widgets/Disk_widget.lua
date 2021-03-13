@@ -13,10 +13,10 @@ disk_widget = wibox.widget {
             id = 'disk_wdt',
             widget = wibox.widget.textbox
         },
-        widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
+        widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
-    bg = wdt_bg,
-    shape = wdt_shape,
+    bg = Wdt_bg,
+    shape = Wdt_shape,
     widget = wibox.container.background
 }
 disk_widget:connect_signal('button::press', function (_,_,_,button)

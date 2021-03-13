@@ -2,19 +2,19 @@ local json          =   require('json')
 local watch         =   require('awful.widget.watch')
 local awful         =   require('awful')
 local wibox         =   require('wibox')
-local beautiful     =   require('beautiful')
 local xresources    =   require('beautiful.xresources')
 local dpi           =   xresources.apply_dpi
 local naughty       =   require('naughty')
 local icons_dir     =   os.getenv('HOME') .. '/.config/awesome/icons/prayers/'
 
-local GET_TIMES_CMD = [[bash -c "curl -s '%s'"]]
+local GET_TIMES_CMD = "curl -s '%s'"
 screen_height = awful.screen.focused().workarea.height
 screen_width = awful.screen.focused().workarea.width
 
 local Prayers_widget = {}
 
-Prayer_icon = wibox.widget {
+Prayers_widget = wibox.widget {
+    {
         {
             id              =   'icon',
             forced_height   =   screen_width * 0.05,
@@ -23,18 +23,52 @@ Prayer_icon = wibox.widget {
             opacity         =   0.9,
             widget          =   wibox.widget.imagebox
         },
-        align   =   'center',
+        halign   =   'center',
         widget  =   wibox.container.place
-}
-
-Prayers_widget = wibox.widget {
-        font    =   'Noto Kufi Arabic 8', -- the Kufi font looks incredible for Salawat
-        widget  =   wibox.widget.textbox
+    },
+    {
+        {
+            {
+                id      =   'text',
+                font    =   'Noto Kufi Arabic 8',
+                widget  =   wibox.widget.textbox
+            },
+            right = screen_width * 0.0015,
+            left = screen_width * 0.0015,
+            widget = wibox.container.margin
+        },
+        bg = Wdt_bg,
+        shape = Wdt_shape,
+        widget = wibox.container.background
+    },
+    spacing = screen_height * 0.01,
+    layout = wibox.layout.fixed.vertical,
 }
 
 Pryr_wdt = wibox.widget {
-    font    =   'Noto Kufi Arabic 8',
-    widget  =   wibox.widget.textbox
+    {
+        id      =   'mini_widget',
+        font    =   'Noto Kufi Arabic 8',
+        widget  =   wibox.widget.textbox
+    },
+    {
+        {
+            {
+                id = 'mini_icon',
+                image = icons_dir .. 'mosque.svg',
+                resize = true,
+                widget = wibox.widget.imagebox
+            },
+            top = screen_width * 0.0015,
+            bottom = screen_width * 0.0015,
+            widget = wibox.container.margin
+        },
+        halign = 'center',
+        valign = 'center',
+        widget = wibox.container.place
+    },
+    spacing = screen_width * 0.003,
+    layout = wibox.layout.fixed.horizontal
 }
 
 --Arguments
@@ -48,7 +82,7 @@ local country   =   'Argentina'
 local method    =   '2' -- method 2 for Americas
 local adjustment=   '1' -- To adjust the hijri date
 local timeout   =   60 -- 1 min is good enough to change the backgrouond of the current prayer
-local TZ_adj    =   os.time()-os.time(os.date('!*t')) -- For Argentina the timezone is GMT-3 (3*3600=10800)
+local TZ_adj    =   os.time()-os.time(os.date('!*t'))
 local bgcolor   =   '#7e8d50'
 local icons_ext =   '.svg'
 
@@ -59,8 +93,6 @@ else
 end
 
 local function update_widget(widget,stdout)
-
-
     Current_time    =   os.date('%H:%M')
     Result          =   json.decode(stdout)
     Fajr            =   Result.data.timings.Fajr
@@ -70,26 +102,13 @@ local function update_widget(widget,stdout)
     Maghrib         =   Result.data.timings.Maghrib
     Isha            =   Result.data.timings.Isha
 
-    function HourPart(hourMinute)
-        H_s = hourMinute:gsub(':%d%d','')
-        H_p = tonumber(H_s)
-        return H_p
-    end
-
-    function MinPart(hourMinute)
-        M_s = hourMinute:gsub('%d%d:','')
-        M_p = tonumber(M_s)
-        return M_p
-    end
-
     function Prayer_utc(P_h_m)
-        str                         =   os.date('%a %d %b %Y ') .. HourPart(P_h_m) .. ':' .. MinPart(P_h_m) .. ':00'
+        str                         =   os.date('%a %d %b %Y ') .. P_h_m .. ':' .. os.date('%S')
         p                           =   "%a+ (%d+) (%a+) (%d+) (%d+):(%d+):(%d+)"
-        day,month,year,hour,min,sec =   str:match(p)
+        Day,Month,Year,Hour,Min,Sec =   str:match(p)
         MON                         =   {Jan=1,Feb=2,Mar=3,Apr=4,May=5,Jun=6,Jul=7,Aug=8,Sep=9,Oct=10,Nov=11,Dec=12}
-        month                       =   MON[month]
-        offset                      =   os.time()+TZ_adj
-        Seconds                     =   os.time({day=day,month=month,year=year,hour=hour,min=min})-offset
+        Month                       =   MON[Month]
+        Seconds                     =   os.time({day=Day,month=Month,year=Year,hour=Hour,min=Min,sec=Sec}) - os.time() - TZ_adj
         return Seconds
     end
 
@@ -105,16 +124,14 @@ local function update_widget(widget,stdout)
         naughty.notify(
         {
             timeout     =   30,
-            font        =   'Noto Kufi Arabic 8',
-            icon        =   icons_dir .. 'mosque_flat' .. icons_ext,
+            font        =   'Noto Kufi Arabic 7',
+            icon        =   icons_dir .. 'mosque' .. icons_ext,
             icon_size   =   dpi(48),
             text        =   'حان الآن موعد صلاة <span fgcolor="' .. bgcolor .. '"><b>' .. name .. '</b></span> حسب التوقيت المحلي لمدينة باريلوتشي'
         }
         )
         if name == Prayer_names[1] then
             awful.spawn.with_shell('mpv $HOME/.local/share/Azan_fajr.webm')
-        elseif name == Prayer_names[2] then
-            awful.spawn.with_shell('mpv $HOME/.local/share/Nature.mp3')
         else
             awful.spawn.with_shell('mpv $HOME/.local/share/Azan.webm')
         end
@@ -138,6 +155,9 @@ local function update_widget(widget,stdout)
         Next_prayer     =   Duhur
         Next_prayer_str =   Prayer_names[3]
     elseif Current_time >= Shuruq and Current_time < Duhur then
+        if Current_time == Shuruq then
+            awful.spawn.with_shell('mpv $HOME/.local/share/Nature.mp3')
+        end
         Remain          =   Diff(Duhur)
         Shuruq_text     =   '<span bgcolor="' .. bgcolor .. '" bgalpha="68%">\n۞ ' .. Prayer_names[2] .. '\t\t\t' .. Shuruq .. ' ۞ </span>'
         Image           =   icons_dir .. 'praying' .. icons_ext
@@ -193,7 +213,7 @@ local function update_widget(widget,stdout)
     HijriDate       =   ArabicDayNum .. ' ' .. HijriMonth .. ' ' .. HijriYear .. ' هجرية\n'
     Heading         =   'مواقيت الصلاة ليوم ' .. ArabicDay .. '\n' .. HijriDate
 
-    widget:set_markup(
+    widget:get_children_by_id('text')[1]:set_markup(
     Heading ..
     'الوقت المتبقي:\t\t<span bgcolor="' .. bgcolor .. '" bgalpha="68%">' .. Remain .. '</span>' .. '\n' ..
     Fajr_text ..
@@ -203,8 +223,9 @@ local function update_widget(widget,stdout)
     Maghrib_text ..
     Isha_text
     )
-    Prayer_icon:get_children_by_id('icon')[1]:set_image(Image)
-    Pryr_wdt:set_text('🕌 الصلاة القادمة ۩ ' .. Next_prayer_str .. ' ۩  ' .. Next_prayer .. ' ( الوقت المتبقي ' .. Remain .. ' )')
+    widget:get_children_by_id('icon')[1]:set_image(Image)
+    Pryr_wdt:get_children_by_id('mini_widget')[1]:set_text('الصلاة القادمة ۩ ' .. Next_prayer_str ..
+    ' ۩  ' .. Next_prayer .. ' ( الوقت المتبقي ' .. Remain .. ' )')
 end
 
 CAT_CMD = [[bash -c 'cat $HOME/.local/share/prayers.json']]
@@ -213,42 +234,23 @@ watch(CAT_CMD, timeout, update_widget, Prayers_widget)
 awful.screen.connect_for_each_screen(function(s)
     s.Prayers_widget = awful.wibar(
     {
-        screen  =   'primary' ,
         height  =   screen_height * 0.36,
         width   =   screen_width * 0.13,
-        shape   =   wdt_shape,
-        bg      =   beautiful.bottom_bar_bg,
+        shape   =   Wdt_shape,
     }
     )
 
     s.Prayers_widget:setup {
+        {
             {
-                {
-                    id      =   'icon',
-                    layout  =   wibox.layout.flex.vertical,
-                    Prayer_icon
-                },
-                {
-                    {
-                        {
-                            id      =   'times',
-                            layout  =   wibox.layout.flex.horizontal,
-                            Prayers_widget
-                        },
-                        widget  =   wibox.container.margin(_,_,screen_width * 0.003,_,_,_,_)
-                    },
-                    bg      =   wdt_bg,
-                    shape   =   wdt_shape,
-                    widget  =   wibox.container.background,
-                },
-                layout  =   wibox.layout.fixed.vertical,
-                spacing =   screen_height * 0.01,
+                layout  =   wibox.layout.fixed.horizontal,
+                Prayers_widget
             },
-            left    =   screen_width * 0.005,
-            right   =   screen_width * 0.005,
-            top     =   screen_height * 0.01,
-            bot     =   screen_height * 0.007,
+            margins = screen_width * 0.005,
             widget  =   wibox.container.margin
+        },
+        halign = 'center',
+        widget = wibox.container.place
     }
 
 end)

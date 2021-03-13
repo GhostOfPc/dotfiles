@@ -1,14 +1,3 @@
---[[
-  ╔════════════════════════════════════════╗
- ╔╝                                        ╚╗
- ║ Riced and crafted by  Hisham Abdul Hai  ║
- ║ ...Founder of Linux Arab Gate (L A G)... ║
- ╚╗                                        ╔╝
-  ╚════════════════════════════════════════╝
---]]
-
--- If LuaRocks is installed, make sure that packages installed through it are
--- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, 'luarocks.loader')
 
 -- ========================= Standard awesome library =========================
@@ -27,7 +16,6 @@ beautiful.init(config_dir .. "themes/Darktheme.lua")
 -- ========================= Import components ================================
 require ('keys')
 require('tags')
---require('top_bar')
 require('bottom_bar')
 require('Menu')
 require('notifications')

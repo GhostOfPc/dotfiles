@@ -5,7 +5,7 @@ local watch = require('awful.widget.watch')
 local Packages_widget = {}
 
 PKG_CMD = [[ bash -c 'pacman.sh']]
-timeout = 3600
+timeout = 7200
 
 pkg_widget = wibox.widget {
     {
@@ -13,10 +13,10 @@ pkg_widget = wibox.widget {
             id = 'pkg_wdt',
             widget = wibox.widget.textbox
         },
-        widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
+        widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
-    bg = wdt_bg,
-    shape = wdt_shape,
+    bg = Wdt_bg,
+    shape = Wdt_shape,
     widget = wibox.container.background
 }
 pkg_widget:connect_signal('button::press', function (_,_,_,button)

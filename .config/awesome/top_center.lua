@@ -1,12 +1,3 @@
---[[
-  ╔════════════════════════════════════════╗
- ╔╝                                        ╚╗
- ║ Riced and crafted by  Hisham Abdul Hai  ║
- ║ ...Founder of Linux Arab Gate (L A G)... ║
- ╚╗                                        ╔╝ 
-  ╚════════════════════════════════════════╝
---]]
-
 local awful = require('awful')
 local wibox = require('wibox')
 local xresources = require('beautiful.xresources')

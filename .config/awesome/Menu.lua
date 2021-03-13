@@ -27,7 +27,7 @@ mymainmenu = awful.menu(
         { "Applications", applications, icon_dir .. 'app-launcher.svg' },
         { "open terminal", apps.terminal, icon_dir .. 'terminal.svg' },
         { "awesome", myawesomemenu, config_dir .. 'icons/dove.svg' },
-        { "Logout", function() awful.spawn.with_shell('killall $WM') end, icon_dir .. 'system-log-out.svg' },
+        { "Logout", function() awful.spawn.with_shell('killall Xorg') end, icon_dir .. 'system-log-out.svg' },
         { "Reboot", function() awful.spawn.with_shell('systemctl reboot') end, icon_dir .. 'system-reboot.svg' },
         { "Shutdown", function() awful.spawn.with_shell('systemctl shutdown -h') end, icon_dir .. 'system-shutdown.svg' },
     }

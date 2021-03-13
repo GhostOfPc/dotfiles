@@ -18,20 +18,20 @@ local decoration = {}
 local screen_width = awful.screen.focused().workarea.width
 
 -- Global widgets settings
-wdt_bg      =   beautiful.bg_empty
-wdt_shape   =   function(cr, width, height)
-    gears.shape.rounded_rect(cr, width, height, screen_width * 0.0025) end
-wdt_rmgn    =   screen_width * 0.002
-wdt_lmgn    =   screen_width * 0.002
+Wdt_bg      =   beautiful.bg_empty
+Wdt_shape   =   function(cr, width, height)
+    gears.shape.rounded_rect(cr, width, height, screen_width * 0.00) end
+Wdt_rmgn    =   screen_width * 0.002
+Wdt_lmgn    =   screen_width * 0.002
 
 -- the systray has its own internal background because of X11 limitations
 round_systry = wibox.widget {
     {
         wibox.widget.systray(),
-        widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
+        widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
-    bg         = wdt_bg,
-    shape      = wdt_shape,
+    bg         = Wdt_bg,
+    shape      = Wdt_shape,
     widget     = wibox.container.background,
 }
 
@@ -43,13 +43,15 @@ kbd_widget = wibox.widget {
         margins = screen_width * 0.001,
         widget = wibox.container.margin
     },
-    bg = wdt_bg,
-    shape = wdt_shape,
+    bg = Wdt_bg,
+    shape = Wdt_shape,
     widget = wibox.container.background
 }
 
 logo = wibox.widget {
+    {
         {
+            id = 'icon',
             image = config_dir ..'/icons/dove.svg',
             resize = true,
             opacity = 1.0,
@@ -57,12 +59,23 @@ logo = wibox.widget {
         },
         margins = screen_width * 0.001,
         widget = wibox.container.margin
+    },
+    shape = Wdt_shape,
+    widget = wibox.container.background
 }
 logo:connect_signal('button::press',function(_,_,_,button)
-    if (button == 1) then mymainmenu:toggle()
+    if (button == 1) then
+        mymainmenu:toggle()
+        logo:set_bg(beautiful.taglist_fg_empty)
+        logo:get_children_by_id('icon')[1]:set_opacity(0.1)
     end
 end)
-
+logo:connect_signal('button::release',function(_,_,_,button)
+    if (button == 1) then
+        logo:set_bg(Wdt_bg)
+        logo:get_children_by_id('icon')[1]:set_opacity(1)
+    end
+end)
 separator = {
 
                 forced_width    = screen_width * 0.0013,

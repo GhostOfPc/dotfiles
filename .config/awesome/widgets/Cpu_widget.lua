@@ -3,9 +3,10 @@ local wibox = require('wibox')
 local watch = require('awful.widget.watch')
 
 local Cpu_widget = {}
+local screen_width = awful.screen.focused().workarea.width
 
 timeout = 10
-CPU_CMD = [[ bash -c 'cpu.sh']]
+CPU_CMD = 'cpu.sh'
 
 cpu_widget = wibox.widget {
     {
@@ -13,10 +14,11 @@ cpu_widget = wibox.widget {
             id = 'cpu_wdt',
             widget = wibox.widget.textbox
         },
-        widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
+        widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
-    bg = wdt_bg,
-    shape = wdt_shape,
+    bg = Wdt_bg,
+    forced_width = screen_width * 0.078,
+    shape = Wdt_shape,
     widget = wibox.container.background
 }
 cpu_widget:connect_signal('button::press', function (_,_,_,button)

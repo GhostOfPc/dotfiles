@@ -1,12 +1,3 @@
---[[
-    ╔════════════════════════════════════════╗
-   ╔╝                                        ╚╗
-   ║ Riced and crafted by  Hisham Abdul Hai  ║
-   ║ ...Founder of Linux Arab Gate (L A G)... ║
-   ╚╗                                        ╔╝ 
-    ╚════════════════════════════════════════╝
---]]
-
 -- ======================= Imports ===================================
 local naughty = require('naughty')
 local beautiful = require('beautiful')

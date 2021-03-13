@@ -1,12 +1,3 @@
---[[
-  ╔════════════════════════════════════════╗
- ╔╝                                        ╚╗
- ║ Riced and crafted by  Hisham Abdul Hai  ║
- ║ ...Founder of Linux Arab Gate (L A G)... ║
- ╚╗                                        ╔╝
-  ╚════════════════════════════════════════╝
---]]
-
 local awful = require('awful')
 local beautiful = require('beautiful')
 
@@ -66,7 +57,7 @@ awful.rules.rules = {
 
 {
     rule_any = {
-        class = {'slickpicker', 'Gnome-sudoku',},
+        class = {'slickpicker', 'Gnome-sudoku','Variety'},
     },
     properties = {
         floating = true

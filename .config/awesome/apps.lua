@@ -1,14 +1,4 @@
---[[
-  ╔════════════════════════════════════════╗
- ╔╝                                        ╚╗
- ║ Riced and crafted by  Hisham Abdul Hai  ║
- ║ ...Founder of Linux Arab Gate (L A G)... ║
- ╚╗                                        ╔╝ 
-  ╚════════════════════════════════════════╝
---]]
-
 local awful = require('awful')
-local filesystem = require('gears.filesystem')
 
 local apps = {
     browser = 'librewolf',

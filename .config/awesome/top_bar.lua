@@ -1,12 +1,3 @@
---[[
-  ╔════════════════════════════════════════╗
- ╔╝                                        ╚╗
- ║ Riced and crafted by  Hisham Abdul Hai  ║
- ║ ...Founder of Linux Arab Gate (L A G)... ║
- ╚╗                                        ╔╝ 
-  ╚════════════════════════════════════════╝
---]]
-
 local awful = require('awful')
 local wibox = require('wibox')
 local xresources = require('beautiful.xresources')
@@ -63,8 +54,8 @@ awful.screen.connect_for_each_screen(function(s)
 	    --volumewidget, separator,
         {
             volume_widget_widget,
-            shape = wdt_shape,
-            bg = wdt_bg,
+            shape = Wdt_shape,
+            bg = Wdt_bg,
             widget = wibox.container.background
         },
         separator,

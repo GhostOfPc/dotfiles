@@ -12,9 +12,9 @@ wthr_widget = wibox.widget {
             id = 'weather_widget',
             widget = wibox.widget.textbox
         },
-        widget = wibox.container.margin(_,wdt_lmgn,wdt_rmgn,_,_,_,_),
+        widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
-    bg = wdt_bg,
+    bg = Wdt_bg,
     shape = wdt_shape,
     widget = wibox.container.background
 }

@@ -1,12 +1,3 @@
---[[
-  ╔════════════════════════════════════════╗
- ╔╝                                        ╚╗
- ║ Riced and crafted by  Hisham Abdul Hai  ║
- ║ ...Founder of Linux Arab Gate (L A G)... ║
- ╚╗                                        ╔╝ 
-  ╚════════════════════════════════════════╝
---]]
-
 -- Standard awesome library
 local gears = require('gears')
 local awful = require('awful')
@@ -286,7 +277,7 @@ volume_widget.toggle,
     awful.key({ altkey, 'Control'}, 'p', function () awful.spawn.with_shell('shuffleList.sh') end,
               {description = 'Create a random playlist of random videos ', group = 'hotKeys'}),
 
-    awful.key({ modkey, }, 'w', function () awful.spawn.with_shell('nitrogen --random --set-zoom-fill') end,
+    awful.key({ modkey, }, 'w', function () awful.spawn.with_shell('feh --randomize --bg-fill /home/hisham/Pictures/Nude') end,
               {description = 'Set a random wallpaper', group = 'hotKeys'}),
 
     awful.key({ altkey, 'Control'}, 'm', function () awful.spawn.with_shell('mpv $(xclip -o -selection clipboard)') end,
