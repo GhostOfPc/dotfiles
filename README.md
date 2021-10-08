@@ -24,9 +24,12 @@ I'm on Arch linux because it makes it really easy to install all the packages I 
 | `nerd-fonts-ubuntu-mono`   | Beautiful monospaced font                                     |
 | `ttf-joypixels`          | Everyone uses emojis                                          |
 | `inter-font`   | Beautiful sans font                                     |
+| `noto-fonts`   | Google Noto Fonts                                     |
 | `dunst`                  | Notification-daemon replacement                               |
-| `xbacklight`             | To control the screen brightness                              |
+| `xbacklight`             | To control the screen brightness if using laptop                              |
+| `ybacklight`             | To control the screen brightness if using desktop with ddcci kernel module                              |
 | `playerctl`              | change songs backwards and forwards using the media keys      |
+| `pipewire`              | Recently I changed my sound server from pulseaudio to pipewire      |
 
 I manage this dotfiles using a method provided by a gentelman called StreakyCobra on [ATLASSIAN](https://www.atlassian.com/git/tutorials/dotfiles)
 
