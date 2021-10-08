@@ -39,6 +39,6 @@ The custom startpage I'm using can be found under `.config/qutebrowser/html` whi
 ![qutebrowser](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-01-21-08-11.png)
 
 # Important note!!!
-The widget in the bottm bar in Arabic is the prayer times.  
+The widget at the right side of the screen and the bottm bar in Arabic is the prayer times.  
 I'm a muslim person and proud of that and I like GNU/Linux so please don't think that muslims can't use tech.  
 May Allah protect all of us.
