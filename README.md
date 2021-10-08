@@ -16,14 +16,14 @@ I'm on Arch linux because it makes it really easy to install all the packages I 
 | Dependency               | Why I need it                                                 |
 | ---                      | ---                                                           |
 | `Awesome`            | This is the window manager of choice                          |
-| `Picom-ibhagwan-git`     | To get the blur,rounded corners and transparancy effects      |
+| `picom-jonaburg-git`     | To get the blur,rounded corners and transparancy effects      |
 | `Neovim`                 | Powerful text editor                                          |
 | `awesome-terminal-fonts` | Font with emojis and unicode support                          |
 | `kitty`                  | Modern, hackable, featurefull, OpenGL-based terminal emulator |
-| `nerd-fonts-mononoki`                  | Beautiful small monospaced font |
-| `nerd-fonts-fira-code`   | Beautiful monospaced font                                     |
+| `nerd-fonts-fantasque-sans-mono`                  | Beautiful small monospaced font |
+| `nerd-fonts-ubuntu-mono`   | Beautiful monospaced font                                     |
 | `ttf-joypixels`          | Everyone uses emojis                                          |
-| `nerd-fonts-fira-mono`   | Beautiful monospaced font                                     |
+| `inter-font`   | Beautiful sans font                                     |
 | `dunst`                  | Notification-daemon replacement                               |
 | `xbacklight`             | To control the screen brightness                              |
 | `playerctl`              | change songs backwards and forwards using the media keys      |
@@ -32,7 +32,7 @@ I manage this dotfiles using a method provided by a gentelman called StreakyCobr
 
 # Screenshots
 ## Window Manager
-![AwesomeWM](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-01-21-07-55.png)
+![AwesomeWM](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-10-08-20-21.png)
 ## Web Browser
 After being a firefox user for more than a decade, I switched to qutebrowser and I can't be happier.  
 The custom startpage I'm using can be found under `.config/qutebrowser/html` which is not mine since I don't know hot to create one from scratch. I just modified it to suite my needs and taste.
