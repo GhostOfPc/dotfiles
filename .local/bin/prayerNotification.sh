@@ -2,6 +2,7 @@
 
 
 prayers="$HOME/.local/share/prayers.json"
+output="$HOME/.local/share/prayer_widget"
 nextprayer=""
 
 # Parsing the data in a nice form
@@ -26,27 +27,12 @@ function send_notification {
 case $currenttime in
     $fajr)
         currentprayer=$(echo "الفجر")
-        send_notification
+        #send_notification
         mpv --no-audio-display --volume=70.000 /home/hisham/.local/share/Azan_fajr.webm
         ;;
-    $dhuhr)
+    $dhuhr | $asr | $maghrib | $isha)
         currentprayer=$(echo "الظهر")
-        send_notification
-        mpv --no-audio-display --volume=70.000 /home/hisham/.local/share/Azan.webm
-        ;;
-    $asr)
-        currentprayer=$(echo "العصر")
-        send_notification
-        mpv --no-audio-display --volume=70.000 /home/hisham/.local/share/Azan.webm
-        ;;
-    $maghrib)
-        currentprayer=$(echo "المغرب")
-        send_notification
-        mpv --no-audio-display --volume=70.000 /home/hisham/.local/share/Azan.webm
-        ;;
-    $isha)
-        currentprayer=$(echo "العشاء")
-        send_notification
+        #send_notification
         mpv --no-audio-display --volume=70.000 /home/hisham/.local/share/Azan.webm
         ;;
 esac

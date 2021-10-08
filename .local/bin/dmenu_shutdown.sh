@@ -5,7 +5,7 @@ TDcolor=ffffff90
 Rcolor=ffffff30
 hlcolor=fa257360
 verring=97e12360
-actions=(Lock Logout Suspend Reboot Shutdown)
+actions=(Lock Logout Suspend Reboot Firmware Shutdown)
 
 Selected=$(printf '%s\n' "${actions[@]}" | dmenu -i -p "Option:")
 
@@ -16,18 +16,13 @@ if [[ ! -z $Selected ]]; then
         if [[ $Selected == "Suspend" ]]; then
             systemctl suspend
         elif [[ $Selected == "Lock" ]]; then
-            i3lock --clock -B 10 --pass-media-keys \
-                --timecolor=$TDcolor --datecolor=$TDcolor --timesize=100 \
-                --datesize=20 --timepos="1700:850" --insidecolor=$insidecolor \
-                --insidevercolor=$insidecolor --ringcolor=$Rcolor --line-uses-inside \
-                --separatorcolor=$insidecolor --keyhlcolor=$hlcolor \
-                --ringvercolor=$verring --insidewrongcolor=$hlcolor \
-                --ringwrongcolor=$hlcolor \
-                --datestr="(%A) %d %B %Y" --timestr="%H:%M"
+            betterlockscreen -u ~/Pictures/Nude/0056.jpg -b 3 -l blur
         elif [[ $Selected == "Logout" ]]; then
-            killall $WM
+            killall Xorg
         elif [[ $Selected == "Reboot" ]]; then
             systemctl reboot
+        elif [[ $Selected == "Firmware" ]]; then
+            systemctl reboot --firmware-setup
         else
             shutdown -h now
         fi

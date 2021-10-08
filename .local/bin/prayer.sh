@@ -40,7 +40,7 @@ elif [[ $currenttime > $isha || $currenttime < $fajr ]]; then
 fi
 
 # Calculate the remaining time to the next prayer (or iftar in ramadan and the fast duration is ramadan)
-remain=$(date -u -d @$(($(date -d "$nextTime" '+%s') - $(date -d "$currenttime" '+%s'))) '+%H:%M')
+remain=$(date -u -d @$(($(date -d "$nextTime" "+%s") - $(date -d "$currenttime" "+%s"))) "+%H:%M")
 fast=$(date -u -d @$(($(date -d "$maghrib" '+%s') - $(date -d "$fajr" '+%s'))) '+%H:%M')
 Tofast=$(date -u -d @$(($(date -d "$maghrib" '+%s') - $(date -d "$currenttime" '+%s'))) '+%H:%M')
 
