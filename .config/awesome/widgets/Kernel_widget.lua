@@ -8,11 +8,13 @@ timeout = 7200
 
 kernel_wdt = wibox.widget {
     {
-        {
+        {{
             id = 'knl_wdt',
             widget = wibox.widget.textbox
         },
-        widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
+        widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),},
+        valign = 'center',
+        widget = wibox.container.place,
     },
     bg = Wdt_bg,
     shape = Wdt_shape,

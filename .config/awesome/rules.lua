@@ -1,5 +1,9 @@
 local awful = require('awful')
+local gears = require('gears')
 local beautiful = require('beautiful')
+local xresources = require('beautiful.xresources')
+local dpi = xresources.apply_dpi
+local wibox = require('wibox')
 
 local rules = {}
 awful.screen.connect_for_each_screen(function(s)
@@ -29,7 +33,7 @@ awful.rules.rules = {
             class = {
                 'Arandr', 'Blueman-manager', 'Nitrogen', 'lxrandr', 'Lxappearance', 'qt5ct', 'Hardinfo',
                 'Kvantum Manager', 'Xarchiver', 'Nm-connection-editor', 'Pavucontrol', 'GParted', 'Timeshift-gtk',
-                'Virtualbox Machine', 'Virtualbox Manager', 'Xfce4-about', 'Xfce4-power-manager-settings',
+                'Virtualbox Machine', 'Virtualbox Manager', 'Xfce4-about', 'Xfce4-power-manager-settings', 'Songrec', 'Cadence', 'Catia', 'NoiseTorch',
             },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -39,28 +43,49 @@ awful.rules.rules = {
             'Customize Look and Feel',
             'ArcoLinux Spices Application',
             'Search movie',
-            'About Mozilla Firefox'
+            'About Mozilla Firefox',
+            'Select file to open',
         },
-        role = {
-            'pop-up',       -- e.g. Google Chrome's (detached) Developer Tools.
-            'GtkFileChooserDialog',
-        }
     },
     properties = {
         floating = true,
-        width = awful.screen.focused().workarea.width * 0.5,
-        height = awful.screen.focused().workarea.height * 0.5,
-        --x = awful.screen.focused().workarea.width * 0.25,
-        --y = awful.screen.focused().workarea.height * 0.25,
+        titlebars_enabled = true,
+        width = awful.screen.focused().geometry.width * 0.5,
+        height = awful.screen.focused().geometry.height * 0.5,
     }
 },
 
 {
+    rule = {
+        class = 'org-tinymediamanager-TinyMediaManager',
+    },
+        properties = {
+            tag = screen[1].tags[3],
+            switchtotag = true
+        }
+},
+
+{
+    rule = {
+        class = 'Whatsapp-for-linux',
+    },
+        properties = {
+            floating = true,
+            width = dpi(900),
+            height = dpi(1200),
+            x =awful.screen.focused().geometry.width * 0.647,
+            y = awful.screen.focused().geometry.height * 0.10,
+        }
+},
+
+{
     rule_any = {
-        class = {'slickpicker', 'Gnome-sudoku','Variety'},
+        class = {'slickpicker', 'Gnome-sudoku','Psensor', 'org.kde.fancontrol.gui', 'corectrl', 'openrgb', 'MediaElch', 'Gddccontrol', 'SimpleScreenRecorder'},
+        role = {'GtkFileChooserDialog', 'pop-up'},
     },
     properties = {
-        floating = true
+        floating = true,
+        titlebars_enabled = true,
     }
 },
 
@@ -70,7 +95,17 @@ awful.rules.rules = {
         class = 'kitty'
     },
     properties = {
-        tag = screen[s].tags[1],
+        tag = screen[1].tags[1],
+        switchtotag = true
+    }
+},
+
+{
+    rule = {
+        class = 'kdenlive'
+    },
+    properties = {
+        tag = screen[1].tags[5],
         switchtotag = true
     }
 },
@@ -82,7 +117,7 @@ awful.rules.rules = {
         }
     },
     properties = {
-        tag = screen[s].tags[2],
+        tag = screen[1].tags[2],
         switchtotag = true
     }
 },
@@ -90,11 +125,11 @@ awful.rules.rules = {
 {
     rule_any = {
         class = {
-            'Geany','Inkscape','Gimp'
+            'Geany','Gimp','libreoffice-startcenter'
         }
     },
     properties = {
-        tag = screen[s].tags[3],
+        tag = screen[1].tags[3],
         switchtotag = true
     }
 },
@@ -102,11 +137,26 @@ awful.rules.rules = {
 {
     rule_any = {
         class = {
-            'Pcmanfm','qBittorrent','Uget-gtk'
+            'Inkscape',
+        },
+    },
+    properties = {
+        titlebars_enabled = true,
+        tag = screen[1].tags[3],
+        placement = awful.placement.centered+awful.placement.no_offscreen,
+        floating = true,
+        switchtotag = true
+    }
+},
+
+{
+    rule_any = {
+        class = {
+            'Pcmanfm','qBittorrent','Uget-gtk', 'Nemo'
         }
     },
     properties = {
-        tag = screen[s].tags[4],
+        tag = screen[1].tags[4],
         switchtotag = true
     }
 },
@@ -118,7 +168,7 @@ awful.rules.rules = {
         }
     },
     properties = {
-        tag = screen[s].tags[5],
+        tag = screen[1].tags[5],
         switchtotag = true
     }
 },
@@ -130,7 +180,7 @@ awful.rules.rules = {
         }
     },
     properties = {
-        tag = screen[s].tags[4],
+        tag = screen[1].tags[4],
         switchtotag = true
     }
 },
@@ -142,7 +192,7 @@ awful.rules.rules = {
         }
     },
     properties = {
-        tag = screen[s].tags[6],
+        tag = screen[1].tags[6],
         switchtotag = true,
         floating = true,
         border_width = 0
@@ -152,17 +202,54 @@ awful.rules.rules = {
 {
     rule_any = {
         class = {
-            'vlc'
+            'FreeTube'
         }
     },
     properties = {
-        tag = screen[s].tags[6],
+        tag = screen[1].tags[6],
         switchtotag = true,
         border_width = 0
     }
 },
 
 }
+end)
+
+-- Add a titlebar if titlebars_enabled is set to true in the rules.
+client.connect_signal("request::titlebars", function(c)
+    -- buttons for the titlebar
+    local buttons = gears.table.join(
+        awful.button({ }, 1, function()
+            c:emit_signal("request::activate", "titlebar", {raise = true})
+            awful.mouse.client.move(c)
+        end),
+        awful.button({ }, 3, function()
+            c:emit_signal("request::activate", "titlebar", {raise = true})
+            awful.mouse.client.resize(c)
+        end)
+    )
+
+    awful.titlebar(c) : setup {
+        { -- Left
+            awful.titlebar.widget.closebutton    (c),
+            awful.titlebar.widget.maximizedbutton(c),
+            awful.titlebar.widget.floatingbutton (c),
+            awful.titlebar.widget.stickybutton   (c),
+            layout = wibox.layout.fixed.horizontal()
+        },
+        { -- Middle
+            { -- Title
+                align  = "center",
+                widget = awful.titlebar.widget.titlewidget(c)
+            },
+            buttons = buttons,
+            layout  = wibox.layout.flex.horizontal
+        },
+        { -- Right
+            layout  = wibox.layout.fixed.horizontal
+        },
+        layout = wibox.layout.align.horizontal
+    }
 end)
 
 -- ========================= Signals ===========================================
@@ -179,8 +266,7 @@ end)
 
 -- Enable borders for focused windows
 client.connect_signal('focus', function(c)
-    local clients = awful.client.visible(s)
-            if not awful.rules.match(c, {class = 'mpv'}) then
+            if not awful.rules.match_any(c, {class = {'mpv', 'Sxiv', 'Vlc'}}) then
                 c.border_width = beautiful.border_width
                 c.border_color = beautiful.border_focus
             end
@@ -189,5 +275,10 @@ client.connect_signal('unfocus', function(c)
     c.border_width = 0
     c.border_color = beautiful.border_normal
 end)
+
+-- ================= Experimenting with auto dpi functionality ================
+--awful.screen.connect_for_each_screen(function(s)
+awful.screen.set_auto_dpi_enabled(true)
+--end)
 
 return rules

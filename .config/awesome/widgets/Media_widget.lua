@@ -15,17 +15,21 @@ ARG =   '{{emoji(status)}} ' ..
 Media_wdt = wibox.widget {
     {
         {
-            id = 'current_song',
-            widget = wibox.widget.textbox
+            {
+                id = 'current_song',
+                widget = wibox.widget.textbox
+            },
+            layout = wibox.container.scroll.horizontal,
+            max_size = awful.screen.focused().geometry.width * 0.15,
+            step_function = wibox.container.scroll.step_functions.linear_increase,
+            fps = 60,
+            speed = 60,
+            extra_space = 5
         },
-        layout = wibox.container.scroll.horizontal,
-        max_size = awful.screen.focused().workarea.width * 0.25,
-        step_function = wibox.container.scroll.step_functions.linear_increase,
-        fps = 75,
-        speed = 60,
-        extra_space = 5
+        valign = 'center',
+        widget = wibox.container.place
     },
-    margins = awful.screen.focused().workarea.width * 0.002,
+    margins = awful.screen.focused().geometry.width * 0.0005,
     widget = wibox.container.margin
 }
 Media_wdt:connect_signal('button::press', function (_,_,_,button)

@@ -1,7 +1,7 @@
 local awful = require('awful')
 
 local apps = {
-    browser = 'librewolf',
+    browser = 'brave',
 	editor	= os.getenv('EDITOR') or 'nvim',
 	fmanager = 'pcmanfm',
 	geditor	= 'geany',
@@ -14,7 +14,7 @@ local apps = {
 	vplayer	= 'mpv',
 	vector	= 'inkscape',
 	ssh	= 'filezilla',
-	wallpaper = 'nitrogen'
+	wallpaper = 'sxiv -t -o -r /home/hisham/Pictures/*'
 }
 local function run_once(cmd)
     local findme = cmd

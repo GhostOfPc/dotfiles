@@ -1,8 +1,10 @@
 local awful = require('awful')
 local wibox = require('wibox')
 local watch = require('awful.widget.watch')
+local icons_dir     =   os.getenv('HOME') .. '/.config/awesome/icons/'
 
 local Disk_widget = {}
+local screen_width = awful.screen.focused().geometry.width
 
 DSK_CMD = [[ bash -c 'disk.sh']]
 timeout = 300
@@ -10,8 +12,27 @@ timeout = 300
 disk_widget = wibox.widget {
     {
         {
-            id = 'disk_wdt',
-            widget = wibox.widget.textbox
+            {
+                {
+                    {
+                        id = 'icon',
+                        resize = true,
+                        forced_width = screen_width * 0.01,
+                        forced_height = screen_width * 0.01,
+                        image = '/usr/share/icons/Papirus/48x48/devices/drive-harddisk.svg',
+                        widget = wibox.widget.imagebox
+                    },
+                    margins = screen_width * 0.0005,
+                    widget = wibox.container.margin
+                },
+                valign = 'center',
+                widget = wibox.container.place
+            },
+            {
+                id = 'disk_wdt',
+                widget = wibox.widget.textbox
+            },
+            layout = wibox.layout.fixed.horizontal
         },
         widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },

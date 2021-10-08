@@ -3,6 +3,7 @@ local wibox = require('wibox')
 local watch = require('awful.widget.watch')
 
 local Packages_widget = {}
+local screen_width = awful.screen.focused().geometry.width
 
 PKG_CMD = [[ bash -c 'pacman.sh']]
 timeout = 7200
@@ -16,6 +17,7 @@ pkg_widget = wibox.widget {
         widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
     bg = Wdt_bg,
+    forced_width = screen_width * 0.04,
     shape = Wdt_shape,
     widget = wibox.container.background
 }

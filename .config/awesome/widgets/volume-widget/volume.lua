@@ -84,7 +84,7 @@ local function notif(msg, keep)
             title = "Volume",
             position = volume.position,
             timeout = keep and 0 or 2, hover_timeout = 0.5,
-            width = awful.screen.focused().workarea.width * 0.12,
+            width = awful.screen.focused().geometry.width * 0.12,
             screen = mouse.screen
         }
     end
@@ -96,12 +96,12 @@ local function worker(user_args)
 --{{{ Args
     local args = user_args or {}
 
-    local volume_audio_controller = args.volume_audio_controller or 'pulse'
+    local volume_audio_controller = args.volume_audio_controller or 'default'
     volume.display_notification = args.display_notification or false
     volume.display_notification_onClick = args.display_notification_onClick or true
     volume.position = args.notification_position or "top_right"
-    if volume_audio_controller == 'pulse' then
-        volume.device = '-D pulse'
+    if volume_audio_controller == 'default' then
+        volume.device = '-D default'
     end
     volume.delta = args.delta or 5
     GET_VOLUME_CMD = 'amixer ' .. volume.device.. ' sget Master'

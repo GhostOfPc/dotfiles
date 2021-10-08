@@ -5,7 +5,7 @@ local wibox = require('wibox')
 
 local Date_widget = {}
 --local icons_ext = '.svg'
-local screen_width = awful.screen.focused().workarea.width
+local screen_width = awful.screen.focused().geometry.width
 
 datewidget = wibox.widget {
     {
@@ -16,7 +16,7 @@ datewidget = wibox.widget {
                     resize = true,
                     widget = wibox.widget.imagebox
                 },
-                margins = screen_width * 0.0015,
+                margins = screen_width * 0.0005,
                 widget = wibox.container.margin
             },
             {

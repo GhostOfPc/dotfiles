@@ -1,9 +1,11 @@
 local awful = require('awful')
 local wibox = require('wibox')
 local watch = require('awful.widget.watch')
+local icons_dir     =   os.getenv('HOME') .. '/.config/awesome/icons/'
 
 
 local Memory_widget = {}
+local screen_width = awful.screen.focused().geometry.width
 
 MEM_CMD = [[ bash -c "free -h | awk '/^Mem/ {print $3}' | sed 's/i//'" ]]
 timeout = 10
@@ -11,8 +13,26 @@ timeout = 10
 mem_widget = wibox.widget {
     {
         {
-            id = 'mem_wdt',
-            widget = wibox.widget.textbox
+            {
+                {
+                    {
+                        id = 'icon',
+                        resize = true,
+                        forced_height = screen_width * 0.01,
+                        forced_width = screen_width * 0.01,
+                        image = '/usr/share/icons/Papirus/48x48/devices/gnome-dev-memory.svg',
+                        widget = wibox.widget.imagebox
+                    },
+                    margins = screen_width * 0.0005,widget = wibox.container.margin
+                },
+                valign = 'center',
+                widget = wibox.container.place
+            },
+            {
+                id = 'mem_wdt',
+                widget = wibox.widget.textbox
+            },
+            layout = wibox.layout.fixed.horizontal
         },
         widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
@@ -26,7 +46,7 @@ mem_widget:connect_signal('button::press', function (_,_,_,button)
         end)
 
 function Update_mem_widget(widget,stdout)
-    widget:get_children_by_id('mem_wdt')[1]:set_text('🧠 ' .. stdout)
+    widget:get_children_by_id('mem_wdt')[1]:set_text(stdout)
 end
 
 watch(MEM_CMD,timeout,Update_mem_widget,mem_widget)

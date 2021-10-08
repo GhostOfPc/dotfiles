@@ -1,24 +1,26 @@
 -- ======================= Imports ===================================
 local naughty = require('naughty')
 local beautiful = require('beautiful')
+local gears = require('gears')
 local awful = require('awful')
 local dpi = beautiful.xresources.apply_dpi
-local screen_width = awful.screen.focused().workarea.width
+local screen_width = awful.screen.focused().geometry.width
 
 -- =================== Theme Definitions =============================
 naughty.config.defaults.ontop = true
 naughty.config.defaults.icon_size = dpi(64)
 naughty.config.defaults.screen = awful.screen.focused()
 naughty.config.defaults.timeout = 10
-naughty.config.defaults.margin = dpi(6)
+naughty.config.defaults.margin = dpi(10)
 naughty.config.defaults.border_color = beautiful.border_focus
-naughty.config.defaults.border_width = 0
-naughty.config.defaults.position = 'top_right'
-naughty.config.defaults.width = screen_width * 0.27
-naughty.config.defaults.max_width = screen_width * 0.32
---naughty.config.defaults.shape = function(cr, w, h)
---   gears.shape.rounded_rect(cr, w, h, dpi(4))
---end
+naughty.config.defaults.border_width = dpi(0)
+naughty.config.defaults.position = 'bottom_right'
+naughty.config.defaults.font = 'Inter 10'
+naughty.config.defaults.width = screen_width * 0.16
+naughty.config.defaults.max_width = screen_width * 0.16
+naughty.config.defaults.shape = function(cr, w, h)
+   gears.shape.rounded_rect(cr, w, h, dpi(6))
+end
 
 naughty.config.padding = dpi(4)
 naughty.config.spacing = dpi(4)

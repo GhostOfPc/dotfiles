@@ -15,12 +15,17 @@ local beautiful = require('beautiful')
 local config_dir = gears.filesystem.get_configuration_dir()
 
 local decoration = {}
-local screen_width = awful.screen.focused().workarea.width
+local screen_width = awful.screen.focused().geometry.width
 
 -- Global widgets settings
+--Wdt_bg      =   beautiful.fg_occupied .. '8a'
 Wdt_bg      =   beautiful.bg_empty
 Wdt_shape   =   function(cr, width, height)
-    gears.shape.rounded_rect(cr, width, height, screen_width * 0.00) end
+    gears.shape.rounded_rect(cr, width, height, screen_width * 0.0022) end
+big_wdt_shape   =   function(cr, width, height)
+    gears.shape.rounded_rect(cr, width, height, screen_width * 0.004) end
+bar_wdt_shape   =   function(cr, width, height)
+    gears.shape.rounded_rect(cr, width, height, screen_width * 0.003) end
 Wdt_rmgn    =   screen_width * 0.002
 Wdt_lmgn    =   screen_width * 0.002
 
@@ -52,12 +57,14 @@ logo = wibox.widget {
     {
         {
             id = 'icon',
-            image = config_dir ..'/icons/dove.svg',
+            image = config_dir ..'/icons/aorus_logo.svg',
             resize = true,
             opacity = 1.0,
             widget = wibox.widget.imagebox
         },
-        margins = screen_width * 0.001,
+        left = screen_width * 0.001,
+        top = screen_width * 0.0008,
+        bottom = screen_width * 0.0008,
         widget = wibox.container.margin
     },
     shape = Wdt_shape,
@@ -76,9 +83,10 @@ logo:connect_signal('button::release',function(_,_,_,button)
         logo:get_children_by_id('icon')[1]:set_opacity(1)
     end
 end)
+
 separator = {
 
-                forced_width    = screen_width * 0.0013,
+                forced_width    = screen_width * 0.001,
                 opacity         = 0,
                 widget          = wibox.widget.separator
             }

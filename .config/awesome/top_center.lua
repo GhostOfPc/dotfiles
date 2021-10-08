@@ -17,7 +17,7 @@ awful.screen.connect_for_each_screen(function(s)
         screen = s ,
         bg = '#21212100',
         height = dpi(20),
-        width = awful.screen.focused().workarea.width * 0.13,
+        width = awful.screen.focused().geometry.width * 0.13,
     }
     )
 

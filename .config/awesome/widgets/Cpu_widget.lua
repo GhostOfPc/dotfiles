@@ -3,7 +3,7 @@ local wibox = require('wibox')
 local watch = require('awful.widget.watch')
 
 local Cpu_widget = {}
-local screen_width = awful.screen.focused().workarea.width
+local screen_width = awful.screen.focused().geometry.width
 
 timeout = 10
 CPU_CMD = 'cpu.sh'
@@ -17,7 +17,7 @@ cpu_widget = wibox.widget {
         widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
     bg = Wdt_bg,
-    forced_width = screen_width * 0.078,
+    forced_width = screen_width * 0.054,
     shape = Wdt_shape,
     widget = wibox.container.background
 }

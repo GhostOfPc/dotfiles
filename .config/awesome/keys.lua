@@ -10,6 +10,7 @@ local dpi = xresources.apply_dpi
 local apps = require('apps')
 local xrandr=require('xrandr')
 local volume_widget = require("widgets.volume-widget.volume")
+local brightness_widget = require("widgets.brightness-widget.brightness")
 
 modkey = 'Mod4'
 altkey = 'Mod1'
@@ -126,8 +127,20 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, 'Return', function () awful.spawn(apps.terminal) end,
               {description = 'open a terminal', group = 'launcher'}),
 
-    awful.key({ modkey,           }, 'F1', function () awful.spawn(apps.ssh) end,
-              {description = 'open filezilla', group = 'launcher'}),
+    awful.key({ modkey , altkey}, 'o', function () awful.spawn('obs') end,
+              {description = 'Launch obs studio', group = 'productivity'}),
+
+    awful.key({ modkey , altkey}, 'k', function () awful.spawn('kdenlive') end,
+              {description = 'Launch kdenlive', group = 'productivity'}),
+
+    awful.key({ modkey , altkey}, 'g', function () awful.spawn('gimp') end,
+              {description = 'Launch gimp', group = 'productivity'}),
+
+    awful.key({ modkey, altkey}, 'i', function () awful.spawn('inkscape') end,
+              {description = 'Launch inkscape', group = 'productivity'}),
+
+    awful.key({ modkey , altkey}, 's', function () awful.spawn('simplescreenrecorder') end,
+              {description = 'Launch SimpeScreenRecorder', group = 'productivity'}),
 
     awful.key({ modkey,           }, 'g', function () awful.spawn(apps.geditor) end,
               {description = 'open geany', group = 'launcher'}),
@@ -137,9 +150,6 @@ globalkeys = gears.table.join(
 
     awful.key({modkey,     'Shift'}, 'a',function () awful.spawn('alacritty') end,
               {description = 'open alacritty terminal', group = 'launcher'}),
-
-    awful.key({ modkey,           }, 'i', function () awful.spawn(apps.vector) end,
-              {description = 'open inkscape', group = 'launcher'}),
 
     awful.key({ modkey,           }, 'v', function () awful.spawn(apps.vplayer) end,
               {description = 'open vlc', group = 'launcher'}),
@@ -153,10 +163,16 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, 'b', function () awful.spawn(apps.browser) end,
               {description = 'Navigate the web', group = 'launcher'}),
 
-    awful.key({                   }, 'XF86LaunchB',     function () awful.spawn(apps.launcher) end,
+    awful.key({ modkey,           }, 'q', function () awful.spawn('qutebrowser') end,
+              {description = 'Spawin qutebrowser', group = 'launcher'}),
+
+    awful.key({ modkey,           }, 'c', function () awful.spawn('copyq show') end,
+              {description = 'Navigate the web', group = 'launcher'}),
+
+    awful.key({                   }, 'XF86Search',     function () awful.spawn(apps.launcher) end,
               {description = 'spawn the launcher', group = 'launcher'}),
 
-    awful.key({                   }, 'XF86LaunchA',     function () awful.spawn.with_shell('$TERMINAL --hold fhd_2_4k.sh') end,
+    awful.key({ raltkey, 'Shift'   }, 'r',     function () awful.spawn.with_shell('$TERMINAL --hold fhd_2_4k.sh') end,
               {description = 'Change Screen resolution', group = 'launcher'}),
 
     awful.key({ modkey            }, 'p',     function () awful.spawn(apps.launcher) end,
@@ -168,7 +184,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey            }, 'f',     function () awful.spawn(apps.fmanager) end,
               {description = 'open the file manager', group = 'launcher'}),
 
-    awful.key({ modkey            }, 'n',     function () awful.spawn(apps.wallpaper) end,
+    awful.key({ modkey            }, 'n',     function () awful.spawn.with_shell(apps.wallpaper) end,
               {description = 'Change the wallpaper', group = 'launcher'}),
 
     awful.key({modkey,	    altkey}, 'h', function() awful.spawn.with_shell('$TERMINAL --hold htop') end,
@@ -189,8 +205,7 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey, 'Shift' }, 'm', function () awful.spawn.with_shell('kill -9 $(pgrep kodi)') end,
               {description = 'kill kodi', group = 'launcher'}),
-
-    awful.key({ modkey, 'Shift' }, 'u', function () awful.spawn.with_shell('kill -9 $(pgrep uget-gtk)') end,
+awful.key({ modkey, 'Shift' }, 'u', function () awful.spawn.with_shell('kill -9 $(pgrep uget-gtk)') end,
               {description = 'kill uget', group = 'launcher'}),
 
     awful.key({ modkey, 'Shift' }, 't', function () awful.spawn.with_shell('kill -9 $(pgrep qbittorrent)') end,
@@ -204,23 +219,27 @@ globalkeys = gears.table.join(
 	{description = 'Take a screenshot', group = 'hotKeys'}),
 
     -- ================= Hotkeys (using multimedia keys) ===========================
-awful.key(
- {},
- 'XF86AudioRaiseVolume',
-volume_widget.raise,
+awful.key({}, 'XF86AudioRaiseVolume', volume_widget.raise,
  {description = "Volume increase", group = "hotkeys"}),
 
-awful.key(
- {},
- 'XF86AudioLowerVolume',
-volume_widget.lower,
+awful.key({},'XF86AudioLowerVolume', volume_widget.lower,
  {description = "Volume decrease", group = "hotkeys"}),
 
-awful.key(
- {},
- 'XF86AudioMute',
-volume_widget.toggle,
+awful.key({},'XF86AudioMute', volume_widget.toggle,
  {description = "Volume mute", group = "hotkeys"}),
+
+awful.key({altkey}, 'x', volume_widget.raise,
+ {description = "Volume increase", group = "hotkeys"}),
+
+awful.key({altkey},'z', volume_widget.lower,
+ {description = "Volume decrease", group = "hotkeys"}),
+
+awful.key({altkey},'c', volume_widget.toggle,
+ {description = "Volume mute", group = "hotkeys"}),
+
+awful.key({altkey}, 'q', function () brightness_widget:dec() end, {description = "increase brightness", group = "hotkeys"}),
+
+awful.key({altkey}, 'w', function () brightness_widget:inc() end, {description = "increase brightness", group = "hotkeys"}),
 
     awful.key({ }, 'XF86AudioNext', function () awful.spawn('playerctl next') end,
               {description = 'Jump to the next song', group = 'hotKeys'}),
@@ -240,22 +259,7 @@ volume_widget.toggle,
     awful.key({ }, 'XF86AudioPlay', function () awful.spawn('mpc toggle') end,
               {description = 'Play/Pause current song', group = 'hotKeys'}),
 
-    awful.key({ }, 'XF86MonBrightnessUp', function () awful.spawn.with_shell('xbacklight -inc 2') end,
-              {description = 'Brightness increase', group = 'hotKeys'}),
-
-    awful.key({ }, 'XF86MonBrightnessDown', function () awful.spawn.with_shell('xbacklight -dec 2') end,
-              {description = 'Brightness decrease', group = 'hotKeys'}),
-
     -- ================= Hotkeys (using modifier key) ===========================
-    awful.key({ altkey}, 'x', function () awful.spawn.with_shell('amixer -D pulse sset Master 5%+') end,
-              {description = 'Volume increase', group = 'hotKeys'}),
-
-    awful.key({ altkey}, 'z', function () awful.spawn.with_shell('amixer -D pulse sset Master 5%-') end,
-              {description = 'Volume decrease', group = 'hotKeys'}),
-
-    awful.key({ altkey}, 'c', function () awful.spawn.with_shell('amixer -D pulse sset Master 1+ toggle') end,
-              {description = 'Volume mute', group = 'hotKeys'}),
-
     awful.key({ altkey}, 'd', function () awful.spawn('playerctl next') end,
               {description = 'Jump to the next song', group = 'hotKeys'}),
 
@@ -265,21 +269,6 @@ volume_widget.toggle,
     awful.key({ altkey}, 's', function () awful.spawn('playerctl play-pause') end,
               {description = 'Play/Pause current song', group = 'hotKeys'}),
 
-    awful.key({ altkey}, 'w', function () awful.spawn.with_shell('xbacklight -inc 2') end,
-              {description = 'Brightness increase', group = 'hotKeys'}),
-
-    awful.key({ altkey}, 'q', function () awful.spawn.with_shell('xbacklight -dec 2') end,
-              {description = 'Brightness decrease', group = 'hotKeys'}),
-
-    awful.key({ altkey}, 'p', function () awful.spawn.with_shell('shuffle.sh') end,
-              {description = 'Play a random file (audio/video) with mpv', group = 'hotKeys'}),
-
-    awful.key({ altkey, 'Control'}, 'p', function () awful.spawn.with_shell('shuffleList.sh') end,
-              {description = 'Create a random playlist of random videos ', group = 'hotKeys'}),
-
-    awful.key({ modkey, }, 'w', function () awful.spawn.with_shell('feh --randomize --bg-fill /home/hisham/Pictures/Nude') end,
-              {description = 'Set a random wallpaper', group = 'hotKeys'}),
-
     awful.key({ altkey, 'Control'}, 'm', function () awful.spawn.with_shell('mpv $(xclip -o -selection clipboard)') end,
               {description = 'Play the copied link with mpv w/o caching', group = 'hotKeys'}),
 
@@ -288,6 +277,9 @@ volume_widget.toggle,
 
     awful.key({ raltkey, }, '7', function () awful.spawn.with_shell('movies.sh') end,
               {description = 'Play a random movie', group = 'hotKeys'}),
+
+    awful.key({ altkey, 'Control'}, 'q', function () awful.spawn.with_shell('zathura /home/hisham/Documents/Quran_7afs.pdf') end,
+              {description = 'Read al-quraan alkareem', group = 'hotKeys'}),
     -- ================= dmenu scripts ===========================
     awful.key({ raltkey }, '1', function () awful.spawn.with_shell('dmenu_url.sh') end,
               {description = 'dmenu script to surf the web', group = 'dmenu'}),
@@ -317,6 +309,9 @@ volume_widget.toggle,
               {description = 'dmenu script to Start/Stop systemd services', group = 'dmenu'}),
 
     awful.key({ modkey }, 't', function () awful.spawn.with_shell('theme.sh') end,
+              {description = 'Toggle dark or light theme', group = 'dmenu'}),
+
+    awful.key({ 'Control' }, 'p', function () awful.spawn.with_shell('passmenu') end,
               {description = 'Toggle dark or light theme', group = 'dmenu'}),
 
     -- ================= Increase brightness with xrandr ===========================
@@ -371,6 +366,11 @@ clientkeys = gears.table.join(
               {description = 'close', group = 'client'}),
     awful.key({ modkey, 'Control' }, 'space',  awful.client.floating.toggle                     ,
               {description = 'toggle floating', group = 'client'}),
+    awful.key({ modkey, 'Control' }, 'm',       function (c)
+                c.maximized = not c.maximized
+                c:raise()
+            end ,
+            {description = '(un)maximize', group = 'client'}),
     awful.key({ modkey, 'Control' }, 'Return', function (c) c:swap(awful.client.getmaster()) end,
               {description = 'move to master', group = 'client'})
 )

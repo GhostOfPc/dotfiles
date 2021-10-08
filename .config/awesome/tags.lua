@@ -2,57 +2,60 @@ local gears = require('gears')
 local awful = require('awful')
 local wibox = require('wibox')
 require('widgets.decoration')
+local beautiful = require('beautiful')
+local bling = require('bling')
 
 
 local tags = {}
 awful.screen.connect_for_each_screen(function(s)
     awful.tag.add('',{
-            name                = 'Term',
+            name                = '⠚⠁⠧⠗⠊⠎', -- JAVRIS
             id                  = '1',
-			layout			    = awful.layout.suit.tile,
+			--layout              = awful.layout.suit.tile,
+			layout			    = bling.layout.centered,
 			gap_single_client	= true,
-			gap                 = 8,
+			gap                 = 6,
 			selected		    = true
 			}
 		)
     awful.tag.add('',{
-            name                = 'web',
+            name                = '⠓⠁⠇', -- HAL
             id                  = '2',
 			layout              = awful.layout.suit.tile,
 			gap_single_client	= true,
-			gap			        = 8,
+			gap			        = 6,
 			}
 		)
     awful.tag.add('',{
-            name                = 'Edit',
+            name                = '⠍⠕⠞⠓⠑⠗', -- MOTHER
             id                  = '3',
 			layout			    = awful.layout.suit.tile,
 			gap_single_client	= true,
-			gap			        = 8,
+			gap			        = 6,
 			}
 		)
     awful.tag.add('',{
-            name                = 'Files',
+            name                = '⠧⠕⠽⠁⠛⠑⠗', --VOYAGER
             id                  = '4',
 			layout			    = awful.layout.suit.tile,
 			gap_single_client	= true,
-			gap			        = 8,
+			gap			        = 6,
 			}
 		)
     awful.tag.add('',{
-            name                = 'Music',
+            name                = '⠎⠅⠽⠝⠑⠞', -- SKYNET
             id                  = '5',
 			layout			    = awful.layout.suit.tile,
 			gap_single_client	= true,
-			gap			        = 20,
+			gap			        = 6,
 			}
 		)
     awful.tag.add('',{
-            name                = 'Vids',
+            name                = '⠋⠗⠊⠙⠁⠽', -- FRIDAY
             id                  = '6',
 			layout			    = awful.layout.suit.tile,
 			gap_single_client	= true,
-			gap			        = 8,
+			gap			        = 6,
 			}
 		)
     mytasklist = awful.widget.tasklist {
@@ -65,20 +68,22 @@ awful.screen.connect_for_each_screen(function(s)
     },
     layout   = {
         spacing = 5,
-        max_widget_size = awful.screen.focused().workarea.width * 0.13,
+        max_widget_size = awful.screen.focused().geometry.width * 0.13,
         layout  = wibox.layout.flex.horizontal
     },
     widget_template = {
         {
             {
-                {
-                    {
-                        id     = 'icon_role',
-                        resize = true,
-                        widget = wibox.widget.imagebox,
-                    },
-                    widget  = wibox.container.margin(_,_,_,_,_,_)
-                },
+                --{
+                --    {
+                --        id     = 'icon_id',
+                --        widget = awful.widget.clienticon,
+                --    },
+                --    top = 2,
+                --    bottom = 2,
+                --    right = 10,
+                --    widget  = wibox.container.margin
+                --},
                 {
                     id     = 'text_role',
                     widget = wibox.widget.textbox,
