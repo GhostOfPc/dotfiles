@@ -30,3 +30,4 @@ behavior:
   tick_rate_milliseconds: 250
   # controls whether to show a loading indicator in the top right of the UI whenever communicating with Spotify API
   show_loading_indicator: true
+  enforce_wide_search_bar: true
