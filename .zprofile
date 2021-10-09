@@ -8,7 +8,7 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
-export HISTFILE="$XDG_DATA_HOME"/zsh/history
+export HISTFILE="$XDG_CACHE"/zsh/history
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
@@ -22,7 +22,7 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # Default applications
-export BROWSER="qutebrowser"
+export BROWSER="brave"
 export WM="awesome"
 export EDITOR="nvim"
 export TERMINAL="kitty"
