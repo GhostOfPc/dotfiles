@@ -41,7 +41,7 @@ I manage this dotfiles using a method provided by a gentelman called StreakyCobr
 ## Web Browser
 After being a firefox user for more than a decade, I switched to qutebrowser and I can't be happier.  
 The custom startpage I'm using can be found under `.config/qutebrowser/html` which is not mine since I don't know hot to create one from scratch. I just modified it to suite my needs and taste.
-![qutebrowser](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-01-21-08-11.png)
+![qutebrowser](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-10-09-08-06.png)
 
 # Important note!!!
 The widget at the right side of the screen and the bottm bar in Arabic is the prayer times.  
