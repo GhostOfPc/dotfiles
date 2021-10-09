@@ -10,7 +10,7 @@ This widget retrive the times using `curl`, `systemd` and a bash script located 
 * Edit the coordinates, city, country, method and adjustment in the prayerTimes.sh to suite your current location.
 * Create a directory inside the .config and name it systemd, and inside it another directory called user.
 * Create two files inside .config/systemd/user, prayerTimes.service and prayerTimes.timer. These two files are stored in this repository, so you can copy and paste theme directly.
-* Edit the username in the ExecStart line from hisham to your username in the file prayerTimes.service and save it.
+* Edit the username in the ExecStart line from *hisham* to your username in the file prayerTimes.service and save it.
 * Enable the service and timer using the following commands:
 * `systemctl --user enable --now prayerTimes.service`
 * `systemctl --user enable --now prayerTimes.timer`
