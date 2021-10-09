@@ -20,6 +20,7 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Unify the gtk and qt5 themes
 export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
 # Default applications
 export BROWSER="brave"
@@ -30,7 +31,7 @@ export IMAGE="sxiv"
 export VIDEO="mpv"
 
 # Configure hardware video acceleration
-export LIBVA_DRIVER_NAME=radeonsi
+export LIBVA_DRIVER_NAME=radeonsi kdenlive obs mpv
 export VDPAU_DRIVER=radeonsi
 export MOZ_Z11_EGL=1
 
