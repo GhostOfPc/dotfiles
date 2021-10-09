@@ -39,7 +39,8 @@ I manage this dotfiles using a method provided by a gentelman called StreakyCobr
 ## Window Manager
 ![AwesomeWM](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-10-08-20-21.png)
 ## Web Browser
-After being a firefox user for more than a decade, I switched to qutebrowser and I can't be happier.  
+My daily driver web browser is brave browser which is a chromium based browser with a lot of privacy features\
+I also use qutebrowser which is a keyboard driven broswer and highly customizable\  
 The custom startpage I'm using can be found under `.config/qutebrowser/html` which is not mine since I don't know hot to create one from scratch. I just modified it to suite my needs and taste.
 ![qutebrowser](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/Screenshot-2021-10-09-08-06.png)
 
