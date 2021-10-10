@@ -19,7 +19,7 @@ config.load_autoconfig(False)
 # with some bitmap fonts. As an alternative to this, it's possible to
 # set font sizes and the `zoom.default` setting.
 # Type: Bool
-c.qt.highdpi = False
+c.qt.highdpi = True
 
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
@@ -29,7 +29,14 @@ c.qt.highdpi = False
 # unknown-3rdparty` per-domain on QtWebKit will have the same effect as
 # `all`. If this setting is used with URL patterns, the pattern gets
 # applied to the origin/first party URL of the page making the request,
-# not the request URL.
+# not the request URL. With QtWebEngine 5.15.0+, paths will be stripped
+# from URLs, so URL patterns using paths will not match. With
+# QtWebEngine 5.15.2+, subdomains are additionally stripped as well, so
+# you will typically need to set this setting for `example.com` when the
+# cookie is set on `somesubdomain.example.com` for it to work properly.
+# To debug issues with this setting, start qutebrowser with `--debug
+# --logfilter network --debug-flag log-cookies` which will show all
+# cookies being set.
 # Type: String
 # Valid values:
 #   - all: Accept all cookies.
@@ -46,7 +53,14 @@ config.set('content.cookies.accept', 'no-3rdparty', '*://www.porntrex.com/*')
 # unknown-3rdparty` per-domain on QtWebKit will have the same effect as
 # `all`. If this setting is used with URL patterns, the pattern gets
 # applied to the origin/first party URL of the page making the request,
-# not the request URL.
+# not the request URL. With QtWebEngine 5.15.0+, paths will be stripped
+# from URLs, so URL patterns using paths will not match. With
+# QtWebEngine 5.15.2+, subdomains are additionally stripped as well, so
+# you will typically need to set this setting for `example.com` when the
+# cookie is set on `somesubdomain.example.com` for it to work properly.
+# To debug issues with this setting, start qutebrowser with `--debug
+# --logfilter network --debug-flag log-cookies` which will show all
+# cookies being set.
 # Type: String
 # Valid values:
 #   - all: Accept all cookies.
@@ -63,7 +77,14 @@ config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
 # unknown-3rdparty` per-domain on QtWebKit will have the same effect as
 # `all`. If this setting is used with URL patterns, the pattern gets
 # applied to the origin/first party URL of the page making the request,
-# not the request URL.
+# not the request URL. With QtWebEngine 5.15.0+, paths will be stripped
+# from URLs, so URL patterns using paths will not match. With
+# QtWebEngine 5.15.2+, subdomains are additionally stripped as well, so
+# you will typically need to set this setting for `example.com` when the
+# cookie is set on `somesubdomain.example.com` for it to work properly.
+# To debug issues with this setting, start qutebrowser with `--debug
+# --logfilter network --debug-flag log-cookies` which will show all
+# cookies being set.
 # Type: String
 # Valid values:
 #   - all: Accept all cookies.
@@ -81,6 +102,11 @@ c.content.fullscreen.overlay_timeout = 0
 # read from JavaScript is always the global value.
 # Type: String
 c.content.headers.accept_language = 'en-US,en;q=0.9'
+
+# Value to send in the `Accept-Language` header. Note that the value
+# read from JavaScript is always the global value.
+# Type: String
+config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io/*')
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -112,7 +138,7 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{w
 # between 5.12 and 5.14 (inclusive), changing the value exposed to
 # JavaScript requires a restart.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version} Edg/{upstream_browser_version}', 'https://accounts.google.com/*')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko/20100101 Firefox/90.0', 'https://accounts.google.com/*')
 
 # User agent to send.  The following placeholders are defined:  *
 # `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
@@ -154,30 +180,6 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 # Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
-# Allow websites to show notifications.
-# Type: BoolAsk
-# Valid values:
-#   - true
-#   - false
-#   - ask
-config.set('content.notifications', True, 'https://web.whatsapp.com')
-
-# Allow websites to show notifications.
-# Type: BoolAsk
-# Valid values:
-#   - true
-#   - false
-#   - ask
-config.set('content.notifications', True, 'https://mail.google.com')
-
-# Allow websites to show notifications.
-# Type: BoolAsk
-# Valid values:
-#   - true
-#   - false
-#   - ask
-config.set('content.notifications', True, 'https://www.instagram.com')
-
 # Allow websites to register protocol handlers via
 # `navigator.registerProtocolHandler`.
 # Type: BoolAsk
@@ -201,6 +203,11 @@ c.downloads.position = 'bottom'
 # Characters used for hint strings.
 # Type: UniqueCharString
 c.hints.chars = 'asdfghjkl'
+
+# Whether the underlying Chromium should handle media keys. On Linux,
+# disabling this also disables Chromium's MPRIS integration.
+# Type: Bool
+c.input.media_keys = False
 
 # When/how to show the scrollbar.
 # Type: String
@@ -229,7 +236,7 @@ c.statusbar.show = 'in-mode'
 c.statusbar.padding = {'bottom': 8, 'left': 8, 'right': 8, 'top': 8}
 
 # List of widgets displayed in the statusbar.
-# Type: List of String
+# Type: List of StatusbarWidget
 # Valid values:
 #   - url: Current page URL.
 #   - scroll: Percentage of the current page position like `10%`.
@@ -238,6 +245,7 @@ c.statusbar.padding = {'bottom': 8, 'left': 8, 'right': 8, 'top': 8}
 #   - tabs: Current active tab, e.g. `2`.
 #   - keypress: Display pressed keys when composing a vi command.
 #   - progress: Progress bar for the current page loading.
+#   - text:foo: Display the static text after the colon, `foo` in the example.
 c.statusbar.widgets = ['keypress', 'url', 'history', 'progress']
 
 # Open new tabs (middleclick/ctrl+click) in the background.
@@ -337,7 +345,7 @@ c.url.open_base_url = True
 # the search engine name to the search term, e.g. `:open google
 # qutebrowser`.
 # Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}', 'aw': 'https://wiki.archlinux.org/index.php?search={}'}
+c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}', 'aw': 'https://wiki.archlinux.org/index.php?search={}', 'br': 'https://search.brave.com/search?q={}&source=web', 'yt': 'https://www.youtube.com/results?search_query={}', 'go': 'https://www.google.com/search?q={}'}
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
@@ -345,7 +353,7 @@ c.url.start_pages = 'file:///home/hisham/.config/qutebrowser/html/index.html'
 
 # Default zoom level.
 # Type: Perc
-c.zoom.default = '110%'
+c.zoom.default = '150%'
 
 # Background color of the completion widget for odd rows.
 # Type: QssColor
@@ -492,14 +500,6 @@ c.fonts.tabs.selected = '9pt'
 # Font used for unselected tabs.
 # Type: Font
 c.fonts.tabs.unselected = '9pt'
-
-# Font family for standard fonts.
-# Type: FontFamily
-c.fonts.web.family.standard = 'Noto Sans'
-
-# Font family for sans-serif fonts.
-# Type: FontFamily
-c.fonts.web.family.sans_serif = 'Noto Naskh Arabic UI'
 
 # Bindings for normal mode
 config.bind(',cd', 'download-clear')

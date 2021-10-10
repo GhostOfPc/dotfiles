@@ -11,13 +11,13 @@ local apps = require('apps')
 local xrandr=require('xrandr')
 local volume_widget = require("widgets.volume-widget.volume")
 local brightness_widget = require("widgets.brightness-widget.brightness")
+local bling=require('bling')
 
 modkey = 'Mod4'
 altkey = 'Mod1'
 raltkey = 'Mod5'
 
 local keys = {}
-
 
 
 -- Resize client in given direction
@@ -273,6 +273,9 @@ awful.key({altkey}, 'w', function () brightness_widget:inc() end, {description =
               {description = 'Play the copied link with mpv w/o caching', group = 'hotKeys'}),
 
     awful.key({ altkey, }, 'm', function () awful.spawn.with_shell('mpv --cache=yes $(xclip -o -selection clipboard)') end,
+              {description = 'Play the copied link with mpv w caching', group = 'hotKeys'}),
+
+    awful.key({ altkey, 'Control'}, 's', function () awful.spawn.with_shell('mpv --shuffle /media/VIDEOS/*') end,
               {description = 'Play the copied link with mpv w caching', group = 'hotKeys'}),
 
     awful.key({ raltkey, }, '7', function () awful.spawn.with_shell('movies.sh') end,
