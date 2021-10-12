@@ -180,6 +180,14 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 # Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
+# Allow websites to show notifications.
+# Type: BoolAsk
+# Valid values:
+#   - true
+#   - false
+#   - ask
+config.set('content.notifications.enabled', True, 'https://web.whatsapp.com')
+
 # Allow websites to register protocol handlers via
 # `navigator.registerProtocolHandler`.
 # Type: BoolAsk
@@ -489,27 +497,15 @@ c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
 # Type: Float
 c.colors.webpage.darkmode.grayscale.images = 0.0
 
-# Font used in the statusbar.
-# Type: Font
-#c.fonts.statusbar = '9pt'
-#
-## Font used for selected tabs.
-## Type: Font
-#c.fonts.tabs.selected = '9pt'
-#
-## Font used for unselected tabs.
-## Type: Font
-#c.fonts.tabs.unselected = '9pt'
-
 # Bindings for normal mode
 config.bind(',cd', 'download-clear')
 config.bind(',m', 'hint links spawn mpv {hint-url}')
 config.bind(',td', 'config-cycle content.user_stylesheets $HOME/.config/solarized-everything-css/css/darculized/darculized-all-sites.css ""')
 config.bind(',ts', 'config-cycle content.user_stylesheets $HOME/.config/solarized-everything-css/css/solarized-dark/solarized-dark-all-sites.css ""')
+config.bind(',v', "spawn 'mpv --cache=yes $(xclip -o -selection clipboard)'")
 config.bind('ac', 'fake-key c')
 config.bind('af', 'fake-key f')
 config.bind('am', 'fake-key m')
-config.bind(',v', "spawn 'mpv --cache=yes $(xclip -o -selection clipboard)'")
 config.bind('sb', 'config-cycle statusbar.show in-mode always')
 config.bind('sn', 'config-cycle statusbar.show in-mode always ;; config-cycle tabs.show switching always')
 config.bind('st', 'config-cycle tabs.show always switching')
