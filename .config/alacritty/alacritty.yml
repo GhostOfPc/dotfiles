@@ -232,7 +232,7 @@ colors:
 
   # Bright colors
   bright:
-    black:   '#30303c'
+    black:   '#bbbbbb'
     red:     '#ff6e6e'
     green:   '#69ff94'
     yellow:  '#ffffa5'
