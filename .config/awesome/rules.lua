@@ -33,7 +33,7 @@ awful.rules.rules = {
             class = {
                 'Arandr', 'Blueman-manager', 'Nitrogen', 'lxrandr', 'Lxappearance', 'qt5ct', 'Hardinfo',
                 'Kvantum Manager', 'Xarchiver', 'Nm-connection-editor', 'Pavucontrol', 'GParted', 'Timeshift-gtk',
-                'Virtualbox Machine', 'Virtualbox Manager', 'Xfce4-about', 'Xfce4-power-manager-settings', 'Songrec', 'Cadence', 'Catia', 'NoiseTorch',
+                'Virtualbox Machine', 'Virtualbox Manager', 'Xfce4-about', 'Xfce4-power-manager-settings', 'Songrec', 'Cadence', 'Catia', 'NoiseTorch', 'helvum',
             },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client

@@ -31,7 +31,7 @@ export IMAGE="sxiv"
 export VIDEO="mpv"
 
 # Configure hardware video acceleration
-export LIBVA_DRIVER_NAME=radeonsi kdenlive obs mpv
+export LIBVA_DRIVER_NAME=radeonsi kdenlive obs mpv ffmpeg
 export VDPAU_DRIVER=radeonsi
 export MOZ_Z11_EGL=1
 
