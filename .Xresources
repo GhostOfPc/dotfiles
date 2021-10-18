@@ -11,6 +11,7 @@ Xft.rgba:      rgb
 !Define colors (dark mode)
 #define back #1a1110
 #define fore #f8f8f2
+
 #define base00 #21222c
 #define base08 #bbbbbb
 
@@ -35,6 +36,5 @@ Xft.rgba:      rgb
 #define base07 #f8f8f2
 #define base15 #ffffff
 
-
-*.foregournd: fore
+*.foreground: fore
 *.background: back
