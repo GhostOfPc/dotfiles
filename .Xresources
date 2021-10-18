@@ -36,5 +36,5 @@ Xft.rgba:      rgb
 #define base15 #ffffff
 
 
-*.foregournd: back
-*.background: fore
+*.foregournd: fore
+*.background: back
