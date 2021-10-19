@@ -17,6 +17,8 @@
 #endif
 #include <X11/Xft/Xft.h>
 
+#include <fribidi.h>
+
 #include "drw.h"
 #include "util.h"
 
@@ -49,6 +51,7 @@ static char **hpitems = NULL;
 static int hplength = 0;
 static char numbers[NUMBERSBUFSIZE] = "";
 static char text[BUFSIZ] = "";
+static char fribidi_text[BUFSIZ] = "";
 static char *embed;
 static int bh, mw, mh;
 static int dmx = 0; /* put dmenu at this x offset */
@@ -116,6 +119,26 @@ xinitvisual()
 		depth = DefaultDepth(dpy, screen);
 		cmap = DefaultColormap(dpy, screen);
 	}
+}
+
+static void
+apply_fribidi(char *str)
+{
+  FriBidiStrIndex len = strlen(str);
+  FriBidiChar logical[BUFSIZ];
+  FriBidiChar visual[BUFSIZ];
+  FriBidiParType base = FRIBIDI_PAR_ON;
+  FriBidiCharSet charset;
+  fribidi_boolean result;
+
+  fribidi_text[0] = 0;
+  if (len>0)
+  {
+    charset = fribidi_parse_charset("UTF-8");
+    len = fribidi_charset_to_unicode(charset, str, len, logical);
+    result = fribidi_log2vis(logical, len, &base, visual, NULL, NULL, NULL);
+    len = fribidi_unicode_to_charset(charset, visual, len, fribidi_text);
+  }
 }
 
 static int
@@ -302,7 +325,8 @@ drawmenu(void)
 	/* draw input field */
 	w = (lines > 0 || !matches) ? mw - x : inputw;
 	drw_setscheme(drw, scheme[SchemeNorm]);
-	drw_text(drw, x, 0, w, bh, lrpad / 2, text, 0);
+	apply_fribidi(text);
+	drw_text(drw, x, 0, w, bh, lrpad / 2, fribidi_text, 0);
 
 	curpos = TEXTW(text) - TEXTW(&text[cursor]);
 	if ((curpos += lrpad / 2 - 1) < w) {
