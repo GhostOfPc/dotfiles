@@ -9,31 +9,31 @@ Xft.rgba:      rgb
 
 
 !Define colors (dark mode)
-#define back #1a1110
-#define fore #f8f8f2
+#define back #121212
+#define fore #bbbbbb
 
-#define base00 #21222c
-#define base08 #bbbbbb
+#define base00 #121212
+#define base08 #545454
 
-#define base01 #ff5555
-#define base09 #ff6e6e
+#define base01 #fa2573
+#define base09 #f5669c
 
-#define base02 #50fa7b
-#define base10 #69ff94
+#define base02 #97e123
+#define base10 #b0e05e
 
-#define base03 #f1fa8c
-#define base11 #ffffa5
+#define base03 #dfd460
+#define base11 #fef26c
 
-#define base04 #61afef
-#define base12 #61afef
+#define base04 #0f7fcf
+#define base12 #00afff
 
-#define base05 #ff79c6
-#define base13 #ff92df
+#define base05 #8700ff
+#define base13 #af87ff
 
-#define base06 #8be9fd
-#define base14 #a4ffff
+#define base06 #42a7cf
+#define base14 #50cdfe
 
-#define base07 #f8f8f2
+#define base07 #bbbbbb
 #define base15 #ffffff
 
 *.foreground: fore

@@ -163,8 +163,8 @@ font:
 colors:
   # Default colors
   primary:
-    background: '#1a1110'
-    foreground: '#f8f8f2'
+    background: '#121212'
+    foreground: '#bbbbbb'
 
     # Bright and dim foreground colors
     #
@@ -201,8 +201,8 @@ colors:
   # Allowed values are CellForeground and CellBackground, which reference the
   # affected cell, or hexadecimal colors like #ff00ff.
   selection:
-    text: '#292d3e'
-    background: '#bbc5ff'
+    text: '#121212'
+    background: '#b4d5ff'
 
   # Search colors
   #
@@ -221,25 +221,25 @@ colors:
 
   # Normal colors
   normal:
-    black:   '#21222c'
-    red:     '#ff5555'
-    green:   '#50fa7b'
-    yellow:  '#f1fa8c'
-    blue:    '#61afef'
-    magenta: '#ff79c6'
-    cyan:    '#8be9fd'
-    white:   '#f8f8f2'
+    black:   '#121212'
+    red:     '#fa2573'
+    green:   '#97e123'
+    yellow:  '#dfd460'
+    blue:    '#0f7fcf'
+    magenta: '#8700ff'
+    cyan:    '#42a7cf'
+    white:   '#bbbbbb'
 
   # Bright colors
   bright:
-    black:   '#bbbbbb'
-    red:     '#ff6e6e'
-    green:   '#69ff94'
-    yellow:  '#ffffa5'
-    blue:    '#61afef'
-    magenta: '#ff92df'
-    cyan:    '#a4ffff'
-    white:   '#f5f5f5'
+    black:   '#545454'
+    red:     '#f5669c'
+    green:   '#b0e05e'
+    yellow:  '#fef26c'
+    blue:    '#00afff'
+    magenta: '#af87ff'
+    cyan:    '#50cdfe'
+    white:   '#ffffff'
 
   # Dim colors
   #

@@ -133,8 +133,14 @@ globalkeys = gears.table.join(
     awful.key({ modkey , altkey}, 'k', function () awful.spawn('kdenlive') end,
               {description = 'Launch kdenlive', group = 'productivity'}),
 
+    awful.key({ modkey , altkey}, 'f', function () awful.spawn('firefox') end,
+              {description = 'Launch firefox', group = 'productivity'}),
+
+    awful.key({ modkey , altkey}, 'v', function () awful.spawn('virt-manager') end,
+              {description = 'Launch kdenlive', group = 'productivity'}),
+
     awful.key({ modkey , altkey}, 'g', function () awful.spawn('gimp') end,
-              {description = 'Launch gimp', group = 'productivity'}),
+              {description = 'Launch Virt Manager', group = 'productivity'}),
 
     awful.key({ modkey, altkey}, 'i', function () awful.spawn('inkscape') end,
               {description = 'Launch inkscape', group = 'productivity'}),
@@ -317,26 +323,25 @@ awful.key({altkey}, 'w', function () brightness_widget:inc() end, {description =
     awful.key({ 'Control' }, 'p', function () awful.spawn.with_shell('passmenu') end,
               {description = 'Toggle dark or light theme', group = 'dmenu'}),
 
-    -- ================= Increase brightness with xrandr ===========================
-    awful.key({ raltkey }, 'XF86MonBrightnessUp', function () awful.spawn.with_shell('xrandr --output HDMI-A-0 --brightness 1.25') end,
-              {description = 'dmenu script to surf the web', group = 'dmenu'}),
-
-    awful.key({ raltkey }, 'XF86MonBrightnessDown', function () awful.spawn.with_shell('xrandr --output HDMI-A-0 --brightness 1') end,
-              {description = 'dmenu script to surf the web', group = 'dmenu'}),
-
-
+    -- Increase size of master client
     awful.key({ modkey,           }, 'l',     function () awful.tag.incmwfact( 0.05)          end,
               {description = 'increase master width factor', group = 'layout'}),
+
+    -- Decrease size of master client
     awful.key({ modkey,           }, 'h',     function () awful.tag.incmwfact(-0.05)          end,
               {description = 'decrease master width factor', group = 'layout'}),
+
+    -- Increase number of clients in master
     awful.key({ modkey, 'Shift'   }, 'h',     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = 'increase the number of master clients', group = 'layout'}),
+
+    -- Decrease number of clients in master
     awful.key({ modkey, 'Shift'   }, 'l',     function () awful.tag.incnmaster(-1, nil, true) end,
               {description = 'decrease the number of master clients', group = 'layout'}),
-    awful.key({ modkey, 'Control' }, 'h',     function () awful.tag.incncol( 1, nil, true)    end,
-              {description = 'increase the number of columns', group = 'layout'}),
-    awful.key({ modkey, 'Control' }, 'l',     function () awful.tag.incncol(-1, nil, true)    end,
-              {description = 'decrease the number of columns', group = 'layout'}),
+
+    -- =======================================
+    -- Cycle layouts
+    -- =======================================
     awful.key({ modkey,           }, 'space', function () awful.layout.inc( 1)                end,
               {description = 'select next', group = 'layout'}),
     awful.key({ modkey, 'Shift'   }, 'space', function () awful.layout.inc(-1)                end,
@@ -347,19 +352,19 @@ awful.key({altkey}, 'w', function () brightness_widget:inc() end, {description =
    -- CLIENT RESIZING
    -- =========================================
 
-    awful.key({modkey, 'Control'}, 'Down',    function(c) resize_client(client.focus, 'down') end),
-
     awful.key({modkey, 'Control'}, 'Up',      function(c) resize_client(client.focus, 'up') end),
+
+    awful.key({modkey, 'Control'}, 'Down',    function(c) resize_client(client.focus, 'down') end),
 
     awful.key({modkey, 'Control'}, 'Left',    function(c) resize_client(client.focus, 'left') end),
 
     awful.key({modkey, 'Control'}, 'Right',   function(c) resize_client(client.focus, 'right') end),
 
+    awful.key({modkey, 'Control'}, 'h',       function(c) resize_client(client.focus, 'left') end),
+
     awful.key({modkey, 'Control'}, 'j',       function(c) resize_client(client.focus, 'down') end),
 
     awful.key({ modkey, 'Control' }, 'k',     function(c) resize_client(client.focus, 'up') end),
-
-    awful.key({modkey, 'Control'}, 'h',       function(c) resize_client(client.focus, 'left') end),
 
     awful.key({modkey, 'Control'}, 'l',       function(c) resize_client(client.focus, 'right') end)
     )

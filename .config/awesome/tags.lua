@@ -22,7 +22,7 @@ awful.screen.connect_for_each_screen(function(s)
             name                = '⠓⠁⠇', -- HAL
             id                  = '2',
 			layout              = awful.layout.suit.tile,
-            master_width_factor =   0.8,
+            master_width_factor =   0.6,
 			gap_single_client	= true,
 			gap			        = 6,
 			}
