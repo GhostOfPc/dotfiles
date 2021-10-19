@@ -13,12 +13,12 @@ local theme = {}
 theme.font          =   'UbuntuMono Nerd Font 11'
 
 -- Background colors
-theme.bg_normal             =   '#1a1110' .. 'c1' -- Two digits for the transparency
-theme.fg_urgent             =   '#ff5555'
-theme.fg_occupied           =   '#bd93f9'
+theme.bg_normal             =   '#121212' .. 'c1' -- Two digits for the transparency
+theme.fg_urgent             =   '#fa2573'
+theme.fg_occupied           =   '#af87ff'
 theme.bg_systray            =   theme.bg_normal
-theme.bg_empty              =   '#bfbfbf' .. '45' -- Two digits for the transparency
-theme.taglist_fg_occupied   =   '#ffffa5'
+theme.bg_empty              =   '#bbbbbb' .. '45' -- Two digits for the transparency
+theme.taglist_fg_occupied   =   '#fef26c'
 theme.taglist_bg_occupied   =   '#6272a4'
 theme.taglist_bg_empty      =   theme.bg_empty
 theme.taglist_bg_focus      =   theme.fg_occupied
@@ -29,7 +29,7 @@ theme.border_normal         =   theme.bg_normal
 theme.border_focus          =   theme.fg_occupied
 
 -- Foreground color
-theme.fg_normal             =   '#f8f8f2'
+theme.fg_normal             =   '#ffffff'
 
 -- tooltip
 theme.tooltip_border_color  =   theme.border_focus
@@ -46,7 +46,7 @@ theme.wibar_border_width    =   dpi(0)
 theme.wibar_border_color    =   theme.border_focus
 
 -- hotkeys
-theme.hotkeys_bg		        =	'#1a1110' .. 'd8'
+theme.hotkeys_bg		        =	'#121212' .. 'd8'
 theme.hotkeys_font		        =	theme.font
 theme.hotkeys_fg		        =	theme.fg_normal
 theme.hotkeys_border_width	    =	dpi(1)
@@ -84,11 +84,11 @@ theme.menu_border_width = dpi(2)
 theme.menu_submenu      = "ᐅ "
 
 -- current temp
-theme.temp_cold         =   '#0184bc'
-theme.temp_norm         =   '#e5c07b'
-theme.temp_hot          =   '#e06c75'
-theme.temp_min          =   '#61afef'
-theme.temp_max          =   '#c678dd'
+theme.temp_cold         =   '#0f7fcf'
+theme.temp_norm         =   '#dfd460'
+theme.temp_hot          =   '#f5669c'
+theme.temp_min          =   '#0f7fcf'
+theme.temp_max          =   '#af87ff'
 
 theme.titlebar_bg       =   theme.border_focus
 theme.titlebar_fg       =   theme.fg_normal
