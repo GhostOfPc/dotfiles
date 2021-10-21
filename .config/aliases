@@ -54,3 +54,6 @@ alias reload="echo 'awesome.restart()' | awesome-client"
 #Preview images in kitty
 #Remember that this alias works only in kitty terminal
 alias prev="kitty +kitten icat" #Remember that this alias works only in kitty terminal
+
+#unimatrix with async and specific speed
+alias unimatrix="unimatrix -af -s 96"
