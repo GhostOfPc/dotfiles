@@ -73,5 +73,5 @@ uname -nrm
 uptime -p | sed "s/up\s/Elapsed Time: /;s/hours,\s/hs:/g;s/minutes/min/"
 
 # Autosuggestion and syntax highlighting
-source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.config/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
