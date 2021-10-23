@@ -35,9 +35,6 @@ export LIBVA_DRIVER_NAME=radeonsi kdenlive obs mpv ffmpeg
 export VDPAU_DRIVER=radeonsi
 export MOZ_Z11_EGL=1
 
-# Path to your oh-my-zsh installation.
-export ZSH="/home/hisham/.config/zsh/.oh-my-zsh"
-
 # Login automatically after typing password
 if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
