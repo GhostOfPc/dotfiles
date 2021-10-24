@@ -49,6 +49,7 @@ kbd_widget = wibox.widget {
         widget = wibox.container.margin
     },
     bg = Wdt_bg,
+    fg = beautiful.color10,
     shape = Wdt_shape,
     widget = wibox.container.background
 }

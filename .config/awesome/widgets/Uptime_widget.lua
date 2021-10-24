@@ -1,4 +1,5 @@
 local awful = require('awful')
+local beautiful = require('beautiful')
 local wibox = require('wibox')
 local watch = require('awful.widget.watch')
 
@@ -36,6 +37,7 @@ uptime_wdt = wibox.widget {
         layout = wibox.layout.align.horizontal,
     },
     bg = Wdt_bg,
+    fg = beautiful.color4,
     forced_width = screen_width * 0.045,
     shape = Wdt_shape,
     widget = wibox.container.background

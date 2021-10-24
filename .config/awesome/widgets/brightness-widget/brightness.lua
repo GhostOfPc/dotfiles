@@ -49,10 +49,10 @@ local function worker(user_args)
         inc_brightness_cmd = 'light -A ' .. step
         dec_brightness_cmd = 'light -U ' .. step
     elseif program == 'ybacklight' then
-        get_brightness_cmd = [[bash -c "ddcutil getvcp 10 | cut -b 67-69"]]
-        set_brightness_cmd = 'ddcutil setvcp 10 ' -- <level>
-        inc_brightness_cmd = 'ddcutil setvcp 10 + ' .. step
-        dec_brightness_cmd = 'ddcutil setvcp 10 - ' .. step
+        get_brightness_cmd = 'ybacklight -get'
+        set_brightness_cmd = 'ybacklight -set ' -- <level>
+        inc_brightness_cmd = 'ybacklight -inc ' .. step
+        dec_brightness_cmd = 'ybacklight -dec ' .. step
     else
         show_warning(program .. " command is not supported by the widget")
         return

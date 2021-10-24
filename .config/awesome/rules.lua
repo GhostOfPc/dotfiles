@@ -152,7 +152,7 @@ awful.rules.rules = {
 {
     rule_any = {
         class = {
-            'Pcmanfm','qBittorrent','Uget-gtk', 'Nemo'
+            'Pcmanfm','qBittorrent','Uget-gtk', 'Nemo', 'krusader'
         }
     },
     properties = {

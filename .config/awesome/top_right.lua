@@ -63,6 +63,7 @@ awful.screen.connect_for_each_screen(function(s)
                         },
                         shape = Wdt_shape,
                         bg = Wdt_bg,
+                        fg = beautiful.color9,
                         widget = wibox.container.background
                     },
                     separator,
@@ -72,6 +73,7 @@ awful.screen.connect_for_each_screen(function(s)
                         volume_widget_widget,
                         shape = Wdt_shape,
                         bg = Wdt_bg,
+                        fg = beautiful.color3,
                         widget = wibox.container.background
                     },
                     separator,

@@ -1,4 +1,5 @@
 local awful = require('awful')
+local beautiful = require('beautiful')
 local wibox = require('wibox')
 --local watch = require('awful.widget.watch')
 --local icons_dir     =   os.getenv('HOME') .. '/.config/awesome/icons/clock/'
@@ -28,6 +29,7 @@ datewidget = wibox.widget {
         widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
     bg = Wdt_bg,
+    fg = beautiful.color13,
     shape = Wdt_shape,
     widget = wibox.container.background
 }

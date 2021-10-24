@@ -12,14 +12,31 @@ local theme = {}
 --theme.font          =   'FantasqueSansMono Nerd Font 11'
 theme.font          =   'UbuntuMono Nerd Font 11'
 
+-- Define 16 colors base
+theme.color0                      =   '#121212'
+theme.color8                      =   '#545454'
+theme.color1                      =   '#fa2573'
+theme.color9                      =   '#f5669c'
+theme.color2                      =   '#97e123'
+theme.color10                     =   '#b0e05e'
+theme.color3                      =   '#dfd460'
+theme.color11                     =   '#fef26c'
+theme.color4                      =   '#0f7fcf'
+theme.color12                     =   '#00afff'
+theme.color5                      =   '#8700ff'
+theme.color13                     =   '#af87ff'
+theme.color6                      =   '#42a7cf'
+theme.color14                     =   '#50cdfe'
+theme.color7                      =   '#bbbbbb'
+theme.color15                     =   '#ffffff'
 -- Background colors
-theme.bg_normal             =   '#121212' .. 'c1' -- Two digits for the transparency
-theme.fg_urgent             =   '#fa2573'
-theme.fg_occupied           =   '#af87ff'
+theme.bg_normal             =   theme.color0 .. 'c1' -- Two digits for the transparency
+theme.fg_urgent             =   theme.color1
+theme.fg_occupied           =   theme.color13
 theme.bg_systray            =   theme.bg_normal
-theme.bg_empty              =   '#bbbbbb' .. '45' -- Two digits for the transparency
-theme.taglist_fg_occupied   =   '#fef26c'
-theme.taglist_bg_occupied   =   '#6272a4'
+theme.bg_empty              =   theme.color7 .. '45' -- Two digits for the transparency
+theme.taglist_fg_occupied   =   theme.color11
+theme.taglist_bg_occupied   =   theme.color4
 theme.taglist_bg_empty      =   theme.bg_empty
 theme.taglist_bg_focus      =   theme.fg_occupied
 
@@ -84,11 +101,11 @@ theme.menu_border_width = dpi(2)
 theme.menu_submenu      = "ᐅ "
 
 -- current temp
-theme.temp_cold         =   '#0f7fcf'
-theme.temp_norm         =   '#dfd460'
-theme.temp_hot          =   '#f5669c'
-theme.temp_min          =   '#0f7fcf'
-theme.temp_max          =   '#af87ff'
+theme.temp_cold         =   theme.color4
+theme.temp_norm         =   theme.color3
+theme.temp_hot          =   theme.color9
+theme.temp_min          =   theme.color6
+theme.temp_max          =   theme.color13
 
 theme.titlebar_bg       =   theme.border_focus
 theme.titlebar_fg       =   theme.fg_normal
