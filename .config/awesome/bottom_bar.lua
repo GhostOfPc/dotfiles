@@ -76,7 +76,11 @@ awful.screen.connect_for_each_screen(function(s)
                                     text = 'Now Playing >>> ',
                                     widget = wibox.widget.textbox
                                 },
-                                Media_wdt,
+                                {
+                                    Media_wdt,
+                                    fg = beautiful.color3,
+                                    widget = wibox.container.background
+                                },
                                 {
                                     text = ' <<<',
                                     widget = wibox.widget.textbox

@@ -207,8 +207,8 @@ local function update_widget(widget,stdout)
     widget:get_children_by_id(Prayer_id[5])[1]:set_markup(Maghrib_text)
     widget:get_children_by_id(Prayer_id[6])[1]:set_markup(Isha_text)
     widget:get_children_by_id('icon')[1]:set_image(Image)
-    Pryr_wdt:get_children_by_id('mini_widget')[1]:set_markup('الصلاة القادمة: ' .. Next_prayer_str ..
-    ' ' .. Next_prayer .. ' (الوقت المتبقي ' .. Remain .. ')')
+    Pryr_wdt:get_children_by_id('mini_widget')[1]:set_markup('الصلاة القادمة: <span fgcolor="' .. beautiful.color2 .. '">' .. Next_prayer_str
+    .. ' ' .. Next_prayer  .. '</span> ' .. ' (الوقت المتبقي <span fgcolor="' .. beautiful.color2 .. '">' .. Remain .. '</span>)')
 end
 
 Prayers_widget = wibox.widget {
