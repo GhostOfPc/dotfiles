@@ -34,7 +34,7 @@ alias list="watch -n 1 transmission-remote -l"
 
 alias myt="mpv --ytdl-format=\""
 alias ytls="youtube-dl --list-format"
-alias n="ncmpcpp"
+alias n="mpd & mpDris2 > /dev/null 2>&1 && ncmpcpp"
 
 #typo mistakes
 alias eixt="exit"
