@@ -31,7 +31,7 @@ fi
 
 # Autostart useful programs
 ~/.fehbg &
-blurwal -m 1 -b 30 -s 15 &
+#blurwal -m 1 -b 30 -s 15 &
 ~/.local/bin/prayerTimes.sh &
 barriers -a :24800 --daemon --no-tray --name Studio --enable-crypto -c /home/hisham/.local/share/barrier/barrier.conf &
 udiskie &
@@ -41,4 +41,5 @@ picom --experimental-backends &
 #tint2 &
 #exec dbus-launch xfce4-session
 exec awesome
+#exec dbus-launch xfce4-session
 #exec openbox-session
