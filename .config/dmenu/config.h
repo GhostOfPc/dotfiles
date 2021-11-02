@@ -39,7 +39,7 @@ static unsigned int columns    = 0;
 /* -h option; minimum height of a menu line */
 static unsigned int lineheight = 40;
 static unsigned int min_lineheight = 40;
-static unsigned int xoffset = 5;
+static unsigned int xoffset = 10;
 static unsigned int yoffset = 3;
 static unsigned int max_width = 3830;
 
