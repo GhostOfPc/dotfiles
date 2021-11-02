@@ -29,9 +29,10 @@ awful.screen.connect_for_each_screen(function(s)
                 logo, separator,
                 s.mytaglist
             },
-            top = awful.screen.focused().geometry.width * 0.0000,
-            bottom = awful.screen.focused().geometry.width * 0.0000,
-            left = awful.screen.focused().geometry.width * 0.00,
+            top = awful.screen.focused().geometry.width * 0.0004,
+            bottom = awful.screen.focused().geometry.width * 0.0004,
+            left = awful.screen.focused().geometry.width * 0.001,
+            right = awful.screen.focused().geometry.width * 0.001,
             widget = wibox.container.margin
         },
         widget = wibox.container.background,

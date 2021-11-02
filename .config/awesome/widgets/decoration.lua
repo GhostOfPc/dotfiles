@@ -63,9 +63,9 @@ logo = wibox.widget {
             opacity = 1.0,
             widget = wibox.widget.imagebox
         },
-        left = screen_width * 0.001,
-        top = screen_width * 0.0008,
-        bottom = screen_width * 0.0008,
+        --left = screen_width * 0.001,
+        --top = screen_width * 0.0008,
+        --bottom = screen_width * 0.0008,
         widget = wibox.container.margin
     },
     shape = Wdt_shape,

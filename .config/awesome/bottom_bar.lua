@@ -131,10 +131,10 @@ awful.screen.connect_for_each_screen(function(s)
                     round_systry,
                     }
                 },
-                top = screen_width * 0.0000,
-                bottom = screen_width * 0.0000,
-                right = screen_width * 0.000,
-                left = screen_width * 0.000,
+                top = screen_width * 0.0004,
+                bottom = screen_width * 0.0004,
+                right = screen_width * 0.001,
+                left = screen_width * 0.001,
                 widget = wibox.container.margin
             },
             widget = wibox.container.background,
