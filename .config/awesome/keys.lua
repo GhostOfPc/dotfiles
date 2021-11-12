@@ -347,6 +347,10 @@ awful.key({altkey}, 'w', function () brightness_widget:inc() end, {description =
     awful.key({ modkey, 'Shift'   }, 'space', function () awful.layout.inc(-1)                end,
               {description = 'select previous', group = 'layout'}),
 
+     awful.key({altkey, }, 'Tab', function() awesome.emit_signal(
+         'bling::window_switcher::turn_on')
+     end,
+     {description = "Window Switcher", group = "bling"}),
 
    -- =========================================
    -- CLIENT RESIZING

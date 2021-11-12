@@ -46,7 +46,7 @@ theme.border_normal         =   theme.bg_normal
 theme.border_focus          =   theme.fg_occupied
 
 -- Foreground color
-theme.fg_normal             =   '#ffffff'
+theme.fg_normal             =   theme.color15
 
 -- tooltip
 theme.tooltip_border_color  =   theme.border_focus
@@ -125,5 +125,26 @@ theme.titlebar_maximized_button_normal_inactive = "/home/hisham/.config/awesome/
 theme.titlebar_maximized_button_focus_inactive  = "/home/hisham/.config/awesome/icons/buttons/maximize.svg"
 theme.titlebar_maximized_button_normal_active = "/home/hisham/.config/awesome/icons/buttons/maximize.svg"
 theme.titlebar_maximized_button_focus_active  = "/home/hisham/.config/awesome/icons/buttons/maximize.svg"
+
+-- Configure the window switcher
+theme.window_switcher_widget_bg = theme.color0 .. 'c1'              -- The bg color of the widget
+theme.window_switcher_widget_border_width = dpi(1)            -- The border width of the widget
+theme.window_switcher_widget_border_radius = dpi(8)           -- The border radius of the widget
+theme.window_switcher_widget_border_color = theme.border_focus    -- The border color of the widget
+theme.window_switcher_clients_spacing = 20               -- The space between each client item
+theme.window_switcher_client_icon_horizontal_spacing = 5 -- The space between client icon and text
+theme.window_switcher_client_width = 1920                 -- The width of one client widget
+theme.window_switcher_client_height = 350                -- The height of one client widget
+theme.window_switcher_client_margins = 10                -- The margin between the content and the border of the widget
+theme.window_switcher_thumbnail_margins = 10             -- The margin between one client thumbnail and the rest of the widget
+theme.thumbnail_scale = false                            -- If set to true, the thumbnails fit policy will be set to "fit" instead of "auto"
+theme.window_switcher_name_margins = 10                  -- The margin of one clients title to the rest of the widget
+theme.window_switcher_name_valign = "center"             -- How to vertically align one clients title
+theme.window_switcher_name_forced_width = 200            -- The width of one title
+theme.window_switcher_name_font = "Inter 10"              -- The font of all titles
+theme.window_switcher_name_normal_color = theme.fg_normal      -- The color of one title if the client is unfocused
+theme.window_switcher_name_focus_color = theme.color13       -- The color of one title if the client is focused
+theme.window_switcher_icon_valign = "center"             -- How to vertically align the one icon
+theme.window_switcher_icon_width = 40  
 
 return theme

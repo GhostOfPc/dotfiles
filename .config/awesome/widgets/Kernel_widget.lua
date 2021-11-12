@@ -1,3 +1,4 @@
+local beautiful = require('beautiful')
 local wibox = require('wibox')
 local watch = require('awful.widget.watch')
 
@@ -16,6 +17,7 @@ kernel_wdt = wibox.widget {
         valign = 'center',
         widget = wibox.container.place,
     },
+    fg = beautiful.color9,
     bg = Wdt_bg,
     shape = Wdt_shape,
     widget = wibox.container.background
