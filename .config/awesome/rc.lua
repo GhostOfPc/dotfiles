@@ -9,6 +9,7 @@ require('menubar')
 require('awful.hotkeys_popup')
 require('awful.hotkeys_popup.keys')
 local bling = require('bling')
+local rubato = require('rubato')
 
 -- ========================= Import theme =====================================
 local config_dir = gears.filesystem.get_configuration_dir()
@@ -21,9 +22,6 @@ require('bottom_bar')
 require('Menu')
 require('notifications')
 require('rules')
-
--- Enable window swallowing module provided by bling
-bling.module.window_swallowing.start()
 
 -- Enable windows switcher module provided by bling
 bling.widget.window_switcher.enable {
@@ -62,6 +60,11 @@ awful.layout.layouts = {
     awful.layout.suit.floating,
 }
 
+timed = rubato.timed {
+	intro = 0.5,
+	duration = 1,
+	easing = rubato.quadratic --quadratic slope, not easing
+}
 
 -- Garbage collection (allows for lower memory consumption)
 collectgarbage('setpause', 110)

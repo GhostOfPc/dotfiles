@@ -15,7 +15,7 @@ awful.screen.connect_for_each_screen(function(s)
         position = 'left',
         screen  =   s,
         height = awful.screen.focused().geometry.height * 0.018,
-        width = awful.screen.focused().geometry.width * 0.172,
+        width = awful.screen.focused().geometry.width * 0.1912,
         bg  = '#0000',
         shape = Wdt_shape,
     }

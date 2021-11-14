@@ -212,6 +212,18 @@ awful.rules.rules = {
     }
 },
 
+{
+    rule_any = {
+        class = {
+            'discord'
+        }
+    },
+    properties = {
+        tag = screen[1].tags[7],
+        switchtotag = true,
+    }
+},
+
 }
 end)
 

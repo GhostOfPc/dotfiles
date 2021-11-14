@@ -385,7 +385,7 @@ c.colors.completion.category.border.bottom = '#212121'
 
 # Background color of the selected completion item.
 # Type: QssColor
-c.colors.completion.item.selected.bg = '#6c99ba'
+c.colors.completion.item.selected.bg = '#0f7fcf'
 
 # Top border color of the selected completion item.
 # Type: QssColor
@@ -397,11 +397,11 @@ c.colors.completion.item.selected.border.bottom = '#212121'
 
 # Foreground color of the matched text in the completion.
 # Type: QtColor
-c.colors.completion.match.fg = '#e5b566'
+c.colors.completion.match.fg = '#fef26c'
 
 # Color of the scrollbar handle in the completion view.
 # Type: QssColor
-c.colors.completion.scrollbar.fg = '#f5f5f5'
+c.colors.completion.scrollbar.fg = '#ffffff'
 
 # Color of the scrollbar in the completion view.
 # Type: QssColor
@@ -415,59 +415,59 @@ c.colors.contextmenu.menu.bg = '#262626'
 # Background color of the context menu's selected item. If set to null,
 # the Qt default is used.
 # Type: QssColor
-c.colors.contextmenu.selected.bg = '#6c99ba'
+c.colors.contextmenu.selected.bg = '#0f7fcf'
 
 # Background color of the statusbar.
 # Type: QssColor
-c.colors.statusbar.normal.bg = '#262626'
+c.colors.statusbar.normal.bg = '#121212'
 
 # Background color of the statusbar in command mode.
 # Type: QssColor
-c.colors.statusbar.command.bg = '#262626'
+c.colors.statusbar.command.bg = '#121212'
 
 # Background color of the statusbar in caret mode.
 # Type: QssColor
-c.colors.statusbar.caret.bg = '#262626'
+c.colors.statusbar.caret.bg = '#121212'
 
 # Default foreground color of the URL in the statusbar.
 # Type: QssColor
-c.colors.statusbar.url.fg = '#ff0000'
+c.colors.statusbar.url.fg = '#fa2573'
 
 # Foreground color of the URL in the statusbar for hovered links.
 # Type: QssColor
-c.colors.statusbar.url.hover.fg = '#ff0000'
+c.colors.statusbar.url.hover.fg = '#fa2573'
 
 # Foreground color of the URL in the statusbar when there's a warning.
 # Type: QssColor
-c.colors.statusbar.url.warn.fg = '#ffff00'
+c.colors.statusbar.url.warn.fg = '#fef26c'
 
 # Background color of the tab bar.
 # Type: QssColor
-c.colors.tabs.bar.bg = '#262626'
+c.colors.tabs.bar.bg = '#121212'
 
 # Color gradient start for the tab indicator.
 # Type: QtColor
-c.colors.tabs.indicator.start = '#6c99ba'
+c.colors.tabs.indicator.start = '#0f7fcf'
 
 # Color gradient end for the tab indicator.
 # Type: QtColor
-c.colors.tabs.indicator.stop = '#6c99ba'
+c.colors.tabs.indicator.stop = '#0f7fcf'
 
 # Background color of unselected odd tabs.
 # Type: QtColor
-c.colors.tabs.odd.bg = '#262626'
+c.colors.tabs.odd.bg = '#121212'
 
 # Background color of unselected even tabs.
 # Type: QtColor
-c.colors.tabs.even.bg = '#262626'
+c.colors.tabs.even.bg = '#121212'
 
 # Background color of selected odd tabs.
 # Type: QtColor
-c.colors.tabs.selected.odd.bg = '#262626'
+c.colors.tabs.selected.odd.bg = '#121212'
 
 # Background color of selected even tabs.
 # Type: QtColor
-c.colors.tabs.selected.even.bg = '#262626'
+c.colors.tabs.selected.even.bg = '#121212'
 
 # Render all web contents using a dark theme. Example configurations
 # from Chromium's `chrome://flags`:  - "With simple HSL/CIELAB/RGB-based

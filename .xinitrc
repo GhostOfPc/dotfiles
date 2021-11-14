@@ -33,7 +33,7 @@ fi
 ~/.fehbg &
 #blurwal -m 1 -b 30 -s 15 &
 ~/.local/bin/prayerTimes.sh &
-barriers -a :24800 --daemon --no-tray --name Studio --enable-crypto -c /home/hisham/.local/share/barrier/barrier.conf &
+barriers -a :24800 --daemon --no-tray --name Studio --disable-crypto -c $HOME/.local/share/barrier/.barrier.conf &
 udiskie &
 lxqt-policykit-agent &
 xfce4-power-manager &
