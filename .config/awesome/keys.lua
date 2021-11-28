@@ -167,7 +167,10 @@ globalkeys = gears.table.join(
               {description = 'open spotify', group = 'launcher'}),
 
     awful.key({ modkey,           }, 'b', function () awful.spawn(apps.browser) end,
-              {description = 'Navigate the web', group = 'launcher'}),
+              {description = 'Navigate the web with brave', group = 'launcher'}),
+
+    awful.key({ modkey,           }, 'c', function () awful.spawn('chromium') end,
+              {description = 'Navigate the web with chromium', group = 'launcher'}),
 
     awful.key({ modkey,           }, 'q', function () awful.spawn('qutebrowser') end,
               {description = 'Spawin qutebrowser', group = 'launcher'}),

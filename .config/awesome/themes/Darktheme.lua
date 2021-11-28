@@ -29,15 +29,15 @@ theme.color6                      =   '#42a7cf'
 theme.color14                     =   '#50cdfe'
 theme.color7                      =   '#bbbbbb'
 theme.color15                     =   '#ffffff'
--- Background colors
-theme.bg_normal             =   theme.color0 .. 'c1' -- Two digits for the transparency
+
+theme.bg_normal             =   theme.color0 .. 'dd'
 theme.fg_urgent             =   theme.color1
-theme.fg_occupied           =   theme.color13
-theme.bg_systray            =   theme.bg_normal
-theme.bg_empty              =   theme.color8 .. 'dd' -- Two digits for the transparency
-theme.taglist_fg_occupied   =   theme.color11
 theme.taglist_bg_occupied   =   theme.color4
+theme.bg_empty              =   theme.color8 .. 'dd'
+theme.taglist_fg_occupied   =   theme.color11
+theme.fg_occupied           =   theme.color13
 theme.taglist_bg_empty      =   theme.bg_empty
+theme.bg_systray            =   theme.bg_normal
 theme.taglist_bg_focus      =   theme.fg_occupied
 
 -- Border colors
@@ -63,7 +63,7 @@ theme.wibar_border_width    =   dpi(0)
 theme.wibar_border_color    =   theme.border_focus
 
 -- hotkeys
-theme.hotkeys_bg		        =	'#121212' .. 'd8'
+theme.hotkeys_bg		        =	theme.bg_normal
 theme.hotkeys_font		        =	theme.font
 theme.hotkeys_fg		        =	theme.fg_normal
 theme.hotkeys_border_width	    =	dpi(1)
@@ -75,7 +75,7 @@ theme.hotkeys_shape             =   function(cr, width, height) gears.shape.roun
 
 -- tasklist
 theme.tasklist_fg_focus         =   theme.fg_normal
-theme.tasklist_bg_normal        =   theme.bg_empty .. '00'
+theme.tasklist_bg_normal        =   theme.bg_empty
 theme.tasklist_disable_icon     =   true
 theme.tasklist_plain_task_name  =   true
 theme.tasklist_font             =   theme.font
@@ -127,7 +127,7 @@ theme.titlebar_maximized_button_normal_active = "/home/hisham/.config/awesome/ic
 theme.titlebar_maximized_button_focus_active  = "/home/hisham/.config/awesome/icons/buttons/maximize.svg"
 
 -- Configure the window switcher
-theme.window_switcher_widget_bg = theme.color0 .. 'c1'              -- The bg color of the widget
+theme.window_switcher_widget_bg = theme.bg_normal              -- The bg color of the widget
 theme.window_switcher_widget_border_width = dpi(1)            -- The border width of the widget
 theme.window_switcher_widget_border_radius = dpi(8)           -- The border radius of the widget
 theme.window_switcher_widget_border_color = theme.border_focus    -- The border color of the widget

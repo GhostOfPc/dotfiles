@@ -38,16 +38,16 @@ local function worker(user_args)
     local font = args.font or 'UbuntuMono Nerd Font 11'
     local timeout = args.timeout or 100
 
-    local program = args.program or 'light'
+    local program = args.program or 'ddcutil'
     local step = args.step or 5
     local base = args.base or 20
     local current_level = 0 -- current brightness value
     local tooltip = args.tooltip or false
-    if program == 'light' then
-        get_brightness_cmd = 'light -G'
-        set_brightness_cmd = 'light -S ' -- <level>
-        inc_brightness_cmd = 'light -A ' .. step
-        dec_brightness_cmd = 'light -U ' .. step
+    if program == 'ddcutil' then
+        get_brightness_cmd = 'sh "ddcutil getvcp 10 | cut -c 66-69"'
+        set_brightness_cmd = 'ddcutil setvcp 10 ' -- <level>
+        inc_brightness_cmd = 'ddcutil setvcp + ' .. step
+        dec_brightness_cmd = 'ddcutil setvcp + ' .. step
     elseif program == 'ybacklight' then
         get_brightness_cmd = 'ybacklight -get'
         set_brightness_cmd = 'ybacklight -set ' -- <level>

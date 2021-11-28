@@ -129,18 +129,18 @@ local function update_widget(widget,stdout)
     if Deg <= 10 then
     widget:get_children_by_id('deg')[1]:set_markup('<span fgcolor="' .. beautiful.temp_cold .. '"> ' .. Deg .. ' °C' .. '</span>')
     WEATHER_WIDGET_BIG:get_children_by_id('Temperatures')[1]:set_markup('<span font="8" fgcolor="' .. beautiful.temp_min .. '"> Min: ' ..
-    Min .. ' °C\t</span> <span fgcolor="' .. beautiful.temp_cold .. '">' .. Deg .. ' °C' ..
-    '</span>' .. '<span font="8" fgcolor="' .. beautiful.temp_max .. '"> \tMax: ' .. Max .. ' °C</span>')
+    Min .. ' °C </span> <span fgcolor="' .. beautiful.temp_cold .. '">' .. Deg .. ' °C' ..
+    '</span>' .. '<span font="8" fgcolor="' .. beautiful.temp_max .. '"> Max: ' .. Max .. ' °C</span>')
     elseif Deg > 10 and Deg <= 24 then
     widget:get_children_by_id('deg')[1]:set_markup('<span fgcolor="' .. beautiful.temp_norm .. '"> ' .. Deg .. ' °C' .. '</span>')
     WEATHER_WIDGET_BIG:get_children_by_id('Temperatures')[1]:set_markup('<span font="8" fgcolor="' .. beautiful.temp_min .. '"> Min: ' ..
-    Min .. ' °C\t</span> <span fgcolor="' .. beautiful.temp_norm .. '">' .. Deg .. ' °C</span>' ..
-    '<span font="8" fgcolor="' .. beautiful.temp_max .. '"> \tMax: ' .. Max .. ' °C</span>')
+    Min .. ' °C </span> <span fgcolor="' .. beautiful.temp_norm .. '">' .. Deg .. ' °C</span>' ..
+    '<span font="8" fgcolor="' .. beautiful.temp_max .. '"> Max: ' .. Max .. ' °C</span>')
     else
     widget:get_children_by_id('deg')[1]:set_markup('<span fgcolor="' .. beautiful.temp_hot .. '"> ' .. Deg .. ' °C' .. '</span>')
     WEATHER_WIDGET_BIG:get_children_by_id('Temperatures')[1]:set_markup('<span font="8" fgcolor="' .. beautiful.temp_min .. '"> Min: ' .. Min ..
-    ' °C\t</span>' .. '<span fgcolor="' .. beautiful.temp_hot .. '"> ' .. Deg .. ' °C' ..
-    '</span>' ..'<span font="8" fgcolor="' .. beautiful.temp_max .. '"> \tMax: ' .. Max .. ' °C</span>')
+    ' °C </span>' .. '<span fgcolor="' .. beautiful.temp_hot .. '"> ' .. Deg .. ' °C' ..
+    '</span>' ..'<span font="8" fgcolor="' .. beautiful.temp_max .. '"> Max: ' .. Max .. ' °C</span>')
 end
     widget:get_children_by_id('icon')[1]:set_image(icons_dir .. Icon .. icons_ext)
     WEATHER_WIDGET_BIG:get_children_by_id('icon')[1]:set_image(icons_dir .. Icon .. icons_ext)

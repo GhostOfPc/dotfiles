@@ -42,7 +42,7 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
 # Default applications
-export BROWSER="brave"
+export BROWSER="chromium"
 export WM="awesome"
 export EDITOR="nvim"
 export TERMINAL="kitty"

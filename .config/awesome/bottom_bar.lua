@@ -141,7 +141,6 @@ awful.screen.connect_for_each_screen(function(s)
             shape = bar_wdt_shape,
             bg = beautiful.bg_normal,
     }
-
 end)
 
 return bottom_bar

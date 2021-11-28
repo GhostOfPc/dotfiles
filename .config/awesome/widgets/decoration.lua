@@ -2,7 +2,7 @@
   ╔════════════════════════════════════════╗
  ╔╝                                        ╚╗
  ║ Riced and crafted by  Hisham Abdul Hai  ║
- ║ ...Founder of Linux Arab Gate (L A G)... ║
+ ║       ...Founder of Nofarah Tech...      ║
  ╚╗                                        ╔╝ 
   ╚════════════════════════════════════════╝
 --]]
@@ -18,7 +18,6 @@ local decoration = {}
 local screen_width = awful.screen.focused().geometry.width
 
 -- Global widgets settings
---Wdt_bg      =   beautiful.fg_occupied .. '8a'
 Wdt_bg      =   beautiful.bg_empty
 Wdt_shape   =   function(cr, width, height)
     gears.shape.rounded_rect(cr, width, height, screen_width * 0.0022) end
