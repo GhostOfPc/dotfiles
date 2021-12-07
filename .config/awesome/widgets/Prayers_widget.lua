@@ -115,12 +115,12 @@ local function update_widget(widget,stdout)
         end
     end
 
-    Fajr_text       = ' ۞ ' .. Prayer_names[1] .. '\t\t\t' .. Fajr    .. ' ۞ '
-    Shuruq_text     = ' ۞ ' .. Prayer_names[2] .. '\t\t'   .. Shuruq  .. ' ۞ '
-    Duhur_text      = ' ۞ ' .. Prayer_names[3] .. '\t\t\t' .. Duhur   .. ' ۞ '
-    Asr_text        = ' ۞ ' .. Prayer_names[4] .. '\t\t\t' .. Asr     .. ' ۞ '
-    Maghrib_text    = ' ۞ ' .. Prayer_names[5] .. '\t\t\t' .. Maghrib .. ' ۞ '
-    Isha_text       = ' ۞ ' .. Prayer_names[6] .. '\t\t\t' .. Isha    .. ' ۞ '
+    Fajr_text       = '۞' .. Prayer_names[1] .. '\t\t\t' .. Fajr    .. '۞'
+    Shuruq_text     = '۞' .. Prayer_names[2] .. '\t\t'   .. Shuruq  .. '۞'
+    Duhur_text      = '۞' .. Prayer_names[3] .. '\t\t\t' .. Duhur   .. '۞'
+    Asr_text        = '۞' .. Prayer_names[4] .. '\t\t\t' .. Asr     .. '۞'
+    Maghrib_text    = '۞' .. Prayer_names[5] .. '\t\t\t' .. Maghrib .. '۞'
+    Isha_text       = '۞' .. Prayer_names[6] .. '\t\t\t' .. Isha    .. '۞'
 
     widget:get_children_by_id(Prayer_bg_id[1])[1]:set_bg(beautiful.bg_empty)
     widget:get_children_by_id(Prayer_bg_id[2])[1]:set_bg(beautiful.bg_empty)

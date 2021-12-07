@@ -29,9 +29,6 @@ df -h -P $LOCAL_FLAG "$DIR" | awk -v label="$LABEL" -v alert_low=$ALERT_LOW '
 	# full text
 	print label $4
 
-	# short text
-	print label $4
-
 	use=$5
 
 	# no need to continue parsing

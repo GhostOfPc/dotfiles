@@ -8,7 +8,7 @@ alias ltime="sudo timeshift --list"
 alias dels="sudo timeshift --delete --snapshot"
 alias cres="sudo timeshift --create --comments"
 
-alias ls="exa --icons -lah --color=always --group-directories-first"
+alias ls="exa --icons -lahg --color=always --group-directories-first"
 alias diff="diff --color=always"
 alias mm="$HOME/.local/bin/mpvMovie.sh"
 alias v="nvim"

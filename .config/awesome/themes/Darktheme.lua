@@ -13,22 +13,26 @@ local theme = {}
 theme.font          =   'UbuntuMono Nerd Font 11'
 
 -- Define 16 colors base
-theme.color0                      =   '#121212'
-theme.color8                      =   '#545454'
-theme.color1                      =   '#fa2573'
-theme.color9                      =   '#f5669c'
-theme.color2                      =   '#97e123'
-theme.color10                     =   '#b0e05e'
-theme.color3                      =   '#dfd460'
-theme.color11                     =   '#fef26c'
-theme.color4                      =   '#0f7fcf'
-theme.color12                     =   '#00afff'
-theme.color5                      =   '#8700ff'
-theme.color13                     =   '#af87ff'
-theme.color6                      =   '#42a7cf'
-theme.color14                     =   '#50cdfe'
-theme.color7                      =   '#bbbbbb'
-theme.color15                     =   '#ffffff'
+molokai = {"#121212","#545454","#fa2573","#f5669c","#97e123","#b0e05e","#dfd460","#fef26c","#0f7fcf","#00afff","#8700ff","#af87ff","#42a7cf","#50cdfe","#bbbbbb","#ffffff"}
+
+nord = {"#3B4252","#4C566A","#BF616A","#BF616A","#A3BE8C","#A3BE8C","#EBCB8B","#EBCB8B","#81A1C1","#81A1C1","#B48EAD","#B48EAD","#88C0D0","#88C0D0","#E5E9F0","#E5E9F0"}
+
+theme.color0                      =   molokai[1]
+theme.color8                      =   molokai[2]
+theme.color1                      =   molokai[3]
+theme.color9                      =   molokai[4]
+theme.color2                      =   molokai[5]
+theme.color10                     =   molokai[6]
+theme.color3                      =   molokai[7]
+theme.color11                     =   molokai[8]
+theme.color4                      =   molokai[9]
+theme.color12                     =   molokai[10]
+theme.color5                      =   molokai[11]
+theme.color13                     =   molokai[12]
+theme.color6                      =   molokai[13]
+theme.color14                     =   molokai[14]
+theme.color7                      =   molokai[15]
+theme.color15                     =   molokai[16]
 
 theme.bg_normal             =   theme.color0 .. 'dd'
 theme.fg_urgent             =   theme.color1

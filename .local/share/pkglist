@@ -1,6 +1,7 @@
 alacritty
 alsa-utils
 amdgpu-pro-libgl
+android-tools
 arandr
 aria2
 audacity
@@ -24,10 +25,13 @@ brave-bin
 bridge-utils
 btrfs-progs
 carla
+chaotic-keyring
+chaotic-mirrorlist
 chromium
 czkawka-gui-bin
 darktable
 davinci-resolve
+dhcp
 dhcpcd
 discord
 dmidecode
@@ -43,6 +47,7 @@ ffmpeg
 ffmpegthumbnailer
 file
 findutils
+flameshot
 flex
 fsearch
 galculator
@@ -72,8 +77,8 @@ jre-openjdk
 kdenlive
 keepassxc
 kitty
-krusader
 kvantum-qt5
+kvantum-theme-layan-git
 lib32-zlib
 libmediainfo
 libreoffice-fresh
@@ -85,6 +90,7 @@ libva-utils
 libva-vdpau-driver-vp9-git
 libvdpau-va-gl
 libxft-bgra
+lightly-qt
 linux
 linux-firmware
 linux-headers
@@ -93,6 +99,7 @@ lolcat
 luarocks
 lxappearance-gtk3
 lxqt-policykit
+lynis
 m4
 maim
 make
@@ -148,6 +155,7 @@ python-xlib
 qbittorrent
 qemu
 qemu-arch-extra
+qt5-xmlpatterns
 qt5ct
 qutebrowser
 realtime-privileges
@@ -165,6 +173,7 @@ spotify-tui-bin
 spotifyd
 sudo
 sxiv
+system-monitoring-center
 szyszka-bin
 texinfo
 tree

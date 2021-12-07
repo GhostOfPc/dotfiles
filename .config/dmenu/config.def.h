@@ -8,8 +8,8 @@ static int colorprompt = 1;                /* -p  option; if 1, prompt uses Sche
 static int fuzzy = 0;                      /* -F  option; if 0, dmenu doesn't use fuzzy matching     */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
-	"FantasqueSansMono Nerd Font:size=10",
-    "JoyPixels:size=10:antialias=true:hinting=true"
+	"FantasqueSansMono Nerd Font:size=11",
+    "JoyPixels:size=11:antialias=true:hinting=true"
 };
 static const unsigned int bgalpha = 0xc8;
 static const unsigned int fgalpha = OPAQUE;

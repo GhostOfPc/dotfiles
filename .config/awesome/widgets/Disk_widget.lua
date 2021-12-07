@@ -7,14 +7,13 @@ local icons_dir     =   os.getenv('HOME') .. '/.config/awesome/icons/'
 local Disk_widget = {}
 local screen_width = awful.screen.focused().geometry.width
 
-DSK_CMD = [[ bash -c 'disk.sh']]
+DSK_CMD = [[ bash -c "df -h -P / | awk '/\/.*/ {print $4}'"]]
 timeout = 300
 
 disk_widget = wibox.widget {
     {
         {
             {
-                {
                     {
                         id = 'icon',
                         resize = true,
@@ -25,15 +24,19 @@ disk_widget = wibox.widget {
                     },
                     margins = screen_width * 0.0005,
                     widget = wibox.container.margin
-                },
-                valign = 'center',
-                widget = wibox.container.place
             },
             {
-                id = 'disk_wdt',
-                widget = wibox.widget.textbox
+                {
+                    {
+                        id = 'disk_wdt',
+                        widget = wibox.widget.textbox
+                    },
+                    widget = wibox.container.margin(_,_,Wdt_rmgn,_,_,_,_),
+                },
+            valign = 'center',
+            widget = wibox.container.place
             },
-            layout = wibox.layout.fixed.horizontal
+            layout = wibox.layout.align.horizontal
         },
         widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },

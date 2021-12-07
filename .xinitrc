@@ -38,8 +38,8 @@ udiskie &
 lxqt-policykit-agent &
 xfce4-power-manager &
 picom --experimental-backends &
-pushbullet &
-nextcloud &
+#pushbullet &
+#nextcloud &
 #tint2 &
 #exec dbus-launch xfce4-session
 exec awesome
