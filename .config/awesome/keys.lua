@@ -228,6 +228,7 @@ awful.key({ modkey, 'Shift' }, 'u', function () awful.spawn.with_shell('kill -9 
 	{description = 'Take a screenshot', group = 'hotKeys'}),
 
     -- ================= Hotkeys (using multimedia keys) ===========================
+    
 awful.key({}, 'XF86AudioRaiseVolume', volume_widget.raise,
  {description = "Volume increase", group = "hotkeys"}),
 

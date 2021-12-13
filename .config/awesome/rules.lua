@@ -80,7 +80,7 @@ awful.rules.rules = {
 
 {
     rule_any = {
-        class = {'slickpicker', 'Gnome-sudoku','Psensor', 'org.kde.fancontrol.gui', 'corectrl', 'openrgb', 'MediaElch', 'Gddccontrol', 'SimpleScreenRecorder'},
+        class = {'slickpicker', 'Gnome-sudoku','Psensor', 'org.kde.fancontrol.gui', 'corectrl', 'openrgb', 'Galculator','pavucontrol-qt','MediaElch', 'Gddccontrol', 'SimpleScreenRecorder'},
         role = {'GtkFileChooserDialog', 'pop-up'},
     },
     properties = {
@@ -152,7 +152,7 @@ awful.rules.rules = {
 {
     rule_any = {
         class = {
-            'Pcmanfm','qBittorrent','Uget-gtk', 'Nemo', 'krusader'
+            'Pcmanfm','qBittorrent','Uget-gtk', 'Nemo', 'krusader', 'pcmanfm-qt'
         }
     },
     properties = {

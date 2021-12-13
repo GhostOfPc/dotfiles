@@ -68,7 +68,6 @@ awful.screen.connect_for_each_screen(function(s)
                     },
                     separator,
                     datewidget, separator,
-                    --volumewidget, separator,
                     {
                         volume_widget_widget,
                         shape = Wdt_shape,
