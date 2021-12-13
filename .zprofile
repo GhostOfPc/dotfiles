@@ -55,8 +55,8 @@ export VDPAU_DRIVER=radeonsi
 export MOZ_Z11_EGL=1
 
 # Login automatically after typing password
-if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
-fi
+#if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+#  exec startx
+#fi
 
 
