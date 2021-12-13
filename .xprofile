@@ -1,0 +1,5 @@
+udiskie &
+lxqt-policykit-agent &
+xfce4-power-manager &
+picom --experimental-backends &
+~/.fehbg &
