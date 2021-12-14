@@ -11,18 +11,10 @@ static const char *fonts[] = {
 	"FantasqueSansMono Nerd Font:size=11",
     "JoyPixels:size=11:antialias=true:hinting=true"
 };
-static const unsigned int bgalpha = 0xc8;
 static const unsigned int fgalpha = OPAQUE;
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
-static const char *colors[SchemeLast][2] = {
-	/*     fg         bg       */
-	[SchemeNorm] = { "#bbbbbb", "#121212"},
-	[SchemeSel] = { "#fef26c", "#545454" },
-	[SchemeSelHighlight] = { "#af87ff", "#0f7fcf" },
-	[SchemeNormHighlight] = { "#f5669c", "#121212" },
-	[SchemeOut] = { "#121212", "#97e123" },
-	[SchemeHp] = { "#f5669c", "#545454" }
-};
+
+#include "3024_night.h" /* ColorScheme to be used */
 static const unsigned int alphas[SchemeLast][2] = {
 	/*		fgalpha		bgalphga	*/
 	[SchemeNorm] = { fgalpha, bgalpha },
