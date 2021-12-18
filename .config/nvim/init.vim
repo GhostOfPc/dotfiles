@@ -17,10 +17,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'rakr/vim-one'
     Plug 'lervag/vimtex'
     Plug 'machakann/Vim-highlightedyank'
+    Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 call plug#end()
 
-colorscheme molokai
-"set background=dark
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'darker'
+colorscheme material
 
 " Set true colors if the temrinal support it
 set termguicolors
@@ -71,7 +73,7 @@ set expandtab
 
 " lightline color scheme
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'material_vim',
       \ }
 
 let g:highlightedyank_highlight_duration = 500
