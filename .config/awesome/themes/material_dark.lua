@@ -14,12 +14,8 @@ theme.font          =   'UbuntuMono Nerd Font 11'
 -- Define 16 colors base
 ColorScheme = {"#222221","#424242","#e83a3f","#b7141e","#7aba39","#457b23","#f5971d","#fee92e","#53a4f3","#134eb2","#550087","#a94dbb","#26bad1","#0e707c","#eeeeee","#d8d8d8"}
 
-theme.color0                      =   ColorScheme[1]
-theme.color8                      =   ColorScheme[2]
-theme.color1                      =   ColorScheme[3]
 theme.color9                      =   ColorScheme[4]
 theme.color2                      =   ColorScheme[5]
-theme.color10                     =   ColorScheme[6]
 theme.color3                      =   ColorScheme[7]
 theme.color11                     =   ColorScheme[8]
 theme.color4                      =   ColorScheme[9]
@@ -29,14 +25,13 @@ theme.color13                     =   ColorScheme[12]
 theme.color6                      =   ColorScheme[13]
 theme.color14                     =   ColorScheme[14]
 theme.color7                      =   ColorScheme[15]
-theme.color15                     =   ColorScheme[16]
 
-theme.bg_normal             =   theme.color0 .. 'dd'
-theme.fg_urgent             =   theme.color1
-theme.taglist_bg_occupied   =   theme.color4
-theme.bg_empty              =   theme.color8 .. 'dd'
-theme.taglist_fg_occupied   =   theme.color11
-theme.fg_occupied           =   theme.color13
+theme.bg_normal             =   ColorScheme[1] .. 'dd'
+theme.fg_urgent             =   ColorScheme[3]
+theme.taglist_fg_occupied   =   ColorScheme[6]
+theme.bg_empty              =   ColorScheme[2] .. 'dd'
+theme.taglist_bg_occupied   =   nil
+theme.fg_occupied           =   ColorScheme[3]
 theme.taglist_bg_empty      =   theme.bg_empty
 theme.bg_systray            =   theme.bg_normal
 theme.taglist_bg_focus      =   theme.fg_occupied
@@ -47,7 +42,7 @@ theme.border_normal         =   theme.bg_normal
 theme.border_focus          =   theme.fg_occupied
 
 -- Foreground color
-theme.fg_normal             =   theme.color15
+theme.fg_normal             =   ColorScheme[16]
 
 -- tooltip
 theme.tooltip_border_color  =   theme.border_focus
@@ -102,11 +97,11 @@ theme.menu_border_width = dpi(2)
 theme.menu_submenu      = "ᐅ "
 
 -- current temp
-theme.temp_cold         =   theme.color4
-theme.temp_norm         =   theme.color3
-theme.temp_hot          =   theme.color9
-theme.temp_min          =   theme.color6
-theme.temp_max          =   theme.color13
+theme.temp_cold         =   ColorScheme[9]
+theme.temp_norm         =   ColorScheme[7]
+theme.temp_hot          =   ColorScheme[4]
+theme.temp_min          =   ColorScheme[13]
+theme.temp_max          =   ColorScheme[12]
 
 theme.titlebar_bg       =   theme.border_focus
 theme.titlebar_fg       =   theme.fg_normal
@@ -144,7 +139,7 @@ theme.window_switcher_name_valign = "center"             -- How to vertically al
 theme.window_switcher_name_forced_width = 200            -- The width of one title
 theme.window_switcher_name_font = "Inter 10"              -- The font of all titles
 theme.window_switcher_name_normal_color = theme.fg_normal      -- The color of one title if the client is unfocused
-theme.window_switcher_name_focus_color = theme.color13       -- The color of one title if the client is focused
+theme.window_switcher_name_focus_color = ColorScheme[12]       -- The color of one title if the client is focused
 theme.window_switcher_icon_valign = "center"             -- How to vertically align the one icon
 theme.window_switcher_icon_width = 40  
 

@@ -42,5 +42,5 @@ picom --experimental-backends &
 #nextcloud &
 #tint2 &
 #exec dbus-launch xfce4-session
-#exec awesome
+exec awesome
 #exec openbox-session

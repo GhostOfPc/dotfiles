@@ -327,7 +327,7 @@ c.url.auto_search = 'schemeless'
 # Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 # for a blank page.
 # Type: FuzzyUrl
-c.url.default_page = 'file:///home/hisham/.config/qutebrowser/Bento/index.html'
+c.url.default_page = 'file:///home/hisham/.config/qutebrowser/html/index.html'
 
 # Open base URL of the searchengine if a searchengine shortcut is
 # invoked without parameters.
@@ -357,7 +357,7 @@ c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}', 'aw': 'https:/
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
-c.url.start_pages = 'file:///home/hisham/.config/qutebrowser/Bento/index.html'
+c.url.start_pages = 'file:///home/hisham/.config/qutebrowser/html/index.html'
 
 # Default zoom level.
 # Type: Perc

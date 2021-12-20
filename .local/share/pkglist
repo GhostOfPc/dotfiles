@@ -69,6 +69,7 @@ keepassxc
 kitty
 kvantum-qt5
 kvantum-theme-fluent-git
+kvantum-theme-vimix-git
 libmediainfo
 libreoffice-fresh
 libreoffice-fresh-ar
@@ -129,6 +130,7 @@ playerctl
 plocate
 pulsemixer
 python-adblock
+python-jinja
 python-mutagen
 python-pip
 python-xlib
@@ -136,7 +138,6 @@ qbittorrent
 qemu
 qemu-arch-extra
 qt5ct
-qutebrowser
 realtime-privileges
 reflector
 rsync
@@ -165,6 +166,7 @@ usbutils
 v4l2loopback-dkms
 vdpauinfo
 vim
+vimix-gtk-themes-git
 virt-manager
 virt-viewer
 wget
