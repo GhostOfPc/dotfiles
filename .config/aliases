@@ -57,3 +57,6 @@ alias prev="kitty +kitten icat" #Remember that this alias works only in kitty te
 
 #unimatrix with async and specific speed
 alias unimatrix="unimatrix -af -s 96"
+
+#restart logiops
+alias mouse="sudo systemctl restart --now logid.service"

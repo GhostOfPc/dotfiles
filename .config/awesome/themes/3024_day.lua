@@ -12,7 +12,7 @@ local theme = {}
 theme.font          =   'Inter Regular 11'
 
 -- Define 16 colors base
-ColorScheme = {"#222221","#424242","#e83a3f","#b7141e","#7aba39","#457b23","#f5971d","#fee92e","#53a4f3","#134eb2","#550087","#a94dbb","#26bad1","#0e707c","#eeeeee","#d8d8d8"}
+ColorScheme = {"#090200","#5b5754","#da2c20","#e8bacf","#00a152","#3a3332","#fcec02","#494542","#00a0e4","#7f7c7b","#a06994","#d6d4d3","#b5e4f4","#ccab53","#a4a1a1","#f7f7f7"}
 
 theme.color9                      =   ColorScheme[4]
 theme.color2                      =   ColorScheme[5]
@@ -26,12 +26,12 @@ theme.color6                      =   ColorScheme[13]
 theme.color14                     =   ColorScheme[14]
 theme.color7                      =   ColorScheme[15]
 
-theme.bg_normal             =   ColorScheme[1] .. 'dd'
-theme.fg_normal             =   ColorScheme[16]
-theme.bg_empty              =   ColorScheme[16] .. '2f'
+theme.bg_normal             =   ColorScheme[16] .. 'dd'
+theme.fg_normal             =   ColorScheme[8]
+theme.bg_empty              =   ColorScheme[1] .. '2f'
 theme.fg_urgent             =   ColorScheme[3]
 theme.fg_occupied           =   ColorScheme[3]
-theme.taglist_fg_occupied   =   ColorScheme[5]
+theme.taglist_fg_occupied   =   ColorScheme[6]
 theme.taglist_bg_occupied   =   nil
 theme.taglist_bg_empty      =   nil
 theme.taglist_bg_focus      =   theme.fg_occupied
@@ -97,7 +97,7 @@ theme.menu_submenu      = "ᐅ "
 -- current temp
 theme.temp_cold         =   ColorScheme[9]
 theme.temp_norm         =   ColorScheme[7]
-theme.temp_hot          =   ColorScheme[3]
+theme.temp_hot          =   ColorScheme[4]
 theme.temp_min          =   ColorScheme[13]
 theme.temp_max          =   ColorScheme[12]
 

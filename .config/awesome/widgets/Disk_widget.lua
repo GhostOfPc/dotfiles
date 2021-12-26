@@ -40,7 +40,7 @@ disk_widget = wibox.widget {
         },
         widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
-    bg = Wdt_bg,
+    --bg = Wdt_bg,
     fg = beautiful.color2,
     shape = Wdt_shape,
     widget = wibox.container.background

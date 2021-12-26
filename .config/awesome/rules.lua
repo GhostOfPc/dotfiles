@@ -6,6 +6,8 @@ local dpi = xresources.apply_dpi
 local wibox = require('wibox')
 
 local rules = {}
+local screen_width = awful.screen.focused().geometry.width
+local screen_height = awful.screen.focused().geometry.height
 awful.screen.connect_for_each_screen(function(s)
 awful.rules.rules = {
     {
@@ -18,7 +20,7 @@ awful.rules.rules = {
             keys = clientkeys,
             buttons = buttonkeys,
             screen = awful.screen.preferred,
-            placement = awful.placement.centered
+            placement = awful.placement.centered+awful.placement.no_overlap+awful.placement.no_offscreen,
         }
     },
 
@@ -32,9 +34,12 @@ awful.rules.rules = {
             },
             class = {
                 'Arandr', 'Blueman-manager', 'Nitrogen', 'lxrandr', 'Lxappearance', 'qt5ct', 'Hardinfo',
-                'Kvantum Manager', 'Xarchiver', 'Nm-connection-editor', 'Pavucontrol', 'GParted', 'Timeshift-gtk',
-                'Virtualbox Machine', 'Virtualbox Manager', 'Xfce4-about', 'Xfce4-power-manager-settings', 'Songrec', 'Cadence', 'Catia', 'NoiseTorch', 'helvum',
-            },
+                'Kvantum Manager', 'Xarchiver', 'Nm-connection-editor', 'Pavucontrol', 'GParted',
+                'Timeshift-gtk', 'Virtualbox Machine', 'Virtualbox Manager', 'Xfce4-about',
+                'Xfce4-power-manager-settings', 'Songrec', 'Cadence', 'Catia', 'NoiseTorch', 'helvum',
+                'slickpicker', 'Gnome-sudoku','Psensor', 'org.kde.fancontrol.gui', 'corectrl', 'openrgb',
+                'Galculator','pavucontrol-qt','MediaElch', 'Gddccontrol', 'SimpleScreenRecorder'},
+        role = {'GtkFileChooserDialog', 'pop-up'},
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
@@ -50,8 +55,6 @@ awful.rules.rules = {
     properties = {
         floating = true,
         titlebars_enabled = true,
-        width = awful.screen.focused().geometry.width * 0.5,
-        height = awful.screen.focused().geometry.height * 0.5,
     }
 },
 
@@ -63,30 +66,6 @@ awful.rules.rules = {
             tag = screen[1].tags[3],
             switchtotag = true
         }
-},
-
-{
-    rule = {
-        class = 'Whatsapp-for-linux',
-    },
-        properties = {
-            floating = true,
-            width = dpi(900),
-            height = dpi(1200),
-            x =awful.screen.focused().geometry.width * 0.647,
-            y = awful.screen.focused().geometry.height * 0.10,
-        }
-},
-
-{
-    rule_any = {
-        class = {'slickpicker', 'Gnome-sudoku','Psensor', 'org.kde.fancontrol.gui', 'corectrl', 'openrgb', 'Galculator','pavucontrol-qt','MediaElch', 'Gddccontrol', 'SimpleScreenRecorder'},
-        role = {'GtkFileChooserDialog', 'pop-up'},
-    },
-    properties = {
-        floating = true,
-        titlebars_enabled = true,
-    }
 },
 
     -- Specific applications run on specific tags
@@ -143,7 +122,6 @@ awful.rules.rules = {
     properties = {
         titlebars_enabled = true,
         tag = screen[1].tags[3],
-        placement = awful.placement.centered+awful.placement.no_offscreen,
         floating = true,
         switchtotag = true
     }

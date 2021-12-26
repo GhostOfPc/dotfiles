@@ -1,3 +1,5 @@
+acpi
+acpid
 alacritty
 alsa-utils
 android-tools
@@ -19,6 +21,7 @@ bluez-utils
 bridge-utils
 btrfs-progs
 chromium
+clinfo
 darktable
 ddcci-driver-linux-dkms
 ddcutil
@@ -38,6 +41,7 @@ ffmpegthumbnailer
 file
 findutils
 flameshot
+flatpak
 flex
 fluent-gtk-theme-git
 galculator
@@ -91,6 +95,7 @@ m4
 maim
 make
 man-db
+mate-power-manager
 mesa-demos
 mesa-vdpau
 mpc
@@ -108,6 +113,8 @@ noto-fonts
 npm
 obs-studio
 openbsd-netcat
+opencl-headers
+opencl-mesa
 os-prober
 p7zip
 pacman
@@ -119,13 +126,14 @@ patch
 pavucontrol-qt
 pb-for-desktop
 pcmanfm-qt
-picom-jonaburg-git
+picom-jonaburg-fix
 pipewire
 pipewire-alsa
 pipewire-docs
 pipewire-jack
 pipewire-pulse
 pkgconf
+pkgfile
 playerctl
 plocate
 pulsemixer
@@ -145,6 +153,7 @@ samba
 sassc
 sed
 simplescreenrecorder
+songrec
 spice-vdagent
 spicetify-cli
 spotify
@@ -176,7 +185,6 @@ xclip
 xdg-user-dirs
 xf86-video-amdgpu
 xf86-video-intel
-xfce4-power-manager
 xorg-server
 xorg-xclipboard
 xorg-xev

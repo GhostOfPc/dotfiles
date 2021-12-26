@@ -14,12 +14,8 @@ theme.font          =   'UbuntuMono Nerd Font 11'
 -- Define 16 colors base
 ColorScheme = {"#0d0f18","#444444","#ff000f","#ff273f","#8ce00a","#abe05a","#ffb900","#ffd141","#008df8","#0092ff","#6c43a5","#9a5feb","#00d7eb","#67ffef","#ffffff","#ffffff"}
 
-theme.color0                      =   ColorScheme[1]
-theme.color8                      =   ColorScheme[2]
-theme.color1                      =   ColorScheme[3]
 theme.color9                      =   ColorScheme[4]
 theme.color2                      =   ColorScheme[5]
-theme.color10                     =   ColorScheme[6]
 theme.color3                      =   ColorScheme[7]
 theme.color11                     =   ColorScheme[8]
 theme.color4                      =   ColorScheme[9]
@@ -29,17 +25,17 @@ theme.color13                     =   ColorScheme[12]
 theme.color6                      =   ColorScheme[13]
 theme.color14                     =   ColorScheme[14]
 theme.color7                      =   ColorScheme[15]
-theme.color15                     =   ColorScheme[16]
 
-theme.bg_normal             =   theme.color0 .. 'dd'
-theme.fg_urgent             =   theme.color1
-theme.taglist_bg_occupied   =   theme.color4
-theme.bg_empty              =   theme.color8 .. 'dd'
-theme.taglist_fg_occupied   =   theme.color11
-theme.fg_occupied           =   theme.color13
-theme.taglist_bg_empty      =   theme.bg_empty
-theme.bg_systray            =   theme.bg_normal
+theme.bg_normal             =   ColorScheme[1] .. 'dd'
+theme.fg_normal             =   ColorScheme[16]
+theme.bg_empty              =   ColorScheme[16] .. '2f'
+theme.fg_urgent             =   ColorScheme[3]
+theme.fg_occupied           =   ColorScheme[3]
+theme.taglist_fg_occupied   =   ColorScheme[6]
+theme.taglist_bg_occupied   =   nil
+theme.taglist_bg_empty      =   nil
 theme.taglist_bg_focus      =   theme.fg_occupied
+theme.bg_systray            =   theme.bg_normal
 
 -- Border colors
 theme.border_width          =   dpi(1)

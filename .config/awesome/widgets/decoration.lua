@@ -24,7 +24,7 @@ Wdt_shape   =   function(cr, width, height)
 big_wdt_shape   =   function(cr, width, height)
     gears.shape.rounded_rect(cr, width, height, screen_width * 0.004) end
 bar_wdt_shape   =   function(cr, width, height)
-    gears.shape.rounded_rect(cr, width, height, screen_width * 0.003) end
+    gears.shape.rounded_rect(cr, width, height, screen_width * 0.0031) end
 Wdt_rmgn    =   screen_width * 0.002
 Wdt_lmgn    =   screen_width * 0.002
 
@@ -34,7 +34,7 @@ round_systry = wibox.widget {
         wibox.widget.systray(),
         widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
-    bg         = Wdt_bg,
+    --bg         = Wdt_bg,
     shape      = Wdt_shape,
     widget     = wibox.container.background,
 }
@@ -47,7 +47,7 @@ kbd_widget = wibox.widget {
         margins = screen_width * 0.001,
         widget = wibox.container.margin
     },
-    bg = Wdt_bg,
+    --bg = Wdt_bg,
     fg = beautiful.color10,
     shape = Wdt_shape,
     widget = wibox.container.background
@@ -65,6 +65,7 @@ logo = wibox.widget {
         --left = screen_width * 0.001,
         --top = screen_width * 0.0008,
         --bottom = screen_width * 0.0008,
+        margins = screen_width * 0.0003,
         widget = wibox.container.margin
     },
     shape = Wdt_shape,

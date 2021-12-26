@@ -30,17 +30,18 @@ fi
 #fi
 
 # Autostart useful programs
-~/.fehbg &
 #blurwal -m 1 -b 30 -s 15 &
 #~/.local/bin/prayerTimes.sh &
 #barriers -a :24800 --daemon --no-tray --name Studio --disable-crypto -c $HOME/.local/share/barrier/.barrier.conf &
-udiskie &
-lxqt-policykit-agent &
-xfce4-power-manager &
-picom --experimental-backends &
 #pushbullet &
 #nextcloud &
 #tint2 &
-#exec dbus-launch xfce4-session
+#xfce4-power-manager &
+~/.fehbg &
+udiskie &
+lxqt-policykit-agent &
+blueman-applet &
+picom --experimental-backends &
 exec awesome
+#exec dbus-launch xfce4-session
 #exec openbox-session

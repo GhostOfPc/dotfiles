@@ -1,13 +1,13 @@
 local awful = require("awful")
 local beautiful = require('beautiful')
+local gears = require('gears')
 local wibox = require("wibox")
 local xresources = require('beautiful.xresources')
 local dpi = xresources.apply_dpi
-require('top_right')
-require('top_left')
---require('top_center')
+--require('top_right')
+--require('top_left')
+require('top_bar')
 require('widgets.Prayers_widget')
---require('widgets.Weather_widget')
 require('widgets.Media_widget')
 require('widgets.Date_widget')
 require('widgets.Kernel_widget')
@@ -26,7 +26,7 @@ layoutbox = wibox.widget {
         awful.widget.layoutbox(),
         widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
-    bg = Wdt_bg,
+    --bg = Wdt_bg,
     shape = Wdt_shape,
     widget = wibox.container.background
 }
@@ -37,20 +37,23 @@ awful.screen.connect_for_each_screen(function(s)
     {
         position    =   'bottom',
         screen      =   s,
-        height      =   awful.screen.focused().geometry.height * 0.018,
+        height      =   awful.screen.focused().geometry.height * 0.02,
         width       =   awful.screen.focused().geometry.width * 0.99,
         bg          =   '#0000',
-        shape       =   Wdt_shape,
+        shape       =   function(cr, width, height)
+    gears.shape.rounded_rect(cr, width, height, screen_width * 0.003) end
+
     }
     )
 -- ========================= Widgets and bars placement =======================
-    screen[1].top_right.x       =   screen_width * 0.606
-    --screen[2].top_right.x       =   screen_width * 1.554
-    s.top_right.y               =   screen_height * 0.00208
-    screen[1].top_left.x        =   screen_width * 0.0015
-    --screen[2].top_left.x        =   screen_width * 1.0025
-    s.top_left.y                =   screen_height * 0.00208
-    --s.top_left.y                =   screen_height * 0.00
+    s.top_bar.y               =   screen_height * 0.00208
+    --screen[1].top_right.x       =   screen_width * 0.606
+    ----screen[2].top_right.x       =   screen_width * 1.554
+    --s.top_right.y               =   screen_height * 0.00208
+    --screen[1].top_left.x        =   screen_width * 0.0015
+    ----screen[2].top_left.x        =   screen_width * 1.0025
+    --s.top_left.y                =   screen_height * 0.00208
+    ----s.top_left.y                =   screen_height * 0.00
     screen[1].Prayers_widget.x  =   screen_width * 0.92
     --screen[2].Prayers_widget.x  =   screen_width * 1.867
     s.Prayers_widget.y          =   screen_height * 0.258
@@ -60,7 +63,7 @@ awful.screen.connect_for_each_screen(function(s)
     screen[1].quotes.x                  =   screen_width * 0.92
     --screen[2].quotes.x                  =   screen_width * 1.887
     s.quotes.y                  =   screen_height * 0.6318
-    s.bottom_bar.y              =   screen_height * 0.97992
+    s.bottom_bar.y              =   screen_height * 0.978
 
     s.bottom_bar:setup {
         {
@@ -91,25 +94,20 @@ awful.screen.connect_for_each_screen(function(s)
                         bg = Wdt_bg,
                         shape = Wdt_shape,
                         widget = wibox.container.background
-                    }
+                    }, separator
                 },
                 {
                     layout = wibox.layout.fixed.horizontal,
-                    wibox.widget {
-                        forced_width = screen_width * 0.001,
-                        opacity = 0,
-                        widget = wibox.widget.separator
-                    },
                     mytasklist
                 },
-                {
+                {{
                     layout = wibox.layout.fixed.horizontal,
                     {
                         {
                             Pryr_wdt,
                             widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_)
                         },
-                        bg = Wdt_bg,
+                        --bg = Wdt_bg,
                         shape = Wdt_shape,
                         widget = wibox.container.background
                     },
@@ -119,7 +117,7 @@ awful.screen.connect_for_each_screen(function(s)
                             WEATHER_WIDGET_DESC,
                             widget = wibox.container.margin(_,2,Wdt_rmgn,_,_,_,_)
                         },
-                        bg = Wdt_bg,
+                        --bg = Wdt_bg,
                         shape = Wdt_shape,
                         widget = wibox.container.background,
                     },
@@ -129,12 +127,13 @@ awful.screen.connect_for_each_screen(function(s)
                     kernel_wdt, separator,
                     layoutbox, separator,
                     round_systry,
-                    }
+                    },
+                    shape = Wdt_shape,
+                    bg = Wdt_bg,
+                    widget = wibox.container.background,
                 },
-                top = screen_width * 0.0004,
-                bottom = screen_width * 0.0004,
-                right = screen_width * 0.001,
-                left = screen_width * 0.001,
+                },
+                margins = screen_width * 0.001,
                 widget = wibox.container.margin
             },
             widget = wibox.container.background,

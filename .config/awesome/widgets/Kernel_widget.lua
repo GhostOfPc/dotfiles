@@ -18,7 +18,7 @@ kernel_wdt = wibox.widget {
         widget = wibox.container.place,
     },
     fg = beautiful.color9,
-    bg = Wdt_bg,
+    --bg = Wdt_bg,
     shape = Wdt_shape,
     widget = wibox.container.background
 }

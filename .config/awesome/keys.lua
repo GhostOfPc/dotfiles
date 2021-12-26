@@ -238,18 +238,18 @@ awful.key({},'XF86AudioLowerVolume', volume_widget.lower,
 awful.key({},'XF86AudioMute', volume_widget.toggle,
  {description = "Volume mute", group = "hotkeys"}),
 
-awful.key({altkey}, 'x', volume_widget.raise,
- {description = "Volume increase", group = "hotkeys"}),
+--awful.key({altkey}, 'x', volume_widget.raise,
+-- {description = "Volume increase", group = "hotkeys"}),
+--
+--awful.key({altkey},'z', volume_widget.lower,
+-- {description = "Volume decrease", group = "hotkeys"}),
+--
+--awful.key({altkey},'c', volume_widget.toggle,
+-- {description = "Volume mute", group = "hotkeys"}),
 
-awful.key({altkey},'z', volume_widget.lower,
- {description = "Volume decrease", group = "hotkeys"}),
+awful.key({}, 'XF86MonBrightnessDown', function () brightness_widget:dec() end, {description = "decrease brightness", group = "hotkeys"}),
 
-awful.key({altkey},'c', volume_widget.toggle,
- {description = "Volume mute", group = "hotkeys"}),
-
-awful.key({altkey}, 'q', function () brightness_widget:dec() end, {description = "increase brightness", group = "hotkeys"}),
-
-awful.key({altkey}, 'w', function () brightness_widget:inc() end, {description = "increase brightness", group = "hotkeys"}),
+awful.key({}, 'XF86MonBrightnessUp', function () brightness_widget:inc() end, {description = "increase brightness", group = "hotkeys"}),
 
     awful.key({ }, 'XF86AudioNext', function () awful.spawn('playerctl next') end,
               {description = 'Jump to the next song', group = 'hotKeys'}),

@@ -9,17 +9,17 @@ local bling = require('bling')
 local tags = {}
 awful.screen.connect_for_each_screen(function(s)
     awful.tag.add('',{
-            name                = '⠚⠁⠧⠗⠊⠎', -- JAVRIS
+            name                = '⠚⠁⠧⠗⠊⠎', -- JARVIS
             id                  = '1',
 			--layout              = awful.layout.suit.tile,
-			layout			    = bling.layout.centered,
+			layout			    = awful.layout.suit.tile,
 			gap_single_client	= true,
 			gap                 = 6,
 			selected		    = true
 			}
 		)
     awful.tag.add('',{
-            name                = '⠓⠁⠇', -- HAL
+            name                = '⠞⠁⠗⠎', -- TARS
             id                  = '2',
 			layout              = awful.layout.suit.tile,
             master_width_factor =   0.6,
@@ -36,7 +36,7 @@ awful.screen.connect_for_each_screen(function(s)
 			}
 		)
     awful.tag.add('',{
-            name                = '⠧⠕⠽⠁⠛⠑⠗', --VOYAGER
+            name                = '⠓⠁⠇', -- HAL
             id                  = '4',
 			layout			    = awful.layout.suit.tile,
 			gap_single_client	= true,
@@ -61,7 +61,7 @@ awful.screen.connect_for_each_screen(function(s)
 			}
 		)
     awful.tag.add('',{
-            name                = '⠞⠁⠗⠎', -- TARS
+            name                = '⠧⠕⠽⠁⠛⠑⠗', --VOYAGER
             id                  = '7',
 			layout			    = awful.layout.suit.tile,
 			gap_single_client	= true,

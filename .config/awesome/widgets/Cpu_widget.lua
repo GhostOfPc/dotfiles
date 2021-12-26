@@ -17,9 +17,9 @@ cpu_widget = wibox.widget {
         },
         widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
-    bg = Wdt_bg,
+    --bg = Wdt_bg,
     fg = beautiful.color14,
-    forced_width = screen_width * 0.054,
+    forced_width = screen_width * 0.058,
     shape = Wdt_shape,
     widget = wibox.container.background
 }
