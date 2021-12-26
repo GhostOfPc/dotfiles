@@ -181,7 +181,7 @@ globalkeys = gears.table.join(
     awful.key({                   }, 'XF86Search',     function () awful.spawn(apps.launcher) end,
               {description = 'spawn the launcher', group = 'launcher'}),
 
-    awful.key({ raltkey, 'Shift'   }, 'r',     function () awful.spawn.with_shell('$TERMINAL --hold fhd_2_4k.sh') end,
+    awful.key({ modkey,           }, 'r',     function () awful.spawn.with_shell('$TERMINAL scale.sh') end,
               {description = 'Change Screen resolution', group = 'launcher'}),
 
     awful.key({ modkey            }, 'p',     function () awful.spawn(apps.launcher) end,

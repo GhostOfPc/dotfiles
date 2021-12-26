@@ -5,6 +5,7 @@ selected=$(printf '%s\n' "${resolution[@]}" | dmenu -i -p "Select your desired r
 
 if [ $selected = "recording" ]; then
     sed -i '/dpi/s/144/192/' $HOME/.Xresources
+    sed -i '4s/94/95/g' $HOME/.config/mpv/mpv.conf
     sed -i '/geometry.height/s/0.02/0.026/' $HOME/.config/awesome/bottom_bar.lua
     sed -i '/geometry.height/s/0.02/0.026/' $HOME/.config/awesome/top_bar.lua
     sed -i '/Prayers_widget.x/s/0.92/0.898/' $HOME/.config/awesome/bottom_bar.lua
@@ -31,6 +32,7 @@ if [ $selected = "recording" ]; then
     sudo make clean install
 else
     sed -i '/dpi/s/192/144/' $HOME/.Xresources
+    sed -i '4s/95/94/g' $HOME/.config/mpv/mpv.conf
     sed -i '/geometry.height/s/0.026/0.02/' $HOME/.config/awesome/bottom_bar.lua
     sed -i '/geometry.height/s/0.026/0.02/' $HOME/.config/awesome/top_bar.lua
     sed -i '/Prayers_widget.x/s/0.898/0.92/' $HOME/.config/awesome/bottom_bar.lua

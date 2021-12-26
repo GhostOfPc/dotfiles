@@ -13,7 +13,7 @@ local rubato = require('rubato')
 
 -- ========================= Import theme =====================================
 local config_dir = gears.filesystem.get_configuration_dir()
-beautiful.init(config_dir .. "themes/material_dark.lua")
+beautiful.init(config_dir .. "themes/theme.lua")
 
 -- ========================= Import components ================================
 require('keys')
