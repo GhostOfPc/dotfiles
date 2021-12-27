@@ -14,7 +14,7 @@ if [ $selected = "recording" ]; then
     sed -i '/Prayers_widget.y/s/0.258/0.2223/' $HOME/.config/awesome/bottom_bar.lua
     sed -i '/WEATHER_WIDGET.y/s/0.92/0.898/' $HOME/.config/awesome/bottom_bar.lua
     sed -i '/bottom_bar.y/s/0.978/0.972/' $HOME/.config/awesome/bottom_bar.lua
-    sed -i '/theme.font/s/11/10/' $HOME/.config/awesome/themes/material_dark.lua
+    sed -i '/theme.font/s/11/10/' $HOME/.config/awesome/themes/theme.lua
     sed -i '/forced_width/s/0.058/0.075/' $HOME/.config/awesome/widgets/Cpu_widget.lua
     sed -i '/forced_width/s/0.04/0.05/' $HOME/.config/awesome/widgets/Packages_widget.lua
     sed -i '/forced_width/s/0.05/0.062/' $HOME/.config/awesome/widgets/Uptime_widget.lua
@@ -30,7 +30,8 @@ if [ $selected = "recording" ]; then
     sed -i '32s/46/56/' config.def.h
     sed -i '35s/3/4/' config.def.h
     sudo make clean install
-else
+
+elif [ $selected = "normal" ]; then
     sed -i '/dpi/s/192/144/' $HOME/.Xresources
     sed -i '4s/94/95/g' $HOME/.config/mpv/mpv.conf
     sed -i '/geometry.height/s/0.026/0.02/' $HOME/.config/awesome/bottom_bar.lua
@@ -41,7 +42,7 @@ else
     sed -i '/Prayers_widget.y/s/0.2223/0.258/' $HOME/.config/awesome/bottom_bar.lua
     sed -i '/WEATHER_WIDGET.y/s/0.898/0.92/' $HOME/.config/awesome/bottom_bar.lua
     sed -i '/bottom_bar.y/s/0.972/0.978/' $HOME/.config/awesome/bottom_bar.lua
-    sed -i '/theme.font/s/10/11/' $HOME/.config/awesome/themes/material_dark.lua
+    sed -i '/theme.font/s/10/11/' $HOME/.config/awesome/themes/theme.lua
     sed -i '/forced_width/s/0.075/0.058/' $HOME/.config/awesome/widgets/Cpu_widget.lua
     sed -i '/forced_width/s/0.05/0.04/' $HOME/.config/awesome/widgets/Packages_widget.lua
     sed -i '/forced_width/s/0.062/0.05/' $HOME/.config/awesome/widgets/Uptime_widget.lua
@@ -57,6 +58,7 @@ else
     sed -i '32s/56/46/' config.def.h
     sed -i '35s/4/3/' config.def.h
     sudo make clean install
+else exit 0
 fi
 
 xrdb -merge $HOME/.Xresources
