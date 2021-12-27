@@ -41,7 +41,6 @@ ffmpegthumbnailer
 file
 findutils
 flameshot
-flatpak
 flex
 fluent-gtk-theme-git
 galculator
@@ -71,7 +70,7 @@ jre-openjdk
 kdenlive
 keepassxc
 kitty
-kvantum-qt5
+kvantum
 kvantum-theme-fluent-git
 kvantum-theme-vimix-git
 libmediainfo
@@ -95,7 +94,6 @@ m4
 maim
 make
 man-db
-mate-power-manager
 mesa-demos
 mesa-vdpau
 mpc

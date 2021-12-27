@@ -40,8 +40,9 @@ fi
 ~/.fehbg &
 udiskie &
 lxqt-policykit-agent &
-blueman-applet &
+#blueman-applet &
 picom --experimental-backends &
 exec awesome
+#exec dwm
 #exec dbus-launch xfce4-session
 #exec openbox-session

@@ -321,7 +321,7 @@ awful.key({}, 'XF86MonBrightnessUp', function () brightness_widget:inc() end, {d
     awful.key({ raltkey }, 'r', function () xrandr.xrandr() end,
               {description = 'dmenu script to Start/Stop systemd services', group = 'dmenu'}),
 
-    awful.key({ modkey }, 't', function () awful.spawn.with_shell('theme.sh') end,
+    awful.key({ modkey }, 't', function () awful.spawn.with_shell('awesome_theme.sh') end,
               {description = 'Toggle dark or light theme', group = 'dmenu'}),
 
     awful.key({ 'Control' }, 'p', function () awful.spawn.with_shell('passmenu') end,
