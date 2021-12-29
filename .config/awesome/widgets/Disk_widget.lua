@@ -7,7 +7,7 @@ local icons_dir     =   os.getenv('HOME') .. '/.config/awesome/icons/'
 local Disk_widget = {}
 local screen_width = awful.screen.focused().geometry.width
 
-DSK_CMD = [[ bash -c "df -h -P / | awk '/\/.*/ {print $4}'"]]
+DSK_CMD = [[ bash -c "df -h -P /home | awk '/\/.*/ {print $4}'"]]
 timeout = 300
 
 disk_widget = wibox.widget {
