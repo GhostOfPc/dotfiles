@@ -15,6 +15,7 @@ require('widgets.WEATHER_WIDGET')
 require('widgets.Cpu_temp_widget')
 require('widgets.Gpu_temp_widget')
 require('widgets.quotes')
+require('widgets.watermark')
 
 local bottom_bar = {}
 
@@ -64,6 +65,8 @@ awful.screen.connect_for_each_screen(function(s)
     --screen[2].quotes.x                  =   screen_width * 1.887
     s.quotes.y                  =   screen_height * 0.6318
     s.bottom_bar.y              =   screen_height * 0.978
+    s.watermark.x               =   screen_width * 0.008
+    s.watermark.y               =   screen_height * 0.9125
 
     s.bottom_bar:setup {
         {
