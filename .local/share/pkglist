@@ -12,7 +12,7 @@ bash-completion
 bat
 bc
 binutils
-blueman
+bison
 bluez
 bluez-utils
 bridge-utils
@@ -49,6 +49,7 @@ groff
 grub
 gtk-engine-murrine
 gvfs-gphoto2
+gvfs-mtp
 gvfs-nfs
 gvfs-smb
 gzip
@@ -66,7 +67,6 @@ kdenlive
 keepassxc
 kitty
 kvantum
-kvantum-theme-vimix-git
 libmediainfo
 libreoffice-fresh
 libreoffice-fresh-ar
@@ -81,7 +81,7 @@ linux-headers
 logiops-git
 lolcat
 luarocks
-lxappearance
+lxappearance-gtk3
 lxqt-policykit
 m4
 maim
@@ -106,7 +106,6 @@ obs-studio
 openbsd-netcat
 opencl-headers
 opencl-mesa
-orca
 p7zip
 pacman
 pacman-contrib
@@ -126,12 +125,20 @@ playerctl
 plocate
 pulsemixer
 python-adblock
+python-jinja
+python-mutagen
 python-pip
+python-pygments
+python-pyqt5
+python-pyqt5-sip
+python-pyqt5-webengine
+python-wheel
 python-xlib
 qbittorrent
 qemu
 qemu-arch-extra
 qt5ct
+qutebrowser
 realtime-privileges
 reflector
 rsync
@@ -159,7 +166,7 @@ usbutils
 v4l2loopback-dkms
 vdpauinfo
 vim
-vimix-gtk-themes-git
+vino
 virt-manager
 virt-viewer
 wget
