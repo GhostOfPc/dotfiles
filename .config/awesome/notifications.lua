@@ -8,13 +8,14 @@ local screen_width = awful.screen.focused().geometry.width
 
 -- =================== Theme Definitions =============================
 naughty.config.defaults.ontop = true
-naughty.config.defaults.icon_size = dpi(64)
+naughty.config.defaults.icon_size = dpi(92)
+naughty.config.defaults.resize_strategy = 'center'
 naughty.config.defaults.screen = awful.screen.focused()
 naughty.config.defaults.timeout = 10
 naughty.config.defaults.margin = dpi(10)
 naughty.config.defaults.border_color = beautiful.border_focus
 naughty.config.defaults.border_width = dpi(0)
-naughty.config.defaults.position = 'top_right'
+naughty.config.defaults.position = 'bottom_right'
 naughty.config.defaults.font = 'Inter 10'
 naughty.config.defaults.width = screen_width * 0.16
 naughty.config.defaults.max_width = screen_width * 0.16
@@ -38,19 +39,16 @@ naughty.config.presets.critical.timeout = 0
 naughty.config.presets.normal = {
    fg = beautiful.fg_normal,
    bg = beautiful.bg_normal,
-   position = 'top_right'
 }
 
 naughty.config.presets.low = {
    fg = beautiful.fg_normal,
    bg = beautiful.bg_normal,
-   position = 'top_right'
 }
 
 naughty.config.presets.critical = {
    fg = '#ffffff',
    bg = '#ff0000',
-   position = 'top_right',
    timeout = 0
 }
 
