@@ -59,10 +59,6 @@ globalkeys = gears.table.join(
     awful.key({ modkey, 'Shift'   }, 'q', awesome.quit,
               {description = 'quit awesome', group = 'awesome'}),
 
-    awful.key({ raltkey }, 'Escape', function()
-        awful.spawn.with_shell('dmenu_shutdown.sh') end,
-        {description = 'Power options', group = 'awesome'}),
-
     -- ================= Switching between tags ===========================
     awful.key({ modkey,           }, 'Left',   awful.tag.viewprev,
               {description = 'view previous', group = 'tag'}),
@@ -79,29 +75,32 @@ globalkeys = gears.table.join(
         {description = 'focus previous by index', group = 'client'}),
 
     -- ================= Layout control keybindings ===========================
-    awful.key({ modkey, 'Shift'   }, 'j', function () awful.client.swap.bydirection(  'left')    end,
-              {description = 'swap with next client by index', group = 'layout'}),
+    awful.key({ modkey, 'Shift'  }, 'j',        function () awful.client.swap.bydirection(  'left')    end,
+              {description = 'swap with next client by index',          group = 'layout'}),
 
-    awful.key({ modkey, 'Shift'   }, 'k', function () awful.client.swap.bydirection( 'right')    end,
-              {description = 'swap with previous client by index', group = 'layout'}),
+    awful.key({ modkey, 'Shift'  }, 'k',        function () awful.client.swap.bydirection( 'right')    end,
+              {description = 'swap with previous client by index',      group = 'layout'}),
 
-   awful.key({ modkey, 'Shift'   }, 'h',     function () awful.tag.incnmaster( 1, nil, true) end,
-              {description = 'increase the number of master clients', group = 'layout'}),
+   awful.key({ modkey, 'Shift'   }, 'h',        function () awful.tag.incnmaster( 1, nil, true) end,
+              {description = 'increase the number of master clients',   group = 'layout'}),
 
-    awful.key({ modkey, 'Shift'   }, 'l',     function () awful.tag.incnmaster(-1, nil, true) end,
-              {description = 'decrease the number of master clients', group = 'layout'}),
+    awful.key({ modkey, 'Shift'  }, 'l',        function () awful.tag.incnmaster(-1, nil, true) end,
+              {description = 'decrease the number of master clients',   group = 'layout'}),
 
-    awful.key({ modkey, 'Control' }, 'h',     function () awful.tag.incncol( 1, nil, true)    end,
-              {description = 'increase the number of columns', group = 'layout'}),
+    awful.key({ modkey, 'Control'}, 'Left',     function () awful.tag.incncol( 1, nil, true)    end,
+              {description = 'increase the number of columns',          group = 'layout'}),
 
-    awful.key({ modkey, 'Control' }, 'l',     function () awful.tag.incncol(-1, nil, true)    end,
-              {description = 'decrease the number of columns', group = 'layout'}),
+    awful.key({ modkey, 'Control'}, 'Right',    function () awful.tag.incncol(-1, nil, true)    end,
+              {description = 'decrease the number of columns',          group = 'layout'}),
 
-    awful.key({ modkey,           }, 'space', function () awful.layout.inc( 1)                end,
-              {description = 'select next', group = 'layout'}),
+    awful.key({ modkey,          }, 'space',    function () awful.layout.inc( 1)                end,
+              {description = 'select next',                             group = 'layout'}),
 
-    awful.key({ modkey, 'Shift'   }, 'space', function () awful.layout.inc(-1)                end,
-              {description = 'select previous', group = 'layout'}),
+    awful.key({ modkey, 'Shift'  }, 'space',    function () awful.layout.inc(-1)                end,
+              {description = 'select previous',                         group = 'layout'}),
+
+    awful.key({ modkey           }, 'y',        awful.placement.centered ,
+              {description = 'move to the center of the screen',        group = 'layout'}),
 
     -- ================= Gap resizing keybindings ===========================
 	awful.key({ altkey }, '.',
@@ -173,7 +172,7 @@ globalkeys = gears.table.join(
               {description = 'Navigate the web with chromium', group = 'launcher'}),
 
     awful.key({ modkey,           }, 'q', function () awful.spawn('qutebrowser') end,
-              {description = 'Spawin qutebrowser', group = 'launcher'}),
+              {description = 'spawn qutebrowser', group = 'launcher'}),
 
     awful.key({ modkey,           }, 'c', function () awful.spawn('copyq show') end,
               {description = 'Navigate the web', group = 'launcher'}),
@@ -225,7 +224,7 @@ awful.key({ modkey, 'Shift' }, 'u', function () awful.spawn.with_shell('kill -9 
 
     -- ================= Screenshoot keybinging ===========================
 	awful.key({modkey, 'Shift'},'f',function() awful.spawn.with_shell(apps.screenshot) end,
-	{description = 'Take a screenshot', group = 'hotKeys'}),
+	{description = 'Take a screenshot', group = 'hotkeys'}),
 
     -- ================= Hotkeys (using multimedia keys) ===========================
     
@@ -252,47 +251,47 @@ awful.key({}, 'XF86MonBrightnessDown', function () brightness_widget:dec() end, 
 awful.key({}, 'XF86MonBrightnessUp', function () brightness_widget:inc() end, {description = "increase brightness", group = "hotkeys"}),
 
     awful.key({ }, 'XF86AudioNext', function () awful.spawn('playerctl next') end,
-              {description = 'Jump to the next song', group = 'hotKeys'}),
+              {description = 'Playerctl next song', group = 'hotkeys'}),
 
     awful.key({ }, 'XF86AudioPrev', function () awful.spawn('playerctl previous') end,
-              {description = 'Jump to the previous song', group = 'hotKeys'}),
+              {description = 'Playerctl previous song', group = 'hotkeys'}),
 
     awful.key({ }, 'XF86AudioPlay', function () awful.spawn('playerctl play-pause') end,
-              {description = 'Play/Pause current song', group = 'hotKeys'}),
+              {description = 'Playerctl play-pause', group = 'hotkeys'}),
 
     awful.key({ }, 'XF86AudioNext', function () awful.spawn('mpc next') end,
-              {description = 'Jump to the next song', group = 'hotKeys'}),
+              {description = 'mpc next song', group = 'hotkeys'}),
 
     awful.key({ }, 'XF86AudioPrev', function () awful.spawn('mpc prev') end,
-              {description = 'Jump to the previous song', group = 'hotKeys'}),
+              {description = 'mpc previous song', group = 'hotkeys'}),
 
     awful.key({ }, 'XF86AudioPlay', function () awful.spawn('mpc toggle') end,
-              {description = 'Play/Pause current song', group = 'hotKeys'}),
+              {description = 'mpc play-pause', group = 'hotkeys'}),
 
     -- ================= Hotkeys (using modifier key) ===========================
     awful.key({ altkey}, 'd', function () awful.spawn('playerctl next') end,
-              {description = 'Jump to the next song', group = 'hotKeys'}),
+              {description = 'Jump to the next song', group = 'hotkeys'}),
 
     awful.key({ altkey}, 'a', function () awful.spawn('playerctl previous') end,
-              {description = 'Jump to the previous song', group = 'hotKeys'}),
+              {description = 'Jump to the previous song', group = 'hotkeys'}),
 
     awful.key({ altkey}, 's', function () awful.spawn('playerctl play-pause') end,
-              {description = 'Play/Pause current song', group = 'hotKeys'}),
+              {description = 'Play/Pause current song', group = 'hotkeys'}),
 
     awful.key({ altkey, 'Control'}, 'm', function () awful.spawn.with_shell('mpv $(xclip -o -selection clipboard)') end,
-              {description = 'Play the copied link with mpv w/o caching', group = 'hotKeys'}),
+              {description = 'Play the copied link with mpv w/o caching', group = 'hotkeys'}),
 
     awful.key({ altkey, }, 'm', function () awful.spawn.with_shell('mpv --cache=yes $(xclip -o -selection clipboard)') end,
-              {description = 'Play the copied link with mpv w caching', group = 'hotKeys'}),
+              {description = 'Play the copied link with mpv w caching', group = 'hotkeys'}),
 
     awful.key({ altkey, 'Control'}, 's', function () awful.spawn.with_shell('mpv --shuffle /media/VIDEOS/*') end,
-              {description = 'Play the copied link with mpv w caching', group = 'hotKeys'}),
+              {description = 'Play the copied link with mpv w caching', group = 'hotkeys'}),
 
     awful.key({ raltkey, }, '7', function () awful.spawn.with_shell('movies.sh') end,
-              {description = 'Play a random movie', group = 'hotKeys'}),
+              {description = 'Play a random movie', group = 'hotkeys'}),
 
     awful.key({ altkey, 'Control'}, 'q', function () awful.spawn.with_shell('zathura /home/hisham/Documents/Quran_7afs.pdf') end,
-              {description = 'Read al-quraan alkareem', group = 'hotKeys'}),
+              {description = 'Read al-quraan alkareem', group = 'hotkeys'}),
     -- ================= dmenu scripts ===========================
     awful.key({ raltkey }, '1', function () awful.spawn.with_shell('dmenu_url.sh') end,
               {description = 'dmenu script to surf the web', group = 'dmenu'}),
@@ -325,7 +324,11 @@ awful.key({}, 'XF86MonBrightnessUp', function () brightness_widget:inc() end, {d
               {description = 'Toggle dark or light theme', group = 'dmenu'}),
 
     awful.key({ 'Control' }, 'p', function () awful.spawn.with_shell('passmenu') end,
-              {description = 'Toggle dark or light theme', group = 'dmenu'}),
+              {description = 'spawn pass program', group = 'dmenu'}),
+
+    awful.key({ raltkey }, 'Escape', function()
+        awful.spawn.with_shell('dmenu_shutdown.sh') end,
+        {description = 'Power options', group = 'dmenu'}),
 
     -- Increase size of master client
     awful.key({ modkey,           }, 'l',     function () awful.tag.incmwfact( 0.05)          end,
@@ -359,14 +362,6 @@ awful.key({}, 'XF86MonBrightnessUp', function () brightness_widget:inc() end, {d
    -- =========================================
    -- CLIENT RESIZING
    -- =========================================
-
-    awful.key({modkey, 'Control'}, 'Up',      function(c) resize_client(client.focus, 'up') end),
-
-    awful.key({modkey, 'Control'}, 'Down',    function(c) resize_client(client.focus, 'down') end),
-
-    awful.key({modkey, 'Control'}, 'Left',    function(c) resize_client(client.focus, 'left') end),
-
-    awful.key({modkey, 'Control'}, 'Right',   function(c) resize_client(client.focus, 'right') end),
 
     awful.key({modkey, 'Control'}, 'h',       function(c) resize_client(client.focus, 'left') end),
 
