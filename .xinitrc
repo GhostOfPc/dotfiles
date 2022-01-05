@@ -40,9 +40,11 @@ fi
 ~/.fehbg &
 udiskie &
 lxqt-policykit-agent &
+volctl &
 #blueman-applet &
 picom --experimental-backends &
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY &
 exec awesome
-#exec dwm
+#exec i3
 #exec dbus-launch xfce4-session
 #exec openbox-session
