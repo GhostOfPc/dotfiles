@@ -2,6 +2,7 @@ acpi
 alacritty
 alsa-utils
 aria2
+aspell
 audacity
 autoconf
 automake
@@ -34,6 +35,7 @@ ffmpegthumbnailer
 file
 findutils
 flameshot
+flatpak
 flex
 galculator
 gawk
@@ -53,8 +55,11 @@ gvfs-mtp
 gvfs-nfs
 gvfs-smb
 gzip
+hspell
 htop
 i2c-tools
+i3-gaps
+i3blocks
 imagemagick
 inkscape
 intel-ucode
@@ -74,6 +79,7 @@ libtool
 libva-mesa-driver
 libva-utils
 libvdpau-va-gl
+libvoikko
 libxft-bgra-git
 linux
 linux-firmware
@@ -102,6 +108,7 @@ nextcloud-client
 nodejs
 noto-fonts
 npm
+nuspell
 obs-studio
 openbsd-netcat
 opencl-headers
@@ -144,6 +151,7 @@ reflector
 rsync
 samba
 sassc
+scour
 sed
 simplescreenrecorder
 songrec
@@ -155,8 +163,12 @@ spotifyd
 sudo
 sxiv
 texinfo
+thunar
+thunar-media-tags-plugin
+thunar-volman
 tree
 ttf-joypixels
+tumbler
 udiskie
 ufw
 unicode-character-database
@@ -169,10 +181,15 @@ vim
 vino
 virt-manager
 virt-viewer
+volctl
+vysor-bin
 wget
 which
+wireplumber
 xarchiver
 xclip
+xdg-desktop-portal
+xdg-desktop-portal-gtk
 xdg-user-dirs
 xdg-user-dirs-gtk
 xf86-video-amdgpu
