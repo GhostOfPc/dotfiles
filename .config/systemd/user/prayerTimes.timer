@@ -1,7 +1,7 @@
 [Unit]
 Description=Schedule a message every 1 minute
-RefuseManualStart=false  # Allow manual starts
-RefuseManualStop=false   # Allow manual stops
+RefuseManualStart=false
+RefuseManualStop=false
 
 [Timer]
 #Execute job if it missed a run due to machine being off
