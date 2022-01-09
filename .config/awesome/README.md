@@ -4,10 +4,14 @@ After using the git version for over a year, I've decided to revert it and go to
 I split my rc.lua into various .lua modules for ease of track and modification\
 Two themes are included: a dark and light theme: to change from the default dark to light: change line 15 in rc.lua form Darktheme.lua to Lighttheme.lua and reload the WM  
 ## Useful Keybindings to get started  
-***Keep in mind that the Right Alt key works only for the Spanish keyborad layout. For other layouts you should assign a different key***
+- ***Note 1 Keep in mind that the Right Alt key works only for the Spanish keyborad layout. For other layouts you should assign a different key***
+- ***Note 2 Its important to use kitty terminal which is keybinded to the Enter key***
 |   Key                 |   Function            |
 |   ----------          |   ------------        |
-|   `Super + ↩`         |   Open Terminal       |
+|   `Super + Enter`         |   Open Terminal       |
+|   `Super + Shift + c`         |   Close any opened window       |
+|   `Super + Shift + r`         |   Restart AwesomeWM       |
+|   `Super + Shift + q`         |   Kill AwesomeWM       |
 |   `Super + p`         |   Open dmenu launcher |
 |   `Super + c`         |   Open browser        |
 |   `Super + f`         |   Open file manager   |
