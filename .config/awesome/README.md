@@ -30,7 +30,6 @@ This widget pull the times using `curl`, `systemd`, `mpv` and a bash script loca
     * `systemd` is used to schedule the download time
 * Create a directory inside the `.config` and name it `systemd`, and inside it another directory called `user`.
 * Create two files inside `.config/systemd/user`, `prayerTimes.service` and `prayerTimes.timer`. These two files are stored in this repository, so you can copy and paste theme directly.
-* Edit the username in the ExecStart line from *hisham* to your username in the file `prayerTimes.service` and save it.
 * Enable the service and timer using the following commands:
 * `systemctl --user enable --now prayerTimes.service`
 * `systemctl --user enable --now prayerTimes.timer`
