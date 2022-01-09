@@ -3,7 +3,7 @@ Description=A job to retrive prayer times using curl
 
 [Service]
 Type=simple
-ExecStart=/home/hisham/.local/bin/prayerTimes.sh
+ExecStart=%h/.local/bin/prayerTimes.sh
 
 [Install]
 WantedBy=default.target
