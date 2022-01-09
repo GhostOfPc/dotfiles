@@ -34,17 +34,3 @@ I'm on Arch linux because it makes it really easy to install all the packages I 
 | `pipewire`              | Recently I changed my sound server from pulseaudio to pipewire      |
 
 I manage this dotfiles using a method provided by a gentelman called StreakyCobra on [ATLASSIAN](https://www.atlassian.com/git/tutorials/dotfiles)
-
-# Screenshots
-## Window Manager
-![AwesomeWM](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/windowmanager.png)
-## Web Browser
-My daily driver web browser is brave browser which is a chromium based browser with a lot of privacy features  
-I also use qutebrowser which is a keyboard driven broswer and highly customizable  
-The custom startpage I'm using can be found under `.config/qutebrowser/html` which is not mine since I don't know hot to create one from scratch. I just modified it to suite my needs and taste.
-![qutebrowser](https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/qutebrowser.png)
-
-# Important note!!!
-The widget at the right side of the screen and the bottm bar in Arabic is the prayer times.  
-I'm a muslim person and proud of that and I like GNU/Linux so please don't think that muslims can't use tech.  
-May Allah protect all of us.
