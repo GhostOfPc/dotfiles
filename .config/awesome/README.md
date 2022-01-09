@@ -3,6 +3,7 @@
 # Awesome Window Mangaer
 After using the git version for over a year, I've decided to revert it and go to the stable version.  
 I split my rc.lua into various .lua modules for ease of track and modification  
+At the moment there are 10 themes (dark and light) to choose from, to change the theme if you have `dmenu` installed you can press `Super + t` and choose your desired theme  
 ## Useful Keybindings to get started  
 1. Note 1: Keep in mind that the `Right Alt` key works only for the ***Spanish keyborad layout***. For other layouts you should assign a different key
 2. Note 2: Its important to use ***kitty terminal*** which is keybinded to the Enter key  
