@@ -3,10 +3,15 @@
 After using the git version for over a year, I've decided to revert it and go to the stable version.\
 I split my rc.lua into various .lua modules for ease of track and modification\
 Two themes are included: a dark and light theme: to change from the default dark to light: change line 15 in rc.lua form Darktheme.lua to Lighttheme.lua and reload the WM  
-## Useful Keybinding to get started  
-|   Key         |   Function        |
-|   ----------  |   ------------    |
-|   `Super + ↩` |   Open Terminal   |
+## Useful Keybindings to get started  
+***Keep in mind that the Right Alt key works only for the Spanish keyborad layout. For other layouts you should assign a different key***
+|   Key                 |   Function            |
+|   ----------          |   ------------        |
+|   `Super + ↩`         |   Open Terminal       |
+|   `Super + p`         |   Open dmenu launcher |
+|   `Super + c`         |   Open browser        |
+|   `Super + f`         |   Open file manager   |
+|   `Right Alt + Esc`   |   Open power menu     |
 
 # Salat (Prayer) Widget
 This widget pull the times using `curl`, `systemd`, `mpv` and a bash script located at ~/.local/bin
