@@ -8,8 +8,7 @@ require('awful.autofocus')
 require('menubar')
 require('awful.hotkeys_popup')
 require('awful.hotkeys_popup.keys')
-local bling = require('bling')
-local rubato = require('rubato')
+local bling = require('modules/bling')
 
 -- ========================= Import theme =====================================
 local config_dir = gears.filesystem.get_configuration_dir()
@@ -18,6 +17,7 @@ beautiful.init(config_dir .. "themes/theme.lua")
 -- ========================= Import components ================================
 require('keys')
 require('tags')
+--require('top_bar')
 require('bottom_bar')
 require('Menu')
 require('notifications')
@@ -38,18 +38,6 @@ bling.widget.window_switcher.enable {
     vim_previous_key = "h",              -- Alternative key on which to select the previous client
     vim_next_key = "l",                  -- Alternative key on which to select the next client
 }
--- Set wallpaper
---awful.screen.connect_for_each_screen(function(s)
---    local function set_wallpaper(s)
---        local wallpaper = '/home/hisham/Pictures/Nude/0002.jpg'
---        if type(wallpaper) == 'function' then
---            wallpaper = wallpaper(s)
---        end
---        gears.wallpaper.maximized(wallpaper, s, true)
---    end
---    set_wallpaper(s)
---end
---    )
 
 -- ========================= Layouts ==========================================
 awful.layout.layouts = {
@@ -58,12 +46,6 @@ awful.layout.layouts = {
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.floating,
-}
-
-timed = rubato.timed {
-	intro = 0.5,
-	duration = 1,
-	easing = rubato.quadratic --quadratic slope, not easing
 }
 
 -- Garbage collection (allows for lower memory consumption)
