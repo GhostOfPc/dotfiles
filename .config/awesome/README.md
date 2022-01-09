@@ -4,7 +4,7 @@ After using the git version for over a year, I've decided to revert it and go to
 I split my rc.lua into various .lua modules for ease of track and modification\
 Two themes are included: a dark and light theme: to change from the default dark to light: change line 15 in rc.lua form Darktheme.lua to Lighttheme.lua and reload the WM  
 ## Useful Keybindings to get started  
-1. ***Note 1: Keep in mind that the Right Alt key works only for the Spanish keyborad layout. For other layouts you should assign a different key***
+1. ***Note 1: Keep in mind that the*** `Right Alt` ***key works only for the Spanish keyborad layout. For other layouts you should assign a different key***
 2. ***Note 2: Its important to use kitty terminal which is keybinded to the Enter key***  
 3. ***Note 3: You can get a list of all keybindings in AwesomeWM by pressing*** `Super + s`  
 
