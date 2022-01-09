@@ -4,6 +4,8 @@ After using the git version for over a year, I've decided to revert it and go to
 I split my rc.lua into various .lua modules for ease of track and modification\
 Two themes are included: a dark and light theme: to change from the default dark to light: change line 15 in rc.lua form Darktheme.lua to Lighttheme.lua and reload the WM  
 ## Useful Keybinding to get started  
+|   Key         |   Function        |
+|   ----------  |   ------------    |
 |   `Super + ↩` |   Open Terminal   |
 
 # Salat (Prayer) Widget
