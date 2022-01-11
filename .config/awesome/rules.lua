@@ -28,28 +28,27 @@ awful.rules.rules = {
     {
         rule_any = {
             instance = {
-                'DTA',  -- Firefox addon DownThemAll.
-                'copyq',  -- Includes session name in class.
-                'pinentry',
+                'DTA', 'copyq', 'pinentry'
             },
             class = {
-                'Arandr', 'Blueman-manager', 'Nitrogen', 'lxrandr', 'Lxappearance', 'qt5ct', 'Hardinfo',
-                'Kvantum Manager', 'Xarchiver', 'Nm-connection-editor', 'Pavucontrol', 'GParted',
-                'Timeshift-gtk', 'Virtualbox Machine', 'Virtualbox Manager', 'Xfce4-about',
+                'Arandr', 'Blueman-manager', 'Nitrogen', 'lxrandr', 'Lxappearance', 'qt5ct', 'qt6ct',
+                'Hardinfo', 'Kvantum Manager', 'Xarchiver', 'Nm-connection-editor', 'Pavucontrol',
+                'GParted', 'Timeshift-gtk', 'Virtualbox Machine', 'Virtualbox Manager', 'Xfce4-about',
                 'Xfce4-power-manager-settings', 'Songrec', 'Cadence', 'Catia', 'NoiseTorch', 'helvum',
                 'slickpicker', 'Gnome-sudoku','Psensor', 'org.kde.fancontrol.gui', 'corectrl', 'openrgb',
-                'Galculator','pavucontrol-qt','MediaElch', 'Gddccontrol', 'SimpleScreenRecorder'},
-        role = {'GtkFileChooserDialog', 'pop-up'},
+                'Galculator','pavucontrol-qt','MediaElch', 'Gddccontrol', 'SimpleScreenRecorder', 'Solaar'
+            },
+        role = {
+            'GtkFileChooserDialog', 'pop-up'
+        },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
         name = {
             'Event Tester',  -- xev.
-            'Customize Look and Feel',
-            'ArcoLinux Spices Application',
-            'Search movie',
-            'About Mozilla Firefox',
-            'Select file to open',
+        },
+        type = {
+            'dialog'
         },
     },
     properties = {
@@ -82,6 +81,16 @@ awful.rules.rules = {
 {
     rule = {
         class = 'kdenlive'
+    },
+    properties = {
+        tag = screen[1].tags[5],
+        switchtotag = true
+    }
+},
+
+{
+    rule = {
+        class = 'resolve'
     },
     properties = {
         tag = screen[1].tags[5],
@@ -243,15 +252,13 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- ========================= Signals ===========================================
--- Enable mouse bindings to move and resize clients
-client.connect_signal('manage', function (c)
-    c:keys(clientkeys)
-    c:buttons(clientbuttons)
-end)
-
--- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal('mouse::enter', function(c)
-    c:emit_signal('request::activate', 'mouse_enter', {raise = false})
+-- No borders for flaoting windows
+screen.connect_signal('arrange', function(s)
+    for _, c in pairs(s.clients) do
+        if c.floating == true then
+            c.border_width = 0
+        end
+    end
 end)
 
 -- Enable borders for focused windows
@@ -265,6 +272,18 @@ client.connect_signal('unfocus', function(c)
     c.border_width = 0
     c.border_color = beautiful.border_normal
 end)
+
+-- Enable mouse bindings to move and resize clients
+client.connect_signal('manage', function (c)
+    c:keys(clientkeys)
+    c:buttons(clientbuttons)
+end)
+
+-- Enable sloppy focus, so that focus follows mouse.
+client.connect_signal('mouse::enter', function(c)
+    c:emit_signal('request::activate', 'mouse_enter', {raise = false})
+end)
+
 
 -- ================= Experimenting with auto dpi functionality ================
 --awful.screen.connect_for_each_screen(function(s)
