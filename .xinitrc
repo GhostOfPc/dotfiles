@@ -38,7 +38,6 @@ fi
 #tint2 &
 #xfce4-power-manager &
 ~/.fehbg &
-udiskie &
 lxqt-policykit-agent &
 volctl &
 #blueman-applet &
