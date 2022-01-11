@@ -3,7 +3,7 @@ local awful = require('awful')
 local wibox = require('wibox')
 require('widgets.decoration')
 local beautiful = require('beautiful')
-local bling = require('bling')
+local bling = require('modules/bling')
 
 
 local tags = {}

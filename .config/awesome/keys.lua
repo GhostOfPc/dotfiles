@@ -11,7 +11,7 @@ local apps = require('apps')
 local xrandr=require('xrandr')
 --local volume_widget = require("widgets.volume-widget.volume")
 local brightness_widget = require("widgets.brightness-widget.brightness")
-local bling=require('bling')
+local bling=require('modules/bling')
 
 modkey = 'Mod4'
 altkey = 'Mod1'
