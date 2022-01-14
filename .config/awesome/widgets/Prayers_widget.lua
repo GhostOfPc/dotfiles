@@ -45,40 +45,25 @@ Pryr_wdt = wibox.widget {
     layout = wibox.layout.fixed.horizontal
 }
 
---Arguments
-local GeoLoc    =   'By_Cor' -- Choose either By_Cor for cooridnation based or By_City for city name based
-local today     =   os.time() -- Date should be in the UNIX timestamp format
--- The more accurate coordinates the more accurate prayer times
-local lat       =   '-41.124877'
-local long      =   '-71.365303'
-local city      =   'Bariloche'
-local country   =   'Argentina'
-local method    =   '2' -- method 2 for Americas
-local adjustment=   '1' -- To adjust the hijri date
-local timeout   =   60 -- 1 min is good enough to change the backgrouond of the current prayer
 local TZ_adj    =   os.time()-os.time(os.date('!*t'))
 local bgcolor   =   beautiful.fg_occupied .. 'a9'
 local icons_ext =   '.png'
 
-if GeoLoc == 'By_City' then
-    Api = ('http://api.aladhan.com/v1/timingsByCity?city=' .. city .. '&country=' .. country .. '&method=' .. method .. '&adjustment=' .. adjustment)
-else
-    Api = ('http://api.aladhan.com/v1/timings/' .. today .. '?latitude=' .. lat .. '&longitude=' .. long .. '&method=' .. method .. '&adjustment=' .. adjustment)
-end
-
-Prayer_id = {'Fajr_widget', 'Shuruq_widget', 'Duhur_widget', 'Asr_widget', 'Maghrib_widget', 'Isha_widget'}
-Prayer_bg_id = {'Fajr_widget_bg', 'Shuruq_widget_bg', 'Duhur_widget_bg', 'Asr_widget_bg', 'Maghrib_widget_bg', 'Isha_widget_bg'}
-Prayer_names = {'الـــفجـــر', 'الشروق', 'الـــظهر', 'العــــصر', 'المــغرب', 'الـعشاء'}
+Prayer_id       =   {'Fajr_widget', 'Shuruq_widget', 'Duhur_widget', 'Asr_widget', 'Maghrib_widget', 'Isha_widget'}
+Prayer_bg_id    =   {'Fajr_widget_bg', 'Shuruq_widget_bg', 'Duhur_widget_bg', 'Asr_widget_bg', 'Maghrib_widget_bg', 'Isha_widget_bg'}
+Prayer_names    =   {'الـــفجـــر', 'الشروق', 'الـــظهر', 'العــــصر', 'المــغرب', 'الـعشاء'}
+icon_name       =   {'praying_fajr', 'praying', 'praying_duhur', 'praying_asr', 'praying_maghrib', 'praying_isha'}
 
 local function update_widget(widget,stdout)
     Current_time    =   os.date('%H:%M')
     Result          =   json.decode(stdout)
-    Fajr            =   Result.data.timings.Fajr
-    Shuruq          =   Result.data.timings.Sunrise
-    Duhur           =   Result.data.timings.Dhuhr
-    Asr             =   Result.data.timings.Asr
-    Maghrib         =   Result.data.timings.Maghrib
-    Isha            =   Result.data.timings.Isha
+    Times = {}
+    table.insert(Times,Result.data.timings.Fajr)
+    table.insert(Times,Result.data.timings.Sunrise)
+    table.insert(Times,Result.data.timings.Dhuhr)
+    table.insert(Times,Result.data.timings.Asr)
+    table.insert(Times,Result.data.timings.Maghrib)
+    table.insert(Times,Result.data.timings.Isha)
 
     function Prayer_utc(P_h_m)
         str                         =   os.date('%a %d %b %Y ') .. P_h_m .. ':' .. os.date('%S')
@@ -115,79 +100,37 @@ local function update_widget(widget,stdout)
         end
     end
 
-    Fajr_text       = ' ۞ ' .. Prayer_names[1] .. '\t\t\t' .. Fajr    .. ' ۞ '
-    Shuruq_text     = ' ۞ ' .. Prayer_names[2] .. '\t\t'   .. Shuruq  .. ' ۞ '
-    Duhur_text      = ' ۞ ' .. Prayer_names[3] .. '\t\t\t' .. Duhur   .. ' ۞ '
-    Asr_text        = ' ۞ ' .. Prayer_names[4] .. '\t\t\t' .. Asr     .. ' ۞ '
-    Maghrib_text    = ' ۞ ' .. Prayer_names[5] .. '\t\t' .. Maghrib .. ' ۞ '
-    Isha_text       = ' ۞ ' .. Prayer_names[6] .. '\t\t\t' .. Isha    .. ' ۞ '
+Texts = {}
+for i=1,6 do
+    table.insert(Texts, '۞ ' .. Prayer_names[i] .. '\t\t\t' .. Times[i]     .. ' ۞')
+    widget:get_children_by_id(Prayer_bg_id[i])[1]:set_bg(beautiful.bg_empty)
+    widget:get_children_by_id(Prayer_bg_id[i])[1]:set_shape(Wdt_shape)
+    widget:get_children_by_id(Prayer_id[i])[1]:set_font('Noto Kufi Arabic 9')
+end
 
-    widget:get_children_by_id(Prayer_bg_id[1])[1]:set_bg(beautiful.bg_empty)
-    widget:get_children_by_id(Prayer_bg_id[2])[1]:set_bg(beautiful.bg_empty)
-    widget:get_children_by_id(Prayer_bg_id[3])[1]:set_bg(beautiful.bg_empty)
-    widget:get_children_by_id(Prayer_bg_id[4])[1]:set_bg(beautiful.bg_empty)
-    widget:get_children_by_id(Prayer_bg_id[5])[1]:set_bg(beautiful.bg_empty)
-    widget:get_children_by_id(Prayer_bg_id[6])[1]:set_bg(beautiful.bg_empty)
-
-    if Current_time >= Fajr and Current_time < Shuruq then
-        if Current_time == Fajr then
-            Notification(Prayer_names[1])
+    if Current_time >= Times[1] and Current_time < Times[6] then
+        for i=1,5 do
+            if Current_time >= Times[i] and Current_time < Times[i+1] then
+                if Current_time == Times[2] then
+                    awful.spawn.with_shell('mpv $HOME/.local/share/Nature.mp3')
+                elseif Current_time == Times[i] then
+                    Notification(Prayer_names[i])
+                end
+                widget:get_children_by_id(Prayer_bg_id[i])[1]:set_bg(bgcolor)
+                Remain          =   Diff(Times[i+1])
+                Image           =   icons_dir .. icon_name[i] .. icons_ext
+                Next_prayer     =   Times[i+1]
+                Next_prayer_str =   Prayer_names[i+1]
+            end
         end
-        widget:get_children_by_id(Prayer_bg_id[1])[1]:set_bg(bgcolor)
-        Remain          =   Diff(Duhur)
-        Image           =   icons_dir .. 'praying_fajr' .. icons_ext
-        Remain          =   Diff(Duhur)
-        Next_prayer     =   Duhur
-        Next_prayer_str =   Prayer_names[3]
-    elseif Current_time >= Shuruq and Current_time < Duhur then
-        if Current_time == Shuruq then
-            awful.spawn.with_shell('mpv $HOME/.local/share/Nature.mp3')
-        end
-        widget:get_children_by_id(Prayer_bg_id[2])[1]:set_bg(bgcolor)
-        Remain          =   Diff(Duhur)
-        Image           =   icons_dir .. 'praying' .. icons_ext
-        Remain          =   Diff(Duhur)
-        Next_prayer     =   Duhur
-        Next_prayer_str =   Prayer_names[3]
-    elseif Current_time >= Duhur and Current_time < Asr then
-        if Current_time == Duhur then
-            Notification(Prayer_names[3])
-        end
-        widget:get_children_by_id(Prayer_bg_id[3])[1]:set_bg(bgcolor)
-        Remain          =   Diff(Asr)
-        Image           =   icons_dir .. 'praying_duhur' .. icons_ext
-        Remain          =   Diff(Asr)
-        Next_prayer     =   Asr
-        Next_prayer_str =   Prayer_names[4]
-    elseif Current_time >= Asr and Current_time < Maghrib then
-        if Current_time == Asr then
-            Notification(Prayer_names[4])
-        end
-        widget:get_children_by_id(Prayer_bg_id[4])[1]:set_bg(bgcolor)
-        Remain          =   Diff(Maghrib)
-        Image           =   icons_dir .. 'praying_asr' .. icons_ext
-        Remain          =   Diff(Maghrib)
-        Next_prayer     =   Maghrib
-        Next_prayer_str =   Prayer_names[5]
-    elseif Current_time >= Maghrib and Current_time < Isha then
-        if Current_time == Maghrib then
-            Notification(Prayer_names[5])
-        end
-        widget:get_children_by_id(Prayer_bg_id[5])[1]:set_bg(bgcolor)
-        Remain          =   Diff(Isha)
-        Image           =   icons_dir .. 'praying_maghrib' .. icons_ext
-        Remain          =   Diff(Isha)
-        Next_prayer     =   Isha
-        Next_prayer_str =   Prayer_names[6]
-    else
-        if Current_time == Isha then
+    else 
+        if Current_time == Times[6] then
             Notification(Prayer_names[6])
         end
         widget:get_children_by_id(Prayer_bg_id[6])[1]:set_bg(bgcolor)
-        Remain          =   Diff(Fajr)
-        Image           =   icons_dir .. 'praying_isha' .. icons_ext
-        Remain          =   Diff(Fajr)
-        Next_prayer     =   Fajr
+        Remain          =   Diff(Times[1])
+        Image           =   icons_dir .. icon_name[6] .. icons_ext
+        Next_prayer     =   Times[1]
         Next_prayer_str =   Prayer_names[1]
     end
 
@@ -198,17 +141,17 @@ local function update_widget(widget,stdout)
     HijriDate       =   ArabicDayNum .. ' ' .. HijriMonth .. ' ' .. HijriYear .. ' هجرية\n'
     Heading         =   'مواقيت الصلاة ليوم ' .. ArabicDay .. '\n' .. HijriDate
 
+    widget:get_children_by_id('icon')[1]:set_image(Image)
     widget:get_children_by_id('Heading_widget')[1]:set_markup(Heading ..
     'الوقت المتبقي:\t\t<span fgcolor="' .. beautiful.fg_occupied .. '">'.. Remain .. '</span> ۞ ')
-    widget:get_children_by_id(Prayer_id[1])[1]:set_markup(Fajr_text)
-    widget:get_children_by_id(Prayer_id[2])[1]:set_markup(Shuruq_text)
-    widget:get_children_by_id(Prayer_id[3])[1]:set_markup(Duhur_text)
-    widget:get_children_by_id(Prayer_id[4])[1]:set_markup(Asr_text)
-    widget:get_children_by_id(Prayer_id[5])[1]:set_markup(Maghrib_text)
-    widget:get_children_by_id(Prayer_id[6])[1]:set_markup(Isha_text)
-    widget:get_children_by_id('icon')[1]:set_image(Image)
-    Pryr_wdt:get_children_by_id('mini_widget')[1]:set_markup('الصلاة القادمة: <span fgcolor="' .. beautiful.color2 .. '">' .. Next_prayer_str
-    .. ' ' .. Next_prayer  .. '</span> ' .. ' (الوقت المتبقي <span fgcolor="' .. beautiful.color2 .. '">' .. Remain .. '</span>)')
+    for i=1,6 do
+        widget:get_children_by_id(Prayer_id[i])[1]:set_markup(Texts[i])
+    end
+
+    Pryr_wdt:get_children_by_id('mini_widget')[1]:set_markup('الصلاة القادمة: <span fgcolor="' 
+    .. beautiful.color2 .. '">' .. Next_prayer_str .. ' ' .. Next_prayer  .. '</span> ' 
+    .. ' (الوقت المتبقي <span fgcolor="' .. beautiful.color2 .. '">' .. Remain .. '</span>)')
+
 end
 
 Prayers_widget = wibox.widget {
@@ -246,66 +189,54 @@ Prayers_widget = wibox.widget {
     { -- Fajr
         {
             id      =   Prayer_id[1],
-            font    =   'Noto Kufi Arabic 9',
             widget  =   wibox.widget.textbox
         },
         id      =   Prayer_bg_id[1],
-        shape = Wdt_shape,
         widget = wibox.container.background
     },
     
     { -- Shuruq
         {
             id      =   Prayer_id[2],
-            font    =   'Noto Kufi Arabic 9',
             widget  =   wibox.widget.textbox
         },
         id      =   Prayer_bg_id[2],
-        shape = Wdt_shape,
         widget = wibox.container.background
     },
     
     { -- Dhuhr
         {
             id      =   Prayer_id[3],
-            font    =   'Noto Kufi Arabic 9',
             widget  =   wibox.widget.textbox
         },
         id = Prayer_bg_id[3],
-        shape = Wdt_shape,
         widget = wibox.container.background
     },
     
     { -- Asr
         {
             id      =   Prayer_id[4],
-            font    =   'Noto Kufi Arabic 9',
             widget  =   wibox.widget.textbox
         },
         id      =   Prayer_bg_id[4],
-        shape = Wdt_shape,
         widget = wibox.container.background
     },
     
     { -- Maghrib
         {
             id      =   Prayer_id[5],
-            font    =   'Noto Kufi Arabic 9',
             widget  =   wibox.widget.textbox
         },
         id      =   Prayer_bg_id[5],
-        shape = Wdt_shape,
         widget = wibox.container.background
     },
     
     { -- Isha
         {
             id      =   Prayer_id[6],
-            font    =   'Noto Kufi Arabic 9',
             widget  =   wibox.widget.textbox
         },
         id      =   Prayer_bg_id[6],
-        shape = Wdt_shape,
         widget = wibox.container.background
     },
     spacing = screen_height * 0.002,
