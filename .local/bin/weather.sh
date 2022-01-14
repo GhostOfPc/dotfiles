@@ -30,4 +30,4 @@ iconval=${icons%?}
                 50*) icon="🌫️";;
             esac
 
-printf "$icon $Desc $Temp°$symbol"
+printf "$icon $Desc $Temp°$symbol\n"
