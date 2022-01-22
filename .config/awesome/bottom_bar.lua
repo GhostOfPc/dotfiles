@@ -1,9 +1,9 @@
-local awful = require("awful")
-local beautiful = require('beautiful')
-local gears = require('gears')
-local wibox = require("wibox")
-local xresources = require('beautiful.xresources')
-local dpi = xresources.apply_dpi
+local awful         =   require("awful")
+local beautiful     =   require('beautiful')
+local gears         =   require('gears')
+local wibox         =   require("wibox")
+local xresources    =   require('beautiful.xresources')
+local dpi           =   xresources.apply_dpi
 --require('top_right')
 --require('top_left')
 require('top_bar')
@@ -15,12 +15,11 @@ require('widgets.WEATHER_WIDGET')
 require('widgets.Cpu_temp_widget')
 require('widgets.Gpu_temp_widget')
 require('widgets.quotes')
-require('widgets.watermark')
 
 local bottom_bar = {}
 
-local screen_width = awful.screen.focused().geometry.width
-local screen_height = awful.screen.focused().geometry.height
+local screen_width  =   awful.screen.focused().geometry.width
+local screen_height =   awful.screen.focused().geometry.height
 
 layoutbox = wibox.widget {
     {
@@ -28,8 +27,8 @@ layoutbox = wibox.widget {
         widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
     --bg = Wdt_bg,
-    shape = Wdt_shape,
-    widget = wibox.container.background
+    shape   =   Wdt_shape,
+    widget  =   wibox.container.background
 }
 
 awful.screen.connect_for_each_screen(function(s)
@@ -42,7 +41,7 @@ awful.screen.connect_for_each_screen(function(s)
         width       =   awful.screen.focused().geometry.width * 0.99,
         bg          =   '#0000',
         shape       =   function(cr, width, height)
-    gears.shape.rounded_rect(cr, width, height, screen_width * 0.003) end
+            gears.shape.rounded_rect(cr, width, height, screen_width * 0.003) end
 
     }
     )
@@ -65,8 +64,6 @@ awful.screen.connect_for_each_screen(function(s)
     --screen[2].quotes.x                  =   screen_width * 1.887
     s.quotes.y                  =   screen_height * 0.6318
     s.bottom_bar.y              =   screen_height * 0.978
-    s.watermark.x               =   screen_width * 0.008
-    s.watermark.y               =   screen_height * 0.9125
 
     s.bottom_bar:setup {
         {

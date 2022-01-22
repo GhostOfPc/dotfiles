@@ -16,7 +16,7 @@ Load_wdt = wibox.widget {
         widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_),
     },
     --bg = Wdt_bg,
-    fg = beautiful.color7,
+    fg = beautiful.fg_normal,
     shape = Wdt_shape,
     widget = wibox.container.background
 }

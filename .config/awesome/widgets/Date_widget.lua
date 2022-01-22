@@ -17,7 +17,7 @@ datewidget = wibox.widget {
                     resize = true,
                     widget = wibox.widget.imagebox
                 },
-                margins = screen_width * 0.0005,
+                margins = screen_width * 0.0013,
                 widget = wibox.container.margin
             },
             {
