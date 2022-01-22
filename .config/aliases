@@ -61,3 +61,11 @@ alias unimatrix="unimatrix -af -s 96"
 
 #restart logiops
 alias mouse="sudo systemctl restart --now logid.service"
+
+#gphoto2 
+#download all files to the current directory
+alias pd="gphoto2 -f /store_00010001/DCIM/101D7100 -P"
+#list all files on camera
+alias pa="gphoto2 -f /store_00010001/DCIM/101D7100 -L"
+#remove all files on camera
+alias pr="gphoto2 -f /store_00010001/DCIM/101D7100 -D"
