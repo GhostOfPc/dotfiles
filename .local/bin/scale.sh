@@ -18,8 +18,8 @@ if [ $selected = "recording" ]; then
     sed -i '/forced_width/s/0.058/0.075/' $HOME/.config/awesome/widgets/Cpu_widget.lua
     sed -i '/forced_width/s/0.04/0.05/' $HOME/.config/awesome/widgets/Packages_widget.lua
     sed -i '/forced_width/s/0.05/0.062/' $HOME/.config/awesome/widgets/Uptime_widget.lua
-    sed -i '322s/0.257/0.293/' $HOME/.config/awesome/widgets/Prayers_widget.lua
-    sed -i '323s/0.078/0.1/' $HOME/.config/awesome/widgets/Prayers_widget.lua
+    sed -i '253s/0.257/0.293/' $HOME/.config/awesome/widgets/Prayers_widget.lua
+    sed -i '254s/0.078/0.1/' $HOME/.config/awesome/widgets/Prayers_widget.lua
     sed -i '156s/0.078/0.1/' $HOME/.config/awesome/widgets/WEATHER_WIDGET.lua
     sed -i '41s/0.078/0.1/' $HOME/.config/awesome/widgets/quotes.lua
     sed -i '10s/14/12/' $HOME/.config/kitty/kitty.conf
@@ -46,8 +46,8 @@ elif [ $selected = "normal" ]; then
     sed -i '/forced_width/s/0.075/0.058/' $HOME/.config/awesome/widgets/Cpu_widget.lua
     sed -i '/forced_width/s/0.05/0.04/' $HOME/.config/awesome/widgets/Packages_widget.lua
     sed -i '/forced_width/s/0.062/0.05/' $HOME/.config/awesome/widgets/Uptime_widget.lua
-    sed -i '322s/0.293/0.257/' $HOME/.config/awesome/widgets/Prayers_widget.lua
-    sed -i '323s/0.1/0.078/' $HOME/.config/awesome/widgets/Prayers_widget.lua
+    sed -i '253s/0.293/0.257/' $HOME/.config/awesome/widgets/Prayers_widget.lua
+    sed -i '254s/0.1/0.078/' $HOME/.config/awesome/widgets/Prayers_widget.lua
     sed -i '156s/0.1/0.078/' $HOME/.config/awesome/widgets/WEATHER_WIDGET.lua
     sed -i '41s/0.1/0.078/' $HOME/.config/awesome/widgets/quotes.lua
     sed -i '10s/12/14/' $HOME/.config/kitty/kitty.conf
