@@ -64,6 +64,15 @@ bindkey -v
 # Aliases
 [[ -f "$HOME/.config/aliases" ]] && source "$HOME/.config/aliases"
 
+# icons for lf file manager
+LF_ICONS=$(sed ~/.config/diricons \
+            -e '/^[ \t]*#/d'       \
+            -e '/^[ \t]*$/d'       \
+            -e 's/[ \t]\+/=/g'     \
+            -e 's/$/ /')
+LF_ICONS=${LF_ICONS//$'\n'/:}
+export LF_ICONS
+
 # Startup commands
 #color_test.sh
 shuf -n 1 /home/hisham/.local/share/quotes | lolcat
