@@ -38,6 +38,7 @@ findutils
 flameshot
 flatpak
 flex
+fzf
 galculator
 gawk
 gcc
@@ -120,6 +121,7 @@ paru-bin
 patch
 pavucontrol-qt
 pcmanfm-qt
+perl-file-mimeinfo
 picom-jonaburg-fix
 pipewire
 pipewire-alsa
@@ -181,7 +183,6 @@ vim
 vino
 virt-manager
 virt-viewer
-volctl
 wget
 which
 wireplumber
