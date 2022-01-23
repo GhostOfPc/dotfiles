@@ -9,7 +9,7 @@ local dpi = xresources.apply_dpi
 
 local apps = require('apps')
 local xrandr=require('xrandr')
---local volume_widget = require("widgets.volume-widget.volume")
+local volume_widget = require("widgets.volume-widget.volume")
 local brightness_widget = require("widgets.brightness-widget.brightness")
 local bling=require('modules/bling')
 
@@ -103,10 +103,10 @@ globalkeys = gears.table.join(
               {description = 'centering client',        group = 'layout'}),
 
     -- Resize client keybindings
-    awful.key({ modkey,           }, 'minus',     function () awful.tag.incmwfact( 0.01)          end,
+    awful.key({ modkey,           }, 'l',     function () awful.tag.incmwfact( 0.05)          end,
               {description = 'increase master width factor', group = 'layout'}),
 
-    awful.key({ modkey,           }, 'period',     function () awful.tag.incmwfact(-0.01)          end,
+    awful.key({ modkey,           }, 'h',     function () awful.tag.incmwfact(-0.05)          end,
               {description = 'decrease master width factor', group = 'layout'}),
 
     -- Gap resizing keybindings
@@ -204,13 +204,13 @@ awful.key({ modkey, 'Shift' }, 'u', function () awful.spawn.with_shell('kill -9 
 
     -- ================= Hotkeys (using multimedia keys) ===========================
     
-awful.key({}, 'XF86AudioRaiseVolume', function() awful.spawn('amixer -D default sset Master 5%+') end,
+awful.key({}, 'XF86AudioRaiseVolume', volume_widget.raise,
  {description = "Volume increase", group = "hotkeys"}),
 
-awful.key({},'XF86AudioLowerVolume', function() awful.spawn('amixer -D default sset Master 5%-') end, 
+awful.key({},'XF86AudioLowerVolume', volume_widget.lower,
  {description = "Volume decrease", group = "hotkeys"}),
 
-awful.key({},'XF86AudioMute', function() awful.spawn('amixer -D default sset Master toggle') end, 
+awful.key({},'XF86AudioMute', volume_widget.toggle,
  {description = "Volume mute", group = "hotkeys"}),
 
 --awful.key({altkey}, 'x', volume_widget.raise,
@@ -306,14 +306,6 @@ awful.key({}, 'XF86MonBrightnessUp', function () brightness_widget:inc() end, {d
         awful.spawn.with_shell('dmenu_shutdown.sh') end,
         {description = 'Power options', group = 'dmenu'}),
 
-    -- Increase size of master client
-    awful.key({ modkey,           }, 'l',     function () awful.tag.incmwfact( 0.05)          end,
-              {description = 'increase master width factor', group = 'layout'}),
-
-    -- Decrease size of master client
-    awful.key({ modkey,           }, 'h',     function () awful.tag.incmwfact(-0.05)          end,
-              {description = 'decrease master width factor', group = 'layout'}),
-
     -- Increase number of clients in master
     awful.key({ modkey, 'Shift'   }, 'h',     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = 'increase the number of master clients', group = 'layout'}),
@@ -333,19 +325,19 @@ awful.key({}, 'XF86MonBrightnessUp', function () brightness_widget:inc() end, {d
      awful.key({altkey, }, 'Tab', function() awesome.emit_signal(
          'bling::window_switcher::turn_on')
      end,
-     {description = "Window Switcher", group = "bling"}),
+     {description = "Window Switcher", group = "bling"})
 
    -- =========================================
    -- CLIENT RESIZING
    -- =========================================
 
-    awful.key({modkey, 'Control'}, 'h',       function(c) resize_client(client.focus, 'left') end),
+    --awful.key({modkey, 'Control'}, 'h',       function(c) resize_client(client.focus, 'left') end),
 
-    awful.key({modkey, 'Control'}, 'j',       function(c) resize_client(client.focus, 'down') end),
+    --awful.key({modkey, 'Control'}, 'j',       function(c) resize_client(client.focus, 'down') end),
 
-    awful.key({ modkey, 'Control' }, 'k',     function(c) resize_client(client.focus, 'up') end),
+    --awful.key({ modkey, 'Control' }, 'k',     function(c) resize_client(client.focus, 'up') end),
 
-    awful.key({modkey, 'Control'}, 'l',       function(c) resize_client(client.focus, 'right') end)
+    --awful.key({modkey, 'Control'}, 'l',       function(c) resize_client(client.focus, 'right') end)
     )
 
 clientkeys = gears.table.join(
