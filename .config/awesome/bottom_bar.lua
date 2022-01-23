@@ -15,6 +15,7 @@ require('widgets.WEATHER_WIDGET')
 require('widgets.Cpu_temp_widget')
 require('widgets.Gpu_temp_widget')
 require('widgets.quotes')
+require('widgets.clientSize')
 
 local bottom_bar = {}
 
@@ -100,45 +101,47 @@ awful.screen.connect_for_each_screen(function(s)
                     layout = wibox.layout.fixed.horizontal,
                     mytasklist
                 },
-                {{
-                    layout = wibox.layout.fixed.horizontal,
+                {
                     {
+                        layout = wibox.layout.fixed.horizontal,
+                        separator, inc_left, separator, inc_right,
                         {
-                            Pryr_wdt,
-                            widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_)
+                            {
+                                Pryr_wdt,
+                                widget = wibox.container.margin(_,Wdt_lmgn,Wdt_rmgn,_,_,_,_)
+                            },
+                            --bg = Wdt_bg,
+                            shape = Wdt_shape,
+                            widget = wibox.container.background
                         },
-                        --bg = Wdt_bg,
-                        shape = Wdt_shape,
-                        widget = wibox.container.background
-                    },
-                    separator,
-                    {
+                        separator,
                         {
-                            WEATHER_WIDGET_DESC,
-                            widget = wibox.container.margin(_,2,Wdt_rmgn,_,_,_,_)
+                            {
+                                WEATHER_WIDGET_DESC,
+                                widget = wibox.container.margin(_,2,Wdt_rmgn,_,_,_,_)
+                            },
+                            --bg = Wdt_bg,
+                            shape = Wdt_shape,
+                            widget = wibox.container.background,
                         },
-                        --bg = Wdt_bg,
-                        shape = Wdt_shape,
-                        widget = wibox.container.background,
-                    },
-                    separator,
-                    gpu_temp_widget, separator,
-                    cpu_temp_widget, separator,
-                    kernel_wdt, separator,
-                    layoutbox, separator,
-                    round_systry,
+                        separator,
+                        gpu_temp_widget, separator,
+                        cpu_temp_widget, separator,
+                        kernel_wdt, separator,
+                        layoutbox, separator,
+                        round_systry,
                     },
                     shape = Wdt_shape,
                     bg = Wdt_bg,
                     widget = wibox.container.background,
                 },
-                },
-                margins = screen_width * 0.001,
-                widget = wibox.container.margin
             },
-            widget = wibox.container.background,
-            shape = bar_wdt_shape,
-            bg = beautiful.bg_normal,
+            margins = screen_width * 0.001,
+            widget = wibox.container.margin
+        },
+        widget = wibox.container.background,
+        shape = bar_wdt_shape,
+        bg = beautiful.bg_normal,
     }
 end)
 

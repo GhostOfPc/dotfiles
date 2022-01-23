@@ -84,7 +84,7 @@ local function notif(msg, keep)
             title = "Volume",
             position = volume.position,
             timeout = keep and 0 or 2, hover_timeout = 0.5,
-            width = awful.screen.focused().geometry.width * 0.12,
+            width = awful.screen.focused().geometry.width * 0.06,
             screen = mouse.screen
         }
     end

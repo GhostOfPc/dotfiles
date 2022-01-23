@@ -14,8 +14,8 @@ require('widgets.Memory_widget')
 require('widgets.Cpu_widget')
 require('widgets.Load_avg_widget')
 require('widgets.Uptime_widget')
---local volume_widget = require("widgets.volume-widget.volume")
---local volume_widget_widget = volume_widget({display_notification = true})
+local volume_widget = require("widgets.volume-widget.volume")
+local volume_widget_widget = volume_widget({display_notification = true})
 local brightness_widget = require("widgets.brightness-widget.brightness")
 --require('widgets.Volume_widget')
 --require('widgets.Net_widget')
@@ -79,7 +79,7 @@ awful.screen.connect_for_each_screen(function(s)
                     },
                     separator,
                     datewidget, separator,
-                    --volume_widget_widget,
+                    volume_widget_widget,
                     separator, kbd_widget,
         },
         widget = wibox.container.background,
