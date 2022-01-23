@@ -20,9 +20,21 @@ set hidden
 # icons
 set icons
 
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/clear_img.sh
+
+
 # execute current file (must be executable)
 map x $$f
 map X !$f
+
+# go to directory
+map ga cd /media/VIDEOS
+map gc cd ~/.config
+map gd cd ~/Downloads
+map gi cd /media/DATA/ISOs
+map gv cd ~/Videos
+map gy cd /media/DATA/youtube_channel_videos
 
 # dedicated keys for file opener actions
 map o &mimeopen $f
