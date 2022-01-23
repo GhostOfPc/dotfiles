@@ -9,7 +9,7 @@ di 
 fi 
 ln 
 or 
-ex 
+ex 
 
 ## Misc
 .config          
@@ -222,10 +222,12 @@ games/          
 steam/          
 
 ### Home Directories
-# ~/downloads/    
-~/media/videos/ ﳜ
-~/media/images/ 
-~/media/music/  
+~/              
+~/Downloads/    
+~/Documents     
+~/Videos        
+~/Pictures/     
+~/Music/        
 ~/.steam/       
 ~/.wine/        
 ~/.dotfiles/    
