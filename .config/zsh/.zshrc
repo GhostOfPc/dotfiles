@@ -60,6 +60,9 @@ HOSTNAME=$HOST
 # Use vi-mode
 bindkey -v
 
+# fast directory switching
+eval "$(fasd --init auto)"
+
 # End of lines configured by zsh-newuser-install
 # Aliases
 [[ -f "$HOME/.config/aliases" ]] && source "$HOME/.config/aliases"
