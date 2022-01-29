@@ -5,6 +5,7 @@ aria2
 aspell
 audacity
 autoconf
+autojump
 automake
 awesome
 awesome-terminal-fonts
@@ -26,6 +27,7 @@ dnsmasq
 dust
 edk2-ovmf
 efibootmgr
+emacs
 exa
 exfat-utils
 fakeroot
