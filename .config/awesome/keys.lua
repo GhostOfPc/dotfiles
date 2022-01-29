@@ -299,8 +299,8 @@ awful.key({}, 'XF86MonBrightnessUp', function () brightness_widget:inc() end, {d
     awful.key({ modkey,           }, 'r',     function () awful.spawn.with_shell('$TERMINAL scale.sh') end,
               {description = 'Change Screen resolution', group = 'dmenu'}),
 
-    awful.key({ 'Control' }, 'p', function () awful.spawn.with_shell('passmenu') end,
-              {description = 'spawn pass program', group = 'dmenu'}),
+--    awful.key({ 'Control' }, 'p', function () awful.spawn.with_shell('passmenu') end,
+--              {description = 'spawn pass program', group = 'dmenu'}),
 
     awful.key({ raltkey }, 'Escape', function()
         awful.spawn.with_shell('dmenu_shutdown.sh') end,
