@@ -80,6 +80,15 @@ awful.rules.rules = {
 
 {
     rule = {
+        class = 'Emacs'
+    },
+    properties = {
+        size_hints_honor = false,
+    }
+},
+
+{
+    rule = {
         class = 'kdenlive'
     },
     properties = {
