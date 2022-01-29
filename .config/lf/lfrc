@@ -20,8 +20,12 @@ set hidden
 # icons
 set icons
 
+# image perview
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/clear_img.sh
+
+# line numbers
+set number
 
 
 # execute current file (must be executable)
@@ -100,7 +104,6 @@ cmd zip ${{
     zip -r $1.zip $1
     rm -rf $1
 }}
-
 
 cmd fasd_dir ${{
    res="$(fasd -dl | grep -iv cache | fzf 2>/dev/tty | sed 's/\\/\\\\/g;s/"/\\"/g')"
