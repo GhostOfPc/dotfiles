@@ -1,8 +1,7 @@
 * gnuEmacs
-  The time to start using Emacs has finally arrived.\\
-  Emacs is not just a text editor, it is everything you can imagine. It can open web pages, read your email, organize your life and alot more.\\
+  The time to start using Emacs has finally arrived.
 
-  
-  But I don't use it for these great features, my only motive to start learning and using Emacs is its great capability of handling Arabic texts.\\
+  Emacs is not just a text editor, it is everything you can imagine. It can open web pages, read your email, organize your life and alot more.
 
-  
+  But I don't use it for these great features, my only motive to start learning and using Emacs is its great capability of handling Arabic texts.
+
