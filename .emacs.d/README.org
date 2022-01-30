@@ -1,0 +1,2 @@
+* gnuEmacs
+  The day to start using Emacs has finally arrived.
