@@ -1,4 +1,3 @@
-;;
 ;; NofarahTech gnuEmacs configuration
 ;;
 ;; UI tweaks and customization
@@ -8,7 +7,11 @@
 ;; No tools bar
 (tool-bar-mode -1)
 
+;; Set the column number in the modeline
+(column-number-mode t)
+
 ;; No scroll bar
+;;(scroll-bar-mode -1)
 (defun nt/disable-scroll-bars (frame)
   (modify-frame-parameters frame
                            '((vertical-scroll-bars . nil)
@@ -16,9 +19,10 @@
 (add-hook 'after-make-frame-functions 'nt/disable-scroll-bars)
 
 ;; No tab bar
+;;(tab-bar-mode -1)
 (defun nt/disable-tab-bar (frame)
   (modify-frame-parameters frame
-                           '((tab-bar-mode . nil))))
+                           '((tab-bar-mode . -1))))
 (add-hook 'after-make-frame-functions 'nt/disable-tab-bar)
 
 ;;disable splash screen and startup message
@@ -34,22 +38,28 @@
 
 ;; Use packages
 (require 'use-package)
+
+;; Register multiple key strokes in a chord fasion to be used in Evil mode
 (require 'key-chord)
 (key-chord-mode 1)
+
+;; Use undo-tree
+(global-undo-tree-mode)
 
 
 ;; Setup the Evil mode, (Vi emulation mode)
 ;; Vertical splitted window to the right of the current one
 (setq evil-vsplit-window-right t)
+(setq evil-undo-system 'undo-tree)
 
 ;;Exit insert mode by pressing i and then i quickly (instead of using Esc)
 (setq key-chord-two-keys-delay 0.5)
-(key-chord-define evil-insert-state-map "ii" 'evil-normal-state)
 (key-chord-mode 1)
 
 ;; Enabling the mode
 (require 'evil)
 (evil-mode 1)
+(key-chord-define evil-insert-state-map "ii" 'evil-normal-state)
 
 
 ;; Ivy mode (auto-completion in mini-buffer)
@@ -112,8 +122,9 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
  ;; If there is more than one, they won't work right.
  '(doom-modeline-height 10)
  '(electric-pair-mode t)
+ '(evil-undo-system 'undo-tree)
  '(package-selected-packages
-   '(key-chord magit org-bullets smartparens yaml-mode lua-mode use-package evil doom-themes doom-modeline counsel)))
+   '(undo-tree key-chord magit org-bullets smartparens yaml-mode lua-mode use-package evil doom-themes doom-modeline counsel)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
