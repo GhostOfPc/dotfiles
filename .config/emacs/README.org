@@ -10,6 +10,8 @@
   - [[#line-numbers-for-certain-modes][Line numbers for certain modes]]
 - [[#package-management][Package management]]
   - [[#table-of-content-in-org-mode-package][Table of content in org mode package]]
+  - [[#doom-themes-and-doom-modeline][doom-themes and doom-modeline]]
+- [[#the-org-mode][THE *ORG* MODE]]
 
 * gnuEmacs :noexport:
 #+PROPERTY: header-args :tangle init-test.el
@@ -116,3 +118,36 @@ To exclude a heading from the TOC add =:noexport:= and for exporting only the fi
       (define-key markdown-mode-map (kbd "\C-c\C-o") 'toc-org-markdown-follow-thing-at-point))
   (warn "toc-org not found"))
 #+END_SRC
+** doom-themes and doom-modeline
+The default theme used in /Emacs/ is blinding white which I don't personally like, /Emacs/ has some nice themes to choose from, but we can take it one step further and use the doom-themes and doom-modeline packages to have a wide range of themes
+#+BEGIN_SRC emacs-lisp
+ ;; Enable the fancy doom themes
+#(use-package doom-themes
+   :ensure t
+   :config
+   ;; Global settings (defaults)
+   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+	 doom-themes-enable-italic t) ; if nil, italics is universally disabled
+   (load-theme 'doom-material-dark t)
+
+   ;; Enable flashing mode-line on errors
+   (doom-themes-visual-bell-config)
+   ;; Enable custom neotree theme (all-the-icons must be installed!)
+   (doom-themes-neotree-config)
+   ;; or for treemacs users
+   (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+   (doom-themes-treemacs-config)
+   ;; Corrects (and improves) org-mode's native fontification.
+   (doom-themes-org-config))
+
+ (use-package doom-modeline
+   :ensure t
+   :hook (after-init . doom-modeline-mode))
+ (setq doom-modeline-height 18)
+#+END_SRC
+And we can enable the line and column numbers in the modeline
+#+BEGIN_SRC emacs-lisp
+ (require 'display-line-numbers)
+ #+END_SRC
+* THE *ORG* MODE
+/Emacs/ without THE *ORG* mode is not /Emacs/
