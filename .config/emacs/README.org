@@ -75,6 +75,12 @@ This code block works well when we're using /Emacs/ as a standalone program, but
 (setq default-frame-alist '((font . "FantasqueSansMono Nerd Font" )
 			    (height . 141 )))
 #+END_SRC
+*** Esc key
+By default /Emacs/ uses =Esc Esc Esc= to quit the mini buffer, which is annoying for someone coming from /Vim/. We can change this behaviour by binding it to a single =Esc=
+
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "<escape>")      'keyboard-escape-quit)
+#+END_SRC
 To be able to use a different font for the variable width blocks we need to use a package that tells /Emacs/ what sections are normal text and what are code blocks, the package I use is called mixed-pitch and we can install it from melpa.
 
 Since we did't install any package manager yet, the code block for this package will be added after the package manager.
