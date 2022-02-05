@@ -1,5 +1,4 @@
 * Table of content :TOC:
-- [[#gnuemacs][gnuEmacs]]
 - [[#ui-tweaks-and-customization][UI tweaks and customization]]
   -  [[#no-menu-bar][No menu bar]]
   -  [[#no-tools-bar][No tools bar]]
@@ -10,8 +9,9 @@
   - [[#set-defualt-fonts][Set defualt fonts]]
   - [[#line-numbers-for-certain-modes][Line numbers for certain modes]]
 - [[#package-management][Package management]]
+  - [[#table-of-content-in-org-mode-package][Table of content in org mode package]]
 
-* gnuEmacs
+* gnuEmacs :noexport:
 #+PROPERTY: header-args :tangle init-test.el
 The time to start using /Emacs/ has finally arrived.Emacs is not just a text editor, it is everything you can imagine. It can open web pages, read your email, organize your life and alot more.But I don't use it for these great features, my only motive to start learning and using Emacs is its great capability of handling Arabic texts.The main configuration file is init.el and over time it will increase in size as I learn more about this great peice of software and add more stuff to it.I don't know anything about the Lisp language and I don't claim to know it but I'll be looking at the documentation and reading about the Emacs lisp to make it great.I know what other Emacs users say about Org mode and it is the killer feature of Emacs, but for me it still very early to judge if this claim is true or not.
 
@@ -98,13 +98,15 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 #+END_SRC
 * Package management
 To be able to customize /Emacs/ to our heart content we need to install some extra packages that enhance the overall experience of it. First we have to add support for package management in /Emacs/. We'll install our packages from the offical elpa repo and third-party melpa repo. Also, we can use /use-package/ to further fine tune the installed packages.
+** Table of content in org mode package
+To exclude a heading from the TOC add :noexport: and for exporting only the first level heading, add :noexport_1: to the heading
 #+BEGIN_SRC emacs-lisp
-(require 'package)
-(package-initialize)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/")
-             '("elpa" . "https://elpa.gnu.org/packages/"))
+(if (require 'toc-org nil t)
+    (progn
+      (add-hook 'org-mode-hook 'toc-org-mode)
 
-;; Use packages
-(require 'use-package)
+      ;; enable in markdown, too
+      (add-hook 'markdown-mode-hook 'toc-org-mode)
+      (define-key markdown-mode-map (kbd "\C-c\C-o") 'toc-org-markdown-follow-thing-at-point))
+  (warn "toc-org not found"))
 #+END_SRC
