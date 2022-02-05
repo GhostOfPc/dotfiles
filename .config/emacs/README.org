@@ -1,9 +1,10 @@
 * gnuEmacs
-  The time to start using Emacs has finally arrived.
+#+PROPERTY: header-args :tangle init-test.el
+The time to start using /Emacs/ has finally arrived.
 
-  Emacs is not just a text editor, it is everything you can imagine. It can open web pages, read your email, organize your life and alot more.
+Emacs is not just a text editor, it is everything you can imagine. It can open web pages, read your email, organize your life and alot more.
 
-  But I don't use it for these great features, my only motive to start learning and using Emacs is its great capability of handling Arabic texts.
+But I don't use it for these great features, my only motive to start learning and using Emacs is its great capability of handling Arabic texts.
 
 The main configuration file is init.el and over time it will increase in size as I learn more about this great peice of software and add more stuff to it.
 
@@ -11,3 +12,66 @@ I don't know anything about the Lisp language and I don't claim to know it but I
 
 I know what other Emacs users say about Org mode and it is the killer feature of Emacs, but for me it still very early to judge if this claim is true or not.
 
+* UI tweaks and customization
+In this section we'll remove some of the UI elements to make it cleaner
+**  No menu bar
+#+BEGIN_SRC emacs-lisp
+(menu-bar-mode -1)
+#+END_SRC
+
+**  No tools bar
+#+BEGIN_SRC emacs-lisp
+(tool-bar-mode -1)
+#+END_SRC
+
+**  No scroll bars
+In the case of scroll bars we define a custom function to disable them for each new frame
+#+BEGIN_SRC emacs-lisp
+(defun nt/disable-scroll-bars (frame)
+  (modify-frame-parameters frame
+                           '((vertical-scroll-bars . nil)
+                             (horizontal-scroll-bars . nil))))
+(add-hook 'after-make-frame-functions 'nt/disable-scroll-bars)
+#+END_SRC
+
+**  No tab bar
+In the case of tab bar we define a custom function to disable it for each new frame
+#+BEGIN_SRC emacs-lisp
+(defun nt/disable-tab-bar (frame)
+  (modify-frame-parameters frame
+                           '((tab-bar-mode . -1))))
+(add-hook 'after-make-frame-functions 'nt/disable-tab-bar)
+#+END_SRC
+
+** Splash screen and scratch buffer
+Start a clean and empty new buffer
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t) 
+(setq initial-scratch-message nil)
+#+END_SRC
+
+** Visual line mode
+By default, /Emacs/ does not wrap the text when you reach the end of screen while writing a long line, we can change this behaviour by setting the visual-line-mode.
+#+BEGIN_SRC emacs-lisp
+(global-visual-line-mode)
+#+END_SRC
+To add a space between lines in order to make it easier to read we add the following code block
+#+BEGIN_SRC emacs-lisp
+(setq-default line-spacing 8)
+#+END_SRC
+
+** Set defualt fonts
+Since /Emacs/ is a graphical application, we can define different fonts for different sections of our document. Personally, I like to have the parts that belong to a snippent of code with a monospace fonts and the other sections of the document to be with a variable width font. This gives me the ability to easily distinguish them and make it easier for editing a long document.
+
+/Emacs/ uses face to describe fonts,  so let's set the default font for every instance of /Emacs/
+#+BEGIN_SRC emacs-lisp
+(set-face-attribute 'default nil :font "FantasqueSansMono Nerd Font" :height 141 )
+#+END_SRC
+This code block works well when we're using /Emacs/ as a standalone program, but if we want to use it as a daemon, we need to tell /Emacs/ to set the default font for every new buffer that gets created
+#+BEGIN_SRC emacs-lisp
+(setq default-frame-alist '((font . "FantasqueSansMono Nerd Font" )
+			    (height . 141 )))
+#+END_SRC
+To be able to use a different font for the variable width blocks we need to use a package that tells /Emacs/ what sections are normal text and what are code blocks, the package I use is called mixed-pitch and we can install it from melpa.
+
+Since we did't install any package manager yet, the code block for this package will be added after the package manager.
