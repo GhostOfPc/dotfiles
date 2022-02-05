@@ -65,3 +65,33 @@ This code block works well when we're using /Emacs/ as a standalone program, but
 To be able to use a different font for the variable width blocks we need to use a package that tells /Emacs/ what sections are normal text and what are code blocks, the package I use is called mixed-pitch and we can install it from melpa.
 
 Since we did't install any package manager yet, the code block for this package will be added after the package manager.
+** Line numbers for certain modes
+Having the lines number at the left of the frame is important to be able to nagivate fast to the required section of the document, but we don't want it to be active in all mode, e.g. we don't want the line numbers to be enable in the term-mode
+#+BEGIN_SRC emacs-lisp
+(defcustom display-line-numbers-exempt-modes
+  '(vterm-mode eshell-mode shell-mode term-mode ansi-term-mode)
+  "Major modes on which to disable line numbers."
+  :group 'display-line-numbers
+  :type 'list
+  :version "green")
+
+;; Line numbers for specific modes
+(defun display-line-numbers--turn-on ()
+  "Turn on line numbers except for certain major modes.
+Exempt major modes are defined in `display-line-numbers-exempt-modes'."
+  (unless (or (minibufferp)
+              (member major-mode display-line-numbers-exempt-modes))
+    (display-line-numbers-mode)))
+#+END_SRC
+* Package management
+To be able to customize /Emacs/ to our heart content we need to install some extra packages that enhance the overall experience of it. First we have to add support for package management in /Emacs/. We'll install our packages from the offical elpa repo and third-party melpa repo. Also, we can use /use-package/ to further fine tune the installed packages.
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(package-initialize)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/")
+             '("elpa" . "https://elpa.gnu.org/packages/"))
+
+;; Use packages
+(require 'use-package)
+#+END_SRC
