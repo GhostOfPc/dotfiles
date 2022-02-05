@@ -13,7 +13,7 @@
 
 * gnuEmacs :noexport:
 #+PROPERTY: header-args :tangle init-test.el
-The time to start using /Emacs/ has finally arrived. /Emacs/ is not just a text editor, it is everything you can imagine. It can open web pages, read your email, organize your life and alot more.But I don't use it for these great features, my only motive to start learning and using /Emacs/ is its great capability of handling Arabic texts.The main configuration file is init.el and over time it will increase in size as I learn more about this great peice of software and add more stuff to it.I don't know anything about the Lisp language and I don't claim to know it but I'll be looking at the documentation and reading about the /Emacs/ lisp to make it great.I know what other /Emacs/ users say about Org mode and it is the killer feature of /Emacs/, but for me it still very early to judge if this claim is true or not.
+The time to start using /Emacs/ has finally arrived. /Emacs/ is not just a text editor, it is everything you can imagine. It can open web pages, read your email, organize your life and alot more.But I don't use it for these great features, my only motive to start learning and using /Emacs/ is its great capability of handling Arabic texts.The main configuration file is =init.el= and over time it will increase in size as I learn more about this great peice of software and add more stuff to it.I don't know anything about the Lisp language and I don't claim to know it but I'll be looking at the documentation and reading about the /Emacs/ lisp to make it great.I know what other /Emacs/ users say about Org mode and it is the killer feature of /Emacs/, but for me it still very early to judge if this claim is true or not.
 
 * UI tweaks and customization
 In this section we'll remove some of the UI elements to make it cleaner
@@ -99,7 +99,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 * Package management
 To be able to customize /Emacs/ to our heart content we need to install some extra packages that enhance the overall experience of it. First we have to add support for package management in /Emacs/. We'll install our packages from the offical elpa repo and third-party melpa repo. Also, we can use /use-package/ to further fine tune the installed packages.
 ** Table of content in org mode package
-To exclude a heading from the TOC add :noexport: and for exporting only the first level heading, add :noexport_1: to the heading
+To exclude a heading from the TOC add =:noexport:= and for exporting only the first level heading, add =:noexport_1:= to the heading
 #+BEGIN_SRC emacs-lisp
 (if (require 'toc-org nil t)
     (progn
