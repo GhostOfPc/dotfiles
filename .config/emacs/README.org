@@ -1,3 +1,16 @@
+* Table of content :TOC:
+- [[#gnuemacs][gnuEmacs]]
+- [[#ui-tweaks-and-customization][UI tweaks and customization]]
+  -  [[#no-menu-bar][No menu bar]]
+  -  [[#no-tools-bar][No tools bar]]
+  -  [[#no-scroll-bars][No scroll bars]]
+  -  [[#no-tab-bar][No tab bar]]
+  - [[#splash-screen-and-scratch-buffer][Splash screen and scratch buffer]]
+  - [[#visual-line-mode][Visual line mode]]
+  - [[#set-defualt-fonts][Set defualt fonts]]
+  - [[#line-numbers-for-certain-modes][Line numbers for certain modes]]
+- [[#package-management][Package management]]
+
 * gnuEmacs
 #+PROPERTY: header-args :tangle init-test.el
 The time to start using /Emacs/ has finally arrived.Emacs is not just a text editor, it is everything you can imagine. It can open web pages, read your email, organize your life and alot more.But I don't use it for these great features, my only motive to start learning and using Emacs is its great capability of handling Arabic texts.The main configuration file is init.el and over time it will increase in size as I learn more about this great peice of software and add more stuff to it.I don't know anything about the Lisp language and I don't claim to know it but I'll be looking at the documentation and reading about the Emacs lisp to make it great.I know what other Emacs users say about Org mode and it is the killer feature of Emacs, but for me it still very early to judge if this claim is true or not.
