@@ -41,8 +41,9 @@ fi
 lxqt-policykit-agent &
 volctl &
 #blueman-applet &
-picom --experimental-backends &
-dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY &
+picom &
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY & # Required for flatpaks with no DE
+emacs --daemon &
 exec awesome
 #exec i3
 #exec dbus-launch xfce4-session
