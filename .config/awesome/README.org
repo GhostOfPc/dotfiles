@@ -1,0 +1,42 @@
+* AwesomeWM :toc:
+#+caption: Dark mode
+[[https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/WindowManagerDark.png]]
+#+caption: Light mode
+[[https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/WindowManagerLight.png]]
+Awesome window manager is with no doubt the most customizable and configurable WM use can use.It has a great and probably the best documentation and the selling point (figuratively) is the widgets system. But it does not stop at this point, since it uses the scripting language ~lua~  to write the configuration file, you can extende it to do whatever you want.
+
+The main configuration file of lua is =rc.lua= which has to be located at =XDG_CONFIG_HOME/awesome/rc.lua=. After installing AwesomeWM for the first time, this file has to be copied from =/etc/xdg/awesome/rc.lua=, and the other important file is the theme configuration file which has to be located at =XDG_CONFIG_HOME/awesome/themes/theme.lua=.
+
+My way of configuring AwesomeWM is by splitting the configuration into separte modules, each module is resposible for a certain function, to make it easier for trubleshooting and implementing new modules. My =rc.lua= has calls for each module being used.
+** Important notes
+- Note 1: keep in mind that the ~Right alt~ key works only for the *Spanish keyboard layout*. For other layouts you should assign a different key.
+  - Note 2: I personally use =kitty terminal= since it's gpu accelerated and has a better Arabic support than others like ~alacritty~.
+ - Note 3: You can get a list of all keybindings in AwesomeWM by pressing =Super + s=.
+** Useful keybindings to get started
+| Key                | Function                  |
+| +++                  | +++                         |
+| =Super + Enter=      | Open terminal             |
+| =Super + Shift + c=  | Close any open window     |
+| =Super + Shift + r=  | restart AwesomeWM         |
+| =Super + Shift + q=  | kill AwesomeWM            |
+| =Super + p=          | open dmenu launcher       |
+| =Super + c=          | open chromium browser     |
+| =Super + f=          | open pcmanfm file manager |
+| =Right alt + escape= | open power menu           |
+** Salat (Prayer) widget
+This widget pull the times using =curl=, =systemd=, =mpv= and a bash script located at =~/.local/bin=
+- Make sure that you have a =bin= directory inside the =.local= directory and the script =prayerTimes.sh= is stored there!
+- Also make sure that the =bin= directory is added to your path.
+- Edit the coordinates, city, country, method and adjustment in the =prayerTimes.sh= to suite your current location.
+1. =curl= is used to download the times to a json file.
+2. =mpv= is used to play the Azan
+3. =systemd= is used to schedule the download time
+- Create a directory inside the =.config= and name it =systemd=, and inside it another directory called =user=.
+- Create two files inside =.config/systemd/user=, =prayerTimes.service= and =prayerTimes.timer=. These two files are stored in this repository, so you can copy and paste theme directly.
+- Enable the service and timer using the following commands:
+1. =systemctl --user enable --now prayerTimes.service=
+2. =systemctl --user enable --now prayerTimes.timer=
+- The timer will update automatically each 8 hours
+
+
+May Allah adds this small work to my good deeds!
