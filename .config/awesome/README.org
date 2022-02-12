@@ -3,25 +3,26 @@
 - [[#preface][Preface]]
   - [[#important-notes][Important notes]]
   - [[#useful-keybindings-to-get-started][Useful keybindings to get started]]
-  - [[#salat-prayer-widget][Salat (Prayer) widget]]
+- [[#main-configuration-file][Main configuration File]]
+- [[#salat-prayer-widget][Salat (Prayer) widget]]
 
 * Preface
 #+caption: Dark mode
 [[https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/WindowManagerDark.png]]
 #+caption: Light mode
 [[https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/WindowManagerLight.png]]
-Awesome window manager is with no doubt the most customizable and configurable WM use can use.It has a great and probably the best documentation and the selling point (figuratively) is the widgets system. But it does not stop at this point, since it uses the scripting language ~lua~  to write the configuration file, you can extende it to do whatever you want.
+Awesome window manager is with no doubt the most customizable and configurable WM use can use.It has a great and probably the best documentation and the selling point (figuratively) is the widgets system. But it does not stop at this point, since it uses the scripting language =lua=  to write the configuration file, you can extende it to do whatever you want.
 
 The main configuration file of lua is =rc.lua= which has to be located at =XDG_CONFIG_HOME/awesome/rc.lua=. After installing AwesomeWM for the first time, this file has to be copied from =/etc/xdg/awesome/rc.lua=, and the other important file is the theme configuration file which has to be located at =XDG_CONFIG_HOME/awesome/themes/theme.lua=.
 
 My way of configuring AwesomeWM is by splitting the configuration into separte modules, each module is resposible for a certain function, to make it easier for trubleshooting and implementing new modules. My =rc.lua= has calls for each module being used.
 ** Important notes
-- Note 1: keep in mind that the ~Right alt~ key works only for the *Spanish keyboard layout*. For other layouts you should assign a different key.
-  - Note 2: I personally use =kitty terminal= since it's gpu accelerated and has a better Arabic support than others like ~alacritty~.
+- Note 1: keep in mind that the =Right alt= key works only for the *Spanish keyboard layout*. For other layouts you should assign a different key.
+  - Note 2: I personally use =kitty terminal= since it's gpu accelerated and has a better Arabic support than others like =alacritty=.
  - Note 3: You can get a list of all keybindings in AwesomeWM by pressing =Super + s=.
 ** Useful keybindings to get started
 | Key                | Function                  |
-| +++                  | +++                         |
+|--------------------+---------------------------|
 | =Super + Enter=      | Open terminal             |
 | =Super + Shift + c=  | Close any open window     |
 | =Super + Shift + r=  | restart AwesomeWM         |
@@ -30,7 +31,69 @@ My way of configuring AwesomeWM is by splitting the configuration into separte m
 | =Super + c=          | open chromium browser     |
 | =Super + f=          | open pcmanfm file manager |
 | =Right alt + escape= | open power menu           |
-** Salat (Prayer) widget
+* Main configuration File
+The first section in the configuration file is importing some of the builtin libraries
+- *IMPORTANT* /bling is a module not written by me and we have to git clone it into the modules directory/
+#+begin_src lua :tangle rc.lua
+  pcall(require, 'luarocks.loader')
+  local gears = require('gears')
+  local awful = require('awful')
+  local beautiful = require('beautiful')
+  require('awful.autofocus')
+  require('menubar')
+  require('awful.hotkeys_popup')
+  require('awful.hotkeys_popup.keys')
+  local bling = require('modules/bling')
+#+end_src
+And then we specify the location of the theme file
+#+begin_src lua :tangle rc.lua
+  local config_dir = gears.filesystem.get_configuration_dir()
+  beautiful.init(config_dir .. "themes/theme.lua")
+#+end_src
+At this point we import our modules
+#+begin_src lua :tangle rc.lua
+  require('keys')
+  require('tags')
+  --require('top_bar')
+  require('bottom_bar')
+  require('Menu')
+  require('notifications')
+  require('rules')
+#+end_src
+Enable windows switcher module provided by bling
+#+begin_src lua :tangle rc.lua
+  bling.widget.window_switcher.enable {
+      type = "thumbnail", -- set to anything other than "thumbnail" to disable client previews
+
+      -- keybindings (the examples provided are also the default if kept unset)
+      hide_window_switcher_key = "Escape", -- The key on which to close the popup
+      minimize_key = "n",                  -- The key on which to minimize the selected client
+      unminimize_key = "N",                -- The key on which to unminimize all clients
+      kill_client_key = "q",               -- The key on which to close the selected client
+      cycle_key = "Tab",                   -- The key on which to cycle through all clients
+      previous_key = "Left",               -- The key on which to select the previous client
+      next_key = "Right",                  -- The key on which to select the next client
+      vim_previous_key = "h",              -- Alternative key on which to select the previous client
+      vim_next_key = "l",                  -- Alternative key on which to select the next client
+  }
+#+end_src
+I don't use all the default layouts provided in the original =rc.lua=
+#+begin_src lua :tangle rc.lua
+  awful.layout.layouts = {
+      awful.layout.suit.tile,
+      awful.layout.suit.spiral.dwindle,
+      awful.layout.suit.fair.horizontal,
+      awful.layout.suit.max.fullscreen,
+      awful.layout.suit.floating,
+  }
+
+#+end_src
+Garbage collection (allows for lower memory consumption)
+#+begin_src lua :tangle rc.lua
+  collectgarbage('setpause', 110)
+  collectgarbage('setstepmul', 1000)
+#+end_src
+* Salat (Prayer) widget
 This widget pull the times using =curl=, =systemd=, =mpv= and a bash script located at =~/.local/bin=
 - Make sure that you have a =bin= directory inside the =.local= directory and the script =prayerTimes.sh= is stored there!
 - Also make sure that the =bin= directory is added to your path.
@@ -44,6 +107,3 @@ This widget pull the times using =curl=, =systemd=, =mpv= and a bash script loca
 1. =systemctl --user enable --now prayerTimes.service=
 2. =systemctl --user enable --now prayerTimes.timer=
 - The timer will update automatically each 8 hours
-
-
-May Allah adds this small work to my good deeds!
