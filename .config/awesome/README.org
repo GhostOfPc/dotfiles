@@ -1,4 +1,11 @@
-* AwesomeWM :toc:
+#+title: AwesomeWM
+* Table Of Content :toc:
+- [[#preface][Preface]]
+  - [[#important-notes][Important notes]]
+  - [[#useful-keybindings-to-get-started][Useful keybindings to get started]]
+  - [[#salat-prayer-widget][Salat (Prayer) widget]]
+
+* Preface
 #+caption: Dark mode
 [[https://github.com/HishamAHai/dotfiles/blob/master/.screenshots/WindowManagerDark.png]]
 #+caption: Light mode
