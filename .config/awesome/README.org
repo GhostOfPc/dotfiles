@@ -3,7 +3,8 @@
 - [[#preface][Preface]]
   - [[#important-notes][Important notes]]
   - [[#useful-keybindings-to-get-started][Useful keybindings to get started]]
-- [[#main-configuration-file][Main configuration File]]
+- [[#main-configuration-file-rclua][Main configuration File (rc.lua)]]
+- [[#top-bar-top_barlua][Top Bar (top_bar.lua)]]
 - [[#salat-prayer-widget][Salat (Prayer) widget]]
 
 * Preface
