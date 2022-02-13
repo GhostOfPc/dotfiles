@@ -18,8 +18,8 @@ The main configuration file of lua is =rc.lua= which has to be located at =XDG_C
 My way of configuring AwesomeWM is by splitting the configuration into separte modules, each module is resposible for a certain function, to make it easier for trubleshooting and implementing new modules. My =rc.lua= has calls for each module being used.
 ** Important notes
 - Note 1: keep in mind that the =Right alt= key works only for the *Spanish keyboard layout*. For other layouts you should assign a different key.
-  - Note 2: I personally use =kitty terminal= since it's gpu accelerated and has a better Arabic support than others like =alacritty=.
- - Note 3: You can get a list of all keybindings in AwesomeWM by pressing =Super + s=.
+- Note 2: I personally use =kitty terminal= since it's gpu accelerated and has a better Arabic support than others like =alacritty=.
+- Note 3: You can get a list of all keybindings in AwesomeWM by pressing =Super + s=.
 ** Useful keybindings to get started
 | Key                | Function                  |
 |--------------------+---------------------------|
@@ -98,12 +98,12 @@ This widget pull the times using =curl=, =systemd=, =mpv= and a bash script loca
 - Make sure that you have a =bin= directory inside the =.local= directory and the script =prayerTimes.sh= is stored there!
 - Also make sure that the =bin= directory is added to your path.
 - Edit the coordinates, city, country, method and adjustment in the =prayerTimes.sh= to suite your current location.
-1. =curl= is used to download the times to a json file.
-2. =mpv= is used to play the Azan
+ - =curl= is used to download the times to a json file.
+ - =mpv= is used to play the Azan
 3. =systemd= is used to schedule the download time
 - Create a directory inside the =.config= and name it =systemd=, and inside it another directory called =user=.
 - Create two files inside =.config/systemd/user=, =prayerTimes.service= and =prayerTimes.timer=. These two files are stored in this repository, so you can copy and paste theme directly.
 - Enable the service and timer using the following commands:
-1. =systemctl --user enable --now prayerTimes.service=
-2. =systemctl --user enable --now prayerTimes.timer=
+ - =systemctl --user enable --now prayerTimes.service=
+ - =systemctl --user enable --now prayerTimes.timer=
 - The timer will update automatically each 8 hours
