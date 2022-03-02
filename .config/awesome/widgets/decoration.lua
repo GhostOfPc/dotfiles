@@ -56,7 +56,7 @@ logo = wibox.widget {
     {
         {
             id = 'icon',
-            image = config_dir ..'/icons/aorus_logo.svg',
+            image = config_dir ..'/icons/water_mark.png',
             resize = true,
             opacity = 1.0,
             widget = wibox.widget.imagebox
