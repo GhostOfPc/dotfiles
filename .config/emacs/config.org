@@ -1,0 +1,493 @@
+#+TITLE: Emacs Main Configuration File
+#+PROPERTY: header-args :tangle init.el
+* Table Of Content :toc:
+- [[#ui-tweaks-and-customization][UI tweaks and customization]]
+  - [[#clean-frame-with-no-unnecessary-elements][clean frame with no unnecessary elements]]
+  - [[#no-splash-screen-or-scratch-buffer][No splash screen or scratch buffer]]
+  - [[#visual-line-mode][Visual line mode]]
+  - [[#lines-numbers][Lines Numbers]]
+  - [[#transparent-emacs][Transparent /Emacs/]]
+- [[#useful--settings][Useful  Settings]]
+- [[#package-management][Package Management]]
+  - [[#installing-and-inizilaing-the-packages][Installing and Inizilaing the packages]]
+  - [[#dashboard][Dashboard]]
+  - [[#projectile][Projectile]]
+  - [[#helpful][Helpful]]
+  - [[#imprve-the-shell-buffer][Imprve the shell buffer]]
+  - [[#language-specific-modes][Language Specific Modes]]
+  - [[#estitic-packages][Estitic Packages]]
+  - [[#command-log-mode][Command Log Mode]]
+  - [[#ivy-mode][Ivy Mode]]
+  - [[#key-chord][Key-chord]]
+  - [[#undo-tree][Undo-tree]]
+  - [[#evil-mode][Evil Mode]]
+
+* UI tweaks and customization
+In this section we'll remove some of the UI elements to make it cleaner.
+** clean frame with no unnecessary elements
+  The menu bar, tools bar, scroll bar and tab bar are distructing and unnecessary.
+  In the case of scroll and tab bars we define a custom function to disable them for each new frame.
+  And since we'll be using the dashboard package, we'll add a hook to disable the highlighting and cursor blinking in the dashboard.
+#+BEGIN_SRC emacs-lisp
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (column-number-mode t)
+  ;; Hightlight the current line
+  (global-hl-line-mode t)
+  ;; Disable the line highlighting and cursor blinking in dashboard mode
+  (add-hook 'dashboard-mode-hook (lambda () (setq-local global-hl-line-mode nil)
+				   (setq-local blink-cursor-mode nil)))
+  ;; Remove scroll bars and tab bar in all windows and frames
+  (scroll-bar-mode -1)
+  (defun nt/clean_ui (frame)
+    (modify-frame-parameters frame
+			     '((vertical-scroll-bars . nil)
+			       (horizontal-scroll-bars . nil)
+			       (tab-bar-show . nil))))
+  (add-hook 'after-make-frame-functions 'nt/clean_ui)
+#+END_SRC
+** No splash screen or scratch buffer
+  Start a clean and empty new buffer
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-startup-message t) 
+  (setq initial-scratch-message nil)
+#+END_SRC
+** Visual line mode
+By default, /Emacs/ does not wrap the text when you reach the end of screen while writing a long line, we can change this behaviour by enabling the visual-line-mode.
+#+BEGIN_SRC emacs-lisp
+  (visual-line-mode t)
+  (global-visual-line-mode)
+#+END_SRC
+** Lines Numbers
+#+BEGIN_SRC emacs-lisp
+  (defcustom display-line-numbers-exempt-modes
+    '(org-mode vterm-mode eshell-mode shell-mode term-mode ansi-term-mode dashboard-mode)
+    "Major modes on which to disable line numbers."
+    :group 'display-line-numbers
+    :type 'list
+    :version "green")
+
+  (global-display-line-numbers-mode t)
+  ;; Line numbers for specific modes
+  (defun display-line-numbers--turn-on ()
+    "Turn on line numbers except for certain major modes.
+  Exempt major modes are defined in `display-line-numbers-exempt-modes'."
+    (unless (or (minibufferp)
+		(member major-mode display-line-numbers-exempt-modes))
+      (display-line-numbers-mode)
+    (setq display-line-numbers-type 'relative)
+  ))
+#+END_SRC
+** Transparent /Emacs/
+This snippet is for setting the transparecy and also defining a keybindig to enable and disable it
+*** Usage
+=(set-frame-parameter (selected-frame) 'alpha '(<active> . <inactive>))=
+=(set-frame-parameter (selected-frame) 'alpha <both>)=
+=(set-frame-parameter (selected-frame) 'alpha '95)=
+=(add-to-list 'default-frame-alist '(alpha . 95))=
+*** Code
+#+BEGIN_SRC emacs-lisp
+   (defun nt/toggle-transparency ()
+     (interactive)
+     (let ((alpha (frame-parameter nil 'alpha)))
+       (set-frame-parameter
+	nil 'alpha
+	(if (eql (cond ((numberp alpha) alpha)
+		       ((numberp (cdr alpha)) (cdr alpha))
+		       ;; Also handle undocumented (<active> <inactive>) form.
+		       ((numberp (cadr alpha)) (cadr alpha)))
+		 100)
+	    '(95 . 50) '(100 . 100)))))
+   (global-set-key (kbd "C-c t") 'nt/toggle-transparency)
+#+END_SRC
+* Useful  Settings
+This setting is extremely useful in case of literate programming in org mode to tangle all the source blocks automatically after saving the Org file
+#+BEGIN_SRC emacs-lisp
+  (defun tangle-on-save-org-mode-file()
+    (when (string= (message "%s" major-mode) "org-mode")
+      (org-babel-tangle)))
+  (add-hook 'after-save-hook 'tangle-on-save-org-mode-file)
+#+END_SRC
+Remembering recently edited files
+#+BEGIN_SRC emacs-lisp
+  (recentf-mode 1)
+  (global-set-key (kbd "C-c C-r") 'recentf-open-files)
+#+END_SRC
+Save what you enter into minibuffer prompts
+#+BEGIN_SRC emacs-lisp
+  (setq history-length 25)
+  (savehist-mode 1)
+#+END_SRC
+ Remember and restore the last cursor location of opened files
+#+BEGIN_SRC emacs-lisp
+  (save-place-mode 1)
+#+END_SRC
+Move customization variables to a separate file and load it
+#+BEGIN_SRC emacs-lisp
+  (setq custom-file (locate-user-emacs-file "custom-vars.el"))
+  (load custom-file 'noerror 'nomessage)
+#+END_SRC
+Don't pop up UI dialogs when prompting
+#+BEGIN_SRC emacs-lisp
+  (setq use-dialog-box nil)
+#+END_SRC
+Revert buffers when the underlying file has changed
+#+BEGIN_SRC emacs-lisp
+  (global-auto-revert-mode 1)
+#+END_SRC
+Don't center screen when the cursor reachs the last line
+#+BEGIN_SRC emacs-lisp
+  (setq scroll-conservatively 101)
+#+END_SRC
+Use y for yes and n for no
+#+BEGIN_SRC emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+List directories first in dired
+#+BEGIN_SRC emacs-lisp
+  (setq dired-listing-switches "-lXGh --group-directories-first")
+#+END_SRC
+bind Esc to keyboard-escape-quit
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "<escape>")      'keyboard-escape-quit)
+#+END_SRC
+* Package Management
+** Installing and Inizilaing the packages :no_export:
+To be able to install community and third party packages.
+#+BEGIN_SRC emacs-lisp
+  ;; Installing packages from melpa
+  (require 'package)
+  (add-to-list 'package-archives
+	       '("melpa" . "https://melpa.org/packages/")
+	       '("elpa" . "https://elpa.gnu.org/packages/"))
+
+  (package-initialize)
+  (unless package-archive-contents
+    (package-refresh-contents))
+#+END_SRC
+User created modules are to be located at this path
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "~/.config/emacs/lisp")
+#+END_SRC
+use-package allows us to customize the packages either the built-in ones or the community ones.
+#+BEGIN_SRC emacs-lisp
+  (require 'use-package)
+;; This snippet ommits the need to set (:ensure t) each time we add a new package
+  (setq use-package-always-ensure t)
+#+END_SRC
+** Dashboard
+A nice dashboard from Spacemacs
+#+BEGIN_SRC emacs-lisp
+  (use-package dashboard
+    :config
+    (dashboard-setup-startup-hook)
+    (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+    (setq dashboard-banner-logo-title "I use Emacs, which might be thought of as a thermonuclear word processor!!!")
+    (setq dashboard-startup-banner 'logo)
+    (setq dashboard-set-navigator t)
+    (setq dashboard-set-heading-icons t)
+    (setq dashboard-items '((recents  . 15)
+			    (bookmarks . 5)
+			    (projects . 5)
+			    (agenda . 5)))
+    (setq dashboard-set-file-icons t))
+#+END_SRC
+** Projectile
+Manage and navigate projects in Emacs easily
+#+BEGIN_SRC emacs-lisp
+  (use-package projectile
+    :config
+    (projectile-mode t))
+#+END_SRC
+** Helpful
+#+BEGIN_SRC emacs-lisp
+  ;; A better *help* buffer
+  (use-package helpful
+    :commands (helpful-callable helpful-variable helpful-key)
+    :bind
+    ("C-h f" . helpful-callable)
+    ("C-h v" . helpful-variable)
+    ("C-h k" . helpful-key)
+    )
+#+END_SRC
+** Imprve the shell buffer
+#+BEGIN_SRC emacs-lisp
+  (use-package term
+    :config
+    (setq term-prompt-regexp "^[^#$%>\\n]*[#$%>] *"))
+
+  ;; Use more colors in term-mode
+  (use-package eterm-256color
+    :hook (term-mode . eterm-256color-mode))
+#+END_SRC
+** Language Specific Modes
+*** Yamel Mode
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode)
+#+END_SRC
+*** Markdown Mode
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode)
+#+END_SRC
+*** Lua mode
+I like the Awesome window manager which is writtin in lua.
+#+BEGIN_SRC emacs-lisp
+  ;; This snippet eanbles lua-mode
+  (use-package lua-mode	  )
+  (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+  (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+  (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
+#+END_SRC
+** Estitic Packages
+Yet functional
+*** Icons
+Make sure to run =M-x return all-the-icons-install-fonts return= to enable the icons in the modeline and dired buffer.
+#+BEGIN_SRC emacs-lisp
+  ;; Icons in the modeline
+  (use-package all-the-icons)
+  ;; Icons in the dired buffer
+  (use-package all-the-icons-dired)
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+#+END_SRC
+*** Doom Themes and Doom Modeline
+#+BEGIN_SRC emacs-lisp
+  ;; Enable the fancy doom themes
+  (use-package doom-themes
+    :config
+    ;; Global settings (defaults)
+    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+	  doom-themes-enable-italic t) ; if nil, italics is universally disabled
+    (load-theme 'doom-one t)
+
+    ;; Enable flashing mode-line on errors
+    (doom-themes-visual-bell-config)
+    ;; Enable custom neotree theme (all-the-icons must be installed!)
+    (doom-themes-neotree-config)
+    ;; or for treemacs users
+    (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+    (doom-themes-treemacs-config)
+    ;; Corrects (and improves) org-mode's native fontification.
+    (doom-themes-org-config))
+
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(font-lock-comment-face ((t (:slant italic)))))
+
+  ;; doom mode line 
+  (use-package doom-modeline
+    :ensure t
+    :hook (after-init . doom-modeline-mode)
+    :custom (doom-modeline-height 18))
+#+END_SRC
+*** Fonts
+#+BEGIN_SRC emacs-lisp
+  ;; Set default font
+  (defun nt/set-font-faces()
+    (set-face-attribute 'default nil :font "FantasqueSansMono Nerd Font" :height 151)
+    (set-face-attribute 'fixed-pitch nil :font "FantasqueSansMono Nerd Font" :height 151)
+    (set-face-attribute 'variable-pitch nil :font "Open Sans" :height 151))
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions
+		(lambda (frame)
+		  (with-selected-frame frame
+		    (nt/set-font-faces))))
+    (nt/set-font-faces))
+
+  ;; Set the default spacing between lines to not make them stuck to each other
+  (setq-default line-spacing 8)
+#+END_SRC
+*** Mixed Pitch Font Face
+In Org Mode I prefer to have a variable pitch font for non-code sections and a fixed pitch font for the source blocks.
+#+BEGIN_SRC emacs-lisp
+  (use-package mixed-pitch
+    :hook
+    (org-mode . mixed-pitch-mode)
+    (markdown-mode . mixed-pitch-mode))
+#+END_SRC
+*** Smartparens
+ Parenthesis auto-closing 
+#+BEGIN_SRC emacs-lisp
+  (use-package smartparens
+    :config (smartparens-global-mode 1))
+#+END_SRC
+*** Rainbow Delimiters
+highlights delimiters such as parentheses, brackets or braces according to their depth. Each successive level is highlighted in a different color. This makes it easy to spot matching delimiters, orient yourself in the code, and tell which statements are at a given depth.
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters
+    :hook
+    (emacs-lisp-mode . rainbow-delimiters-mode)
+    (lua-mode . rainbow-delimiters-mode))
+#+END_SRC
+*** Rainbow Mode
+This minor mode sets background color to strings that match color names, e.g. ~#0000ff~ is displayed in white with a blue background.
+/*Available from Elpa/
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-mode
+    :hook (org-mode
+	   emacs-lisp-mode
+	   lua-mode
+	   conf-mode))
+#+END_SRC
+** Which-key
+Minor mode for Emacs that displays the key bindings following your currently entered incomplete command (a prefix) in a popup. For example, after enabling the minor mode if you enter =C-x= and wait for the default of 1 second the minibuffer will expand with all of the available key bindings that follow =C-x=
+#+BEGIN_SRC emacs-lisp
+  (use-package which-key
+    :init (which-key-mode)
+    :config
+    (setq which-key-idle-delay 0.2))
+#+END_SRC
+** Command Log Mode
+Show event history and command history of some or all buffers.
+#+BEGIN_SRC emacs-lisp
+  (use-package command-log-mode)
+#+END_SRC
+** Completion Packages
+- Flexible, simple tools for minibuffer completion in /Emacs/
+- Ivy, a generic completion mechanism for Emacs.
+- Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
+- Swiper, an Ivy-enhanced alternative to Isearch.
+*** Ivy
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy
+    :init (ivy-mode)
+    :bind (("C-s" . swiper)))
+#+END_SRC
+*** Counsel 
+#+BEGIN_SRC emacs-lisp
+  (use-package counsel
+    :bind ("M-x" . counsel-M-x))
+#+END_SRC
+*** Ivy Rich
+This package comes with rich transformers for commands from =ivy= and =counsel=. It should be easy enough to define your own transformers too.
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy-rich
+    :init
+    (setq ivy-rich-path-style 'abbrev)
+    (ivy-rich-mode 1)
+    )
+#+END_SRC
+*** Ivy Posframe 
+Floating minibuffer at the center of the frame
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy-posframe
+    :init
+    (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
+    (setq ivy-posframe-border-width 2)
+    (setq ivy-posframe-parameters
+	'((left-fringe . 16)
+	  (right-fringe . 16)))
+    :config
+    (ivy-posframe-mode 1))
+#+END_SRC
+** Key-chord
+This package implements support for mapping a pair of simultaneously pressed keys to a command and for mapping the same key being pressed twice in quick succession to a command. Such bindings are called "key chords".
+#+BEGIN_SRC emacs-lisp
+  (use-package key-chord
+    :after evil
+    :init
+    (setq key-chord-two-keys-delay 0.5)
+    :config
+    (key-chord-mode 1)
+    (key-chord-define-global "ii" 'evil-normal-state)
+    (key-chord-define-global "SB" 'ivy-switch-buffer)
+    (key-chord-define-global "QB" 'kill-buffer)
+    (key-chord-define-global "FF" 'find-file))
+#+END_SRC
+** Undo-tree
+#+BEGIN_SRC emacs-lisp
+  (use-package undo-tree
+    :config (global-undo-tree-mode 1))
+#+END_SRC
+** Evil Mode
+Evil is an extensible vi layer for Emacs. It emulates the main features of Vim, and provides facilities for writing custom extensions. 
+#+BEGIN_SRC emacs-lisp
+  (use-package evil
+    :init
+    (setq evil-want-keybinding nil)
+    (setq evil-want-integration t)
+    (setq evil-undo-system 'undo-redo)
+    :config
+    (evil-mode 1)
+    (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+    (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+    (evil-global-set-key 'normal (kbd "/") 'swiper)
+
+    ;; In the dashboard mode, the "r" key is binded to go directly to the recent files
+    ;; which conflicts with evil mode replace binding
+    (add-hook 'dashboard-mode-hook
+	      (lambda ()
+		(evil-local-set-key 'normal (kbd "r") 'dashboard-jump-to-recents)
+		(evil-local-set-key 'normal (kbd "p") 'dashboard-jump-to-projects)))
+
+    ;; Vertical splitted window to the right of the current one
+    (setq evil-vsplit-window-right t)
+    )
+
+  (use-package evil-collection
+    :after evil
+    :config
+    (evil-collection-init))
+
+  ;; Display visual hints when editing with evil. i.e. highlight lines or words when copied or pasted.
+  (use-package evil-goggles
+    :config 
+    (evil-goggles-mode))
+#+END_SRC
+* Org Mode
+#+BEGIN_SRC emacs-lisp
+  ;; Org mode configuration
+  (defun nt/org-mode-setup()
+    (org-indent-mode)
+    (variable-pitch-mode 1)
+    (auto-fill-mode 1)
+    (visual-line-mode 1)
+    (setq evil-auto-indent nil))
+
+  (use-package org
+    :config
+    (setq org-ellipsis " ⯆"
+	  org-hide-emphasis-markers t))
+
+  (use-package org-bullets
+    :after org
+    :hook (org-mode . org-bullets-mode)
+    :custom
+    (org-bullets-bullet-list '("⦿" "⊙" "⦾" "⊚" "⊙" "⦾" )))
+
+  ;; Replace list hyphen with dot
+  ;;(font-lock-add-keywords 'org-mode
+  ;;                        '(("^ *\\([-]\\) "
+  ;;                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+  (defun nt/org-mode-visual-fill ()
+    (setq visual-fill-column-width 150
+	  visual-fill-column-center-text t)
+    (visual-fill-column-mode 1))
+
+  (use-package visual-fill-column
+    :defer t
+    :hook (org-mode . nt/org-mode-visual-fill)
+	  (dashboard-mode . nt/org-mode-visual-fill))
+
+  (dolist (face '((org-level-1 . 1.3)
+		  (org-level-2 . 1.1)
+		  (org-level-3 . 1.05)
+		  (org-level-4 . 1.0)))
+    (set-face-attribute (car face) nil :font "Open Sans" :weight 'regular :height (cdr face)))
+
+  ;; Make sure org-indent face is available
+  (require 'org-indent)
+
+  (use-package company
+    :init
+    (global-company-mode)
+    :config
+    (setq company-backends '((company-files
+			      company-capf
+			      company-dabbrev
+			      company-keywords)))
+    )
+#+END_SRC
