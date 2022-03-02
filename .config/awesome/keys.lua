@@ -129,7 +129,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey , altkey}, 'o', function () awful.spawn('obs') end,
               {description = 'Launch obs studio', group = 'productivity'}),
 
-    awful.key({ modkey , altkey}, 'k', function () awful.spawn('kdenlive') end,
+    awful.key({ modkey , altkey}, 'k', function () awful.spawn.with_shell('QT_SCALE_FACTOR=1.25 QT_AUTO_SCREEN_SCALE_FACTOR=false ~/Applications/kdenlive.AppImage') end,
               {description = 'Launch kdenlive', group = 'productivity'}),
 
     awful.key({ modkey , altkey}, 'f', function () awful.spawn('firefox') end,
@@ -153,8 +153,8 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, 'o', function () awful.spawn.with_shell('$TERMINAL --hold spt_o.sh') end,
               {description = 'open spotify', group = 'launcher'}),
 
-    awful.key({ modkey,           }, 'b', function () awful.spawn(apps.browser) end,
-              {description = 'Navigate the web with brave', group = 'launcher'}),
+    awful.key({ modkey,           }, 'e', function () awful.spawn('emacsclient -c') end,
+              {description = 'Run a new instance of emacs client', group = 'launcher'}),
 
     awful.key({ modkey,           }, 'c', function () awful.spawn('chromium') end,
               {description = 'Navigate the web with chromium', group = 'launcher'}),
@@ -260,7 +260,7 @@ awful.key({}, 'XF86MonBrightnessUp', function () brightness_widget:inc() end, {d
     awful.key({ altkey, }, 'm', function () awful.spawn.with_shell('mpv --cache=yes $(xclip -o -selection clipboard)') end,
               {description = 'Play the copied link with mpv w caching', group = 'hotkeys'}),
 
-    awful.key({ altkey, 'Control'}, 's', function () awful.spawn.with_shell('mpv --shuffle /media/VIDEOS/*') end,
+    awful.key({ altkey, 'Control'}, 's', function () awful.spawn.with_shell('mpv --shuffle /media/MULTIMEDIA/VIDEOS/*') end,
               {description = 'Play the copied link with mpv w caching', group = 'hotkeys'}),
 
     awful.key({ altkey, 'Control'}, 'q', function () awful.spawn.with_shell('zathura /home/hisham/Documents/Quran_7afs.pdf') end,
