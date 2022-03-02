@@ -16,11 +16,13 @@
   - [[#imprve-the-shell-buffer][Imprve the shell buffer]]
   - [[#language-specific-modes][Language Specific Modes]]
   - [[#estitic-packages][Estitic Packages]]
+  - [[#which-key][Which-key]]
   - [[#command-log-mode][Command Log Mode]]
-  - [[#ivy-mode][Ivy Mode]]
+  - [[#completion-packages][Completion Packages]]
   - [[#key-chord][Key-chord]]
   - [[#undo-tree][Undo-tree]]
   - [[#evil-mode][Evil Mode]]
+- [[#org-mode][Org Mode]]
 
 * UI tweaks and customization
 In this section we'll remove some of the UI elements to make it cleaner.
