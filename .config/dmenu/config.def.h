@@ -14,7 +14,7 @@ static const char *fonts[] = {
 static const unsigned int fgalpha = OPAQUE;
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 
-#include "material_dark.h" /* ColorScheme to be used */
+#include "doom_one.h" /* ColorScheme to be used */
 static const unsigned int alphas[SchemeLast][2] = {
 	/*		fgalpha		bgalphga	*/
 	[SchemeNorm] = { fgalpha, bgalpha },

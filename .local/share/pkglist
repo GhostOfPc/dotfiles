@@ -17,6 +17,7 @@ binutils
 bison
 bluez
 bluez-utils
+breeze-icons
 bridge-utils
 chromium
 darktable
@@ -24,10 +25,10 @@ ddcci-driver-linux-dkms
 dhcpcd
 dmidecode
 dnsmasq
+duf
 dust
 edk2-ovmf
 efibootmgr
-emacs
 exa
 exfat-utils
 fakeroot
@@ -39,6 +40,7 @@ file
 findutils
 flameshot
 flatpak
+flatseal
 flex
 fzf
 galculator
@@ -55,7 +57,6 @@ groff
 grub
 gtk2
 gzip
-helvum
 hspell
 htop
 i2c-tools
@@ -67,12 +68,13 @@ iptables-nft
 it87-dkms-git
 jq
 jre-openjdk
-kdenlive
 keepassxc
 kitty
 kvantum
 lf-bin
+libhandy
 libmediainfo
+libotf
 libreoffice-fresh
 libreoffice-fresh-ar
 libtool
@@ -89,6 +91,7 @@ lolcat
 luarocks
 lxappearance-gtk3
 lxqt-policykit
+m17n-lib
 m4
 maim
 make
@@ -125,7 +128,6 @@ pavucontrol-qt
 pcmanfm-qt
 perl-file-mimeinfo
 picom-jonaburg-fix
-pipewire
 pipewire-alsa
 pipewire-pulse
 pipewire-v4l2
@@ -157,6 +159,7 @@ rsync
 samba
 sassc
 scour
+screenkey
 sed
 simplescreenrecorder
 solaar
@@ -170,13 +173,18 @@ sudo
 sxiv
 texinfo
 tree
+ttf-amiri
+ttf-amiri-typewriter
 ttf-joypixels
+ttf-opensans
 tumbler
 udiskie
 ueberzug
 ufw
 unicode-character-database
 unicode-emoji
+unimatrix-git
+upower
 usbutils
 v4l2loopback-dkms
 v4l2loopback-utils
