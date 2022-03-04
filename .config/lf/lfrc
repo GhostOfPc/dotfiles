@@ -33,12 +33,14 @@ map x $$f
 map X !$f
 
 # go to directory
-map ga cd /media/VIDEOS
+map ga cd /media/MULTIMEDIA/VIDEOS
+map gm cd /media/MULTIMEDIA/MOVIES
+map gs cd /media/MULTIMEDIA/SERIES
 map gc cd ~/.config
 map gd cd ~/Downloads
-map gi cd /media/DATA/ISOs
+map gi cd /media/DATA1/ISOs
 map gv cd ~/Videos
-map gy cd /media/DATA/youtube_channel_videos
+map gy cd /media/DATA1/YouTubeChannel
 
 # dedicated keys for file opener actions
 map o &mimeopen $f
