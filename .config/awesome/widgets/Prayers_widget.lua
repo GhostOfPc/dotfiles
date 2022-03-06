@@ -272,5 +272,10 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
 end)
+Prayers_widget:connect_signal('button::release',function(_,_,_,button)
+    if (button == 1) then
+       awful.spawn.with_shell('prayerTimes.sh')
+    end
+end)
 
 return Prayers_widget
