@@ -88,10 +88,12 @@ By default, /Emacs/ does not wrap the text when you reach the end of screen whil
 ** Transparent /Emacs/
 This snippet is for setting the transparecy and also defining a keybindig to enable and disable it
 *** Usage
-~(set-frame-parameter (selected-frame) 'alpha '(<active> . <inactive>))~\\
-~(set-frame-parameter (selected-frame) 'alpha <both>)~\\
-~(set-frame-parameter (selected-frame) 'alpha '95)~\\
-~(add-to-list 'default-frame-alist '(alpha . 95))~
+#+begin_src 
+(set-frame-parameter (selected-frame) 'alpha '(<active> . <inactive>))
+(set-frame-parameter (selected-frame) 'alpha <both>)
+(set-frame-parameter (selected-frame) 'alpha '95)
+(add-to-list 'default-frame-alist '(alpha . 95))
+#+end_src
 *** Code
 #+BEGIN_SRC emacs-lisp
    (defun nt/toggle-transparency ()
