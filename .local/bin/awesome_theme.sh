@@ -12,7 +12,7 @@ if [[ $theme == *"Dark"* ]] || [[ $theme == *"Night"* ]] || [[ $theme == "Moloka
     printf "[General]\ntheme=VimixRubyDark" > ~/.config/Kvantum/kvantum.kvconfig
     sed -i '4s/Light/Dark/' ~/.config/qt5ct/qt5ct.conf
     sed -i '24s/lighter/darker/' ~/.config/nvim/init.vim
-    kitty +kitten themes Doom One
+    kitty +kitten themes Material Dark
 
     cd ~/.config/dmenu
     rm -f config.h
@@ -26,7 +26,7 @@ else
     printf "[General]\ntheme=VimixRuby" > ~/.config/Kvantum/kvantum.kvconfig
     sed -i '4s/Dark/Light/' ~/.config/qt5ct/qt5ct.conf
     sed -i '24s/darker/lighter/' ~/.config/nvim/init.vim
-    kitty +kitten themes Doom One Light
+    kitty +kitten themes Material Light
 
     cd ~/.config/dmenu
     rm -f config.h
