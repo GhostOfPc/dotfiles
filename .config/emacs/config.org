@@ -13,7 +13,7 @@
   - [[#dashboard][Dashboard]]
   - [[#projectile][Projectile]]
   - [[#helpful][Helpful]]
-  - [[#imprve-the-shell-buffer][Imprve the shell buffer]]
+  - [[#improve-the-shell-buffer][Improve the shell buffer]]
   - [[#language-specific-modes][Language Specific Modes]]
   - [[#estitic-packages][Estitic Packages]]
   - [[#which-key][Which-key]]
@@ -152,10 +152,6 @@ Use y for yes and n for no
 #+BEGIN_SRC emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
-List directories first in dired
-#+BEGIN_SRC emacs-lisp
-  (setq dired-listing-switches "-lXGh --group-directories-first")
-#+END_SRC
 bind Esc to keyboard-escape-quit
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "<escape>")      'keyboard-escape-quit)
@@ -201,6 +197,23 @@ A nice dashboard from Spacemacs
 			    (agenda . 5)))
     (setq dashboard-set-file-icons t))
 #+END_SRC
+** Dired
+The built-in directory editor in /Emacs/.
+#+begin_src emacs-lisp
+  (use-package dired
+   :ensure nil
+   :commands (dired dired-jump)
+   :bind (("C-x C-j" . dired-jump))
+   :custom ((dired-listing-switches "-agho --group-directories-first"))
+   :config
+    (evil-collection-define-key 'normal 'dired-mode-map
+     "h" 'dired-single-up-directory
+     "l" 'dired-single-buffer))
+#+end_src
+** Dired-Single
+#+begin_src emacs-lisp
+(use-package dired-single)
+#+end_src
 ** Projectile
 Manage and navigate projects in Emacs easily
 #+BEGIN_SRC emacs-lisp
@@ -219,15 +232,9 @@ Manage and navigate projects in Emacs easily
     ("C-h k" . helpful-key)
     )
 #+END_SRC
-** Imprve the shell buffer
+** Improve the shell buffer
 #+BEGIN_SRC emacs-lisp
-  (use-package term
-    :config
-    (setq term-prompt-regexp "^[^#$%>\\n]*[#$%>] *"))
-
-  ;; Use more colors in term-mode
-  (use-package eterm-256color
-    :hook (term-mode . eterm-256color-mode))
+(use-package vterm)
 #+END_SRC
 ** Language Specific Modes
 *** Yamel Mode
@@ -266,7 +273,7 @@ Make sure to run =M-x return all-the-icons-install-fonts return= to enable the i
     ;; Global settings (defaults)
     (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 	  doom-themes-enable-italic t) ; if nil, italics is universally disabled
-    (load-theme 'doom-one t)
+    (load-theme 'doom-material-dark t)
 
     ;; Enable flashing mode-line on errors
     (doom-themes-visual-bell-config)
