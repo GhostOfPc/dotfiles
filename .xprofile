@@ -1,4 +1,1 @@
-udiskie &
-lxqt-policykit-agent &
-picom --experimental-backends &
-~/.fehbg &
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
