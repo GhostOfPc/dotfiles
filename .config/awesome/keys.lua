@@ -171,8 +171,11 @@ globalkeys = gears.table.join(
     awful.key({ modkey            }, 'r',     function () awful.spawn(apps.rofi) end,
               {description = 'spawn the launcher', group = 'launcher'}),
 
-    awful.key({ modkey            }, 'f',     function () awful.spawn(apps.fmanager) end,
-              {description = 'open the file manager', group = 'launcher'}),
+    awful.key({ modkey            }, 'f',     function () awful.spawn.with_shell('$TERMINAL lfpreview') end,
+              {description = 'open lf with previews', group = 'launcher'}),
+
+    awful.key({ modkey, 'Shift'   }, 'f',     function () awful.spawn.with_shell('dmenufm') end,
+              {description = 'Open dmenufm', group = 'launcher'}),
 
     awful.key({ modkey            }, 'n',     function () awful.spawn.with_shell(apps.wallpaper) end,
               {description = 'Change the wallpaper', group = 'launcher'}),
@@ -199,7 +202,7 @@ awful.key({ modkey, 'Shift' }, 'u', function () awful.spawn.with_shell('kill -9 
               {description = 'kill spotify', group = 'launcher'}),
 
     -- ================= Screenshoot keybinging ===========================
-	awful.key({modkey, 'Shift'},'f',function() awful.spawn.with_shell(apps.screenshot) end,
+	awful.key({modkey, 'Shift'},'s',function() awful.spawn.with_shell(apps.screenshot) end,
 	{description = 'Take a screenshot', group = 'hotkeys'}),
 
     -- ================= Hotkeys (using multimedia keys) ===========================
