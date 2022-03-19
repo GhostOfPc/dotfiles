@@ -72,3 +72,4 @@ alias pr="gphoto2 -f /store_00010001/DCIM/101D7100 -D"
 
 # lf with preivews
 alias lf="$HOME/.local/bin/lfpreview"
+alias ar="aria2c"
