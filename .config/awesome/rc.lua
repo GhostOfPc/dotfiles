@@ -1,6 +1,4 @@
 pcall(require, 'luarocks.loader')
-
--- ========================= Standard awesome library =========================
 local gears = require('gears')
 local awful = require('awful')
 local beautiful = require('beautiful')
@@ -10,11 +8,9 @@ require('awful.hotkeys_popup')
 require('awful.hotkeys_popup.keys')
 local bling = require('modules/bling')
 
--- ========================= Import theme =====================================
 local config_dir = gears.filesystem.get_configuration_dir()
 beautiful.init(config_dir .. "themes/theme.lua")
 
--- ========================= Import components ================================
 require('keys')
 require('tags')
 --require('top_bar')
@@ -23,7 +19,6 @@ require('Menu')
 require('notifications')
 require('rules')
 
--- Enable windows switcher module provided by bling
 bling.widget.window_switcher.enable {
     type = "thumbnail", -- set to anything other than "thumbnail" to disable client previews
 
@@ -39,7 +34,6 @@ bling.widget.window_switcher.enable {
     vim_next_key = "l",                  -- Alternative key on which to select the next client
 }
 
--- ========================= Layouts ==========================================
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.spiral.dwindle,
@@ -48,6 +42,5 @@ awful.layout.layouts = {
     awful.layout.suit.floating,
 }
 
--- Garbage collection (allows for lower memory consumption)
 collectgarbage('setpause', 110)
 collectgarbage('setstepmul', 1000)
