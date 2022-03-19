@@ -76,8 +76,6 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(setq dired-listing-switches "-lXGh --group-directories-first")
-
 (global-set-key (kbd "<escape>")      'keyboard-escape-quit)
 
 ;; Installing packages from melpa
@@ -110,6 +108,19 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 			  (agenda . 5)))
   (setq dashboard-set-file-icons t))
 
+(use-package dired
+  :ensure nil
+  :commands (dired dired-jump)
+  :bind (("C-x C-j" . dired-jump))
+  :custom ((dired-listing-switches "-agho --group-directories-first"))
+  :config
+  (evil-collection-define-key 'normal 'dired-mode-map
+    "h" 'dired-single-up-directory
+    "l" 'dired-single-buffer))
+
+(use-package dired-single
+  :commands (dired dired-jump))
+
 (use-package projectile
   :config
   (projectile-mode t))
@@ -123,20 +134,14 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   ("C-h k" . helpful-key)
   )
 
-(use-package term
-  :config
-  (setq term-prompt-regexp "^[^#$%>\\n]*[#$%>] *"))
-
-;; Use more colors in term-mode
-(use-package eterm-256color
-  :hook (term-mode . eterm-256color-mode))
+(use-package vterm)
 
 (use-package yaml-mode)
 
 (use-package markdown-mode)
 
 ;; This snippet eanbles lua-mode
-(use-package lua-mode	  )
+(use-package lua-mode)
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
@@ -153,7 +158,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 	doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-one t)
+  (load-theme 'doom-material-dark t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -242,16 +247,36 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   :config
   (ivy-posframe-mode 1))
 
-(use-package key-chord
-  :after evil
+(use-package company
   :init
-  (setq key-chord-two-keys-delay 0.5)
+  (global-company-mode)
+  :bind ( :map company-active-map
+   ("<tab>" . company-complete-selection))
   :config
-  (key-chord-mode 1)
-  (key-chord-define-global "ii" 'evil-normal-state)
-  (key-chord-define-global "SB" 'ivy-switch-buffer)
-  (key-chord-define-global "QB" 'kill-buffer)
-  (key-chord-define-global "FF" 'find-file))
+  (setq company-backends '((company-files
+			  company-capf
+			  company-dabbrev
+			  company-keywords)))
+  :custom
+  (company-minimum-prefix-length 1
+  (company-idle-delay 0.0)))
+
+(use-package company-box
+ :hook (company-mode . company-box))
+
+(use-package key-chord
+:after evil
+:init
+(setq key-chord-two-keys-delay 0.5)
+:config
+(key-chord-mode 1))
+
+(use-package general
+:config
+(general-define-key :keymaps 'evil-insert-state-map (general-chord "ii") 'evil-normal-state)
+(general-define-key :keymaps 'normal (general-chord "SB") 'ivy-switch-buffer)
+(general-define-key :keymaps 'normal (general-chord "QB") 'kill-buffer)
+(general-define-key :keymaps 'normal (general-chord "FF") 'find-file))
 
 (use-package undo-tree
   :config (global-undo-tree-mode 1))
@@ -288,7 +313,29 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   :config 
   (evil-goggles-mode))
 
-;; Org mode configuration
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t)
+
+;; lua
+;; https://emacs-lsp.github.io/lsp-mode/page/lsp-lua-language-server/
+(setq lsp-clients-lua-language-server-install-dir (f-join (getenv "HOME") ".local/share/lua-language-server/"); Default: ~/.emacs.d/.cache/lsp/lua-language-server/
+	lsp-clients-lua-language-server-bin (f-join lsp-clients-lua-language-server-install-dir "bin/lua-language-server")
+	lsp-clients-lua-language-server-main-location (f-join lsp-clients-lua-language-server-install-dir "main.lua")
+	lsp-lua-workspace-max-preload 2048 ; Default: 300, Max preloaded files
+	lsp-lua-workspace-preload-file-size 1024; Default: 100, Skip files larger than this value (KB) when preloading.
+	)
+  :hook (lua-mode . lsp-deferred))
+
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp-deferred))))  ; or lsp-deferred
+
 (defun nt/org-mode-setup()
   (org-indent-mode)
   (variable-pitch-mode 1)
@@ -312,6 +359,12 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 ;;                        '(("^ *\\([-]\\) "
 ;;                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
+(dolist (face '((org-level-1 . 1.3)
+		(org-level-2 . 1.1)
+		(org-level-3 . 1.05)
+		(org-level-4 . 1.0)))
+  (set-face-attribute (car face) nil :font "Open Sans" :weight 'regular :height (cdr face)))
+
 (defun nt/org-mode-visual-fill ()
   (setq visual-fill-column-width 150
 	visual-fill-column-center-text t)
@@ -322,21 +375,10 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   :hook (org-mode . nt/org-mode-visual-fill)
 	(dashboard-mode . nt/org-mode-visual-fill))
 
-(dolist (face '((org-level-1 . 1.3)
-		(org-level-2 . 1.1)
-		(org-level-3 . 1.05)
-		(org-level-4 . 1.0)))
-  (set-face-attribute (car face) nil :font "Open Sans" :weight 'regular :height (cdr face)))
-
 ;; Make sure org-indent face is available
 (require 'org-indent)
 
-(use-package company
-  :init
-  (global-company-mode)
-  :config
-  (setq company-backends '((company-files
-			    company-capf
-			    company-dabbrev
-			    company-keywords)))
-  )
+(require 'org-tempo)
+(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+(add-to-list 'org-structure-template-alist '("lu" . "src lua"))
+(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
