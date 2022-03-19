@@ -55,6 +55,7 @@ gphoto2
 grep
 groff
 grub
+grunt-cli
 gtk2
 gzip
 hspell
@@ -125,7 +126,7 @@ papirus-icon-theme
 paru-bin
 patch
 pavucontrol-qt
-pcmanfm-qt
+pcmanfm-gtk3
 perl-file-mimeinfo
 picom-jonaburg-fix
 pipewire-alsa
@@ -136,14 +137,19 @@ pkgfile
 playerctl
 plocate
 pulsemixer
+pyright
 python-adblock
 python-jinja
+python-matplotlib
 python-mutagen
+python-numpy
 python-pip
 python-pygments
 python-pyqt5
 python-pyqt5-sip
 python-pyqt5-webengine
+python-scipy
+python-tqdm
 python-wheel
 python-xlib
 qbittorrent
@@ -162,6 +168,7 @@ scour
 screenkey
 sed
 simplescreenrecorder
+slickpicker
 solaar
 songrec
 spice-vdagent
@@ -171,6 +178,7 @@ spotify-tui-bin
 spotifyd
 sudo
 sxiv
+terminus-font
 texinfo
 tree
 ttf-amiri
