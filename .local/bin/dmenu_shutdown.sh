@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 insidecolor=00000000
 TDcolor=ffffff90

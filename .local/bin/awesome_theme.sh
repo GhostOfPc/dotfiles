@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 theme=$(ls ~/.config/awesome/themes/colorschemes | sed -e 's/\.conf//' | dmenu -i -l 5 -g 10 -p "Select a theme: ")
 
@@ -26,7 +26,7 @@ else
     printf "[General]\ntheme=VimixRuby" > ~/.config/Kvantum/kvantum.kvconfig
     sed -i '4s/Dark/Light/' ~/.config/qt5ct/qt5ct.conf
     sed -i '24s/darker/lighter/' ~/.config/nvim/init.vim
-    kitty +kitten themes Material Light
+    kitty +kitten themes Material
 
     cd ~/.config/dmenu
     rm -f config.h
