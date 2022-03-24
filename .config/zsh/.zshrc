@@ -5,7 +5,7 @@ preexec() {
 precmd() {
   local cmd_end="$SECONDS"
   elapsed=$((cmd_end-cmd_start))
-  PS1="%F{magenta}%n%f%F{green}@%f%F{blue}%m%f%F{yellow}[took $elapsed%ss]%f%K{red}$(gitstatus -i)%k%F{red}%~ %#%f "
+  PS1="%F{magenta}%n%f%F{green}@%f%F{blue}%m%f%F{yellow}[took $elapsed%ss]%f%K{red}$(gitstatus -i)%k%F{red}%(3~|%-1~/…/%2~|%3~)%f "
 }
 
 setopt autocd # Automaticaly cd into typed directory.
@@ -88,3 +88,5 @@ uptime -p | sed "s/up\s/Elapsed Time: /;s/hours,\s/hs:/g;s/minutes/min/"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/.config/zsh/gitstatus/gitstatus.plugin.zsh
+
+#eval "$(starship init zsh)"
