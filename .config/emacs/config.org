@@ -1,7 +1,6 @@
 #+TITLE: Emacs Main Configuration File
 #+PROPERTY: header-args :tangle init.el
-#+OPTIONS: toc:2 
-* Table Of Content
+* Table Of Content :TOC:
 - [[#ui-tweaks-and-customization][UI tweaks and customization]]
   - [[#clean-frame-with-no-unnecessary-elements][clean frame with no unnecessary elements]]
   - [[#no-splash-screen-or-scratch-buffer][No splash screen or scratch buffer]]
@@ -26,14 +25,15 @@
   - [[#general][General]]
   - [[#undo-tree][Undo-tree]]
   - [[#evil-mode][Evil Mode]]
+  - [[#language-servers][Language Servers]]
 - [[#org-mode][Org Mode]]
   - [[#general-configuration][General Configuration]]
   - [[#installing-the-latest-version-of-org][Installing the latest version of Org]]
   - [[#bullets][Bullets]]
   - [[#centering-the-text][Centering the text]]
   - [[#org-babel][Org Babel]]
-- [[#games][Games]]
-  - [[#2048-game][2048-game]]
+  - [[#org-toc][Org TOC]]
+- [[#terminal-emulator-vterm][Terminal Emulator vterm]]
 
 * UI tweaks and customization
 In this section we'll remove some of the UI elements to make it cleaner.
@@ -252,6 +252,10 @@ Manage and navigate projects in Emacs easily
 #+begin_src emacs-lisp
   (use-package markdown-mode)
 #+end_src
+*** Vimrc
+#+begin_src emacs-lisp
+  (use-package vimrc-mode)
+#+end_src
 *** Lua mode
 I like the Awesome window manager which is writtin in lua.
 #+begin_src emacs-lisp
@@ -280,7 +284,7 @@ Make sure to run =M-x return all-the-icons-install-fonts return= to enable the i
     ;; Global settings (defaults)
     (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 	  doom-themes-enable-italic t) ; if nil, italics is universally disabled
-    (load-theme 'doom-material-dark t)
+    (load-theme 'doom-one t)
 
     ;; Enable flashing mode-line on errors
     (doom-themes-visual-bell-config)
@@ -303,7 +307,7 @@ Make sure to run =M-x return all-the-icons-install-fonts return= to enable the i
   (use-package doom-modeline
     :ensure t
     :hook (after-init . doom-modeline-mode)
-    :custom (doom-modeline-height 18))
+    :custom (doom-modeline-height 14))
 #+end_src
 *** Fonts
 #+begin_src emacs-lisp
@@ -416,15 +420,12 @@ Company is a text completion framework for Emacs. The name stands for "complete 
      ("<tab>" . company-complete-selection))
     :config
     (setq company-backends '((company-files
-			    company-capf
-			    company-dabbrev
-			    company-keywords)))
+		      company-capf
+		      company-dabbrev
+		      company-keywords)))
     :custom
     (company-minimum-prefix-length 1
     (company-idle-delay 0.0)))
-
-  (use-package company-box
-   :hook (company-mode . company-box))
 #+end_src
 ** Key-chord
 This package implements support for mapping a pair of simultaneously pressed keys to a command and for mapping the same key being pressed twice in quick succession to a command. Such bindings are called "key chords".
@@ -582,4 +583,18 @@ Add frequently used languages to the source block template. to Insert a new temp
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("lu" . "src lua"))
   (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+#+end_src
+** Org TOC
+Auto-generate table of contents when saving an org or markdown buffer
+#+begin_src emacs-lisp
+  (use-package toc-org
+  :hook (org-mode . toc-org-mode)
+        (markdown-mode . toc-org-mode))
+#+end_src
+* Terminal Emulator vterm
+#+begin_src emacs-lisp
+  (use-package vterm
+    :commands vterm
+    :config
+    (setq term-prompt-regexp "^[^#$%>\\n]*[#$%>] *"))
 #+end_src

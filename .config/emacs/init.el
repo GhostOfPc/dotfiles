@@ -140,6 +140,8 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 
 (use-package markdown-mode)
 
+(use-package vimrc-mode)
+
 ;; This snippet eanbles lua-mode
 (use-package lua-mode)
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
@@ -158,7 +160,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 	doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-material-dark t)
+  (load-theme 'doom-one t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -181,7 +183,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (use-package doom-modeline
   :ensure t
   :hook (after-init . doom-modeline-mode)
-  :custom (doom-modeline-height 18))
+  :custom (doom-modeline-height 14))
 
 ;; Set default font
 (defun nt/set-font-faces()
@@ -254,15 +256,12 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
    ("<tab>" . company-complete-selection))
   :config
   (setq company-backends '((company-files
-			  company-capf
-			  company-dabbrev
-			  company-keywords)))
+		    company-capf
+		    company-dabbrev
+		    company-keywords)))
   :custom
   (company-minimum-prefix-length 1
   (company-idle-delay 0.0)))
-
-(use-package company-box
- :hook (company-mode . company-box))
 
 (use-package key-chord
 :after evil
@@ -382,3 +381,12 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 (add-to-list 'org-structure-template-alist '("lu" . "src lua"))
 (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+
+(use-package toc-org
+:hook (org-mode . toc-org-mode)
+      (markdown-mode . toc-org-mode))
+
+(use-package vterm
+  :commands vterm
+  :config
+  (setq term-prompt-regexp "^[^#$%>\\n]*[#$%>] *"))
