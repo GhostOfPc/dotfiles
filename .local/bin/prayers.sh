@@ -2,9 +2,6 @@
 
 prayers="$HOME/.local/share/prayers.json"
 
-# The api can be found for free
-#salawat=$(curl "https://api.pray.zone/v2/times/today.json?city=$city&school=$school" -s)
-
 # Parsing the data for the five salawat
 fajr=$(jq ".data.timings.Fajr" $prayers | bc | awk '{$1=$1};1')
 sunrise=$(jq ".data.timings.Sunrise" $prayers | bc | awk '{$1=$1};1')

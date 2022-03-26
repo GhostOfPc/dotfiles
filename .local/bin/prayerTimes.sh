@@ -11,6 +11,5 @@ method="2" #method 2 for Americas
 adjustment="1"
 output="$HOME/.local/share/prayers.json"
 
-#[[ -f "$output" ]] && rm $HOME/.local/share/prayers.json
 # The api can be found for free
 curl "http://api.aladhan.com/v1/timings/$today?latitude=$lat&longitude=$long&method=$method&adjustment=$adjustment" -s -o $output
