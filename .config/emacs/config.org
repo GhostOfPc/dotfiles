@@ -7,14 +7,15 @@
   - [[#visual-line-mode][Visual line mode]]
   - [[#lines-numbers][Lines Numbers]]
   - [[#transparent-emacs][Transparent /Emacs/]]
+  - [[#indentation-markers][Indentation markers]]
 - [[#useful--settings][Useful  Settings]]
 - [[#package-management][Package Management]]
   - [[#installing-and-inizilaing-the-packages][Installing and Inizilaing the packages]]
   - [[#dashboard][Dashboard]]
   - [[#dired][Dired]]
   - [[#dired-single][Dired-Single]]
-  - [[#projectile][Projectile]]
   - [[#helpful][Helpful]]
+  - [[#neotree][Neotree]]
   - [[#improve-the-shell-buffer][Improve the shell buffer]]
   - [[#language-specific-modes][Language Specific Modes]]
   - [[#estitic-packages][Estitic Packages]]
@@ -115,6 +116,13 @@ This snippet is for setting the transparecy and also defining a keybindig to ena
 	    '(95 . 50) '(100 . 100)))))
    (global-set-key (kbd "C-c t") 'nt/toggle-transparency)
 #+end_src
+** Indentation markers
+#+begin_src emacs-lisp
+    (use-package highlight-indent-guides
+    :custom ((highlight-indent-guides-method 'character)
+	     (highlight-indent-guides-responsive 'stack))
+    :hook (prog-mode . highlight-indent-guides-mode))
+#+end_src
 * Useful  Settings
 This setting is extremely useful in case of literate programming in org mode to tangle all the source blocks automatically after saving the Org file
 #+begin_src emacs-lisp
@@ -198,9 +206,7 @@ A nice dashboard from Spacemacs
     (setq dashboard-set-navigator t)
     (setq dashboard-set-heading-icons t)
     (setq dashboard-items '((recents  . 15)
-			    (bookmarks . 5)
-			    (projects . 5)
-			    (agenda . 5)))
+			    (bookmarks . 5)))
     (setq dashboard-set-file-icons t))
 #+end_src
 ** Dired
@@ -218,15 +224,25 @@ The built-in directory editor in /Emacs/.
 #+end_src
 ** Dired-Single
 #+begin_src emacs-lisp
-(use-package dired-single
-  :commands (dired dired-jump))
-#+end_src
-** Projectile
-Manage and navigate projects in Emacs easily
-#+begin_src emacs-lisp
-  (use-package projectile
-    :config
-    (projectile-mode t))
+  (use-package dired-single)
+
+  (defun my-dired-init ()
+    "Bunch of stuff to run for dired, either immediately or when it's
+     loaded."
+    ;; <add other stuff here>
+    (define-key dired-mode-map [remap dired-find-file]
+      'dired-single-buffer)
+    (define-key dired-mode-map [remap dired-mouse-find-file-other-window]
+      'dired-single-buffer-mouse)
+    (define-key dired-mode-map [remap dired-up-directory]
+      'dired-single-up-directory))
+
+  ;; if dired's already loaded, then the keymap will be bound
+  (if (boundp 'dired-mode-map)
+      ;; we're good to go; just add our bindings
+      (my-dired-init)
+    ;; it's not loaded yet, so add our bindings to the load-hook
+    (add-hook 'dired-load-hook 'my-dired-init))
 #+end_src
 ** Helpful
 #+begin_src emacs-lisp
@@ -238,6 +254,10 @@ Manage and navigate projects in Emacs easily
     ("C-h v" . helpful-variable)
     ("C-h k" . helpful-key)
     )
+#+end_src
+** Neotree
+#+begin_src emacs-lisp
+(use-package neotree)
 #+end_src
 ** Improve the shell buffer
 #+begin_src emacs-lisp
@@ -256,6 +276,10 @@ Manage and navigate projects in Emacs easily
 #+begin_src emacs-lisp
   (use-package vimrc-mode)
 #+end_src
+*** Haskell
+#+begin_src emacs-lisp
+  (use-package haskell-mode)
+#+end_src
 *** Lua mode
 I like the Awesome window manager which is writtin in lua.
 #+begin_src emacs-lisp
@@ -270,11 +294,15 @@ Yet functional
 *** Icons
 Make sure to run =M-x return all-the-icons-install-fonts return= to enable the icons in the modeline and dired buffer.
 #+begin_src emacs-lisp
-  ;; Icons in the modeline
-  (use-package all-the-icons)
-  ;; Icons in the dired buffer
-  (use-package all-the-icons-dired)
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+	;; Icons in the modeline
+	(use-package all-the-icons)
+	;; Icons in the dired buffer
+	(use-package all-the-icons-dired)
+	(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+	(use-package all-the-icons-ivy-rich
+      :init (all-the-icons-ivy-rich-mode 1)
+    :config
+  (setq all-the-icons-ivy-rich-color-icon 1))
 #+end_src
 *** Doom Themes and Doom Modeline
 #+begin_src emacs-lisp
@@ -386,7 +414,10 @@ Show event history and command history of some or all buffers.
 *** Counsel 
 #+begin_src emacs-lisp
   (use-package counsel
-    :bind ("M-x" . counsel-M-x))
+    :bind
+    ("M-x" . counsel-M-x)
+    ("C-x C-f" . counsel-find-file)
+    ("C-x d" . counsel-dired))
 #+end_src
 *** Ivy Rich
 This package comes with rich transformers for commands from =ivy= and =counsel=. It should be easy enough to define your own transformers too.
@@ -431,22 +462,22 @@ Company is a text completion framework for Emacs. The name stands for "complete 
 This package implements support for mapping a pair of simultaneously pressed keys to a command and for mapping the same key being pressed twice in quick succession to a command. Such bindings are called "key chords".
 Combined with ~general.el~ package it becomes very simple to manage all keybindings.
 #+begin_src emacs-lisp
-(use-package key-chord
-:after evil
-:init
-(setq key-chord-two-keys-delay 0.5)
-:config
-(key-chord-mode 1))
+  (use-package key-chord
+    :after evil
+    :init
+    (setq key-chord-two-keys-delay 0.5)
+    :config
+    (key-chord-mode 1))
 #+end_src
 ** General
 ~general.el~ provides a more convenient method for binding keys in emacs (for both evil and non-evil users).
 #+begin_src emacs-lisp
-(use-package general
-:config
-(general-define-key :keymaps 'evil-insert-state-map (general-chord "ii") 'evil-normal-state)
-(general-define-key :keymaps 'normal (general-chord "SB") 'ivy-switch-buffer)
-(general-define-key :keymaps 'normal (general-chord "QB") 'kill-buffer)
-(general-define-key :keymaps 'normal (general-chord "FF") 'find-file))
+  (use-package general
+    :config
+    (general-define-key :keymaps 'evil-insert-state-map (general-chord "ii") 'evil-normal-state)
+    (general-define-key :keymaps 'normal (general-chord "SB") 'ivy-switch-buffer)
+    (general-define-key :keymaps 'normal (general-chord "QB") 'kill-buffer)
+    (general-define-key :keymaps 'normal (general-chord "FF") 'counsel-find-file))
 #+end_src
 ** Undo-tree
 #+begin_src emacs-lisp
