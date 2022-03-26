@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 nextprayer=""
 prayers="$HOME/.local/share/prayers.json"
