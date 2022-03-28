@@ -1,6 +1,6 @@
 #+TITLE: Emacs Main Configuration File
 #+PROPERTY: header-args :tangle init.el
-* Table Of Content :TOC:
+* Table Of Content :TOC_2:
 - [[#ui-tweaks-and-customization][UI tweaks and customization]]
   - [[#clean-frame-with-no-unnecessary-elements][clean frame with no unnecessary elements]]
   - [[#no-splash-screen-or-scratch-buffer][No splash screen or scratch buffer]]
@@ -193,6 +193,19 @@ use-package allows us to customize the packages either the built-in ones or the 
   (require 'use-package)
 ;; This snippet ommits the need to set (:ensure t) each time we add a new package
   (setq use-package-always-ensure t)
+#+end_src
+*** Checking package version
+#+begin_src emacs-lisp
+(use-package pkg-info)
+#+end_src
+*** Auto-updating packages
+#+begin_src emacs-lisp
+(use-package auto-package-update
+   :ensure t
+   :config
+   (setq auto-package-update-delete-old-versions t
+         auto-package-update-interval 4)
+   (auto-package-update-maybe))
 #+end_src
 ** Dashboard
 A nice dashboard from Spacemacs
@@ -481,8 +494,8 @@ Combined with ~general.el~ package it becomes very simple to manage all keybindi
 #+end_src
 ** Undo-tree
 #+begin_src emacs-lisp
-  (use-package undo-tree
-    :config (global-undo-tree-mode 1))
+;;  (use-package undo-tree
+;;    :config (global-undo-tree-mode 1))
 #+end_src
 ** Evil Mode
 Evil is an extensible vi layer for Emacs. It emulates the main features of Vim, and provides facilities for writing custom extensions. 

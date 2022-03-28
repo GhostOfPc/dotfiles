@@ -52,6 +52,11 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 	 '(95 . 50) '(100 . 100)))))
 (global-set-key (kbd "C-c t") 'nt/toggle-transparency)
 
+(use-package highlight-indent-guides
+:custom ((highlight-indent-guides-method 'character)
+	 (highlight-indent-guides-responsive 'stack))
+:hook (prog-mode . highlight-indent-guides-mode))
+
 (defun tangle-on-save-org-mode-file()
   (when (string= (message "%s" major-mode) "org-mode")
     (org-babel-tangle)))
@@ -94,6 +99,15 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 ;; This snippet ommits the need to set (:ensure t) each time we add a new package
   (setq use-package-always-ensure t)
 
+(use-package pkg-info)
+
+(use-package auto-package-update
+   :ensure t
+   :config
+   (setq auto-package-update-delete-old-versions t
+         auto-package-update-interval 4)
+   (auto-package-update-maybe))
+
 (use-package dashboard
   :config
   (dashboard-setup-startup-hook)
@@ -103,9 +117,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   (setq dashboard-set-navigator t)
   (setq dashboard-set-heading-icons t)
   (setq dashboard-items '((recents  . 15)
-			  (bookmarks . 5)
-			  (projects . 5)
-			  (agenda . 5)))
+			  (bookmarks . 5)))
   (setq dashboard-set-file-icons t))
 
 (use-package dired
@@ -118,12 +130,25 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
     "h" 'dired-single-up-directory
     "l" 'dired-single-buffer))
 
-(use-package dired-single
-  :commands (dired dired-jump))
+(use-package dired-single)
 
-(use-package projectile
-  :config
-  (projectile-mode t))
+(defun my-dired-init ()
+  "Bunch of stuff to run for dired, either immediately or when it's
+   loaded."
+  ;; <add other stuff here>
+  (define-key dired-mode-map [remap dired-find-file]
+    'dired-single-buffer)
+  (define-key dired-mode-map [remap dired-mouse-find-file-other-window]
+    'dired-single-buffer-mouse)
+  (define-key dired-mode-map [remap dired-up-directory]
+    'dired-single-up-directory))
+
+;; if dired's already loaded, then the keymap will be bound
+(if (boundp 'dired-mode-map)
+    ;; we're good to go; just add our bindings
+    (my-dired-init)
+  ;; it's not loaded yet, so add our bindings to the load-hook
+  (add-hook 'dired-load-hook 'my-dired-init))
 
 ;; A better *help* buffer
 (use-package helpful
@@ -134,6 +159,8 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   ("C-h k" . helpful-key)
   )
 
+(use-package neotree)
+
 (use-package vterm)
 
 (use-package yaml-mode)
@@ -142,6 +169,8 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 
 (use-package vimrc-mode)
 
+(use-package haskell-mode)
+
 ;; This snippet eanbles lua-mode
 (use-package lua-mode)
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
@@ -149,10 +178,14 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
 ;; Icons in the modeline
-(use-package all-the-icons)
-;; Icons in the dired buffer
-(use-package all-the-icons-dired)
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+      (use-package all-the-icons)
+      ;; Icons in the dired buffer
+      (use-package all-the-icons-dired)
+      (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+      (use-package all-the-icons-ivy-rich
+    :init (all-the-icons-ivy-rich-mode 1)
+  :config
+(setq all-the-icons-ivy-rich-color-icon 1))
 
 ;; Enable the fancy doom themes
 (use-package doom-themes
@@ -231,7 +264,10 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   :bind (("C-s" . swiper)))
 
 (use-package counsel
-  :bind ("M-x" . counsel-M-x))
+  :bind
+  ("M-x" . counsel-M-x)
+  ("C-x C-f" . counsel-find-file)
+  ("C-x d" . counsel-dired))
 
 (use-package ivy-rich
   :init
@@ -264,21 +300,21 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   (company-idle-delay 0.0)))
 
 (use-package key-chord
-:after evil
-:init
-(setq key-chord-two-keys-delay 0.5)
-:config
-(key-chord-mode 1))
+  :after evil
+  :init
+  (setq key-chord-two-keys-delay 0.5)
+  :config
+  (key-chord-mode 1))
 
 (use-package general
-:config
-(general-define-key :keymaps 'evil-insert-state-map (general-chord "ii") 'evil-normal-state)
-(general-define-key :keymaps 'normal (general-chord "SB") 'ivy-switch-buffer)
-(general-define-key :keymaps 'normal (general-chord "QB") 'kill-buffer)
-(general-define-key :keymaps 'normal (general-chord "FF") 'find-file))
+  :config
+  (general-define-key :keymaps 'evil-insert-state-map (general-chord "ii") 'evil-normal-state)
+  (general-define-key :keymaps 'normal (general-chord "SB") 'ivy-switch-buffer)
+  (general-define-key :keymaps 'normal (general-chord "QB") 'kill-buffer)
+  (general-define-key :keymaps 'normal (general-chord "FF") 'counsel-find-file))
 
-(use-package undo-tree
-  :config (global-undo-tree-mode 1))
+;;  (use-package undo-tree
+;;    :config (global-undo-tree-mode 1))
 
 (use-package evil
   :init
