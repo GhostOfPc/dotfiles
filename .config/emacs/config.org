@@ -16,7 +16,6 @@
   - [[#dired-single][Dired-Single]]
   - [[#helpful][Helpful]]
   - [[#neotree][Neotree]]
-  - [[#improve-the-shell-buffer][Improve the shell buffer]]
   - [[#language-specific-modes][Language Specific Modes]]
   - [[#estitic-packages][Estitic Packages]]
   - [[#which-key][Which-key]]
@@ -29,6 +28,7 @@
   - [[#language-servers][Language Servers]]
 - [[#org-mode][Org Mode]]
   - [[#general-configuration][General Configuration]]
+  - [[#configuring-rtl-in-org-mode][Configuring RTL in Org-mode]]
   - [[#installing-the-latest-version-of-org][Installing the latest version of Org]]
   - [[#bullets][Bullets]]
   - [[#centering-the-text][Centering the text]]
@@ -94,14 +94,6 @@ By default, /Emacs/ does not wrap the text when you reach the end of screen whil
 #+end_src
 ** Transparent /Emacs/
 This snippet is for setting the transparecy and also defining a keybindig to enable and disable it
-*** Usage
-#+begin_src 
-(set-frame-parameter (selected-frame) 'alpha '(<active> . <inactive>))
-(set-frame-parameter (selected-frame) 'alpha <both>)
-(set-frame-parameter (selected-frame) 'alpha '95)
-(add-to-list 'default-frame-alist '(alpha . 95))
-#+end_src
-*** Code
 #+begin_src emacs-lisp
    (defun nt/toggle-transparency ()
      (interactive)
@@ -229,7 +221,7 @@ The built-in directory editor in /Emacs/.
   :ensure nil
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
-  :custom ((dired-listing-switches "-agho --group-directories-first"))
+  :custom ((dired-listing-switches "-Agho --group-directories-first"))
   :config
   (evil-collection-define-key 'normal 'dired-mode-map
     "h" 'dired-single-up-directory
@@ -271,10 +263,6 @@ The built-in directory editor in /Emacs/.
 ** Neotree
 #+begin_src emacs-lisp
 (use-package neotree)
-#+end_src
-** Improve the shell buffer
-#+begin_src emacs-lisp
-(use-package vterm)
 #+end_src
 ** Language Specific Modes
 *** Yamel Mode
@@ -356,6 +344,7 @@ Make sure to run =M-x return all-the-icons-install-fonts return= to enable the i
   (defun nt/set-font-faces()
     (set-face-attribute 'default nil :font "FantasqueSansMono Nerd Font" :height 151)
     (set-face-attribute 'fixed-pitch nil :font "FantasqueSansMono Nerd Font" :height 151)
+    (set-fontset-font t 'arabic "Geeza Pro")
     (set-face-attribute 'variable-pitch nil :font "Open Sans" :height 151))
   (if (daemonp)
       (add-hook 'after-make-frame-functions
@@ -572,9 +561,16 @@ This package will convert our /Emacs/ into real IDE with autocompletion and sear
     (visual-line-mode 1)
     (setq evil-auto-indent nil))
 #+end_src
+** Configuring RTL in Org-mode
+#+begin_src emacs-lisp
+  (defun set-bidi-env ()
+   "interactive"
+   (setq bidi-paragraph-direction 'right-to-left))
+#+end_src
 ** Installing the latest version of Org
 #+begin_src emacs-lisp
   (use-package org
+    ;;:hook (org-mode . set-bidi-env)
     :config
     (setq org-ellipsis " ⯆"
 	  org-hide-emphasis-markers t))
@@ -637,8 +633,8 @@ Auto-generate table of contents when saving an org or markdown buffer
 #+end_src
 * Terminal Emulator vterm
 #+begin_src emacs-lisp
-  (use-package vterm
-    :commands vterm
-    :config
-    (setq term-prompt-regexp "^[^#$%>\\n]*[#$%>] *"))
+;;  (use-package vterm
+;;    :commands vterm
+;;    :config
+;;    (setq term-prompt-regexp "^[^#$%>\\n]*[#$%>] *"))
 #+end_src
