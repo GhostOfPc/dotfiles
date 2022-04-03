@@ -124,7 +124,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   :ensure nil
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
-  :custom ((dired-listing-switches "-agho --group-directories-first"))
+  :custom ((dired-listing-switches "-Agho --group-directories-first"))
   :config
   (evil-collection-define-key 'normal 'dired-mode-map
     "h" 'dired-single-up-directory
@@ -160,8 +160,6 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   )
 
 (use-package neotree)
-
-(use-package vterm)
 
 (use-package yaml-mode)
 
@@ -222,6 +220,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (defun nt/set-font-faces()
   (set-face-attribute 'default nil :font "FantasqueSansMono Nerd Font" :height 151)
   (set-face-attribute 'fixed-pitch nil :font "FantasqueSansMono Nerd Font" :height 151)
+  (set-fontset-font t 'arabic "Geeza Pro")
   (set-face-attribute 'variable-pitch nil :font "Open Sans" :height 151))
 (if (daemonp)
     (add-hook 'after-make-frame-functions
@@ -378,7 +377,12 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   (visual-line-mode 1)
   (setq evil-auto-indent nil))
 
+(defun set-bidi-env ()
+ "interactive"
+ (setq bidi-paragraph-direction 'right-to-left))
+
 (use-package org
+  ;;:hook (org-mode . set-bidi-env)
   :config
   (setq org-ellipsis " ⯆"
 	org-hide-emphasis-markers t))
@@ -422,7 +426,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 :hook (org-mode . toc-org-mode)
       (markdown-mode . toc-org-mode))
 
-(use-package vterm
-  :commands vterm
-  :config
-  (setq term-prompt-regexp "^[^#$%>\\n]*[#$%>] *"))
+;;  (use-package vterm
+;;    :commands vterm
+;;    :config
+;;    (setq term-prompt-regexp "^[^#$%>\\n]*[#$%>] *"))
