@@ -1,3 +1,4 @@
+-- Calls
 pcall(require, 'luarocks.loader')
 local gears = require('gears')
 local awful = require('awful')
@@ -6,34 +7,27 @@ require('awful.autofocus')
 require('menubar')
 require('awful.hotkeys_popup')
 require('awful.hotkeys_popup.keys')
-local bling = require('modules/bling')
+local bling = require('modules.bling')
 
+-- Theme
 local config_dir = gears.filesystem.get_configuration_dir()
 beautiful.init(config_dir .. "themes/theme.lua")
 
+-- Keybindings
 require('keys')
-require('tags')
---require('top_bar')
-require('bottom_bar')
-require('Menu')
-require('notifications')
-require('rules')
 
-bling.widget.window_switcher.enable {
-    type = "thumbnail", -- set to anything other than "thumbnail" to disable client previews
+-- UI components
+require('ui.tags')
+require('ui.bottom_bar')
+require('ui.Menu')
+require('ui.notifications')
+require('ui.rules')
 
-    -- keybindings (the examples provided are also the default if kept unset)
-    hide_window_switcher_key = "Escape", -- The key on which to close the popup
-    minimize_key = "n",                  -- The key on which to minimize the selected client
-    unminimize_key = "N",                -- The key on which to unminimize all clients
-    kill_client_key = "q",               -- The key on which to close the selected client
-    cycle_key = "Tab",                   -- The key on which to cycle through all clients
-    previous_key = "Left",               -- The key on which to select the previous client
-    next_key = "Right",                  -- The key on which to select the next client
-    vim_previous_key = "h",              -- Alternative key on which to select the previous client
-    vim_next_key = "l",                  -- Alternative key on which to select the next client
-}
+-- Bling modules
+require('bling.scratchpad')
+require('bling.switcher')
 
+-- Default layouts (overwritten in tags module)
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.spiral.dwindle,
@@ -42,5 +36,6 @@ awful.layout.layouts = {
     awful.layout.suit.floating,
 }
 
+-- Reduce memory usage
 collectgarbage('setpause', 110)
 collectgarbage('setstepmul', 1000)
