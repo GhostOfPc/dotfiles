@@ -3,7 +3,7 @@ local awful = require('awful')
 local wibox = require('wibox')
 require('widgets.decoration')
 local beautiful = require('beautiful')
-local bling = require('modules/bling')
+local bling = require('modules.bling')
 
 
 local tags = {}
@@ -11,8 +11,8 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag.add('',{
             name                = '⠚⠁⠧⠗⠊⠎', -- JARVIS
             id                  = '1',
-			--layout              = awful.layout.suit.tile,
-			layout			    = awful.layout.suit.tile,
+			layout              = awful.layout.suit.tile,
+			--layout			    = bling.layout.centered,
 			gap_single_client	= true,
 			gap                 = 6,
 			selected		    = true

@@ -6,7 +6,7 @@ local xresources    =   require('beautiful.xresources')
 local dpi           =   xresources.apply_dpi
 --require('top_right')
 --require('top_left')
-require('top_bar')
+require('ui.top_bar')
 require('widgets.Prayers_widget')
 require('widgets.Media_widget')
 require('widgets.Date_widget')
