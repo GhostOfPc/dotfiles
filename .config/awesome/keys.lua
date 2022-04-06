@@ -11,7 +11,7 @@ local apps = require('apps')
 local xrandr=require('xrandr')
 local volume_widget = require("widgets.volume-widget.volume")
 local brightness_widget = require("widgets.brightness-widget.brightness")
-local bling=require('modules/bling')
+local bling=require('modules.bling')
 
 modkey = 'Mod4'
 altkey = 'Mod1'
@@ -144,14 +144,23 @@ globalkeys = gears.table.join(
     awful.key({ modkey, altkey}, 'i', function () awful.spawn('/usr/bin/inkscape') end,
               {description = 'Launch inkscape', group = 'productivity'}),
 
+    awful.key({ modkey, altkey}, 'p', function () awesome.emit_signal("scratch::pulse") end,
+              {description = 'Launch pulsemixer', group = 'hotkeys'}),
+
+    awful.key({ modkey, altkey}, 's', function () awesome.emit_signal("scratch::spotify") end,
+              {description = 'Launch spotify_tui', group = 'hotkeys'}),
+
+    awful.key({ modkey, altkey}, 'm', function () awesome.emit_signal("scratch::mpv") end,
+              {description = 'Launch scratchpad', group = 'hotkeys'}),
+
+    awful.key({ modkey            }, 'f',     function () awesome.emit_signal("scratch::lf") end,
+              {description = 'open lf with previews', group = 'launcher'}),
+
     awful.key({ modkey , raltkey}, 's', function () awful.spawn('simplescreenrecorder') end,
               {description = 'Launch SimpeScreenRecorder', group = 'productivity'}),
 
     awful.key({modkey,     'Shift'}, 'a',function () awful.spawn('alacritty') end,
               {description = 'open alacritty terminal', group = 'launcher'}),
-
-    awful.key({ modkey,           }, 'o', function () awful.spawn.with_shell('$TERMINAL --hold spt_o.sh') end,
-              {description = 'open spotify', group = 'launcher'}),
 
     awful.key({ modkey,           }, 'e', function () awful.spawn('emacsclient -c') end,
               {description = 'Run a new instance of emacs client', group = 'launcher'}),
@@ -170,9 +179,6 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey            }, 'r',     function () awful.spawn(apps.rofi) end,
               {description = 'spawn the launcher', group = 'launcher'}),
-
-    awful.key({ modkey            }, 'f',     function () awful.spawn.with_shell('$TERMINAL lfpreview') end,
-              {description = 'open lf with previews', group = 'launcher'}),
 
     awful.key({ modkey, 'Shift'   }, 'f',     function () awful.spawn.with_shell('dmenufm') end,
               {description = 'Open dmenufm', group = 'launcher'}),
@@ -263,7 +269,7 @@ awful.key({}, 'XF86MonBrightnessUp', function () brightness_widget:inc() end, {d
     awful.key({ altkey, }, 'm', function () awful.spawn.with_shell('mpv --cache=yes $(xclip -o -selection clipboard)') end,
               {description = 'Play the copied link with mpv w caching', group = 'hotkeys'}),
 
-    awful.key({ altkey, 'Control'}, 's', function () awful.spawn.with_shell('mpv --shuffle /media/MULTIMEDIA/VIDEOS/*') end,
+    awful.key({ altkey, 'Control'}, 's', function () awful.spawn.with_shell('mpv --shuffle /mnt/MULTIMEDIA/VIDEOS/*') end,
               {description = 'Play the copied link with mpv w caching', group = 'hotkeys'}),
 
     awful.key({ altkey, 'Control'}, 'q', function () awful.spawn.with_shell('zathura /home/hisham/Documents/Quran_7afs.pdf') end,
