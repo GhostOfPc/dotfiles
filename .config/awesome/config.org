@@ -1,4 +1,4 @@
-#+title: AwesomeWM Main configuration
+#+title: AwesomeWM Configuration
 #+options: toc:2
 * Table Of Content
 - [[#main-configuration-file-rc-file][Main Configuration File (RC file)]]

@@ -16,7 +16,7 @@ quotes_widget = wibox.widget {
     {
         {
             id      =   'text',
-            font    =   'Inter 11',
+            font    =   'Open Sans 11',
             align   =   'center',
             valign  =   'center',
             widget  =   wibox.widget.textbox

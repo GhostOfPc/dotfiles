@@ -53,11 +53,6 @@ local function worker(user_args)
         set_brightness_cmd = 'ybacklight -set ' -- <level>
         inc_brightness_cmd = 'ybacklight -inc ' .. step
         dec_brightness_cmd = 'ybacklight -dec ' .. step
-    elseif program == 'brillo' then
-        get_brightness_cmd = 'brillo -G'
-        set_brightness_cmd = 'brillo -q -u 100000 -S ' -- <level>
-        inc_brightness_cmd = 'brillo -q -u 100000 -A ' .. step
-        dec_brightness_cmd = 'brillo -q -u 100000 -U ' .. step
     else
         show_warning(program .. " command is not supported by the widget")
         return

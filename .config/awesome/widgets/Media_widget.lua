@@ -7,9 +7,9 @@ local Media_widget = {}
 
 MEDIA_CMD = 'playerctl metadata --format "%s"'
 ARG =   '{{emoji(status)}} ' ..
-        --'{{duration(position)}}' ..
+        '{{duration(position)}}' ..
         '({{duration(mpris:length)}})'..
-        --'[{{default(xesam:artist,playerName)}}]' ..
+        '[{{default(xesam:artist,playerName)}}]' ..
         '[{{xesam:title}}]'
 
 Media_wdt = wibox.widget {
@@ -22,8 +22,8 @@ Media_wdt = wibox.widget {
             layout = wibox.container.scroll.horizontal,
             max_size = awful.screen.focused().geometry.width * 0.15,
             step_function = wibox.container.scroll.step_functions.linear_increase,
-            fps = 0.01,
-            speed = 0.01,
+            fps = 60,
+            speed = 15,
             extra_space = 5
         },
         valign = 'center',

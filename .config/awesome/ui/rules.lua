@@ -220,6 +220,19 @@ awful.rules.rules = {
     }
 },
 
+{
+    rule_any = {
+        class = {
+            'Ardour'
+        }
+    },
+    properties = {
+        tag = screen[1].tags[4],
+        switchtotag = true,
+	titlebars_enabled = true,
+    }
+},
+
 }
 end)
 
@@ -237,7 +250,7 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c) : setup {
+    awful.titlebar(c,{size=screen_height*0.016}) : setup {
         { -- Left
             awful.titlebar.widget.closebutton    (c),
             awful.titlebar.widget.maximizedbutton(c),

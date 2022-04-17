@@ -26,6 +26,7 @@ require('ui.rules')
 -- Bling modules
 require('bling.scratchpad')
 require('bling.switcher')
+require('bling.playerctl')
 
 -- Default layouts (overwritten in tags module)
 awful.layout.layouts = {

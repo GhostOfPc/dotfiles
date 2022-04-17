@@ -146,13 +146,6 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey, altkey}, 'p', function () awesome.emit_signal("scratch::pulse") end,
               {description = 'Launch pulsemixer', group = 'hotkeys'}),
-
-    awful.key({ modkey, altkey}, 's', function () awesome.emit_signal("scratch::spotify") end,
-              {description = 'Launch spotify_tui', group = 'hotkeys'}),
-
-    awful.key({ modkey, altkey}, 'm', function () awesome.emit_signal("scratch::mpv") end,
-              {description = 'Launch scratchpad', group = 'hotkeys'}),
-
     awful.key({ modkey            }, 'f',     function () awesome.emit_signal("scratch::lf") end,
               {description = 'open lf with previews', group = 'launcher'}),
 
