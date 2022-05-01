@@ -34,7 +34,6 @@
   - [[#centering-the-text][Centering the text]]
   - [[#org-babel][Org Babel]]
   - [[#org-toc][Org TOC]]
-- [[#terminal-emulator-vterm][Terminal Emulator vterm]]
 
 * UI tweaks and customization
 In this section we'll remove some of the UI elements to make it cleaner.
@@ -161,6 +160,10 @@ Use y for yes and n for no
 bind Esc to keyboard-escape-quit
 #+begin_src emacs-lisp
   (global-set-key (kbd "<escape>")      'keyboard-escape-quit)
+#+end_src
+Stop /Emacs/ from creating backup files
+#+begin_src emacs-lisp
+(setq make-backup-files nil)
 #+end_src
 * Package Management
 ** Installing and Inizilaing the packages
@@ -630,11 +633,4 @@ Auto-generate table of contents when saving an org or markdown buffer
   (use-package toc-org
   :hook (org-mode . toc-org-mode)
         (markdown-mode . toc-org-mode))
-#+end_src
-* Terminal Emulator vterm
-#+begin_src emacs-lisp
-;;  (use-package vterm
-;;    :commands vterm
-;;    :config
-;;    (setq term-prompt-regexp "^[^#$%>\\n]*[#$%>] *"))
 #+end_src
