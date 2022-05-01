@@ -73,3 +73,6 @@ alias gr="gphoto2 -f /store_00010001/DCIM/101D7100 -D"
 alias lf="$HOME/.local/bin/lfpreview"
 # simplify aria2 downloader
 alias ar="aria2c"
+
+# ncdu with blocks
+alias ncdu="ncdu --graph-style half-block"

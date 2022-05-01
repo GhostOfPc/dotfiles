@@ -40,7 +40,7 @@ local pulse_scratch = bling.module.scratchpad {
 awesome.connect_signal("scratch::pulse",function()pulse_scratch:toggle() end)
 
 local lf_scratch = bling.module.scratchpad {
-   command = 'kitty --class sclf lf',
+   command = 'kitty --class sclf lfpreview',
    rule = { instance = 'sclf'},
    sticky = false,
    autoclose = true,

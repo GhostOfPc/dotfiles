@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 nextprayer=""
 prayers="$HOME/.local/share/prayers.json"
@@ -15,23 +15,23 @@ currenttime=$(date +%H:%M)
 
 # For each prayer, two variables are used, one to be printed as the name of the prayer (nextprayer), 
 # and the other variable (time) to be used in the calculation of the remaining time (nextTime)
-if [[ $currenttime > $fajr && $currenttime < $dhuhr ]]; then
+if [ $currenttime > $fajr ] && [ $currenttime < $dhuhr ]; then
     nextprayer=$(echo "الظهر")
     nextTime=$dhuhr
 
-elif [[ $currenttime > $dhuhr && $currenttime < $asr ]]; then
+elif [ $currenttime > $dhuhr ] && [ $currenttime < $asr ]; then
     nextprayer=$(echo "العصر")
     nextTime=$asr
 
-elif [[ $currenttime > $asr && $currenttime < $maghrib ]]; then
+elif [ $currenttime > $asr ] && [ $currenttime < $maghrib ]; then
     nextprayer=$(echo "المغرب")
     nextTime=$maghrib
 
-elif [[ $currenttime > $maghrib && $currenttime < $isha ]]; then
+elif [ $currenttime > $maghrib ] && [ $currenttime < $isha ]; then
     nextprayer=$(echo "العشاء")
     nextTime=$isha
 
-elif [[ $currenttime > $isha || $currenttime < $fajr ]]; then
+elif [ $currenttime > $isha ] || [ $currenttime < $fajr ]; then
     nextprayer=$(echo "الفجر")
     nextTime=$fajr
 fi

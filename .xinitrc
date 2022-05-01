@@ -36,6 +36,7 @@ volctl &
 #blueman-applet &
 picom &
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY & # Required for flatpaks with no DE
+aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log &
 emacs --daemon &
 exec awesome
 #exec i3
