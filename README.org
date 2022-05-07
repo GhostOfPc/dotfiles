@@ -29,3 +29,4 @@ I'm on Arch linux because it makes it really easy to install all the packages I 
 | =ybacklight=                     | To control the screen brightness                              |
 | =playerctl=                      | Change songs backwards and forwards using the media keys      |
 I manage my dotfiles using a bare repository method provided by a gentelman called StreakyCobra on [[https://www.atlassian.com/git/tutorials/dotfiles][ATLASSIAN]]
+url : https://www.youtube.com/watch?v=BnSXo5p1ZLw
